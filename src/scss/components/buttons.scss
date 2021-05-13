@@ -1,0 +1,397 @@
+
+//Buttons
+button , .btn {
+	background:$p;
+	color: white;
+	border: none;
+	text-transform: uppercase;
+	font-size: 14px;
+	padding: 10px 16px;
+	border-radius: 4px;
+	cursor: pointer;
+	box-shadow: $bbs;
+	transition: all 0.2s;
+	position: relative;
+	overflow: hidden;
+	font-weight: 500;
+	display: inline-flex;
+	user-select: none;
+}
+button:hover , .btn:hover {
+	box-shadow: $bbsh;
+}
+button:active , .btn:active {
+	box-shadow: $bbsa;
+}
+button:focus , .btn:focus {
+	box-shadow: $bbsf;
+}
+	//outlined
+	button.outlined , .btn.outlined {
+		background:transparent;
+		color: $p;
+		border: none;
+		text-transform: uppercase;
+		font-size: 14px;
+		padding: 10px 16px;
+		border-radius: 4px;
+		box-shadow:none;
+		cursor: pointer;
+		box-shadow:inset 0px 0px 0px 1px $p;
+		transition: all 0.2s;
+		position: relative;
+		overflow: hidden;
+		font-weight: 500;
+	}
+	button.outlined .ripple , .btn.outlined .ripple {
+		background:rgba($p, 0.2);
+	}
+	button.outlined:hover , .btn.outlined:hover {
+		background:rgba($p, 0.1);
+	}
+	button.outlined:focus , .btn.outlined:focus {
+		background:rgba($p, 0.1);
+	}
+
+//text
+button.text , .btn.text {
+	background:transparent;
+	color: $p;
+	border: none;
+	text-transform: uppercase;
+	font-size: 14px;
+	padding: 10px 16px;
+	border-radius: 4px;
+	box-shadow:none;
+	cursor: pointer;
+	transition: all 0.2s;
+	position: relative;
+	overflow: hidden;
+	font-weight: 500;
+}
+button.text .ripple , .btn.text .ripple {
+	background:rgba($p, 0.2);
+}
+button.text:hover , .btn.text:hover {
+	background:rgba($p, 0.1);
+}
+button.text:focus , .btn.text:focus {
+	background:rgba($p, 0.1);
+}
+
+//unelevated
+button.unelevated , .btn.unelevated {
+	background:$p;
+	color: white;
+	border: none;
+	text-transform: uppercase;
+	font-size: 14px;
+	padding: 10px 16px;
+	border-radius: 4px;
+	cursor: pointer;
+	box-shadow: none;
+	transition: all 0.2s;
+	position: relative;
+	overflow: hidden;
+	font-weight: 500;
+}
+button.unelevated:hover , .btn.unelevated:hover {
+	background:rgba($p, 0.8);
+}
+button.unelevated:active , .btn.unelevated:active {
+	background:rgba($p, 0.8);
+}
+button.unelevated:focus , .btn.unelevated:focus {
+	background:rgba($p, 0.8);
+}
+
+// BUTTON COLORS
+ 	//secondary
+ 	button.secondary:not(.outlined , .text) , .btn.secondary:not(.outlined , .text) {
+ 		background:$s;
+ 	}
+	//outlined
+	button.outlined.secondary , .btn.outlined.secondary {
+		box-shadow:inset 0px 0px 0px 1px $s;
+		color: $s;
+	}
+
+	button.outlined.secondary .ripple , .btn.outlined.secondary .ripple {
+		background:rgba($s, 0.2);
+	}
+	button.outlined.secondary:hover , .btn.outlined.secondary:hover {
+		background:rgba($s, 0.1);
+	}
+	button.outlined.secondary:focus , .btn.outlined.secondary:focus {
+		background:rgba($s, 0.1);
+	}	
+	//text
+	button.text.secondary , .btn.text.secondary {
+		color: $s;
+	}
+	button.text.secondary:hover , .btn.text.secondary:hover {
+		background:rgba($s, 0.2);
+	}
+	button.text.secondary:focus , .btn.text.secondary:focus {
+		background:rgba($s, 0.1);
+	}
+	button.text.secondary:active , .btn.text.secondary:active {
+		background:rgba($s, 0.1);
+	}
+	button.text.secondary .ripple , .btn.text.secondary .ripple {
+		background:rgba($s, 0.2);
+	}
+
+//unelevated
+button.unelevated.secondary:hover , .btn.unelevated.secondary:hover {
+	background:rgba($s, 0.8);
+}
+button.unelevated.secondary:active , .btn.unelevated.secondary:active {
+	background:rgba($s, 0.8);
+}
+button.unelevated.secondary:focus , .btn.unelevated.secondary:focus {
+	background:rgba($s, 0.8);
+}
+
+
+//danger
+button.danger:not(.outlined , .text) , .btn.danger:not(.outlined , .text) {
+	background:$d;
+}
+	//outlined
+	button.outlined.danger , .btn.outlined.danger {
+		box-shadow:inset 0px 0px 0px 1px $d;
+		color: $d;
+	}
+
+	button.outlined.danger .ripple , .btn.outlined.danger .ripple {
+		background:rgba($d, 0.2);
+	}
+	button.outlined.danger:hover , .btn.outlined.danger:hover {
+		background:rgba($d, 0.1);
+	}
+	button.outlined.danger:focus , .btn.outlined.danger:focus {
+		background:rgba($d, 0.1);
+	}	
+	//text
+	button.text.danger , .btn.text.danger {
+		color: $d;
+	}
+	button.text.danger:hover , .btn.text.danger:hover {
+		background:rgba($d, 0.2);
+	}
+	button.text.danger:focus , .btn.text.danger:focus {
+		background:rgba($d, 0.1);
+	}
+	button.text.danger:active , .btn.text.danger:active {
+		background:rgba($d, 0.1);
+	}
+	button.text.danger .ripple , .btn.text.danger .ripple {
+		background:rgba($d, 0.2);
+	}
+
+//unelevated
+button.unelevated.danger:hover , .btn.unelevated.danger:hover {
+	background:rgba($d, 0.8);
+}
+button.unelevated.danger:active , .btn.unelevated.danger:active {
+	background:rgba($d, 0.8);
+}
+button.unelevated.danger:focus , .btn.unelevated.danger:focus {
+	background:rgba($d, 0.8);
+}
+
+
+//dark
+button.dark:not(.outlined , .text) , .btn.dark:not(.outlined , .text) {
+	background:$bl;
+}
+	//outlined
+	button.outlined.dark , .btn.outlined.dark {
+		box-shadow:inset 0px 0px 0px 1px $bl;
+		color: $bl;
+	}
+
+	button.outlined.dark .ripple , .btn.outlined.dark .ripple {
+		background:rgba($bl, 0.2);
+	}
+	button.outlined.dark:hover , .btn.outlined.dark:hover {
+		background:rgba($bl, 0.1);
+	}
+	button.outlined.dark:focus , .btn.outlined.dark:focus {
+		background:rgba($bl, 0.1);
+	}	
+	//text
+	button.text.dark , .btn.text.dark {
+		color: $bl;
+	}
+	button.text.dark:hover , .btn.text.dark:hover {
+		background:rgba($bl, 0.2);
+	}
+	button.text.dark:focus , .btn.text.dark:focus {
+		background:rgba($bl, 0.1);
+	}
+	button.text.dark:active , .btn.text.dark:active {
+		background:rgba($bl, 0.1);
+	}
+	button.text.dark .ripple , .btn.text.dark .ripple {
+		background:rgba($bl, 0.2);
+	}
+
+//unelevated
+button.unelevated.dark:hover , .btn.unelevated.dark:hover {
+	background:rgba($bl, 0.8);
+}
+button.unelevated.dark:active , .btn.unelevated.dark:active {
+	background:rgba($bl, 0.8);
+}
+button.unelevated.dark:focus , .btn.unelevated.dark:focus {
+	background:rgba($bl, 0.8);
+}
+
+
+//success
+button.success:not(.outlined , .text) , .btn.success:not(.outlined , .text) {
+	background:$su;
+}
+	//outlined
+	button.outlined.success , .btn.outlined.success {
+		box-shadow:inset 0px 0px 0px 1px $su;
+		color: $su;
+	}
+
+	button.outlined.success .ripple , .btn.outlined.success .ripple {
+		background:rgba($su, 0.2);
+	}
+	button.outlined.success:hover , .btn.outlined.success:hover {
+		background:rgba($su, 0.1);
+	}
+	button.outlined.success:focus , .btn.outlined.success:focus {
+		background:rgba($su, 0.1);
+	}	
+	//text
+	button.text.success , .btn.text.success {
+		color: $su;
+	}
+	button.text.success:hover , .btn.text.success:hover {
+		background:rgba($su, 0.2);
+	}
+	button.text.success:focus , .btn.text.success:focus {
+		background:rgba($su, 0.1);
+	}
+	button.text.success:active , .btn.text.success:active {
+		background:rgba($su, 0.1);
+	}
+	button.text.success .ripple , .btn.text.success .ripple {
+		background:rgba($su, 0.2);
+	}
+
+//unelevated
+button.unelevated.success:hover , .btn.unelevated.success:hover {
+	background:rgba($su, 0.8);
+}
+button.unelevated.success:active , .btn.unelevated.success:active {
+	background:rgba($su, 0.8);
+}
+button.unelevated.success:focus , .btn.unelevated.success:focus {
+	background:rgba($su, 0.8);
+}
+//icon button
+button.icon, .btn.icon {
+	background: transparent;
+	box-shadow: none;
+	border-radius: 100%;
+	color: #8d8787;
+	--ripple-color: #0303031a;
+	font-size: 10px;
+	padding: 10px 10px;
+	margin: 0;
+	vertical-align: middle;
+}
+
+button.icon:hover, .btn.icon:hover {
+	background: #0303031a;
+}
+button.icon:active, .btn.icon:active {
+	background: #0303031a;
+}
+button.icon:focus, .btn.icon:focus {
+	background: #0303031a;
+}
+button.large , .btn.large {
+	padding: 15px 26px;
+	font-size: 18px;
+}
+button.small , .btn.small {
+	font-size: 11px;
+	padding: 8px 15px;
+}
+.fab {
+	border-radius: 50px;
+	padding: 15px 15px;
+	line-height: 1.8;
+}
+.fab.with-text {
+	padding:10px 15px;
+}
+button:disabled , button.disabled , .btn:disabled , .btn.disabled {
+	background:#d2d2d2;
+	pointer-events:none;
+	color: #505050;
+}
+button.otlined:disabled , button.outlined.disabled , .btn.outlined:disabled , .btn.outlined.disabled {
+	box-shadow:inset  0px 0px 0px 1px #d2d2d2;
+	background:transparent;
+	pointer-events:none;
+	color: #505050;
+}
+button.text:disabled , button.text.disabled , .btn.text:disabled , .btn.text.disabled {
+	background:transparent;
+	pointer-events:none;
+	color: #505050;
+}
+
+.ripple-e {   
+	position: relative;
+	overflow: hidden;
+}
+.ripple-e.light .ripple {
+	background-color: rgba(255, 255, 255, 0.16);
+}
+.ripple-e.dark .ripple {
+	background-color: rgba(0 , 0 , 0 , 0.16);
+}
+.ripple-e.center-ripple .ripple , button.center-ripple .ripple {
+	position: absolute;
+	top: 50% !important;
+	height: 100% !important;
+	width: 100% !important;
+	left: 50% !important;
+	transform: translate(-50% , -50%);
+	animation: centerripple 0.3s ease-out;
+}
+.ripple {
+	background-color: var(--ripple-color , rgba(255, 255, 255, 0.4));
+	position: absolute;
+	border-radius: 50%;
+	pointer-events: none;
+	transition: 0.4s;
+	animation: ripple 0.3s ease-out;
+}
+@keyframes centerripple {
+	0% {
+		transform:scale(0) translate(-50% , -50%);
+	}
+	100% {
+		transform:scale(1) translate(-50% , -50%);
+		width: 100% !important;
+	}
+}
+@keyframes ripple {
+	0% {
+		transform: scale(0);
+	}
+	100% {
+		transform: scale(1);
+	}
+}
