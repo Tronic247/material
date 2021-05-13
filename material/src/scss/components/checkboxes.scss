@@ -1,0 +1,345 @@
+
+//Checkbox
+.checkbox {
+ 	z-index: 0;
+ 	position: relative;
+ 	display: inline-block;
+ 	line-height: 1.5;
+ 	box-sizing:unset;
+ }
+ .checkbox , .checkbox * , .checkbox *:after , .checkbox *:before {
+ 	box-sizing:unset;
+ }
+ .checkbox > input {
+ 	appearance: none;
+ 	-moz-appearance: none;
+ 	-webkit-appearance: none;
+ 	z-index: -1;
+ 	position: absolute;
+ 	left: -10px;
+ 	top: -8px;
+ 	display: block;
+ 	margin: 0;
+ 	border-radius: 50%;
+ 	width: 40px;
+ 	height: 40px;
+ 	background-color: white;
+ 	box-shadow: none;
+ 	outline: none;
+ 	opacity: 0;
+ 	transform: scale(1);
+ 	pointer-events: none;
+ 	transition: opacity 0.3s, transform 0.2s;
+ }
+ .checkbox > span {
+ 	display: inline-block;
+ 	width: 100%;
+ 	cursor: pointer;
+ }
+ .checkbox > span:before {
+ 	content: "";
+ 	display: inline-block;
+ 	box-sizing: border-box;
+ 	margin: 3px 11px 3px 1px;
+ 	border: solid 2px;
+ 	border-color: rgba(0, 0, 0, 0.6);
+ 	border-radius: 2px;
+ 	width: 18px;
+ 	height: 18px;
+ 	vertical-align: top;
+ 	transition: border-color 0.2s, background-color 0.2s;
+ }
+ .checkbox > span:after {
+ 	content: "";
+ 	display: block;
+ 	position: absolute;
+ 	top: 3px;
+ 	left: 1px;
+ 	width: 10px;
+ 	height: 5px;
+ 	border: solid 2px transparent;
+ 	border-right: none;
+ 	border-top: none;
+ 	transform: translate(3px, 4px) rotate(-45deg);
+ }
+ .checkbox > input:checked {
+ 	background-color: $p;
+ }
+ .checkbox > input:checked + span:before{
+ 	border-color: $p;
+ 	background-color: $p;
+ }
+ .checkbox > input:checked + span:after{
+ 	border-color: rgb(255, 255, 255);
+ }
+
+ .checkbox:hover > input {
+ 	opacity: 0.16;
+ }
+
+ .checkbox > input:focus {
+ 	opacity: 0.12;
+ }
+
+ .checkbox:hover > input:focus {
+ 	opacity: 0.16;
+ }
+ .checkbox > input:active {
+ 	opacity: 1;
+ 	transform: scale(0);
+ 	transition: transform 0s, opacity 0s;
+ }
+
+ .checkbox > input:active + span:before {
+ 	border-color: $p;
+ }
+
+ .checkbox > input:checked:active + span:before {
+ 	border-color: transparent;
+ 	background-color: rgba($p, 0.6);
+ }
+
+ .checkbox > input:disabled {
+ 	opacity: 0;
+ }
+
+ .checkbox > input:disabled + span {
+ 	color: rgba($p, 0.38);
+ 	cursor: initial;
+ }
+
+ .checkbox > input:disabled + span:before {
+ 	border-color: currentColor;
+ }
+
+ .checkbox > input:checked:disabled + span:before{
+ 	border-color: transparent;
+ 	background-color: currentColor;
+ }
+ .checkbox > input:hover {
+ 	background-color: $p;
+ }
+.radio {
+	z-index: 0;
+	position: relative;
+	display: inline-block;
+	font-size: 16px;
+	line-height: 1.5;
+}
+.radio > input {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	z-index: -1;
+	position: absolute;
+	left: -10px;
+	top: -8px;
+	display: block;
+	margin: 0;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	background-color: $p;
+	outline: none;
+	opacity: 0;
+	transform: scale(1);
+	pointer-events: none;
+	transition: opacity 0.3s, transform 0.2s;
+}
+.radio > span {
+	display: inline-block;
+	width: 100%;
+	cursor: pointer;
+}
+.radio > span::before {
+	content: "";
+	display: inline-block;
+	box-sizing: border-box;
+	margin: 2px 10px 2px 0;
+	border: solid 2px; /* Safari */
+	border-color:  $p;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	vertical-align: top;
+	transition: border-color 0.2s;
+}
+.radio > span::after {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 2px;
+	left: 0;
+	border-radius: 50%;
+	width: 10px;
+	height: 10px;
+	background-color:  $p;
+	transform: translate(5px, 5px) scale(0);
+	transition: transform 0.2s;
+}
+.radio > input:checked {
+	background-color:  $p;
+}
+.radio > input:hover {
+	background-color:  $p;
+}
+.radio > input:checked + span::before {
+	border-color:  $p;
+}
+.radio > input:checked + span::after {
+	transform: translate(5px, 5px) scale(1);
+}
+.radio:hover > input {
+	opacity: 0.16;
+}
+.radio > input:focus {
+	opacity: 0.12;
+}
+.radio:hover > input:focus {
+	opacity: 0.16;
+}
+.radio > input:active {
+	opacity: 1;
+	transform: scale(0);
+	transition: transform 0s, opacity 0s;
+}
+.radio > input:active + span::before {
+	border-color:  $p;
+}
+.radio > input:disabled {
+	opacity: 0;
+}
+.radio > input:disabled + span {
+	color: rgba(0, 0, 0, 0.38);
+	cursor: initial;
+}
+.radio > input:disabled + span::before {
+	border-color: currentColor;
+}
+.radio > input:disabled + span::after {
+	background-color: currentColor;
+}
+.switch {
+	z-index: 0;
+	position: relative;
+	display: inline-block;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+.switch > input {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	z-index: -1;
+	position: absolute;
+	right: 6px;
+	top: -8px;
+	display: block;
+	margin: 0;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	background-color: rgba($p 0.38);
+	outline: none;
+	opacity: 0;
+	transform: scale(1);
+	pointer-events: none;
+	transition: opacity 0.3s 0.1s, transform 0.2s 0.1s;
+}
+
+.switch > span {
+	display: inline-block;
+	width: 100%;
+	cursor: pointer;
+}
+
+.switch > span::before {
+	content: "";
+	float: right;
+	display: inline-block;
+	margin: 5px 0 5px 10px;
+	border-radius: 7px;
+	width: 36px;
+	height: 14px;
+	background-color: #959595;
+	vertical-align: top;
+	transition: background-color 0.2s, opacity 0.2s;
+}
+
+.switch > span::after {
+	content: "";
+	position: absolute;
+	top: 2px;
+	right: 16px;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	background-color: #ffff;
+	box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+	transition: background-color 0.2s, transform 0.2s;
+}
+
+.switch > input:checked {
+	right: -10px;
+	background-color: $p;
+}
+
+.switch > input:checked + span::before {
+	background-color: rgba($p, 0.6);
+}
+
+.switch > input:checked + span::after {
+	background-color: $p;
+	transform: translateX(16px);
+}
+
+.switch:hover > input {
+	opacity: 0.04;
+}
+
+.switch > input:focus {
+	opacity: 0.12;
+}
+
+.switch:hover > input:focus {
+	opacity: 0.16;
+}
+
+.switch > input:active {
+	opacity: 1;
+	transform: scale(0);
+	transition: transform 0s, opacity 0s;
+}
+
+.switch > input:active + span::before {
+	background-color: rgba($p, 0.6);
+}
+
+.switch > input:hover {
+	background-color: $p;
+	transition:all 0.2s;
+	opacity: 0.4;
+}
+
+.switch > input:checked:active + span::before {
+	background-color: rgba($p, 0.38);
+}
+
+.switch > input:disabled {
+	opacity: 0;
+}
+
+.switch > input:disabled + span {
+	color: $p;
+	opacity: 0.38;
+	cursor: default;
+}
+
+.switch > input:disabled + span::before {
+	background-color: rgba($p, 0.38);
+}
+
+.switch > input:checked:disabled + span::before {
+	background-color: rgba($p, 0.6);
+}

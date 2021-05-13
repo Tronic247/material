@@ -1,0 +1,54 @@
+/** 
+	MATERIAL BY TRONIC247
+	(tronic247.com/material)
+**/
+$primary-color:#6200EA;
+$primary-light:#651FFF;
+$primary-dark:#311B92;
+$secondary-color:#018786;
+$secondary-light:#1DE9B6;
+$secondary-dark:#004D40;
+$danger-color:#D50000;
+$dark-color:#212121;
+$success-color:#1B5E20;
+$btn-box-shadow:0px 3px 1px -2px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 1px 5px 0px rgba(0,0,0,.12);
+$btn-box-shadow-hover:0px 2px 4px -1px rgba(0, 0, 0, 0.2),0px 4px 5px 0px rgba(0, 0, 0, 0.14),0px 1px 10px 0px rgba(0,0,0,.12);
+$btn-box-shadow-active:0px 5px 5px -3px rgba(0, 0, 0, 0.2),0px 8px 10px 1px rgba(0, 0, 0, 0.14),0px 3px 14px 2px rgba(0,0,0,.12);
+$btn-box-shadow-focus:0px 2px 4px -1px rgba(0, 0, 0, 0.2),0px 4px 5px 0px rgba(0, 0, 0, 0.14),0px 1px 10px 0px rgba(0,0,0,.12);
+$modal-box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12);
+$p:$primary-color;
+$pl:$primary-light;
+$pd:$primary-dark;
+$s:$secondary-color;
+$sl:$secondary-light;
+$sd:$secondary-dark;
+$d:$danger-color;
+$bl:$dark-color;
+$su:$success-color;
+$bbs:$btn-box-shadow;
+$bbsh:$btn-box-shadow-hover;
+$bbsa:$btn-box-shadow-active;
+$bbsf:$btn-box-shadow-focus;
+$mbs:$modal-box-shadow;
+@import 'scss/components/reset.scss';
+@import 'scss/components/typography.scss';
+@import 'scss/components/appbar.scss';
+@import 'scss/components/buttons.scss';
+@import 'scss/components/select.scss';
+@import 'scss/components/cards.scss';
+@import 'scss/components/checkboxes.scss';
+@import 'scss/components/chips.scss';
+@import 'scss/components/breadcrumbs.scss';
+@import 'scss/components/colors.scss';
+@import 'scss/components/dialog.scss';
+@import 'scss/components/drawer.scss';
+@import 'scss/components/elevation.scss';
+@import 'scss/components/grid.scss';
+@import 'scss/components/lists.scss';
+@import 'scss/components/progress.scss';
+@import 'scss/components/menu.scss';
+@import 'scss/components/sliders.scss';
+@import 'scss/components/badges.scss';
+@import 'scss/components/snackbar.scss';
+@import 'scss/components/tables.scss';
+@import 'scss/components/textfields.scss';

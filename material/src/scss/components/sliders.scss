@@ -1,0 +1,217 @@
+
+.slider  { 
+	display: inline-block;
+	width: 200px;
+	color: $bl;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+/* Input */
+.slider > input {
+	-webkit-appearance: none;
+	position: relative;
+	top: 24px;
+	display: block;
+	margin: 0 0 -36px;
+	width: 100%;
+	height: 36px;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.slider > input:last-child {
+	position: static;
+	margin: 0;
+}
+
+.slider > span {
+	display: inline-block;
+	margin-bottom: 36px;
+}
+
+.slider > input:focus {
+	outline: none;
+}
+
+.slider > input:disabled {
+	cursor: default;
+	opacity: 0.38;
+}
+
+.slider > input:disabled + span {
+	color: rgba($p, 0.38);
+}
+
+.slider > input::-webkit-slider-runnable-track {
+	margin: 17px 0;
+	border-radius: 1px;
+	width: 100%;
+	height: 2px;
+	background-color: rgba($p, 0.24);
+}
+
+.slider > input::-webkit-slider-thumb {
+	appearance: none;
+	-webkit-appearance: none;
+	border: none;
+	border-radius: 50%;
+	height: 2px;
+	width: 2px;
+	background-color: $p;
+	transform: scale(6, 6);
+	transition: box-shadow 0.2s;
+}
+
+.slider:hover > input::-webkit-slider-thumb {
+	box-shadow: 0 0 0 2px rgba($p , 0.12);
+}
+
+.slider > input:focus::-webkit-slider-thumb {
+	box-shadow: 0 0 0 2px rgba($p , 0.16);
+}
+
+.slider:hover > input:focus::-webkit-slider-thumb {
+	box-shadow: 0 0 0 2px rgba($p , 0.16);
+}
+
+.slider > input:active::-webkit-slider-thumb {
+	box-shadow: 0 0 0 2px rgba($p, 0.38) !important;
+}
+
+.slider > input:disabled::-webkit-slider-runnable-track {
+	background-color: rgba($p, 0.38);
+}
+
+.slider > input:disabled::-webkit-slider-thumb {
+	background-color: $p;
+	color: $p; /* Safari */
+	box-shadow: 0 0 0 1px $p !important;
+	transform: scale(4, 4);
+}
+
+.slider > input::-moz-range-track {
+	margin: 17px 0;
+	border-radius: 1px;
+	width: 100%;
+	height: 2px;
+	background-color: rgba($p, 0.24);
+}
+
+.slider > input::-moz-range-thumb {
+	appearance: none;
+	-moz-appearance: none;
+	border: none;
+	border-radius: 50%;
+	height: 2px;
+	width: 2px;
+	background-color: $p;
+	transform: scale(6, 6);
+	transition: box-shadow 0.2s;
+}
+
+.slider > input::-moz-range-progress {
+	border-radius: 1px;
+	height: 2px;
+	background-color: $p;
+}
+
+.slider:hover > input:hover::-moz-range-thumb {
+	box-shadow: 0 0 0 2px rgba($p, 0.04);
+}
+
+.slider > input:focus::-moz-range-thumb {
+	box-shadow: 0 0 0 2px rgba($p, 0.12);
+}
+
+.slider:hover > input:focus::-moz-range-thumb {
+	box-shadow: 0 0 0 2px rgba($p , 0.16);
+}
+
+.slider > input:active::-moz-range-thumb {
+	box-shadow: 0 0 0 2px rgba($p , 0.24) !important;
+}
+
+.slider > input:disabled::-moz-range-track {
+	background-color: rgba($p , 0.38);
+}
+
+.slider > input:disabled::-moz-range-progress {
+	background-color: rgba($p , 0.87);
+}
+
+.slider > input:disabled::-moz-range-thumb {
+	background-color: $p;
+	box-shadow: 0 0 0 1px $p !important;
+	transform: scale(4, 4);
+}
+
+.slider > input::-moz-focus-outer {
+	border: none;
+}
+
+.slider > input::-ms-track {
+	box-sizing: border-box;
+	margin: 17px 0;
+	border: none;
+	border-radius: 1px;
+	padding: 0 17px;
+	width: 100%;
+	height: 2px;
+	background-color: transparent;
+}
+
+.slider > input::-ms-fill-lower {
+	border-radius: 1px;
+	height: 2px;
+	background-color: $p;
+}
+
+.slider > input::-ms-fill-upper {
+	border-radius: 1px;
+	height: 2px;
+	background-color: rgba($p 0.24);
+}
+
+.slider > input::-ms-thumb {
+	appearance: none;
+	margin: 0 17px;
+	border: none;
+	border-radius: 50%;
+	height: 2px;
+	width: 2px;
+	background-color: $p;
+	transform: scale(6, 6);
+	transition: box-shadow 0.2s;
+}
+
+.slider:hover > input::-ms-thumb {
+	box-shadow: 0 0 0 2px rgba($p, 0.04);
+}
+
+.slider > input:focus::-ms-thumb {
+	box-shadow: 0 0 0 2px rgba($p, 0.12);
+}
+
+.slider:hover > input:focus::-ms-thumb {
+	box-shadow: 0 0 0 2px rgba($p, 0.16);
+}
+
+.slider > input:active::-ms-thumb {
+	box-shadow: 0 0 0 2px rgba($p, 0.24) !important;
+}
+
+.slider > input:disabled::-ms-fill-lower {
+	background-color: rgba($p , .38);
+}
+
+.slider > input:disabled::-ms-fill-upper {
+	background-color: rgba($p , .38);
+	opacity: 0.38;
+}
+
+.slider > input:disabled::-ms-thumb {
+	background-color: rgb(0, 0, 0);
+	box-shadow: 0 0 0 1px rgb(255, 255, 255) !important;
+	transform: scale(4, 4);
+}

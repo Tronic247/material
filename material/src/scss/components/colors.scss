@@ -1,0 +1,60 @@
+//Colors
+.background-primary {
+	background: $p;
+}
+.background-light-p {
+	background: $pl;
+}
+.background-dark-p {
+	background: $pd;
+}
+.background-secondary {
+	background: $s;
+}
+.background-light-s {
+	background: $sl;
+}
+.background-dark-s {
+	background: $sd;
+}
+.text-muted {
+	color: rgba($bl , 0.8);
+}
+.text-primary {
+	color: $p;
+}
+.text-secondary {
+	color: $s;
+}
+.text-primary-light {
+	color: $pl;
+}
+.text-primary-dark {
+	color: $pd;
+}
+.text-secondary {
+	color: $s;
+}
+.text-secondary-light {
+	color: $sl;
+}
+.text-secondary-dark {
+	color: $sd;
+}
+.link {
+	text-decoration: none;
+	color: $p;
+	transition: all 0.2s; 
+}
+.link:hover {
+	color: lighten($p, 10%);
+}
+.link:visited {
+	color: darken($p, 10%);
+}
+.background-light-grey {
+	background:#f7f7f7;
+}
+.text-white {
+	color: white;
+}
