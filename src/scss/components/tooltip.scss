@@ -1,0 +1,57 @@
+.tooltipped {
+    position: relative;
+    width: max-content;
+}
+.tooltipped .tooltip {
+    position: absolute;
+    bottom: -30px;
+    font-size: 10px;
+    background: #000000d1;
+    color: white;
+    padding: 6px 8px;
+    border-radius: 4px;
+    transform: scale(0.8) translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.2s ease;
+    transition-delay: 0s;
+    width: max-content;
+    z-index: 999;
+    max-width: 200px;
+}
+.tooltipped:hover .tooltip {
+    transform: scale(1) !important;
+    opacity: 1;
+    transition-delay: 0.2s;
+}
+.tooltipped .tooltip:hover {
+    transform: scale(1) !important;
+    opacity: 1;
+    transition-delay: 0.2s;
+}
+.tooltipped:focus .tooltip {
+    transform: scale(1) !important;
+    opacity: 1;
+    transition-delay: 0.2s;
+}
+.tooltipped .tooltip:focus {
+    transform: scale(1) !important;
+    opacity: 1;
+    transition-delay: 0.2s;
+}
+.tooltipped .tooltip.left {
+    left: -40px;
+    bottom: 0;
+    transform: scale(0.8) translateX(8px);
+}
+.tooltipped .tooltip.top {
+    left: 0px;
+    top: -30px;
+    bottom: unset;
+    transform: scale(0.8) translateY(8px);
+}
+.tooltipped .tooltip.right {
+    right: -40px;
+    bottom: 0;
+    transform: scale(0.8) translateX(-8px);
+}

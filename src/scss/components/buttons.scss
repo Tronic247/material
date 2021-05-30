@@ -1,5 +1,3 @@
-
-//Buttons
 button , .btn {
 	background:$p;
 	color: white;
@@ -361,15 +359,7 @@ button.text:disabled , button.text.disabled , .btn.text:disabled , .btn.text.dis
 .ripple-e.dark .ripple {
 	background-color: rgba(0 , 0 , 0 , 0.16);
 }
-.ripple-e.center-ripple .ripple , button.center-ripple .ripple {
-	position: absolute;
-	top: 50% !important;
-	height: 100% !important;
-	width: 100% !important;
-	left: 50% !important;
-	transform: translate(-50% , -50%);
-	animation: centerripple 0.3s ease-out;
-}
+
 .ripple {
 	background-color: var(--ripple-color , rgba(255, 255, 255, 0.4));
 	position: absolute;
@@ -378,15 +368,7 @@ button.text:disabled , button.text.disabled , .btn.text:disabled , .btn.text.dis
 	transition: 0.4s;
 	animation: ripple 0.3s ease-out;
 }
-@keyframes centerripple {
-	0% {
-		transform:scale(0) translate(-50% , -50%);
-	}
-	100% {
-		transform:scale(1) translate(-50% , -50%);
-		width: 100% !important;
-	}
-}
+
 @keyframes ripple {
 	0% {
 		transform: scale(0);
@@ -394,4 +376,19 @@ button.text:disabled , button.text.disabled , .btn.text:disabled , .btn.text.dis
 	100% {
 		transform: scale(1);
 	}
+}
+.button-group button , .button-group .btn{
+  margin-right: -8px !important;
+}
+.button-group.outlined button , .button-group.outlined .btn{
+  margin-right: -6px !important;
+  border-radius: 0px;
+}
+.button-group.outlined button:last-child , .button-group.outlined .btn:last-child {
+	border-radius:4px; 
+	box-shadow: inset -1px 0px 0px 1px #6200EA;
+}
+.button-group.outlined button:first-child , .button-group.outlined .btn:first-child {
+	border-radius:4px; 
+	box-shadow: inset 1px 0px 0px 1px #6200EA;
 }

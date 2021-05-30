@@ -5,12 +5,12 @@
   color: white;
   display: block;
   transition:all 0.2s ease , top 0.5s ease;
-  height: 60px;
   width: 100%;
+  overflow: hidden;
 }
 .appbar .name {
-  transform: translateY(-70%);
-  display: inline-block;
+transform: translateY(62%);  
+display: inline-block;
   width: max-content;
   position: relative;
   font-size: 1.25rem;
@@ -18,25 +18,37 @@
   font-weight: 500;
   margin-bottom: -30px;
 }
-.appbar a:not(.name) {
+.appbar .name.icon-before {
+  transform: translateY(-50%);  
+}
+.appbar a:not(.name , .item) {
   color: white;
   font-size: 24px;
   position: relative;
   padding: 24px 24px;
   display: inline-block;
+  transform: translateY(10%);
   background: #0d0b0b00;
   border-radius: 100px;
   margin-right: 5px;
   transition: all 0.2s ease;
 }
-.appbar a:not(.name):hover {
+.appbar .item {
+  display: inline flow-root list-item;
+box-shadow: none;
+}
+.appbar .item:hover {
+  box-shadow: none;
+  background: rgba(0 , 0 , 0 , .15);
+}
+.appbar a:not(.name , .item):hover {
   background: rgba(255, 255, 255, 0.2);
   user-select: none;
 }
-.appbar a:not(.name):active  , .appbar a:not(.name):focus  {
+.appbar a:not(.name , .item):active  , .appbar a:not(.name , .item):focus  {
   background: rgba(255, 255, 255, 0.3);
 }
-.appbar a:not(.name) .material-icons {
+.appbar a:not(.name , .item) .material-icons {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -72,3 +84,20 @@ transition: all 0.2s;
 .appbar.short .float-right {
   display: contents;
 }
+.appbar .search {
+    background: lighten($p , 10%);
+    color: white;
+    transform: translateY(-40%);
+    border: none;
+    transition:background 10ms ease , width 0.2s ease;
+    padding: 8px 12px;
+    border-radius: 4px;
+    width: 200px;
+}
+.appbar .search:hover {
+    background: lighten($p , 20%);
+}
+.appbar .search:focus {
+      width: 220px;
+      outline: none;
+} 
