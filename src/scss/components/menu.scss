@@ -1,3 +1,4 @@
+//Menu
 .menu {
 	max-height: 200px;
 	position: absolute;
@@ -24,7 +25,7 @@
 	opacity: 1;
 	transition:all 0.2s ease;
 }
-.menu .item {
+.menu li {
 	background: white;
 	padding: 16px 16px;
 	color: #212121;
@@ -37,12 +38,12 @@
 	transition: all 0.1s ease;
 }
 
-.menu .item:hover {
+.menu li:hover {
 	background: rgba(0 , 0 , 0 , 0.1);
 }
-.menu .item:active {
+.menu li:active {
 	background: rgba(0 , 0 , 0 , 0.1);
 }
-.menu .item:focus {
+.menu li:focus {
 	background: rgba(0 , 0 , 0 , 0.1);
 }

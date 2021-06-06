@@ -1,3 +1,4 @@
+
 //List
 .list {
 	background: white;
@@ -56,8 +57,4 @@
 .list .list-item.active .ripple{
 	background:rgba($p,.2);
 	color:$p;
-}
-.list.small .list-item {
-	padding: 8px 16px;
-	font-size: 14px;
 }
