@@ -1,4 +1,3 @@
-This is a project that I created using CSS and Jquery In my leisure time please <b>Help it by sending issues! Thank you</b>
 # Getting Started
 
 #### Installing Locally
