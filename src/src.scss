@@ -1,0 +1,97 @@
+/*
+ * Tronic247 Material design - v2.0
+ * https://tronic247.com/material
+ *
+ * Copyright (C) 2021 "Tronic247" Posandu Mapa
+ * licensed under the MIT license.
+ * https://github.com/Tronic247/material/blob/Main/LICENSE
+ */
+
+//
+
+$primary-color:#1976d2;
+$secondary-color:#c2185b;
+$danger-color:#D50000;
+$success-color:#1B5E20;
+$dark-color:#212121;
+
+$btn-box-shadow:0px 3px 1px -2px rgba(0, 0, 0, 0.2),0px 2px 2px 0px rgba(0, 0, 0, 0.14),0px 1px 5px 0px rgba(0,0,0,.12);
+$btn-box-shadow-hover:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
+$btn-box-shadow-active:0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);
+$btn-box-shadow-focus:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
+$dialog-box-shadow:0 11px 15px -7px rgba(0,0,0,.2),0 24px 38px 3px rgba(0,0,0,.14),0 9px 46px 8px rgba(0,0,0,.12);
+
+$primary-light: lighten($primary-color , 10%) ;
+$primary-dark: darken($primary-color , 10%);
+$secondary-light:lighten($secondary-color , 10%);
+$secondary-dark:lighten($secondary-color , 10%);
+
+///
+
+//DO NOT EDIT
+$p:$primary-color;
+$pl:$primary-light;
+$pd:$primary-dark;
+$s:$secondary-color;
+$sl:$secondary-light;
+$sd:$secondary-dark;
+$d:$danger-color;
+$bl:$dark-color;
+$su:$success-color;
+$bbs:$btn-box-shadow;
+$bbsh:$btn-box-shadow-hover;
+$bbsa:$btn-box-shadow-active;
+$bbsf:$btn-box-shadow-focus;
+$dbs:$dialog-box-shadow;
+//
+
+// Comment if you want to remove modules
+@import 'components/reset'; //Required
+/////
+@import 'components/typography';
+
+@import 'components/appbar';
+
+@import 'components/according';
+
+@import 'components/buttons';
+
+@import 'components/select';
+
+@import 'components/cards';
+
+@import 'components/checkboxes';
+
+@import 'components/chips';
+
+@import 'components/breadcrumbs';
+
+@import 'components/colors';
+
+@import 'components/dialog';
+
+@import 'components/drawer';
+
+@import 'components/elevation';
+
+@import 'components/grid';
+
+@import 'components/lists';
+
+@import 'components/progress';
+
+@import 'components/menu';
+
+@import 'components/sliders';
+
+@import 'components/badges';
+
+@import 'components/snackbar';
+
+@import 'components/tables';
+
+@import 'components/textfields';
+
+@import 'components/tooltip';
+
+@import 'components/tabs';

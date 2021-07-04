@@ -1,0 +1,55 @@
+.menu {
+	max-height: 200px;
+	position: absolute;
+	overflow: auto;
+	background: white;
+	width: max-content;
+	scrollbar-width: thin;
+	scrollbar-color: #00000047 #fff0;
+	box-shadow: 0 5px 5px -3px rgba(0,0,0,.2),0 8px 10px 1px rgba(0,0,0,.14),0 3px 14px 2px rgba(0,0,0,.12);
+	border-radius: 4px;
+	list-style: none;
+	pointer-events:none;
+	transform:scale(0.9) translateY(0%);
+	transform-origin:center top 0px;
+	opacity: 0;
+	transition:opacity 0.2s ease , transform 1s;
+	min-width: calc(100% - 90%);
+	user-select: none;
+	z-index: 9;
+}
+.menu.small .item{
+	padding: 10px;
+}
+.menu.small .item.disabled{
+	pointer-events:none;
+	color: rgba(0,0,0,0.2);
+}
+.menu.open {
+	pointer-events:all;
+	transform:scale(1) translateY(0%);
+	opacity: 1;
+	transition:all 0.2s ease;
+}
+.menu .item {
+	background: white;
+	padding: 16px 16px;
+	color: #212121;
+	font-size: 16px;
+	display: block;
+	cursor: pointer;
+	letter-spacing: 0.15px;
+	font-weight: 400;
+	--ripple-color:rgba(0 , 0 , 0 , 0.16);
+	transition: opacity 0.1s ease;
+}
+
+.menu .item:hover {
+	background: rgba(0 , 0 , 0 , 0.1);
+}
+.menu .item:active {
+	background: rgba(0 , 0 , 0 , 0.1);
+}
+.menu .item:focus {
+	background: rgba(0 , 0 , 0 , 0.1);
+}

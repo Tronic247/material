@@ -1,0 +1,44 @@
+.tab-container {
+	width: 100%;
+}
+.tabs {
+	width: 100%;
+	display: flex;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.tabs li {
+	flex: 1;
+	transition: all 0.2s ease; 
+}
+.tabs li a {
+	background: white;
+	width: 100%;
+	display: block;
+	padding: 16px 18px;
+	transition: all 0.2s ease; 
+	text-align: center;
+	color: #616161;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-weight: 500;
+}
+.tabs li a.active {
+	box-shadow:inset 0px -4px 0px -2px $p;
+	color: $p;
+}
+.tabs li a .ripple {
+	background:rgba($p , 10%);
+}
+.tabs li a:hover {
+	background:lighten($p, 50%);
+}
+.tabs li a:focus {
+	background:lighten($p, 45%);
+}
+@media (max-width: 400px) {
+  .tabs {
+    display: block;
+  }
+}

@@ -1,0 +1,109 @@
+.dialog {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	margin: auto;
+	pointer-events: none;
+	transform: translate(-50% , -50%) scale(0.9);
+	width: max-content;
+	z-index: 999;
+	background: white;
+	padding: 10px 30px;
+	overflow: hidden;
+	box-shadow: $dbs;
+	transition: opacity 0.2s ease , transform 0.6s ease;
+	opacity: 0;
+	border-radius: 4px;
+	max-height: calc(100% - 32px);
+	min-width: 280px;
+}
+.dialog .dialog-header {
+	margin: 12px 0px;
+}
+.dialog .dialog-header h3 {
+	font-size: 1.25rem !important;
+}
+.dialog .dialog-content {
+	max-height: 50vh;
+	overflow: auto;
+}
+.dialog .dialog-footer {
+	margin: 10px 0px -2px 0px;
+	display: flex;
+	flex-direction: row-reverse;
+}
+.dialog.xl {
+	width: 80%;
+}
+.dialog-overlay {
+	height: 100%;
+	position: fixed;
+	z-index: 999;
+	width: 100%;
+	transition: all 0.2s ease; 
+	background: #000000a6;
+	pointer-events:none;
+	opacity: 0;
+	top: 0;
+	left: 0;
+}
+.dialog-overlay.open {
+	pointer-events:all;
+	opacity: 1;
+}
+.dialog-overlay.open .dialog {
+	opacity: 1;
+	pointer-events:all;
+	transition: all 0.2s ease;
+	transform: translate(-50% , -50%);
+}
+.dialog.fullscreen {
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	transform: scale(1) translateY(100%);
+	opacity: 1;
+	border-radius: 0;
+	margin: 0;
+	box-shadow: none;
+	max-height: 100%;
+}
+.dialog-overlay.open .dialog.fullscreen {
+	opacity: 1;
+	transform: none;
+}
+.dialog.fullscreen .dialog-header {
+	background: $p;
+	color: white;
+	padding: 16px;
+	margin: -10px -32px 16px -32px;
+	display: flex;
+	align-items: center;
+}
+.dialog .dialog-left {
+	flex: 12;
+	display: flex;
+	align-items: center;
+}
+.dialog .dialog-left * {
+	display: inline-block;
+}
+.dialog .dialog-right {
+	flex: 0;
+	display: flex;
+	align-items: center;
+}
+.dialog .dialog-right * {
+	display: inline-block;
+}
+.dialog-overlay .dialog.bottom-sheet {
+	bottom: 0;
+	width: 100%;
+	top: auto;
+	transform: translate(-50% , 100%);
+}
+.dialog-overlay.open .dialog.bottom-sheet {
+	transform: translate(-50% , 0%);
+	border-radius: 4px 4px 0px 0px;
+}

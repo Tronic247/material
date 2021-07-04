@@ -1,0 +1,56 @@
+.appbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: $p;
+  width: 100%;
+  transition: all 0.2s ease;
+  padding: 10px 10px;
+  color: white;
+}
+.appbar button , .appbar .btn {
+  background: #fff0;
+  color: white;
+  --ripple-color: rgba(255 , 255 , 255 , .3) !important;
+  box-shadow: none !important;
+}
+.appbar button:hover , .appbar .btn:hover { 
+  background: rgba(255 , 255 , 255 , .3) !important;
+}
+.appbar button:focus , .appbar .btn:focus { 
+  background: rgba(255 , 255 , 255 , .4) !important;
+}
+.appbar button .material-icons , .appbar .btn .material-icons  {
+  font-size: 21px;
+  color: white;
+}
+.appbar .name {
+  font-size: 1.25rem;
+  user-select: none;
+}
+.appbar-left {
+  height: max-content;
+  width: max-content;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.appbar-right {
+  height: max-content;
+}
+.appbar-right {
+  float: right
+}
+.appbar.dense {
+ padding: 6px !important;
+}
+.appbar.short {
+  width: max-content;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 0px 0px 20px 0px;
+}
+.appbar.short .appbar-right button:not(:last-child) , .appbar.short .appbar-right .btn:not(:last-child) , .appbar.short .name {
+  opacity: 0;
+  display: none;
+}
