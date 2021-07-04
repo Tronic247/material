@@ -4,7 +4,8 @@
 <p align="center"><img src="https://img.shields.io/github/stars/tronic247/material?style=flat-square"/>
 <img src="https://img.shields.io/github/last-commit/tronic247/material?style=flat-square"/>
 <img src="https://img.shields.io/github/issues/tronic247/material?style=flat-square"/>
-<img src="https://img.shields.io/badge/Tronic247-Product-%23e41c26"/></p>
+<img src="https://img.shields.io/badge/Tronic247-Product-%23e41c26"/> <a href="https://gitter.im/Tronic247-Material/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge"><img src="https://badges.gitter.im/Tronic247-Material/community.svg"/></a></p>
+
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=tronic247&repo=material&layout=compact)](https://github.com/tronic247/material)
 
