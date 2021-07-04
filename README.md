@@ -106,22 +106,23 @@ Step 2 - Add JS
 <!DOCTYPE html>
 <html>
 <head>
-	<title>My Material design Web Page</title>
-	<meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width">
-	<!-- CSS at head -->
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-	<link href="https://res.cloudinary.com/tronic247/raw/upload/v1620900079/material.min.css" rel="stylesheet" />
-	</head>
-	<body>
-		<div class="container">
-			<h1>Hello World</h1>
-			<p class="text-muted">Hello Thanks for trying out! Now start designing</p>
-		</div>
-		<!-- JS at footer for optimized loading -->
-		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-		<script src="https://res.cloudinary.com/tronic247/raw/upload/v1620900084/material.min.js"></script>
-	</body>
+	<title></title>
+	<title>Tronic247 Material</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tronic247/material/dist/css/material.min.css">
+</head>
+<body>
+	<div class="container">
+		<h1>Hello World</h1>
+	</div>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/gh/tronic247/material/dist/js/material.min.js"></script>
+</body>
 </html>
 ```
 
-## Issues ? send it [here](https://github.com/Tronic247/material/issues/new/choose) and Help 
+## Contributions needed
+# Please note that the documentation is incomplete. Please make your contribution to this repo https://github.com/Tronic247/tronic247-material-docs
