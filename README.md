@@ -126,4 +126,5 @@ Step 2 - Add JS
 ```
 
 ## Contributions needed
-# Please note that the documentation is incomplete. Please make your contribution to this repo https://github.com/Tronic247/material-docs
+#### Please note that the documentation is incomplete. Please make your contribution to this repo https://github.com/Tronic247/material-docs
+#### Help This project to make the next best framework!
