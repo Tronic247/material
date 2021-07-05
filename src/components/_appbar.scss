@@ -29,18 +29,18 @@
   font-size: 1.25rem;
   user-select: none;
 }
-.appbar-left {
-  height: max-content;
-  width: max-content;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+.appbar-container {
+	display: flex;
+	width: 100%;
 }
-.appbar-right {
-  height: max-content;
+.appbar .section.left {
+	width: max-content;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
-.appbar-right {
-  float: right
+.appbar .section.right {
+	margin-left: auto;
 }
 .appbar.dense {
  padding: 6px !important;
