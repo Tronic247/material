@@ -25,10 +25,6 @@
   font-size: 21px;
   color: white;
 }
-.appbar .name {
-  font-size: 1.25rem;
-  user-select: none;
-}
 .appbar-container {
     display: flex;
     width: 100%;
@@ -36,7 +32,8 @@
     align-items: center;
 }
 .appbar .title {
-    font-size: 20px;
+    font-size: 1.25rem;
+    user-select: none;
     font-weight: 500;
     margin-left: 10px;
 }
