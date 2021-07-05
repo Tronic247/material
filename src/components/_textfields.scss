@@ -61,7 +61,7 @@
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
-    caret-color: rgb($green);
+    caret-color: rgb($primary-color);
     transition: border-bottom 0.2s, background-color 0.2s;
 }
 .textfield.filled > input + span,
@@ -89,7 +89,7 @@
     display: block;
     width: 100%;
     height: 2px;
-    background-color: rgb($green);
+    background-color: rgb($primary-color);
     transform-origin: bottom center;
     transform: scaleX(0);
     transition: transform 0.3s;
@@ -110,7 +110,7 @@
 }
 .textfield.filled > input:focus + span,
 .textfield.filled > textarea:focus + span {
-    color: rgb($green);
+    color: rgb($primary-color);
 }
 .textfield.filled > input:focus + span::after,
 .textfield.filled > textarea:focus + span::after {
@@ -163,7 +163,7 @@
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
-    caret-color: $green;
+    caret-color: $primary-color;
     transition: border 0.2s, box-shadow 0.2s;
 }
 .textfield.outlined > input:not(:focus):placeholder-shown,
@@ -239,26 +239,26 @@
 }
 .textfield.outlined > input:focus,
 .textfield.outlined > textarea:focus {
-    border-color: transparent $green $green;
-    box-shadow: inset 1px 0 $green, inset -1px 0 $green, inset 0 -1px $green;
+    border-color: transparent $primary-color $primary-color;
+    box-shadow: inset 1px 0 $primary-color, inset -1px 0 $primary-color, inset 0 -1px $primary-color;
     outline: none;
 }
 .textfield.outlined > input:focus + span,
 .textfield.outlined > textarea:focus + span {
-    color: $green;
+    color: $primary-color;
 }
 .textfield.outlined > input:focus + span::before,
 .textfield.outlined > input:focus + span::after,
 .textfield.outlined > textarea:focus + span::before,
 .textfield.outlined > textarea:focus + span::after {
-    border-top-color: $green;
-    box-shadow: inset 0 1px $green;
+    border-top-color: $primary-color;
+    box-shadow: inset 0 1px $primary-color;
 }
 .textfield.outlined > input:disabled,
 .textfield.outlined > input:disabled + span,
 .textfield.outlined > textarea:disabled,
 .textfield.outlined > textarea:disabled + span {
-    border-color: transparent $green $green !important;
+    border-color: transparent $primary-color $primary-color !important;
     color: rgba(0, 0, 0, 0.38);
     pointer-events: none;
 }
@@ -266,13 +266,13 @@
 .textfield.outlined > input:disabled + span::after,
 .textfield.outlined > textarea:disabled + span::before,
 .textfield.outlined > textarea:disabled + span::after {
-    border-top-color: $green !important;
+    border-top-color: $primary-color !important;
 }
 .textfield.outlined > input:disabled:placeholder-shown,
 .textfield.outlined > input:disabled:placeholder-shown + span,
 .textfield.outlined > textarea:disabled:placeholder-shown,
 .textfield.outlined > textarea:disabled:placeholder-shown + span {
-    border-top-color: $green !important;
+    border-top-color: $primary-color !important;
 }
 .textfield.outlined > input:disabled:placeholder-shown + span::before,
 .textfield.outlined > input:disabled:placeholder-shown + span::after,
@@ -318,7 +318,7 @@
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
-    caret-color: $green;
+    caret-color: $primary-color;
     transition: border-bottom 0.2s, background-color 0.2s;
 }
 .textfield.border-bottom > input + span,
@@ -346,7 +346,7 @@
     display: block;
     width: 100%;
     height: 2px;
-    background-color: $green;
+    background-color: $primary-color;
     transform-origin: bottom center;
     transform: scaleX(0);
     transition: transform 0.2s;
@@ -366,7 +366,7 @@
 }
 .textfield.border-bottom > input:focus + span,
 .textfield.border-bottom > textarea:focus + span {
-    color: $green;
+    color: $primary-color;
 }
 .textfield.border-bottom > input:focus + span::after,
 .textfield.border-bottom > textarea:focus + span::after {
