@@ -264,27 +264,18 @@ h6,
         -ms-user-select: none;
             user-select: none;
 }
-.appbar-left {
-    height: -webkit-max-content;
-    height: -moz-max-content;
-    height: max-content;
-    width: -webkit-max-content;
-    width: -moz-max-content;
-    width: max-content;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+.appbar-container {
+	display: flex;
+	width: 100%;
 }
-.appbar-right {
-    height: -webkit-max-content;
-    height: -moz-max-content;
-    height: max-content;
+.appbar .section.left {
+	width: max-content;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
-.appbar-right {
-    float: right;
-}
-.appbar.dense {
-    padding: 6px !important;
+.appbar .section.right {
+	margin-left: auto;
 }
 .appbar.short {
     width: -webkit-max-content;
