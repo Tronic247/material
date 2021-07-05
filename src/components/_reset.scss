@@ -7,6 +7,9 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+*:focus-visible {
+	outline: 0;
+}
 h1,
 h2,
 h3,
