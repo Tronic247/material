@@ -257,16 +257,16 @@ h6,
     font-size: 21px;
     color: white;
 }
-.appbar .name {
-    font-size: 1.25rem;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-}
 .appbar-container {
-	display: flex;
-	width: 100%;
+    display: flex;
+    width: 100%;
+    align-content: center;
+    align-items: center;
+}
+.appbar .title {
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 10px;
 }
 .appbar .section.left {
 	width: max-content;
