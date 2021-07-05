@@ -19,7 +19,7 @@ jobs:
         uses: gha-utilities/sass-build@v0.4.3
         with:
           source: src/src.scss
-          destination: dist/css/material.css
+          destination: dist/css/material.min.css
 
       - name: Add and Commit changes
         run: |
