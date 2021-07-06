@@ -4,7 +4,7 @@
     color: #ffff;
     opacity: 0;
     pointer-events: none;
-    transform: translate(50% , -90%) scale(0.8);
+    transform: translate(0% , 90%) scale(0.8);
     padding: 5px 10px;
     clip-path: circle(40%);
     font-size: 12px;
@@ -14,5 +14,5 @@
 .tooltip.open {
     opacity: 1;
     clip-path: circle(100%);
-    transform: translate(50% , -120%) scale(1);
+    transform: translate(0% , 120%) scale(1);
 }
