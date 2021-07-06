@@ -7,9 +7,11 @@
 	padding: 0;
 	box-sizing: border-box;
         -webkit-tap-highlight-color: transparent !important;
+  	-webkit-touch-callout: none;
 }
 *:focus-visible {
-	outline: 0;
+	border: none;
+	outline: none;
 }
 h1,
 h2,
