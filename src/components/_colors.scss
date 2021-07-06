@@ -1,45 +1,51 @@
 //Colors
 .background-primary {
-	background: $p;
+	background: $p !important;
 }
 .background-light-p {
-	background: $pl;
+	background: $pl !important;
 }
 .background-dark-p {
-	background: $pd;
+	background: $pd !important;
 }
 .background-secondary {
-	background: $s;
+	background: $s !important;
 }
 .background-light-s {
-	background: $sl;
+	background: $sl !important;
 }
 .background-dark-s {
-	background: $sd;
+	background: $sd !important;
+}
+.background-light-grey {
+	background:#f7f7f7 !important;
 }
 .text-muted {
-	color: rgba($bl , 0.8);
+	color: rgba($bl , 0.8) !important;
 }
 .text-primary {
-	color: $p;
+	color: $p !important;
 }
 .text-secondary {
-	color: $s;
+	color: $s !important;
 }
 .text-primary-light {
-	color: $pl;
+	color: $pl !important;
 }
 .text-primary-dark {
-	color: $pd;
+	color: $pd !important;
 }
 .text-secondary {
-	color: $s;
+	color: $s !important;
 }
 .text-secondary-light {
-	color: $sl;
+	color: $sl !important;
 }
 .text-secondary-dark {
-	color: $sd;
+	color: $sd !important;
+}
+.text-white {
+	color: white !important;
 }
 .link {
 	text-decoration: none;
@@ -51,10 +57,4 @@
 }
 .link:visited {
 	color: darken($p, 10%);
-}
-.background-light-grey {
-	background:#f7f7f7;
-}
-.text-white {
-	color: white;
 }
