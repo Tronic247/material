@@ -104,44 +104,39 @@ button.unelevated:focus , .btn.unelevated:focus {
 	background:rgba($p, 0.8);
 }
 
-// BUTTON COLORS
- 	//secondary
- 	button.secondary:not(.outlined , .text) , .btn.secondary:not(.outlined , .text) {
- 		background:$s;
- 	}
-	//outlined
-	button.outlined.secondary , .btn.outlined.secondary {
-		box-shadow:inset 0px 0px 0px 1px $s;
-		color: $s;
-	}
+button.secondary:not(.outlined , .text) , .btn.secondary:not(.outlined , .text) {
+	background:$s;
+}
+button.outlined.secondary , .btn.outlined.secondary {
+	box-shadow:inset 0px 0px 0px 1px $s;
+	color: $s;
+}
 
-	button.outlined.secondary .ripple , .btn.outlined.secondary .ripple {
-		background:rgba($s, 0.2);
-	}
-	button.outlined.secondary:hover , .btn.outlined.secondary:hover {
-		background:rgba($s, 0.1);
-	}
-	button.outlined.secondary:focus , .btn.outlined.secondary:focus {
-		background:rgba($s, 0.1);
-	}	
-	//text
-	button.text.secondary , .btn.text.secondary {
-		color: $s;
-	}
-	button.text.secondary:hover , .btn.text.secondary:hover {
-		background:rgba($s, 0.2);
-	}
-	button.text.secondary:focus , .btn.text.secondary:focus {
-		background:rgba($s, 0.1);
-	}
-	button.text.secondary:active , .btn.text.secondary:active {
-		background:rgba($s, 0.1);
-	}
-	button.text.secondary .ripple , .btn.text.secondary .ripple {
-		background:rgba($s, 0.2);
-	}
+button.outlined.secondary .ripple , .btn.outlined.secondary .ripple {
+	background:rgba($s, 0.2);
+}
+button.outlined.secondary:hover , .btn.outlined.secondary:hover {
+	background:rgba($s, 0.1);
+}
+button.outlined.secondary:focus , .btn.outlined.secondary:focus {
+	background:rgba($s, 0.1);
+}	
+button.text.secondary , .btn.text.secondary {
+	color: $s;
+}
+button.text.secondary:hover , .btn.text.secondary:hover {
+	background:rgba($s, 0.2);
+}
+button.text.secondary:focus , .btn.text.secondary:focus {
+	background:rgba($s, 0.1);
+}
+button.text.secondary:active , .btn.text.secondary:active {
+	background:rgba($s, 0.1);
+}
+button.text.secondary .ripple , .btn.text.secondary .ripple {
+	background:rgba($s, 0.2);
+}
 
-//unelevated
 button.unelevated.secondary:hover , .btn.unelevated.secondary:hover {
 	background:rgba($s, 0.8);
 }
@@ -153,43 +148,39 @@ button.unelevated.secondary:focus , .btn.unelevated.secondary:focus {
 }
 
 
-//danger
 button.danger:not(.outlined , .text) , .btn.danger:not(.outlined , .text) {
 	background:$d;
 }
-	//outlined
-	button.outlined.danger , .btn.outlined.danger {
-		box-shadow:inset 0px 0px 0px 1px $d;
-		color: $d;
-	}
+button.outlined.danger , .btn.outlined.danger {
+	box-shadow:inset 0px 0px 0px 1px $d;
+	color: $d;
+}
 
-	button.outlined.danger .ripple , .btn.outlined.danger .ripple {
-		background:rgba($d, 0.2);
-	}
-	button.outlined.danger:hover , .btn.outlined.danger:hover {
-		background:rgba($d, 0.1);
-	}
-	button.outlined.danger:focus , .btn.outlined.danger:focus {
-		background:rgba($d, 0.1);
-	}	
-	//text
-	button.text.danger , .btn.text.danger {
-		color: $d;
-	}
-	button.text.danger:hover , .btn.text.danger:hover {
-		background:rgba($d, 0.2);
-	}
-	button.text.danger:focus , .btn.text.danger:focus {
-		background:rgba($d, 0.1);
-	}
-	button.text.danger:active , .btn.text.danger:active {
-		background:rgba($d, 0.1);
-	}
-	button.text.danger .ripple , .btn.text.danger .ripple {
-		background:rgba($d, 0.2);
-	}
+button.outlined.danger .ripple , .btn.outlined.danger .ripple {
+	background:rgba($d, 0.2);
+}
+button.outlined.danger:hover , .btn.outlined.danger:hover {
+	background:rgba($d, 0.1);
+}
+button.outlined.danger:focus , .btn.outlined.danger:focus {
+	background:rgba($d, 0.1);
+}	
+button.text.danger , .btn.text.danger {
+	color: $d;
+}
+button.text.danger:hover , .btn.text.danger:hover {
+	background:rgba($d, 0.2);
+}
+button.text.danger:focus , .btn.text.danger:focus {
+	background:rgba($d, 0.1);
+}
+button.text.danger:active , .btn.text.danger:active {
+	background:rgba($d, 0.1);
+}
+button.text.danger .ripple , .btn.text.danger .ripple {
+	background:rgba($d, 0.2);
+}
 
-//unelevated
 button.unelevated.danger:hover , .btn.unelevated.danger:hover {
 	background:rgba($d, 0.8);
 }
@@ -201,43 +192,39 @@ button.unelevated.danger:focus , .btn.unelevated.danger:focus {
 }
 
 
-//dark
 button.dark:not(.outlined , .text) , .btn.dark:not(.outlined , .text) {
 	background:$bl;
 }
-	//outlined
-	button.outlined.dark , .btn.outlined.dark {
-		box-shadow:inset 0px 0px 0px 1px $bl;
-		color: $bl;
-	}
+button.outlined.dark , .btn.outlined.dark {
+	box-shadow:inset 0px 0px 0px 1px $bl;
+	color: $bl;
+}
 
-	button.outlined.dark .ripple , .btn.outlined.dark .ripple {
-		background:rgba($bl, 0.2);
-	}
-	button.outlined.dark:hover , .btn.outlined.dark:hover {
-		background:rgba($bl, 0.1);
-	}
-	button.outlined.dark:focus , .btn.outlined.dark:focus {
-		background:rgba($bl, 0.1);
-	}	
-	//text
-	button.text.dark , .btn.text.dark {
-		color: $bl;
-	}
-	button.text.dark:hover , .btn.text.dark:hover {
-		background:rgba($bl, 0.2);
-	}
-	button.text.dark:focus , .btn.text.dark:focus {
-		background:rgba($bl, 0.1);
-	}
-	button.text.dark:active , .btn.text.dark:active {
-		background:rgba($bl, 0.1);
-	}
-	button.text.dark .ripple , .btn.text.dark .ripple {
-		background:rgba($bl, 0.2);
-	}
+button.outlined.dark .ripple , .btn.outlined.dark .ripple {
+	background:rgba($bl, 0.2);
+}
+button.outlined.dark:hover , .btn.outlined.dark:hover {
+	background:rgba($bl, 0.1);
+}
+button.outlined.dark:focus , .btn.outlined.dark:focus {
+	background:rgba($bl, 0.1);
+}	
+button.text.dark , .btn.text.dark {
+	color: $bl;
+}
+button.text.dark:hover , .btn.text.dark:hover {
+	background:rgba($bl, 0.2);
+}
+button.text.dark:focus , .btn.text.dark:focus {
+	background:rgba($bl, 0.1);
+}
+button.text.dark:active , .btn.text.dark:active {
+	background:rgba($bl, 0.1);
+}
+button.text.dark .ripple , .btn.text.dark .ripple {
+	background:rgba($bl, 0.2);
+}
 
-//unelevated
 button.unelevated.dark:hover , .btn.unelevated.dark:hover {
 	background:rgba($bl, 0.8);
 }
@@ -249,43 +236,39 @@ button.unelevated.dark:focus , .btn.unelevated.dark:focus {
 }
 
 
-//success
 button.success:not(.outlined , .text) , .btn.success:not(.outlined , .text) {
 	background:$su;
 }
-	//outlined
-	button.outlined.success , .btn.outlined.success {
-		box-shadow:inset 0px 0px 0px 1px $su;
-		color: $su;
-	}
+button.outlined.success , .btn.outlined.success {
+	box-shadow:inset 0px 0px 0px 1px $su;
+	color: $su;
+}
 
-	button.outlined.success .ripple , .btn.outlined.success .ripple {
-		background:rgba($su, 0.2);
-	}
-	button.outlined.success:hover , .btn.outlined.success:hover {
-		background:rgba($su, 0.1);
-	}
-	button.outlined.success:focus , .btn.outlined.success:focus {
-		background:rgba($su, 0.1);
-	}	
-	//text
-	button.text.success , .btn.text.success {
-		color: $su;
-	}
-	button.text.success:hover , .btn.text.success:hover {
-		background:rgba($su, 0.2);
-	}
-	button.text.success:focus , .btn.text.success:focus {
-		background:rgba($su, 0.1);
-	}
-	button.text.success:active , .btn.text.success:active {
-		background:rgba($su, 0.1);
-	}
-	button.text.success .ripple , .btn.text.success .ripple {
-		background:rgba($su, 0.2);
-	}
+button.outlined.success .ripple , .btn.outlined.success .ripple {
+	background:rgba($su, 0.2);
+}
+button.outlined.success:hover , .btn.outlined.success:hover {
+	background:rgba($su, 0.1);
+}
+button.outlined.success:focus , .btn.outlined.success:focus {
+	background:rgba($su, 0.1);
+}	
+button.text.success , .btn.text.success {
+	color: $su;
+}
+button.text.success:hover , .btn.text.success:hover {
+	background:rgba($su, 0.2);
+}
+button.text.success:focus , .btn.text.success:focus {
+	background:rgba($su, 0.1);
+}
+button.text.success:active , .btn.text.success:active {
+	background:rgba($su, 0.1);
+}
+button.text.success .ripple , .btn.text.success .ripple {
+	background:rgba($su, 0.2);
+}
 
-//unelevated
 button.unelevated.success:hover , .btn.unelevated.success:hover {
 	background:rgba($su, 0.8);
 }
@@ -295,7 +278,6 @@ button.unelevated.success:active , .btn.unelevated.success:active {
 button.unelevated.success:focus , .btn.unelevated.success:focus {
 	background:rgba($su, 0.8);
 }
-//icon button
 button.icon, .btn.icon {
 	background: transparent;
 	box-shadow: none;
@@ -310,7 +292,6 @@ button.icon, .btn.icon {
 button.icon *, .btn.icon *{
 	color: white !important;
 }
-
 button.icon:hover, .btn.icon:hover {
 	background: #0303031a;
 }
@@ -358,6 +339,37 @@ button.text:disabled , button.text.disabled , .btn.text:disabled , .btn.text.dis
 	pointer-events:none;
 	color: #505050;
 }
+
+.button-group button , .button-group .btn{
+	margin-right: -8px !important;
+}
+.button-group.outlined button , .button-group.outlined .btn{
+	margin-right: -6px !important;
+	border-radius: 0px;
+}
+.button-group.outlined button:last-child , .button-group.outlined .btn:last-child {
+	border-radius:4px; 
+	box-shadow: inset -1px 0px 0px 1px $p;
+}
+.button-group.outlined button:first-child , .button-group.outlined .btn:first-child {
+	border-radius:4px; 
+	box-shadow: inset 1px 0px 0px 1px $p;
+}
+button:not(.icon , .fab) .material-icons, .btn:not(.icon , .fab) .material-icons{ 
+	font-size: 13px !important;
+	height: 18px;
+	width: 18px;
+	display: ruby-base-container;
+	transform: scale(1.3) translate(-22% , 14%);font-size: 6px;
+}
+
+button.shaped , .btn.shaped {
+	border-radius:50px;
+}
+button.small .material-icons , .btn.small .material-icons {
+	display: none;
+}
+
 
 .ripple-e {   
 	position: relative;
@@ -408,33 +420,4 @@ button.text:disabled , button.text.disabled , .btn.text:disabled , .btn.text.dis
 	100% {
 		transform: scale(0.97);
 	}
-}
-.button-group button , .button-group .btn{
-	margin-right: -8px !important;
-}
-.button-group.outlined button , .button-group.outlined .btn{
-	margin-right: -6px !important;
-	border-radius: 0px;
-}
-.button-group.outlined button:last-child , .button-group.outlined .btn:last-child {
-	border-radius:4px; 
-	box-shadow: inset -1px 0px 0px 1px $p;
-}
-.button-group.outlined button:first-child , .button-group.outlined .btn:first-child {
-	border-radius:4px; 
-	box-shadow: inset 1px 0px 0px 1px $p;
-}
-button:not(.icon , .fab) .material-icons, .btn:not(.icon , .fab) .material-icons{ 
-	font-size: 13px !important;
-	height: 18px;
-	width: 18px;
-	display: ruby-base-container;
-	transform: scale(1.3) translate(-22% , 14%);font-size: 6px;
-}
-
-button.shaped , .btn.shaped {
-	border-radius:50px;
-}
-button.small .material-icons , .btn.small .material-icons {
-	display: none;
 }
