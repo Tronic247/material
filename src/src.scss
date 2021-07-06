@@ -9,6 +9,15 @@
 
 //
 
+// Global rules
+
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+///
+
 $primary-color:#1976d2;
 $secondary-color:#c2185b;
 $danger-color:#D50000;
