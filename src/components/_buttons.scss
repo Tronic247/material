@@ -300,12 +300,15 @@ button.icon, .btn.icon {
 	background: transparent;
 	box-shadow: none;
 	border-radius: 100%;
-	color: #8d8787;
+	color: white !important;
 	--ripple-color: #0303031a;
 	font-size: 24px;
 	padding: 10px 10px;
 	margin: 0;
 	vertical-align: middle;
+}
+button.icon *, .btn.icon *{
+	color: white !important;
 }
 
 button.icon:hover, .btn.icon:hover {
