@@ -9,6 +9,9 @@
 
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=tronic247&repo=material&layout=compact)](https://github.com/tronic247/material)
 
+## The people who love this framework
+[![Stargazers repo roster for @Tronic247/material](https://reporoster.com/stars/notext/Tronic247/material)](https://github.com/Tronic247/material/stargazers)
+
 # Getting Started
 
 #### Installing Locally
