@@ -36,8 +36,6 @@ $secondary-light:lighten($secondary-color , 10%);
 $secondary-dark:lighten($secondary-color , 10%);
 
 ///
-
-//DO NOT EDIT
 $p:$primary-color;
 $pl:$primary-light;
 $pd:$primary-dark;
@@ -52,7 +50,7 @@ $bbsh:$btn-box-shadow-hover;
 $bbsa:$btn-box-shadow-active;
 $bbsf:$btn-box-shadow-focus;
 $dbs:$dialog-box-shadow;
-//
+///
 
 // Comment if you want to remove modules
 @import 'components/reset'; //Required
