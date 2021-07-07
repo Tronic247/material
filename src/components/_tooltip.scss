@@ -1,18 +1,19 @@
 .tooltip {
-    background: rgba(0,0,0,0.9);
-    position: absolute;
-    color: #ffff;
-    opacity: 0;
-    pointer-events: none;
-    transform: translate(0% , 90%) scale(0.8);
-    padding: 5px 10px;
-    clip-path: circle(40%);
-    font-size: 12px;
-    border-radius: 4px;
-    transition: all 0.2s ease;
+	background:rgb(09, 09, 09 , 0.5);
+	position:absolute;
+	color:#fff;
+	opacity:0;
+	pointer-events:none;
+	transform:translate(0%, 160%) scale(0.8);
+	padding:5px 10px;
+	clip-path:circle(0%);
+	font-size:12px;
+	border-radius:4px;
+	transition:opacity .2s ease , transform 2s , clip-path 2s;
 }
 .tooltip.open {
-    opacity: 1;
-    clip-path: circle(100%);
-    transform: translate(0% , 160%) scale(1);
+	opacity:1;
+	clip-path:circle(100%);
+	transform:translate(0%, 160%) scale(1);
+	transition:all .1s ease;
 }
