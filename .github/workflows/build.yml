@@ -21,11 +21,13 @@ jobs:
           source: src/src.scss
           destination: dist/css/material.min.css
 
+      - name: Remove previous files
+        run: rm -r dist/css
+
       - name: Add and Commit changes
         run: |
           git config --local user.email 'action@github.com'
           git config --local user.name 'GitHub Action'
-          rm -r dist/css
           git add .
           git commit -m 'Updates compiled CSS files'
 
