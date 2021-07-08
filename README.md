@@ -1,5 +1,5 @@
 <p align="center"><img src="https://user-images.githubusercontent.com/76736580/123750797-a2be9f00-d8d4-11eb-9dce-13911244820e.png" /></p>
-<p align="center"><b>The New Material Design Framework</b> Based on jQuery</p>
+<p align="center"><b>Material design</b> framework based on <b>jQuery</b></p>
 <p align="center"><a href="https://www.tronic247.com/material/">Tronic247 Material</a></p>
 <p align="center"><img src="https://img.shields.io/github/stars/tronic247/material?style=flat-square"/>
 <img src="https://img.shields.io/github/last-commit/tronic247/material?style=flat-square"/>
