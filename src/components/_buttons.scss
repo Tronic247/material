@@ -338,19 +338,14 @@ button.text:disabled , button.text.disabled , .btn.text:disabled , .btn.text.dis
 }
 
 .button-group button , .button-group .btn{
-	margin-right: -8px !important;
-}
-.button-group.outlined button , .button-group.outlined .btn{
 	margin-right: -6px !important;
 	border-radius: 0px;
 }
 .button-group.outlined button:last-child , .button-group.outlined .btn:last-child {
-	border-radius:4px; 
-	box-shadow: inset -1px 0px 0px 1px $p;
+	border-radius: 4px; 
 }
 .button-group.outlined button:first-child , .button-group.outlined .btn:first-child {
-	border-radius:4px; 
-	box-shadow: inset 1px 0px 0px 1px $p;
+	border-radius: 4px; 
 }
 button:not(.icon , .fab) .material-icons, .btn:not(.icon , .fab) .material-icons{ 
 	font-size: 13px !important;
