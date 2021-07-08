@@ -25,7 +25,7 @@ jobs:
         run: |
           git config --local user.email 'action@github.com'
           git config --local user.name 'GitHub Action'
-          git rm -rf dist/css
+          rm -r dist/css
           git add .
           git commit -m 'Updates compiled CSS files'
 
