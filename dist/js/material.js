@@ -244,13 +244,8 @@
         }, 300);
     })
     .on("click", ".dialog-overlay:not(.disabled)", function (e) {
-        event.stopPropagation();
-        $(this)
-        .removeClass("open")
-        .children()
-        .click(function (e) {
-            return false;
-        });
+        if(e.target !== e.currentTarget) return;
+        $(this).removeClass("open")
     })
     .on("click", ".drawer-overlay:not(.disabled)", function (e) {
         if(e.target !== e.currentTarget) return;
