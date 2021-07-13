@@ -4,7 +4,7 @@
 	color:#fff;
 	opacity:0;
 	pointer-events:none;
-	transform:scale(0.8);
+	transform:translateY(20%);
 	padding:5px 10px;
 	clip-path:circle(0%);
 	font-size:12px;
@@ -14,6 +14,5 @@
 .tooltip.open {
 	opacity:1;
 	clip-path:circle(100%);
-	transform:translateY(-100%) scale(1);
 	transition:all .1s ease;
 }
