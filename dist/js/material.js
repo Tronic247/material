@@ -350,7 +350,7 @@
             $("body").append(`<div class="tooltip" id="${id}">${$(t).data("tooltip")}</div>`);
             $("#" + id)
             .css({
-                top: $(t).offset().top,
+                top: t.getBoundingClientRect().bottom,
                 left: $(t).offset().left,
             })
             .addClass("open");
