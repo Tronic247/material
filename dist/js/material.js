@@ -321,17 +321,15 @@
     .on("click", '[data-trigger="dialog"][data-dialog]', function (e) {
         e.preventDefault();
         var t = this;
-        switch ($(t).data("action")) {
-            case open:
+        var val = $(t).data("action");
+        if (val === 'open') {
             $($(t).data("dialog")).addClass("open");
-            break;
-
-            case close:
+        }
+        else if (val === 'close'){
             $($(t).data("dialog")).removeClass("open");
-            break;
-
-            default:
-            $($(t).data("dialog")).toggleClass("open");
+        }
+        else {
+             $($(t).data("dialog")).toggleClass("open");
         }
     })
     .on("mouseenter focusin", "[data-tooltip]", function () {
