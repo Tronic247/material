@@ -9053,3 +9053,26 @@ table th {
     border-color: #d50000;
     color: #d50000
 }
+.alert.alert-filled {
+  background-color: #eee; }
+
+.alert.alert-filled.alert-primary {
+  background-color: #1976d2;
+  color: #fff; }
+
+.alert.alert-filled.alert-danger {
+  background-color: #D50000;
+  color: #fff; }
+
+.alert.alert-filled.alert-success {
+  background-color: #18983a;
+  color: #fff; }
+
+.alert.alert-filled.alert-secondary {
+  background-color: #c2185b;
+  color: #fff; }
+
+.alert.alert-filled.alert-dark {
+  background-color: #212121;
+  color: #fff; }
+
