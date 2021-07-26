@@ -50,3 +50,26 @@
      border-color:$d;
      color:$d;
  }
+.alert.alert-filled {
+    background-color:#eee;
+}
+.alert.alert-filled.alert-primary {
+    background-color:$p;
+    color: #fff;
+}
+.alert.alert-filled.alert-danger {
+    background-color:$d;
+    color: #fff;
+}
+.alert.alert-filled.alert-success {
+    background-color:$su;
+    color: #fff;
+}
+.alert.alert-filled.alert-secondary {
+    background-color:$s;
+    color: #fff;
+}
+.alert.alert-filled.alert-dark {
+    background-color:$bl;
+    color: #fff;
+}
