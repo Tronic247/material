@@ -214,17 +214,10 @@
         });
     }
 
-    var findFurthestPoint = function (clickPointX, elementWidth, offsetX, clickPointY, elementHeight, offsetY) {
-        let x = clickPointX - offsetX > elementWidth / 2 ? 0 : elementWidth;
-        let y = clickPointY - offsetY > elementHeight / 2 ? 0 : elementHeight;
-        let d = Math.hypot(x - (clickPointX - offsetX), y - (clickPointY - offsetY));
-        return d;
-    };
-
     $("body")
     .on("pointerdown", ".ripple-e , .btn , button", function (e) {
         let rect = this.getBoundingClientRect();
-        let radius = findFurthestPoint(e.clientX, this.offsetWidth, rect.left, e.clientY, this.offsetHeight, rect.top);
+        let radius = Math.max(e.currentTarget.clientWidth, e.currentTarget.clientHeight)/1.4;
         let ripple = document.createElement("div");
         ripple.classList.add("ripple");
         ripple.style.setProperty("--x", e.clientX - rect.left - radius);
@@ -238,7 +231,7 @@
         setTimeout(() => {
             ripple.css("opacity", "0");
             setTimeout(function () {
-                ripple.remove();
+              //  ripple.remove();
             }, 600);
             0;
         }, 300);
