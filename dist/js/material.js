@@ -231,7 +231,7 @@
         setTimeout(() => {
             ripple.css("opacity", "0");
             setTimeout(function () {
-              //  ripple.remove();
+              ripple.remove();
             }, 600);
             0;
         }, 300);
