@@ -55,6 +55,10 @@
 .card .footer {
 	padding: 8px;
 	display: flex;
+	align-items: center;
+}
+.card .footer .btn , .card .footer button {
+	height: max-content;
 }
 .card .footer .float-right {
 	margin-left: auto;
@@ -68,7 +72,6 @@
 .card.collapse .content p {
 	margin-top: 25px;
 }
-
 .card .header {
 	z-index: 999;
 	background: white;
