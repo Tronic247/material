@@ -1228,6 +1228,7 @@ button.center-ripple .ripple {
 
 .appbar.short .appbar-brand {
     display: none;
+    color: currentColor;
 }
 
 .appbar.short button,
@@ -1966,6 +1967,16 @@ select.is-invalid ~ .select2-container .select2-selection {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.card .footer .btn,
+.card .footer button {
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
 }
 
 .card .footer .float-right {
