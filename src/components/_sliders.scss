@@ -2,7 +2,10 @@
     display: block;
     position: relative;
     -webkit-touch-callout: none;
-    user-select: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
 .irs-line {
     display: block;
@@ -24,7 +27,8 @@
 }
 
 .irs-handle {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
     cursor: default;
     position: absolute;
     z-index: 1;
@@ -177,17 +181,25 @@
     border-radius: 50%;
     height: 18px;
     top: 18px;
+    -webkit-transition: -webkit-transform 0.2s ease;
+    transition: -webkit-transform 0.2s ease;
+    -o-transition: transform 0.2s ease;
     transition: transform 0.2s ease;
+    transition: transform 0.2s ease, -webkit-transform 0.2s ease;
     width: 18px;
 }
 
 .irs .irs-handle:hover {
-    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+        -ms-transform: scale(1.2);
+            transform: scale(1.2);
     cursor: pointer;
 }
 
 .irs .irs-handle.state_hover {
-    transform: scale(1.3);
+    -webkit-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+            transform: scale(1.3);
 }
 
 .irs .irs-min,
@@ -211,7 +223,9 @@
     line-height: 1.333;
     padding: 6px 8px;
     text-shadow: none;
-    transform: translateY(-16px);
+    -webkit-transform: translateY(-16px);
+        -ms-transform: translateY(-16px);
+            transform: translateY(-16px);
     z-index: 10;
 }
 
@@ -222,7 +236,9 @@
 
 .irs .irs-grid {
     height: 25px;
-    transform: translateY(-9px);
+    -webkit-transform: translateY(-9px);
+        -ms-transform: translateY(-9px);
+            transform: translateY(-9px);
 }
 
 .irs .irs-grid-pol {
@@ -260,5 +276,6 @@
 }
 .irs-handle.single:focus,
 .irs-handle.single:active {
-    box-shadow: 0px 0px 0px 10px #7616d754;
+    -webkit-box-shadow: 0px 0px 0px 10px #7616d754;
+            box-shadow: 0px 0px 0px 10px #7616d754;
 }
