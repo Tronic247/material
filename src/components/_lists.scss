@@ -1,9 +1,11 @@
-//List
 .list {
 	background: white;
 	border: 1px solid #0000001a;
 	padding: 8px 0px;
-	user-select: none;
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	    -ms-user-select: none;
+	        user-select: none;
 }
 .list.no-border {
 	border: 1px solid transparent;
@@ -16,6 +18,8 @@
 	font-weight: 400;
 	--ripple-color:rgba(0 , 0 , 0 , 0.16);
 	letter-spacing: 0.15px;
+	-webkit-transition:all 0.2s ease;
+	-o-transition:all 0.2s ease;
 	transition:all 0.2s ease;
 }
 .list .list-item:hover {
