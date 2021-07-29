@@ -2,8 +2,7 @@ on:
   push:
     branches:
       - main
-
-
+      
 jobs:
   build_css:
     runs-on: ubuntu-latest
@@ -14,29 +13,24 @@ jobs:
         with:
             ref: main
             fetch-depth: 10
-            submodules: true
-
-      - name: Make destination directory for compiled SCSS
-        run: mkdir -vp /tmp/repo-name/assets/css
+            submodules: false
 
       - name: Compile CSS from SCSS files
-        uses: gha-utilities/sass-build@v0.4.4
+        uses: gha-utilities/sass-build@v0.4.3
         with:
           source: src/src.scss
           destination: dist/css/material.min.css
 
-      - name: Checkout destination Git branch
-        uses: actions/checkout@v2
-        with:
-            ref: main
-            fetch-depth: 1
+      - name: Remove previous files
+        run: rm -r dist/css
 
       - name: Add and Commit changes
         run: |
           git config --local user.email 'action@github.com'
           git config --local user.name 'GitHub Action'
-          git add dist/css/material.min.css
-          git commit --allow-empty -m 'Updates compiled SCSS files'
+          git add .
+          git commit -m 'Updates compiled CSS files'
+
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
