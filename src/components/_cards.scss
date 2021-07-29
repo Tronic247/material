@@ -1,106 +1,86 @@
 .card {
-	width: 100%;
-	overflow: hidden;
-	position: relative;
-	-webkit-box-shadow: 0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12);
-	        box-shadow: 0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12);
-	border-radius: 4px;
-	background:white;
-	display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  background: white;
+  box-shadow: 0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12);
 }
-.card.outlined {
-	-webkit-box-shadow:0px 0px 0px 1px rgba(0,0,0,.2);
-	        box-shadow:0px 0px 0px 1px rgba(0,0,0,.2);
+.card .card-img {
+  min-width: 120%;
+  max-width: 120%;
+  user-select: none;
+  margin: 0px -10%;
+  margin-top: -20px;
+  margin-bottom: 10px;
 }
-.card img {
-	width: 100%;
-	height: auto;
+.card .card-ripple-container {
+  position: relative;
+  overflow: hidden;
+  --ripple-color:#00000024;
+  padding: 20px 15px;
+  cursor: pointer;
 }
-.card div:first-child:not(.header):before {
-	content: "";
-	cursor: pointer;
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	z-index: 9;
-	background: #0000;
-	-webkit-transition: all 0.2s;
-	-o-transition: all 0.2s;
-	transition: all 0.2s;
+.card .card-ripple-container:after {
+  content: "";
+  opacity: 0;
+  transition: all 0.2s ease;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: #0000001a;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
 }
-.card div:first-child:not(.header):hover:before {
-	background: #0b0a0a1f;
+.card .card-ripple-container:hover:after {
+  opacity: 1;
 }
-.card div.ripple-e:first-child .ripple{
-	background: rgba(0 , 0 , 0 , 0.16);
+.card .card-title {
+  font-size: 1.25rem !important;
+  margin-bottom: 5px;
+  font-weight: 500;
 }
-.card .content {
-	padding: 1rem;
+.card .card-meta-text {
+  color: #0000008a;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
 }
-.card .content h2 {
-	color: black;
-	font-size: 1.25rem !important;
-	font-weight: 500;
+.card .card-footer {
+  display: flex;
+  align-items: center;
+  padding: 8px 6px;
 }
-.card .content h3 {
-	font-size: 0.875rem !important;
-	color: #0000008a;
-	font-weight: 500;
-	margin-top: 5px;
+.card .card-footer-start {
+  justify-content: flex-start;
+  margin-right: auto;
 }
-.card .content p {  
-	margin-top: 14px;
-	font-size: 0.875rem;
-	color: #0000008a;
-	font-weight: 400;
-	letter-spacing:0.0178571429rem;
-	line-height: 1.25rem;
+.card .card-footer-end {
+  justify-content: flex-end;
+  margin-left: auto;
+  display: flex;
 }
-.card .footer {
-	padding: 8px;
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
+.card .card-meta-title {
+  font-size: 0.875rem !important;
+  color: #0000008a;
+  margin-bottom: 10px;
 }
-.card .footer .btn , .card .footer button {
-	height: -webkit-max-content;
-	height: -moz-max-content;
-	height: max-content;
+.card.collapsed .card-header {
+  position: relative;
 }
-.card .footer .float-right {
-	margin-left: auto;
+.card.collapsed .card-header .card-header-content {
+  position: absolute;
+  bottom: 20px;
+  left: 0px;
 }
-.card.collapse .content {
-	margin-top: -74px;
-	z-index: 999999;
-	position: relative;
+.card.collapsed .card-header .card-header-content * {
+  color: white;
 }
-.card.collapse h2 , .card.collapse h3 {
-	color: white;
+.card .card-header.header-before {
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
 }
-.card.collapse .content p {
-	margin-top: 25px;
-}
-.card .header {
-	z-index: 999;
-	background: white;
-	color: black;
-	padding: 1rem;
-}
-.card .header h2 {
-	color: black;
-	font-size: 1.25rem !important;
-	font-weight: 500;
-}
-.card .header h3 {
-	font-size: 0.875rem !important;
-	color: #0000008a;
-	font-weight: 500;
-	margin-top: 5px;
-}
-.card.with-header p {
-	margin-top: -4px;
+.card .row {
+    align-items: center;
 }
