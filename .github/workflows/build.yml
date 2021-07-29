@@ -28,7 +28,7 @@ jobs:
       - name: Checkout destination Git branch
         uses: actions/checkout@v2
         with:
-            ref: pr-pages
+            ref: main
             fetch-depth: 1
 
       - name: Move compiled CSS to path within pr-pages branch
