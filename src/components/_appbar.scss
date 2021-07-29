@@ -1,11 +1,25 @@
 .appbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background: $p;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   width: 100%;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
   padding: 9px 20px;
   color: white;
@@ -18,7 +32,8 @@
   background: #fff0;
   color: white;
   --ripple-color: rgba(255, 255, 255, 0.3) !important;
-  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
 }
 .appbar button:hover,
 .appbar .btn:hover {
@@ -34,10 +49,15 @@
   color: white;
 }
 .appbar-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
-  align-content: center;
-  align-items: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .appbar .icon {
   color: white !important;
@@ -49,14 +69,19 @@
   height: 45px;
 }
 .appbar .appbar-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 100%;
 }
 .appbar .appbar-content .appbar-brand {
   font-size: 1.25rem;
   margin-right: 25px;
-  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
   font-weight: 500;
@@ -65,17 +90,27 @@
   margin-right: 25px;
 }
 .appbar .appbar-content .appbar-items {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   padding: 0;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .appbar .appbar-content .appbar-items.appbar-item--start {
-  justify-content: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   margin-right: auto;
 }
 .appbar .appbar-content .appbar-items.appbar-item--end {
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
   margin-left: auto;
 }
 ul.appbar-items {
@@ -91,8 +126,22 @@ ul.appbar-items {
   border: 1px solid transparent;
   color: #fff;
   width: 200px;
+  -webkit-transition: all 0.1s ease;
+  -o-transition: all 0.1s ease;
   transition: all 0.1s ease;
   font-size: 17px;
+}
+.input-form .input::-webkit-input-placeholder {
+  color: #fff;
+}
+.input-form .input::-moz-placeholder {
+  color: #fff;
+}
+.input-form .input:-ms-input-placeholder {
+  color: #fff;
+}
+.input-form .input::-ms-input-placeholder {
+  color: #fff;
 }
 .input-form .input::placeholder {
   color: #fff;
@@ -111,7 +160,9 @@ ul.appbar-items {
   left: 8px;
   color: #eee;
   bottom: 50%;
-  transform: translateY(50%);
+  -webkit-transform: translateY(50%);
+      -ms-transform: translateY(50%);
+          transform: translateY(50%);
 }
 .appbar.secondary {
   background:$s;
@@ -159,12 +210,14 @@ ul.appbar-items {
   background: rgba($bl, 0.4);
 }
 .appbar.elevating {
-  box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
+  -webkit-box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
+          box-shadow:0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
 }
 .appbar.short {
   max-width: 135px;
   width: 20%;
-  box-shadow: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
+  -webkit-box-shadow: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
+          box-shadow: 0 2px 4px -1px rgba(0,0,0,.2),0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12);
   border-radius: 0px 0px 20px 0px;
 }
 .appbar.short .appbar-brand{
