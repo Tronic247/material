@@ -3,7 +3,10 @@
 <p align="center"><img src="https://img.shields.io/github/stars/tronic247/material?style=flat-square"/>
 <img src="https://img.shields.io/github/last-commit/tronic247/material?style=flat-square"/>
 <img src="https://img.shields.io/github/issues/tronic247/material?style=flat-square"/>
-<img src="https://img.shields.io/badge/Tronic247-Product-%23e41c26"/> <a href="https://gitter.im/Tronic247-Material/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge"><img src="https://badges.gitter.im/Tronic247-Material/community.svg"/></a></p>
+<img src="https://img.shields.io/badge/Tronic247-Product-%23e41c26"/>  
+  <a href="https://discord.gg/Xusx5WFwMH"> <img src="https://img.shields.io/discord/868761454914981941.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2"/> </a>
+</p>
+
 <p align="center"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=tronic247&repo=material&layout=compact"/></p>
 
 ## Contributions needed
