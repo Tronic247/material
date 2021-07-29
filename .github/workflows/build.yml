@@ -23,7 +23,7 @@ jobs:
         uses: gha-utilities/sass-build@v0.4.4
         with:
           source: src/src.scss
-          destination: /dist/material.css
+          destination: /dist/css/material.min.css
 
       - name: Checkout destination Git branch
         uses: actions/checkout@v2
