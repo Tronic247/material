@@ -6,13 +6,19 @@
 	margin-bottom: 5px;
 	padding: 14px 18px;
 	border-radius: 4px;
-	box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+	-webkit-box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+	        box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
 }
 .according .according-header {
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
 	font-size: 0.9375rem; 
-	align-content: center;
-	align-items: center;
+	-ms-flex-line-pack: center; 
+	    align-content: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
 .according .according-item .according-title {
 	font-size: inherit !important;
@@ -20,6 +26,8 @@
 .according .according-item .according-content {
 	opacity: 0;
 	max-height: 0px;
+	-webkit-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
 	transition: all 0.2s ease;
 	display: block;
 }
