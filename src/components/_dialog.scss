@@ -4,14 +4,23 @@
 	left: 50%;
 	margin: auto;
 	pointer-events: none;
-	transform: translate(-50% , -50%) scale(0.9);
+	-webkit-transform: translate(-50% , -50%) scale(0.9);
+	    -ms-transform: translate(-50% , -50%) scale(0.9);
+	        transform: translate(-50% , -50%) scale(0.9);
+	width: -webkit-max-content;
+	width: -moz-max-content;
 	width: max-content;
 	z-index: 999;
 	background: white;
 	padding: 10px 30px;
 	overflow: hidden;
-	box-shadow: $dbs;
+	-webkit-box-shadow: $dbs;
+	        box-shadow: $dbs;
+	-webkit-transition: opacity 0.2s ease , -webkit-transform 0.6s ease;
+	transition: opacity 0.2s ease , -webkit-transform 0.6s ease;
+	-o-transition: opacity 0.2s ease , transform 0.6s ease;
 	transition: opacity 0.2s ease , transform 0.6s ease;
+	transition: opacity 0.2s ease , transform 0.6s ease , -webkit-transform 0.6s ease;
 	opacity: 0;
 	border-radius: 4px;
 	max-height: calc(100% - 32px);
@@ -29,8 +38,13 @@
 }
 .dialog .dialog-footer {
 	margin: 10px 0px -2px 0px;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	flex-direction: row-reverse;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: reverse;
+	    -ms-flex-direction: row-reverse;
+	        flex-direction: row-reverse;
 }
 .dialog.xl {
 	width: 80%;
@@ -40,6 +54,8 @@
 	position: fixed;
 	z-index: 999;
 	width: 100%;
+	-webkit-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
 	transition: all 0.2s ease; 
 	background: #000000a6;
 	pointer-events:none;
@@ -54,45 +70,70 @@
 .dialog-overlay.open .dialog {
 	opacity: 1;
 	pointer-events:all;
+	-webkit-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
 	transition: all 0.2s ease;
-	transform: translate(-50% , -50%);
+	-webkit-transform: translate(-50% , -50%);
+	    -ms-transform: translate(-50% , -50%);
+	        transform: translate(-50% , -50%);
 }
 .dialog.fullscreen {
 	top: 0;
 	left: 0;
 	height: 100%;
 	width: 100%;
-	transform: scale(1) translateY(100%);
+	-webkit-transform: scale(1) translateY(100%);
+	    -ms-transform: scale(1) translateY(100%);
+	        transform: scale(1) translateY(100%);
 	opacity: 1;
 	border-radius: 0;
 	margin: 0;
-	box-shadow: none;
+	-webkit-box-shadow: none;
+	        box-shadow: none;
 	max-height: 100%;
 }
 .dialog-overlay.open .dialog.fullscreen {
 	opacity: 1;
-	transform: none;
+	-webkit-transform: none;
+	    -ms-transform: none;
+	        transform: none;
 }
 .dialog.fullscreen .dialog-header {
 	background: $p;
 	color: white;
 	padding: 16px;
 	margin: -10px -32px 16px -32px;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
 .dialog .dialog-left {
-	flex: 12;
+	-webkit-box-flex: 12;
+	    -ms-flex: 12;
+	        flex: 12;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
 .dialog .dialog-left * {
 	display: inline-block;
 }
 .dialog .dialog-right {
-	flex: 0;
+	-webkit-box-flex: 0;
+	    -ms-flex: 0;
+	        flex: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
 	display: flex;
-	align-items: center;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
 }
 .dialog .dialog-right * {
 	display: inline-block;
@@ -101,9 +142,13 @@
 	bottom: 0;
 	width: 100%;
 	top: auto;
-	transform: translate(-50% , 100%);
+	-webkit-transform: translate(-50% , 100%);
+	    -ms-transform: translate(-50% , 100%);
+	        transform: translate(-50% , 100%);
 }
 .dialog-overlay.open .dialog.bottom-sheet {
-	transform: translate(-50% , 0%);
+	-webkit-transform: translate(-50% , 0%);
+	    -ms-transform: translate(-50% , 0%);
+	        transform: translate(-50% , 0%);
 	border-radius: 4px 4px 0px 0px;
 }
