@@ -36,8 +36,12 @@
     position: fixed;
     top: 0;
     left: 0;
-    transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+        -ms-transform: translateX(-100%);
+            transform: translateX(-100%);
     width: 20%;
+    -webkit-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
     transition: all 0.2s ease;
 }
 .drawer-overlay {
@@ -49,6 +53,8 @@
 	z-index: 9;
 	height: 100%;
 	width: 100%;
+	-webkit-transition: all 0.2s ease;
+	-o-transition: all 0.2s ease;
 	transition: all 0.2s ease;
 	background:#00000075;
 }
@@ -57,7 +63,9 @@
 	pointer-events:all;
 }
 .drawer-overlay.open .drawer.modal {
-	transform: translateX(0%);
+	-webkit-transform: translateX(0%);
+	    -ms-transform: translateX(0%);
+	        transform: translateX(0%);
 }
 @media only screen and (max-width: 890px) {
   .drawer-overlay .drawer.modal {
