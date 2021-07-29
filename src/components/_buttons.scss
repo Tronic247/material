@@ -1,483 +1,597 @@
-button , .btn {
-	background:$p;
-	color: white;
-	border: none;
-	text-transform: uppercase;
-	font-size: 14px;
-	padding: 10px 16px;
-	border-radius: 4px;
-	cursor: pointer;
-	-webkit-box-shadow: $bbs;
-	        box-shadow: $bbs;
-	-webkit-transition: all 0.2s;
-	-o-transition: all 0.2s;
-	transition: all 0.2s;
-	position: relative;
-	overflow: hidden;
-	font-weight: 500;
-	display: -webkit-inline-box;
-	display: -ms-inline-flexbox;
-	display: inline-flex;
-	-ms-flex-line-pack: middle;
-	    align-content: middle;
-	vertical-align:middle;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-	-webkit-user-select: none;
-	   -moz-user-select: none;
-	    -ms-user-select: none;
-	        user-select: none;
+button,
+.btn {
+    background: $p;
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-box-shadow: $bbs;
+            box-shadow: $bbs;
+    -webkit-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -ms-flex-line-pack: middle;
+        align-content: middle;
+    vertical-align: middle;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
 }
-button:hover , .btn:hover {
-	-webkit-box-shadow: $bbsh;
-	        box-shadow: $bbsh;
+button:hover,
+.btn:hover {
+    -webkit-box-shadow: $bbsh;
+            box-shadow: $bbsh;
 }
-button:focus , .btn:focus {
-	-webkit-box-shadow: $bbsf;
-	        box-shadow: $bbsf;
-	background:lighten($p, 15%);
+button:focus,
+.btn:focus {
+    -webkit-box-shadow: $bbsf;
+            box-shadow: $bbsf;
+    background: lighten($p, 15%);
 }
-button:active , .btn:active {
-	-webkit-box-shadow: $bbsa;
-	        box-shadow: $bbsa;
+button:active,
+.btn:active {
+    -webkit-box-shadow: $bbsa;
+            box-shadow: $bbsa;
 }
-button.outlined , .btn.outlined {
-	background:transparent;
-	color: $p;
-	border: none;
-	text-transform: uppercase;
-	font-size: 14px;
-	padding: 10px 16px;
-	border-radius: 4px;
-	-webkit-box-shadow:none;
-	        box-shadow:none;
-	cursor: pointer;
-	-webkit-box-shadow:inset 0px 0px 0px 1px $p;
-	        box-shadow:inset 0px 0px 0px 1px $p;
-	-webkit-transition: all 0.2s;
-	-o-transition: all 0.2s;
-	transition: all 0.2s;
-	position: relative;
-	overflow: hidden;
-	font-weight: 500;
+button.outlined,
+.btn.outlined {
+    background: transparent;
+    color: $p;
+    border: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 10px 16px;
+    border-radius: 4px;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    cursor: pointer;
+    -webkit-box-shadow: inset 0px 0px 0px 1px $p;
+            box-shadow: inset 0px 0px 0px 1px $p;
+    -webkit-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
 }
-button.outlined .ripple , .btn.outlined .ripple {
-	background:rgba($p, 0.2);
+button.outlined .ripple,
+.btn.outlined .ripple {
+    background: rgba($p, 0.2);
 }
-button.outlined:hover , .btn.outlined:hover {
-	background:rgba($p, 0.1);
+button.outlined:hover,
+.btn.outlined:hover {
+    background: rgba($p, 0.1);
 }
-button.outlined:focus , .btn.outlined:focus {
-	background:rgba($p, 0.1);
-}
-
-button.text , .btn.text {
-	background:transparent;
-	color: $p;
-	border: none;
-	text-transform: uppercase;
-	font-size: 14px;
-	padding: 10px 16px;
-	border-radius: 4px;
-	-webkit-box-shadow:none;
-	        box-shadow:none;
-	cursor: pointer;
-	-webkit-transition: all 0.2s;
-	-o-transition: all 0.2s;
-	transition: all 0.2s;
-	position: relative;
-	overflow: hidden;
-	font-weight: 500;
-}
-button.text .ripple , .btn.text .ripple {
-	background:rgba($p, 0.2);
-}
-button.text:hover , .btn.text:hover {
-	background:rgba($p, 0.1);
-}
-button.text:focus , .btn.text:focus {
-	background:rgba($p, 0.1);
+button.outlined:focus,
+.btn.outlined:focus {
+    background: rgba($p, 0.1);
 }
 
-button.unelevated , .btn.unelevated {
-	background:$p;
-	color: white;
-	border: none;
-	text-transform: uppercase;
-	font-size: 14px;
-	padding: 10px 16px;
-	border-radius: 4px;
-	cursor: pointer;
-	-webkit-box-shadow: none;
-	        box-shadow: none;
-	-webkit-transition: all 0.2s;
-	-o-transition: all 0.2s;
-	transition: all 0.2s;
-	position: relative;
-	overflow: hidden;
-	font-weight: 500;
+button.text,
+.btn.text {
+    background: transparent;
+    color: $p;
+    border: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 10px 16px;
+    border-radius: 4px;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    cursor: pointer;
+    -webkit-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
 }
-button.unelevated:hover , .btn.unelevated:hover {
-	background:rgba($p, 0.8);
+button.text .ripple,
+.btn.text .ripple {
+    background: rgba($p, 0.2);
 }
-button.unelevated:active , .btn.unelevated:active {
-	background:rgba($p, 0.8);
+button.text:hover,
+.btn.text:hover {
+    background: rgba($p, 0.1);
 }
-button.unelevated:focus , .btn.unelevated:focus {
-	background:rgba($p, 0.8);
-}
-
-button.secondary:not(.outlined , .text) , .btn.secondary:not(.outlined , .text) {
-	background:$s;
-}
-button.outlined.secondary , .btn.outlined.secondary {
-	-webkit-box-shadow:inset 0px 0px 0px 1px $s;
-	        box-shadow:inset 0px 0px 0px 1px $s;
-	color: $s;
+button.text:focus,
+.btn.text:focus {
+    background: rgba($p, 0.1);
 }
 
-button.outlined.secondary .ripple , .btn.outlined.secondary .ripple {
-	background:rgba($s, 0.2);
+button.unelevated,
+.btn.unelevated {
+    background: $p;
+    color: white;
+    border: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 10px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    -webkit-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+    font-weight: 500;
 }
-button.outlined.secondary:hover , .btn.outlined.secondary:hover {
-	background:rgba($s, 0.1);
+button.unelevated:hover,
+.btn.unelevated:hover {
+    background: rgba($p, 0.8);
 }
-button.outlined.secondary:focus , .btn.outlined.secondary:focus {
-	background:rgba($s, 0.1);
-}	
-button.text.secondary , .btn.text.secondary {
-	color: $s;
+button.unelevated:active,
+.btn.unelevated:active {
+    background: rgba($p, 0.8);
 }
-button.text.secondary:hover , .btn.text.secondary:hover {
-	background:rgba($s, 0.2);
-}
-button.text.secondary:focus , .btn.text.secondary:focus {
-	background:rgba($s, 0.1);
-}
-button.text.secondary:active , .btn.text.secondary:active {
-	background:rgba($s, 0.1);
-}
-button.text.secondary .ripple , .btn.text.secondary .ripple {
-	background:rgba($s, 0.2);
-}
-
-button.unelevated.secondary:hover , .btn.unelevated.secondary:hover {
-	background:rgba($s, 0.8);
-}
-button.unelevated.secondary:active , .btn.unelevated.secondary:active {
-	background:rgba($s, 0.8);
-}
-button.unelevated.secondary:focus , .btn.unelevated.secondary:focus {
-	background:rgba($s, 0.8);
+button.unelevated:focus,
+.btn.unelevated:focus {
+    background: rgba($p, 0.8);
 }
 
-
-button.danger:not(.outlined , .text) , .btn.danger:not(.outlined , .text) {
-	background:$d;
+button.secondary:not(.outlined, .text),
+.btn.secondary:not(.outlined, .text) {
+    background: $s;
 }
-button.outlined.danger , .btn.outlined.danger {
-	-webkit-box-shadow:inset 0px 0px 0px 1px $d;
-	        box-shadow:inset 0px 0px 0px 1px $d;
-	color: $d;
-}
-
-button.outlined.danger .ripple , .btn.outlined.danger .ripple {
-	background:rgba($d, 0.2);
-}
-button.outlined.danger:hover , .btn.outlined.danger:hover {
-	background:rgba($d, 0.1);
-}
-button.outlined.danger:focus , .btn.outlined.danger:focus {
-	background:rgba($d, 0.1);
-}	
-button.text.danger , .btn.text.danger {
-	color: $d;
-}
-button.text.danger:hover , .btn.text.danger:hover {
-	background:rgba($d, 0.2);
-}
-button.text.danger:focus , .btn.text.danger:focus {
-	background:rgba($d, 0.1);
-}
-button.text.danger:active , .btn.text.danger:active {
-	background:rgba($d, 0.1);
-}
-button.text.danger .ripple , .btn.text.danger .ripple {
-	background:rgba($d, 0.2);
+button.outlined.secondary,
+.btn.outlined.secondary {
+    -webkit-box-shadow: inset 0px 0px 0px 1px $s;
+            box-shadow: inset 0px 0px 0px 1px $s;
+    color: $s;
 }
 
-button.unelevated.danger:hover , .btn.unelevated.danger:hover {
-	background:rgba($d, 0.8);
+button.outlined.secondary .ripple,
+.btn.outlined.secondary .ripple {
+    background: rgba($s, 0.2);
 }
-button.unelevated.danger:active , .btn.unelevated.danger:active {
-	background:rgba($d, 0.8);
+button.outlined.secondary:hover,
+.btn.outlined.secondary:hover {
+    background: rgba($s, 0.1);
 }
-button.unelevated.danger:focus , .btn.unelevated.danger:focus {
-	background:rgba($d, 0.8);
+button.outlined.secondary:focus,
+.btn.outlined.secondary:focus {
+    background: rgba($s, 0.1);
 }
-
-
-button.dark:not(.outlined , .text) , .btn.dark:not(.outlined , .text) {
-	background:$bl;
+button.text.secondary,
+.btn.text.secondary {
+    color: $s;
 }
-button.outlined.dark , .btn.outlined.dark {
-	-webkit-box-shadow:inset 0px 0px 0px 1px $bl;
-	        box-shadow:inset 0px 0px 0px 1px $bl;
-	color: $bl;
+button.text.secondary:hover,
+.btn.text.secondary:hover {
+    background: rgba($s, 0.2);
 }
-
-button.outlined.dark .ripple , .btn.outlined.dark .ripple {
-	background:rgba($bl, 0.2);
+button.text.secondary:focus,
+.btn.text.secondary:focus {
+    background: rgba($s, 0.1);
 }
-button.outlined.dark:hover , .btn.outlined.dark:hover {
-	background:rgba($bl, 0.1);
+button.text.secondary:active,
+.btn.text.secondary:active {
+    background: rgba($s, 0.1);
 }
-button.outlined.dark:focus , .btn.outlined.dark:focus {
-	background:rgba($bl, 0.1);
-}	
-button.text.dark , .btn.text.dark {
-	color: $bl;
-}
-button.text.dark:hover , .btn.text.dark:hover {
-	background:rgba($bl, 0.2);
-}
-button.text.dark:focus , .btn.text.dark:focus {
-	background:rgba($bl, 0.1);
-}
-button.text.dark:active , .btn.text.dark:active {
-	background:rgba($bl, 0.1);
-}
-button.text.dark .ripple , .btn.text.dark .ripple {
-	background:rgba($bl, 0.2);
+button.text.secondary .ripple,
+.btn.text.secondary .ripple {
+    background: rgba($s, 0.2);
 }
 
-button.unelevated.dark:hover , .btn.unelevated.dark:hover {
-	background:rgba($bl, 0.8);
+button.unelevated.secondary:hover,
+.btn.unelevated.secondary:hover {
+    background: rgba($s, 0.8);
 }
-button.unelevated.dark:active , .btn.unelevated.dark:active {
-	background:rgba($bl, 0.8);
+button.unelevated.secondary:active,
+.btn.unelevated.secondary:active {
+    background: rgba($s, 0.8);
 }
-button.unelevated.dark:focus , .btn.unelevated.dark:focus {
-	background:rgba($bl, 0.8);
-}
-
-
-button.success:not(.outlined , .text) , .btn.success:not(.outlined , .text) {
-	background:$su;
-}
-button.outlined.success , .btn.outlined.success {
-	-webkit-box-shadow:inset 0px 0px 0px 1px $su;
-	        box-shadow:inset 0px 0px 0px 1px $su;
-	color: $su;
+button.unelevated.secondary:focus,
+.btn.unelevated.secondary:focus {
+    background: rgba($s, 0.8);
 }
 
-button.outlined.success .ripple , .btn.outlined.success .ripple {
-	background:rgba($su, 0.2);
+button.danger:not(.outlined, .text),
+.btn.danger:not(.outlined, .text) {
+    background: $d;
 }
-button.outlined.success:hover , .btn.outlined.success:hover {
-	background:rgba($su, 0.1);
-}
-button.outlined.success:focus , .btn.outlined.success:focus {
-	background:rgba($su, 0.1);
-}	
-button.text.success , .btn.text.success {
-	color: $su;
-}
-button.text.success:hover , .btn.text.success:hover {
-	background:rgba($su, 0.2);
-}
-button.text.success:focus , .btn.text.success:focus {
-	background:rgba($su, 0.1);
-}
-button.text.success:active , .btn.text.success:active {
-	background:rgba($su, 0.1);
-}
-button.text.success .ripple , .btn.text.success .ripple {
-	background:rgba($su, 0.2);
+button.outlined.danger,
+.btn.outlined.danger {
+    -webkit-box-shadow: inset 0px 0px 0px 1px $d;
+            box-shadow: inset 0px 0px 0px 1px $d;
+    color: $d;
 }
 
-button.unelevated.success:hover , .btn.unelevated.success:hover {
-	background:rgba($su, 0.8);
+button.outlined.danger .ripple,
+.btn.outlined.danger .ripple {
+    background: rgba($d, 0.2);
 }
-button.unelevated.success:active , .btn.unelevated.success:active {
-	background:rgba($su, 0.8);
+button.outlined.danger:hover,
+.btn.outlined.danger:hover {
+    background: rgba($d, 0.1);
 }
-button.unelevated.success:focus , .btn.unelevated.success:focus {
-	background:rgba($su, 0.8);
+button.outlined.danger:focus,
+.btn.outlined.danger:focus {
+    background: rgba($d, 0.1);
 }
-button.icon, .btn.icon {
-	background: transparent;
-	-webkit-box-shadow: none;
-	        box-shadow: none;
-	border-radius: 100%;
-	color: #8d8787 !important;
-	--ripple-color: #0303031a;
-	font-size: 24px;
-	padding: 10px 10px;
-	margin: 0;
-	vertical-align: middle;
+button.text.danger,
+.btn.text.danger {
+    color: $d;
 }
-button.icon:hover, .btn.icon:hover {
-	background: #0303031a;
+button.text.danger:hover,
+.btn.text.danger:hover {
+    background: rgba($d, 0.2);
 }
-button.icon:active, .btn.icon:active {
-	background: #0303031a;
+button.text.danger:focus,
+.btn.text.danger:focus {
+    background: rgba($d, 0.1);
 }
-button.icon:focus, .btn.icon:focus {
-	background: #0303031a;
+button.text.danger:active,
+.btn.text.danger:active {
+    background: rgba($d, 0.1);
 }
-button.large , .btn.large {
-	padding: 15px 26px;
-	font-size: 18px;
+button.text.danger .ripple,
+.btn.text.danger .ripple {
+    background: rgba($d, 0.2);
 }
-button.small , .btn.small {
-	font-size: 11px;
-	padding: 8px 15px;
+
+button.unelevated.danger:hover,
+.btn.unelevated.danger:hover {
+    background: rgba($d, 0.8);
+}
+button.unelevated.danger:active,
+.btn.unelevated.danger:active {
+    background: rgba($d, 0.8);
+}
+button.unelevated.danger:focus,
+.btn.unelevated.danger:focus {
+    background: rgba($d, 0.8);
+}
+
+button.dark:not(.outlined, .text),
+.btn.dark:not(.outlined, .text) {
+    background: $bl;
+}
+button.outlined.dark,
+.btn.outlined.dark {
+    -webkit-box-shadow: inset 0px 0px 0px 1px $bl;
+            box-shadow: inset 0px 0px 0px 1px $bl;
+    color: $bl;
+}
+
+button.outlined.dark .ripple,
+.btn.outlined.dark .ripple {
+    background: rgba($bl, 0.2);
+}
+button.outlined.dark:hover,
+.btn.outlined.dark:hover {
+    background: rgba($bl, 0.1);
+}
+button.outlined.dark:focus,
+.btn.outlined.dark:focus {
+    background: rgba($bl, 0.1);
+}
+button.text.dark,
+.btn.text.dark {
+    color: $bl;
+}
+button.text.dark:hover,
+.btn.text.dark:hover {
+    background: rgba($bl, 0.2);
+}
+button.text.dark:focus,
+.btn.text.dark:focus {
+    background: rgba($bl, 0.1);
+}
+button.text.dark:active,
+.btn.text.dark:active {
+    background: rgba($bl, 0.1);
+}
+button.text.dark .ripple,
+.btn.text.dark .ripple {
+    background: rgba($bl, 0.2);
+}
+
+button.unelevated.dark:hover,
+.btn.unelevated.dark:hover {
+    background: rgba($bl, 0.8);
+}
+button.unelevated.dark:active,
+.btn.unelevated.dark:active {
+    background: rgba($bl, 0.8);
+}
+button.unelevated.dark:focus,
+.btn.unelevated.dark:focus {
+    background: rgba($bl, 0.8);
+}
+
+button.success:not(.outlined, .text),
+.btn.success:not(.outlined, .text) {
+    background: $su;
+}
+button.outlined.success,
+.btn.outlined.success {
+    -webkit-box-shadow: inset 0px 0px 0px 1px $su;
+            box-shadow: inset 0px 0px 0px 1px $su;
+    color: $su;
+}
+
+button.outlined.success .ripple,
+.btn.outlined.success .ripple {
+    background: rgba($su, 0.2);
+}
+button.outlined.success:hover,
+.btn.outlined.success:hover {
+    background: rgba($su, 0.1);
+}
+button.outlined.success:focus,
+.btn.outlined.success:focus {
+    background: rgba($su, 0.1);
+}
+button.text.success,
+.btn.text.success {
+    color: $su;
+}
+button.text.success:hover,
+.btn.text.success:hover {
+    background: rgba($su, 0.2);
+}
+button.text.success:focus,
+.btn.text.success:focus {
+    background: rgba($su, 0.1);
+}
+button.text.success:active,
+.btn.text.success:active {
+    background: rgba($su, 0.1);
+}
+button.text.success .ripple,
+.btn.text.success .ripple {
+    background: rgba($su, 0.2);
+}
+
+button.unelevated.success:hover,
+.btn.unelevated.success:hover {
+    background: rgba($su, 0.8);
+}
+button.unelevated.success:active,
+.btn.unelevated.success:active {
+    background: rgba($su, 0.8);
+}
+button.unelevated.success:focus,
+.btn.unelevated.success:focus {
+    background: rgba($su, 0.8);
+}
+button.icon,
+.btn.icon {
+    background: transparent;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    border-radius: 100%;
+    color: #8d8787 !important;
+    --ripple-color: #0303031a;
+    font-size: 24px;
+    padding: 10px 10px;
+    margin: 0;
+    vertical-align: middle;
+}
+button.icon:hover,
+.btn.icon:hover {
+    background: #0303031a;
+}
+button.icon:active,
+.btn.icon:active {
+    background: #0303031a;
+}
+button.icon:focus,
+.btn.icon:focus {
+    background: #0303031a;
+}
+button.large,
+.btn.large {
+    padding: 15px 26px;
+    font-size: 18px;
+}
+button.small,
+.btn.small {
+    font-size: 11px;
+    padding: 8px 15px;
 }
 .fab {
-	border-radius: 50px;
-	padding: 15px 15px;
-	line-height: 1.8;
+    border-radius: 50px;
+    padding: 15px 15px;
+    line-height: 1.8;
 }
 .fab.with-text {
-	padding:10px 15px;
+    padding: 10px 15px;
 }
 .fab.small {
-	padding: 8px !important;
+    padding: 8px !important;
 }
 .fab.small .material-icons {
-	display: block;
+    display: block;
 }
-button:disabled , button.disabled , .btn:disabled , .btn.disabled {
-	background:#d2d2d2;
-	pointer-events:none;
-	color: #505050;
+button:disabled,
+button.disabled,
+.btn:disabled,
+.btn.disabled {
+    background: #d2d2d2;
+    pointer-events: none;
+    color: #505050;
 }
-button.otlined:disabled , button.outlined.disabled , .btn.outlined:disabled , .btn.outlined.disabled {
-	-webkit-box-shadow:inset  0px 0px 0px 1px #d2d2d2;
-	        box-shadow:inset  0px 0px 0px 1px #d2d2d2;
-	background:transparent;
-	pointer-events:none;
-	color: #505050;
+button.otlined:disabled,
+button.outlined.disabled,
+.btn.outlined:disabled,
+.btn.outlined.disabled {
+    -webkit-box-shadow: inset 0px 0px 0px 1px #d2d2d2;
+            box-shadow: inset 0px 0px 0px 1px #d2d2d2;
+    background: transparent;
+    pointer-events: none;
+    color: #505050;
 }
-button.text:disabled , button.text.disabled , .btn.text:disabled , .btn.text.disabled {
-	background:transparent;
-	pointer-events:none;
-	color: #505050;
+button.text:disabled,
+button.text.disabled,
+.btn.text:disabled,
+.btn.text.disabled {
+    background: transparent;
+    pointer-events: none;
+    color: #505050;
 }
-.button-group button , .button-group .btn{
-	margin-right: -6px !important;
-	border-radius: 0px;
+.button-group button,
+.button-group .btn {
+    margin-right: -6px !important;
+    border-radius: 0px;
 }
-.button-group button:last-child , .button-group .btn:last-child {
-	border-radius: 4px; 
+.button-group button:last-child,
+.button-group .btn:last-child {
+    border-radius: 4px;
 }
-.button-group button:first-child , .button-group .btn:first-child {
-	border-radius: 4px; 
+.button-group button:first-child,
+.button-group .btn:first-child {
+    border-radius: 4px;
 }
-button:not(.icon , .fab) .material-icons, .btn:not(.icon , .fab) .material-icons{ 
-	font-size: 13px !important;
-	height: 18px;
-	width: 18px;
-	display: ruby-base-container;
-	-webkit-transform: scale(1.3) translate(-22% , 14%);
-	    -ms-transform: scale(1.3) translate(-22% , 14%);
-	        transform: scale(1.3) translate(-22% , 14%);font-size: 6px;
-}
-
-button.shaped , .btn.shaped {
-	border-radius:50px;
-}
-button.small .material-icons , .btn.small .material-icons {
-	display: none;
-}
-
-
-.ripple-e {   
-	position: relative;
-	overflow: hidden;
-}
-.ripple-e.light .ripple {
-	background-color: rgba(255, 255, 255, 0.16);
-}
-.ripple-e.dark .ripple {
-	background-color: rgba(0 , 0 , 0 , 0.16);
+button:not(.icon, .fab) .material-icons,
+.btn:not(.icon, .fab) .material-icons {
+    font-size: 13px !important;
+    height: 18px;
+    width: 18px;
+    display: ruby-base-container;
+    -webkit-transform: scale(1.3) translate(-22%, 14%);
+        -ms-transform: scale(1.3) translate(-22%, 14%);
+            transform: scale(1.3) translate(-22%, 14%);
+    font-size: 6px;
 }
 
-.ripple-e.center-ripple .ripple , .btn.center-ripple .ripple , button.center-ripple .ripple{
-	position: absolute !important;
-	top: 50% !important;
-	left: 50% !important;
-	display: block !important;
-	-webkit-transform: translate(-50% , -50%) ;
-	    -ms-transform: translate(-50% , -50%) ;
-	        transform: translate(-50% , -50%) ;
-	border-radius: 50% !important;
-	padding: 0px !important;
-	-webkit-transition: all 0.6s ease;
-	-o-transition: all 0.6s ease;
-	transition: all 0.6s ease;
-	-webkit-animation: ripplee 0.6s ease;
-	        animation: ripplee 0.6s ease;
+button.shaped,
+.btn.shaped {
+    border-radius: 50px;
+}
+button.small .material-icons,
+.btn.small .material-icons {
+    display: none;
+}
+
+.ripple-e {
+    position: relative;
+    overflow: hidden;
+}
+.ripple-e.light-ripple .ripple,
+.btn.light-ripple .ripple,
+button.light-ripple .ripple {
+    background-color: rgba(255, 255, 255, 0.16);
+}
+.ripple-e.dark-ripple .ripple,
+.btn.dark-ripple .ripple,
+button.dark-ripple .ripple {
+    background-color: rgba(0, 0, 0, 0.16);
+}
+.ripple-e.primary-ripple .ripple,
+.btn.primary-ripple .ripple,
+button.primary-ripple .ripple {
+    background-color: rgba($p, 0.16);
+}
+.ripple-e.secondary-ripple .ripple,
+.btn.secondary-ripple .ripple,
+button.secondary-ripple .ripple {
+    background-color: rgba($s, 0.16);
+}
+.ripple-e.danger-ripple .ripple,
+.btn.danger-ripple .ripple,
+button.danger-ripple .ripple {
+    background-color: rgba($d, 0.16);
+}
+.ripple-e.success-ripple .ripple,
+.btn.success-ripple .ripple,
+button.success-ripple .ripple {
+    background-color: rgba($su, 0.16);
+}
+.ripple-e.center-ripple .ripple,
+.btn.center-ripple .ripple,
+button.center-ripple .ripple {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    display: block !important;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    border-radius: 50% !important;
+    padding: 0px !important;
+    -webkit-transition: all 0.6s ease;
+    -o-transition: all 0.6s ease;
+    transition: all 0.6s ease;
+    -webkit-animation: ripplee 0.6s ease;
+            animation: ripplee 0.6s ease;
 }
 
 @-webkit-keyframes ripplee {
-	0% {
-		-webkit-transform: translate(-50% , -50%) scale(0);
-		        transform: translate(-50% , -50%) scale(0);
-	}
-	100% {
-		-webkit-transform: translate(-50% , -50%) scale(1);
-		        transform: translate(-50% , -50%) scale(1);
-	}
+    0% {
+        -webkit-transform: translate(-50%, -50%) scale(0);
+                transform: translate(-50%, -50%) scale(0);
+    }
+    100% {
+        -webkit-transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%) scale(1);
+    }
 }
 
 @keyframes ripplee {
-	0% {
-		-webkit-transform: translate(-50% , -50%) scale(0);
-		        transform: translate(-50% , -50%) scale(0);
-	}
-	100% {
-		-webkit-transform: translate(-50% , -50%) scale(1);
-		        transform: translate(-50% , -50%) scale(1);
-	}
+    0% {
+        -webkit-transform: translate(-50%, -50%) scale(0);
+                transform: translate(-50%, -50%) scale(0);
+    }
+    100% {
+        -webkit-transform: translate(-50%, -50%) scale(1);
+                transform: translate(-50%, -50%) scale(1);
+    }
 }
 .ripple {
-	background-color: var(--ripple-color , rgba(255, 255, 255, 0.3));
-	position: absolute;
-	top:calc(var(--y) * 1px);
-	left:calc(var(--x) * 1px);
-	border-radius: 50%;
-	pointer-events: none;
-	-webkit-user-select: none;
-	   -moz-user-select: none;
-	    -ms-user-select: none;
-	        user-select: none;
-	-webkit-transition: 0.4s;
-	-o-transition: 0.4s;
-	transition: 0.4s;
-	-webkit-animation: ripple 0.4s ease;
-	        animation: ripple 0.4s ease;
+    background-color: var(--ripple-color, rgba(255, 255, 255, 0.3));
+    position: absolute;
+    top: calc(var(--y) * 1px);
+    left: calc(var(--x) * 1px);
+    border-radius: 50%;
+    pointer-events: none;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    -webkit-transition: 0.4s;
+    -o-transition: 0.4s;
+    transition: 0.4s;
+    -webkit-animation: ripple 0.4s ease forwards;
+            animation: ripple 0.4s ease forwards;
 }
-.ripple {
-	background-color: var(--ripple-color , rgba(255, 255, 255, 0.3));
-	position: absolute;
-	top:calc(var(--y) * 1px);
-	left:calc(var(--x) * 1px);
-	border-radius: 50%;
-	pointer-events: none;
-	user-select: none;
-	transition: 0.4s;
-	animation: ripple 0.4s ease forwards;
+@-webkit-keyframes ripple {
+    0% {
+        -webkit-transform: scale(0) translate(-50%, -50%);
+                transform: scale(0) translate(-50%, -50%);
+    }
+    100% {
+        top: 50%;
+        left: 50%;
+        -webkit-transform: scale(1) translate(-50%, -50%);
+                transform: scale(1) translate(-50%, -50%);
+    }
 }
 @keyframes ripple {
-	0% {
-		transform: scale(0) translate(-50% , -50%);
-	}
-	100% {
-		top: 50%;
-		left: 50%;
-		transform: scale(1) translate(-50% , -50%);
-	}
+    0% {
+        -webkit-transform: scale(0) translate(-50%, -50%);
+                transform: scale(0) translate(-50%, -50%);
+    }
+    100% {
+        top: 50%;
+        left: 50%;
+        -webkit-transform: scale(1) translate(-50%, -50%);
+                transform: scale(1) translate(-50%, -50%);
+    }
 }
