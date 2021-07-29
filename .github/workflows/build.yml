@@ -35,8 +35,8 @@ jobs:
         run: |
           git config --local user.email 'action@github.com'
           git config --local user.name 'GitHub Action'
-          git add dist/css/*
-          git commit -m 'Updates compiled SCSS files'
+          git add .
+          git commit --allow-empty -m 'Updates compiled SCSS files'
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
