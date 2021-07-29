@@ -1,11 +1,10 @@
-
-//CSS reset
 *:after,
 *:before,
 * {
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
         -webkit-tap-highlight-color: transparent !important;
   	-webkit-touch-callout: none;
 }
@@ -49,7 +48,8 @@ a {
 abbr[title] {
 	border-bottom: none;
 	text-decoration: underline;
-	text-decoration: underline dotted;
+	-webkit-text-decoration: underline dotted;
+	        text-decoration: underline dotted;
 }
 b,
 strong {
@@ -129,7 +129,8 @@ fieldset {
 }
 
 legend {
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	color: inherit;
 	display: table;
 	max-width: 100%;
@@ -143,7 +144,8 @@ textarea {
 
 [type="checkbox"],
 [type="radio"] {
-	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
 	padding: 0;
 }
 
@@ -173,6 +175,9 @@ template {
 }
 [hidden] {
 	display: none;
+}
+::-moz-selection {
+	background-color:rgba($p , .2);
 }
 ::selection {
 	background-color:rgba($p , .2);
