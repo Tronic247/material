@@ -31,11 +31,11 @@ jobs:
             ref: main
             fetch-depth: 1
 
-      - name: Add and Commit changes to pr-pages branch
+      - name: Add and Commit changes
         run: |
           git config --local user.email 'action@github.com'
           git config --local user.name 'GitHub Action'
-          git add assets/css/*
+          git add dist/css/*
           git commit -m 'Updates compiled SCSS files'
       - name: Push changes
         uses: ad-m/github-push-action@master
