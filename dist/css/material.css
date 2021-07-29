@@ -1228,9 +1228,13 @@ button.center-ripple .ripple {
 
 .appbar.short .appbar-brand {
     display: none;
-    color: currentColor;
 }
-
+.appbar ul.appbar-items {
+    margin: 0;
+}
+.appbar .appbar-brand {
+   color: currentColor
+}
 .appbar.short button,
 .appbar.short .btn {
     display: none;
