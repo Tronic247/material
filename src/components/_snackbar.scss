@@ -1,20 +1,36 @@
 .snackbar, .snackbar div {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  user-select: none;
-  align-items: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .snackbar.open {
-  transform: scale(1) translateX(-50%);
+  -webkit-transform: scale(1) translateX(-50%);
+      -ms-transform: scale(1) translateX(-50%);
+          transform: scale(1) translateX(-50%);
   opacity: 1;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 .snackbar {
   position: fixed;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   bottom: 10px;
   left: 50%;
   max-width: 400px;
-  transform-origin: left center;
+  -webkit-transform-origin: left center;
+      -ms-transform-origin: left center;
+          transform-origin: left center;
   opacity: 0;
   min-width: 200px;
   border-radius: 4px;
@@ -22,14 +38,23 @@
   pointer-events: auto;
   padding: 12px 16px;
   line-height: 1.7;
-  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+          box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
   color: #e4e4e4;
-  transform: scale(0.9) translateX(-50%);
+  -webkit-transform: scale(0.9) translateX(-50%);
+      -ms-transform: scale(0.9) translateX(-50%);
+          transform: scale(0.9) translateX(-50%);
+  -webkit-transition: opacity 0.2s ease , -webkit-transform 1s ease;
+  transition: opacity 0.2s ease , -webkit-transform 1s ease;
+  -o-transition: opacity 0.2s ease , transform 1s ease;
   transition: opacity 0.2s ease , transform 1s ease;
+  transition: opacity 0.2s ease , transform 1s ease , -webkit-transform 1s ease;
   font-size: 0.875rem;
 }
 .snackbar .msg {
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 .snackbar .action {
   margin-left: 15px;
@@ -41,6 +66,8 @@
   margin-top: -10px;
   margin-bottom: -10px;
   border-radius: 4px;
+  -webkit-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
   transition: all 0.2s ease;
 }
 .snackbar .action:hover {
