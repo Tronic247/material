@@ -75,6 +75,8 @@
 }
 .card.collapse .content {
 	margin-top: -74px;
+	z-index: 999999;
+	position: relative;
 }
 .card.collapse h2 , .card.collapse h3 {
 	color: white;
