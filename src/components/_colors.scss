@@ -1,4 +1,3 @@
-//Colors
 .background-primary {
 	background: $p !important;
 }
@@ -50,6 +49,8 @@
 .link {
 	text-decoration: none;
 	color: $p;
+	-webkit-transition: all 0.2s;
+	-o-transition: all 0.2s;
 	transition: all 0.2s; 
 }
 .link:hover {
