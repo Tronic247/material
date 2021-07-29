@@ -27,6 +27,8 @@ table tbody {
 	padding: 0;
 }
 table tr {
+	-webkit-transition: all 0.1s;
+	-o-transition: all 0.1s;
 	transition: all 0.1s;
 }
 table tr:not(.table-head):hover {
