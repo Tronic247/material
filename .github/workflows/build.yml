@@ -14,7 +14,7 @@ jobs:
       - name: Compile SCSS
         uses: gha-utilities/sass-build@v0.4.3
         with:
-          source: src/src.scss
+          source: src/scss/index.scss
           destination: dist/css/material.min.css
           
       - name: Compile JS
