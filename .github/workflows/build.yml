@@ -10,25 +10,22 @@ jobs:
     steps:
       - name: Checkout source Git branch
         uses: actions/checkout@v2
-        with:
-            ref: main
-            fetch-depth: 10
-            submodules: false
 
-      - name: Compile CSS from SCSS files
+      - name: Compile SCSS
         uses: gha-utilities/sass-build@v0.4.3
         with:
-          source: src/src.scss
+          source: src/scss/index.scss
           destination: dist/css/material.min.css
-
-      - name: Add and Commit changes
-        run: |
-          git config --local user.email 'action@github.com'
-          git config --local user.name 'GitHub Action'
-          git add dist/css/*
-          git commit --allow-empty -m 'Update compiled SCSS files'
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+          
+      - name: Compile JS
+        uses: jossydevers/transpiler-js@v1.0.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
+          typename: min
+          directory: src/js
+          output: dist/
+
+      - name: Auto committing build files
+        uses: stefanzweifel/git-auto-commit-action@v3.0.0
+        with:
+          commit_message: "Build for JS and SCSS files"
+          branch: ${{ github.ref }}
