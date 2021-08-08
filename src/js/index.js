@@ -237,7 +237,7 @@
     })
     .on("click", ".dialog-overlay:not(.disabled)", function (e) {
         if(e.target !== e.currentTarget) return;
-        $(this).removeClass("open")
+        $(this).removeClass("open");
     })
     .on("click", ".drawer-overlay:not(.disabled)", function (e) {
         if(e.target !== e.currentTarget) return;
@@ -341,6 +341,12 @@
         setTimeout(function () {
             $(".tooltip").remove();
         }, 200);
+    });
+     $(".dialog-overlay:not(.disabled)").keyup(function(e) {
+        if (e.key === "Escape") {
+           if(e.target !== e.currentTarget) return;
+           $(".dialog-overlay:not(.disabled)").removeClass("open");
+       }
     });
  })(jQuery);
 
