@@ -12,8 +12,6 @@
         this.element = element instanceof $ ? element : $(element);
     };
 
-    //console.log('You are using the Tronic247 Material Development Library -- Please Use production(Minified) bundle when production.');
-
     $.Material.prototype = {
         Init: function (e) {
             if (e === "select") {
