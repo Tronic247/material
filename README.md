@@ -9,10 +9,6 @@
 
 <p align="center"><img src="https://github-readme-stats.vercel.app/api/top-langs/?username=tronic247&repo=material&layout=compact"/></p>
 
-## Contributions needed
-#### Please note that the documentation is incomplete. Please make your contribution to this repo https://github.com/Tronic247/material-docs
-#### Help this project to make the next best framework!
-
 ## The people who love this framework
 [![Stargazers repo roster for @Tronic247/material](https://reporoster.com/stars/notext/Tronic247/material)](https://github.com/Tronic247/material/stargazers)
 
