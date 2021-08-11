@@ -1,4 +1,4 @@
-<p align="center"><img src="https://user-images.githubusercontent.com/76736580/125033764-5b42ca80-e0ad-11eb-944c-32c9c0bba64c.gif" height="200"/></p>
+<p align="center"><img src="https://user-images.githubusercontent.com/76736580/129062328-0df40878-f5ac-4e57-8d38-2b13ab6ae149.gif" height="200"/></p>
 <p align="center"><b>Material design</b> framework based on <b>jQuery</b></p>
 <p align="center"><img src="https://img.shields.io/github/stars/tronic247/material?style=flat-square"/>
 <img src="https://img.shields.io/github/last-commit/tronic247/material?style=flat-square"/>
