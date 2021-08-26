@@ -571,8 +571,8 @@ button.center-ripple .ripple {
     -webkit-transition: 0.4s;
     -o-transition: 0.4s;
     transition: 0.4s;
-    -webkit-animation: ripple 1s ease-in-out forwards;
-            animation: ripple 1s ease-in-out forwards;
+    -webkit-animation: ripple 0.8s ease-in-out forwards;
+            animation: ripple 0.8s ease-in-out forwards;
 }
 
 @-webkit-keyframes ripple {
