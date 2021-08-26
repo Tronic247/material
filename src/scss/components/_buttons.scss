@@ -9,10 +9,12 @@ button,
     border-radius: 4px;
     cursor: pointer;
     -webkit-box-shadow: $bbs;
-            box-shadow: $bbs;
+    box-shadow: $bbs;
     -webkit-transition: all 0.2s;
     -o-transition: all 0.2s;
-    justify-content: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
     transition: all 0.2s;
     position: relative;
     overflow: hidden;
@@ -21,31 +23,31 @@ button,
     display: -ms-inline-flexbox;
     display: inline-flex;
     -ms-flex-line-pack: middle;
-        align-content: middle;
+    align-content: middle;
     vertical-align: middle;
     -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 button:hover,
 .btn:hover {
     -webkit-box-shadow: $bbsh;
-            box-shadow: $bbsh;
+    box-shadow: $bbsh;
 }
 button:focus,
 .btn:focus {
     -webkit-box-shadow: $bbsf;
-            box-shadow: $bbsf;
+    box-shadow: $bbsf;
     background: lighten($p, 15%);
 }
 button:active,
 .btn:active {
     -webkit-box-shadow: $bbsa;
-            box-shadow: $bbsa;
+    box-shadow: $bbsa;
 }
 button.outlined,
 .btn.outlined {
@@ -57,10 +59,10 @@ button.outlined,
     padding: 10px 16px;
     border-radius: 4px;
     -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
     cursor: pointer;
     -webkit-box-shadow: inset 0px 0px 0px 1px $p;
-            box-shadow: inset 0px 0px 0px 1px $p;
+    box-shadow: inset 0px 0px 0px 1px $p;
     -webkit-transition: all 0.2s;
     -o-transition: all 0.2s;
     transition: all 0.2s;
@@ -91,7 +93,7 @@ button.text,
     padding: 10px 16px;
     border-radius: 4px;
     -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
     cursor: pointer;
     -webkit-transition: all 0.2s;
     -o-transition: all 0.2s;
@@ -124,7 +126,7 @@ button.unelevated,
     border-radius: 4px;
     cursor: pointer;
     -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
     -webkit-transition: all 0.2s;
     -o-transition: all 0.2s;
     transition: all 0.2s;
@@ -152,7 +154,7 @@ button.secondary:not(.outlined, .text),
 button.outlined.secondary,
 .btn.outlined.secondary {
     -webkit-box-shadow: inset 0px 0px 0px 1px $s;
-            box-shadow: inset 0px 0px 0px 1px $s;
+    box-shadow: inset 0px 0px 0px 1px $s;
     color: $s;
 }
 
@@ -209,7 +211,7 @@ button.danger:not(.outlined, .text),
 button.outlined.danger,
 .btn.outlined.danger {
     -webkit-box-shadow: inset 0px 0px 0px 1px $d;
-            box-shadow: inset 0px 0px 0px 1px $d;
+    box-shadow: inset 0px 0px 0px 1px $d;
     color: $d;
 }
 
@@ -266,7 +268,7 @@ button.dark:not(.outlined, .text),
 button.outlined.dark,
 .btn.outlined.dark {
     -webkit-box-shadow: inset 0px 0px 0px 1px $bl;
-            box-shadow: inset 0px 0px 0px 1px $bl;
+    box-shadow: inset 0px 0px 0px 1px $bl;
     color: $bl;
 }
 
@@ -323,7 +325,7 @@ button.success:not(.outlined, .text),
 button.outlined.success,
 .btn.outlined.success {
     -webkit-box-shadow: inset 0px 0px 0px 1px $su;
-            box-shadow: inset 0px 0px 0px 1px $su;
+    box-shadow: inset 0px 0px 0px 1px $su;
     color: $su;
 }
 
@@ -376,7 +378,7 @@ button.icon,
 .btn.icon {
     background: transparent;
     -webkit-box-shadow: none;
-            box-shadow: none;
+    box-shadow: none;
     border-radius: 100%;
     color: #8d8787 !important;
     --ripple-color: #0303031a;
@@ -434,7 +436,7 @@ button.outlined.disabled,
 .btn.outlined:disabled,
 .btn.outlined.disabled {
     -webkit-box-shadow: inset 0px 0px 0px 1px #d2d2d2;
-            box-shadow: inset 0px 0px 0px 1px #d2d2d2;
+    box-shadow: inset 0px 0px 0px 1px #d2d2d2;
     background: transparent;
     pointer-events: none;
     color: #505050;
@@ -467,8 +469,8 @@ button:not(.icon, .fab) .material-icons,
     width: 18px;
     display: ruby-base-container;
     -webkit-transform: scale(1.3) translate(-22%, 14%);
-        -ms-transform: scale(1.3) translate(-22%, 14%);
-            transform: scale(1.3) translate(-22%, 14%);
+    -ms-transform: scale(1.3) translate(-22%, 14%);
+    transform: scale(1.3) translate(-22%, 14%);
     font-size: 6px;
 }
 
@@ -523,36 +525,36 @@ button.center-ripple .ripple {
     left: 50% !important;
     display: block !important;
     -webkit-transform: translate(-50%, -50%);
-        -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     border-radius: 50% !important;
     padding: 0px !important;
     -webkit-transition: all 0.6s ease;
     -o-transition: all 0.6s ease;
     transition: all 0.6s ease;
     -webkit-animation: ripple_center 0.6s ease;
-            animation: ripple_center 0.6s ease;
+    animation: ripple_center 0.6s ease;
 }
 
 @-webkit-keyframes ripple_center {
     0% {
         -webkit-transform: translate(-50%, -50%) scale(0);
-                transform: translate(-50%, -50%) scale(0);
+        transform: translate(-50%, -50%) scale(0);
     }
     100% {
         -webkit-transform: translate(-50%, -50%) scale(1);
-                transform: translate(-50%, -50%) scale(1);
+        transform: translate(-50%, -50%) scale(1);
     }
 }
 
 @keyframes ripple_center {
     0% {
         -webkit-transform: translate(-50%, -50%) scale(0);
-                transform: translate(-50%, -50%) scale(0);
+        transform: translate(-50%, -50%) scale(0);
     }
     100% {
         -webkit-transform: translate(-50%, -50%) scale(1);
-                transform: translate(-50%, -50%) scale(1);
+        transform: translate(-50%, -50%) scale(1);
     }
 }
 .ripple {
@@ -563,15 +565,16 @@ button.center-ripple .ripple {
     border-radius: 50%;
     pointer-events: none;
     -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
     -webkit-transition: 0.4s;
     -o-transition: 0.4s;
     transition: 0.4s;
-    -webkit-animation: ripple 0.4s ease forwards;
-            animation: ripple 0.4s ease forwards;
+    -webkit-animation: ripple 1s ease-in-out forwards;
+            animation: ripple 1s ease-in-out forwards;
 }
+
 @-webkit-keyframes ripple {
     0% {
         -webkit-transform: scale(0) translate(-50%, -50%);
@@ -584,6 +587,7 @@ button.center-ripple .ripple {
                 transform: scale(1) translate(-50%, -50%);
     }
 }
+
 @keyframes ripple {
     0% {
         -webkit-transform: scale(0) translate(-50%, -50%);
