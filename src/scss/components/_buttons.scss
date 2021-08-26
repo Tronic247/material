@@ -568,11 +568,11 @@ button.center-ripple .ripple {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    -webkit-transition: 0.4s;
-    -o-transition: 0.4s;
-    transition: 0.4s;
-    -webkit-animation: ripple 0.8s ease-in-out forwards;
-            animation: ripple 0.8s ease-in-out forwards;
+    -webkit-transition: all cubic-bezier(0.4, 0, 0.2, 1) .4s;
+    -o-transition: all cubic-bezier(0.4, 0, 0.2, 1) .4s;
+    transition: all cubic-bezier(0.4, 0, 0.2, 1) .4s;
+    -webkit-animation: ripple 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            animation: ripple 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
 @-webkit-keyframes ripple {
