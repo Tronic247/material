@@ -225,6 +225,14 @@ button.icon,
     margin: 0;
     vertical-align: middle;
 }
+button.icon:hover,
+.btn.icon:hover {
+    background:rgba(0,0,0,0.1);
+}
+button.icon:focus,
+.btn.icon:focus {
+    background:rgba(0,0,0,0.2);
+}
 
 // BUTTON SIZES
 button.large,

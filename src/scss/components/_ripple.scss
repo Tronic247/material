@@ -86,6 +86,7 @@ button.center-ripple .ripple {
     top: calc(var(--y) * 1px);
     left: calc(var(--x) * 1px);
     border-radius: 50%;
+    will-change: transform, opacity;
     pointer-events: none;
     -webkit-user-select: none;
     -moz-user-select: none;
