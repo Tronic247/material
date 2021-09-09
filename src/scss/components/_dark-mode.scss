@@ -1,6 +1,14 @@
-body.dark {
-  filter: invert(0.89) hue-rotate(180deg);
-  background: black;
+body.dark:after {
+  content: "";
+  backdrop-filter:invert(0.89) hue-rotate(180deg);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 999999;
+  background: #0000;
+  pointer-events: none;
 }
 body.dark img {
   filter: invert(1) hue-rotate(170deg);
