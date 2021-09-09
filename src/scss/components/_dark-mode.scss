@@ -1,0 +1,7 @@
+body.dark {
+  filter: invert(0.89) hue-rotate(180deg);
+  background: black;
+}
+body.dark img {
+  filter: invert(1) hue-rotate(170deg);
+}
