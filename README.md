@@ -10,7 +10,7 @@
 >## Important!
 > Version 3 of <b>Tronic247 Material will come in December or November.</b><br>
 > It will be only pure JS and a11y friendly.
-> ### So, this project is a WIP. Use this project at your own risk. See #50
+> ### So, this project is a WIP. Use this project at your own risk. See https://github.com/Tronic247/material/pull/50
 > Thank you!
 
 ## Demo
