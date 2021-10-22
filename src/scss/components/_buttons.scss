@@ -1,76 +1,13 @@
-// MIXINS 
-@mixin btn($col) {
-    background: $col;
-    &:hover {
-        background: darken($col, 4%);
-        -webkit-box-shadow: $bbsh;
-        box-shadow: $bbsh;
-    }
-    &:active {
-        background: darken($col, 8%);
-        -webkit-box-shadow: $bbsa;
-        box-shadow: $bbsa;
-    }
-    &:focus-visible {
-        background: darken($col, 12%);
-        -webkit-box-shadow: $bbsf;
-        box-shadow: $bbsf;
-    }
-}
-
-@mixin btn-o($col) {
-    background: transparent;
-    -webkit-box-shadow: inset 0px 0px 0px 1px lighten($col, 10%);
-    box-shadow: inset 0px 0px 0px 1px lighten($col, 10%);
-    color: $col;
-    &:hover {
-        -webkit-box-shadow: inset 0px 0px 0px 1px darken($col, 4%);
-        box-shadow: inset 0px 0px 0px 1px darken($col, 4%);
-    }
-    &:active {
-        -webkit-box-shadow: inset 0px 0px 0px 1px darken($col, 8%);
-        box-shadow: inset 0px 0px 0px 1px darken($col, 8%);
-    }
-    &:focus {
-        -webkit-box-shadow: inset 0px 0px 0px 1px darken($col, 4%);
-        box-shadow: inset 0px 0px 0px 1px darken($col, 4%);
-        background: rgba($col, 0.1);
-    }
-    & .ripple {
-        background: rgba($col, .2);
-    }
-}
-
-@mixin btn-t($col) {
-    background: transparent;
-    color: $col;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
-    &:hover {
-        background: rgba($col, 0.1);
-    }
-    &:focus {
-        background: rgba($col, 0.2);
-    }
-    & .ripple {
-        background: rgba($col, .2);
-    }
-}
-
-//
-// Base button styles
+// Base Styles
 button,
 .btn {
-    background: $p;
-    color: white;
     border: none;
     text-transform: uppercase;
     font-size: 14px;
     padding: 10px 16px;
     border-radius: 4px;
     cursor: pointer;
-    -webkit-box-shadow: $bbs;
-    box-shadow: $bbs;
+    @include shadow(2);
     -webkit-transition: all 0.2s;
     -o-transition: all 0.2s;
     -webkit-box-pack: center;
@@ -93,215 +30,451 @@ button,
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    @include btn($p);
 }
 
-button.unelevated,
-.btn.unelevated {
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
+.btn:not(.fab) .mdi,
+button:not(.fab) .mdi {
+    transform: scale(2);
 }
 
-button.secondary,
-.btn.secondary {
-    @include btn($s);
-}
-
-button.warning,
-.btn.warning {
-    @include btn($w);
-}
-
-button.danger,
-.btn.danger {
-    @include btn($d);
-}
-
-button.success,
-.btn.success {
-    @include btn($su);
-}
-
-button.dark,
-.btn.dark {
-    @include btn($bl);
-}
-
-// OUTLINED BUTTONS 
-button.outlined,
-.btn.outlined {
-    @include btn-o($p);
-}
-
-button.outlined.secondary,
-.btn.outlined.secondary {
-    @include btn-o($s);
-}
-
-button.outlined.success,
-.btn.outlined.success {
-    @include btn-o($su);
-}
-
-button.outlined.warning,
-.btn.outlined.warning {
-    @include btn-o($w);
-}
-
-button.outlined.danger,
-.btn.outlined.danger {
-    @include btn-o($d);
-}
-
-button.outlined.dark,
-.btn.outlined.dark {
-    @include btn-o($bl);
-}
-
-// TEXT BUTTONS 
+//Text button
 button.text,
 .btn.text {
-    @include btn-t($p);
-}
-
-button.text.secondary,
-.btn.text.secondary {
-    @include btn-t($s);
-}
-
-button.text.success,
-.btn.text.success {
-    @include btn-t($su);
-}
-
-button.text.warning,
-.btn.text.warning {
-    @include btn-t($w);
-}
-
-button.text.danger,
-.btn.text.danger {
-    @include btn-t($d);
-}
-
-button.text.dark,
-.btn.text.dark {
-    @include btn-t($bl);
-}
-
-// DISABLED BUTTONS
-button:disabled,
-.btn:disabled,
-button.disabled,
-.btn.disabled {
-    cursor: not-allowed;
-    -webkit-transition: none !important;
-    -o-transition: none !important;
-    transition: none !important;
-    -webkit-box-shadow: none !important;
+    background-color: transparent !important;
     box-shadow: none !important;
-    background: #cccccc !important;
-    color: #838383 !important;
 }
 
-button:disabled .ripple,
-.btn:disabled .ripple,
-button.disabled .ripple,
-.btn.disabled .ripple {
-    display: none !important;
+//Outlined button
+button.outlined,
+.btn.outlined {
+    background-color: transparent !important;
 }
 
-// ICON BUTTON
-button.icon,
-.btn.icon {
-    background: transparent;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    border-radius: 100%;
-    color: #8d8787 !important;
-    --ripple-color: #0303031a;
-    font-size: 24px;
-    padding: 10px 10px;
-    margin: 0;
-    vertical-align: middle;
-}
-button.icon:hover,
-.btn.icon:hover {
-    background:rgba(0,0,0,0.1);
-}
-button.icon:focus,
-.btn.icon:focus {
-    background:rgba(0,0,0,0.2);
+//Unelevated button
+button.unelevated,
+.btn.unelevated {
+    box-shadow: none !important;
 }
 
-// BUTTON SIZES
-button.large,
-.btn.large {
-    padding: 15px 26px;
-    font-size: 18px;
+//Primary color
+//Normal button
+button,
+.btn {
+    color: var(--material-color-on-dark);
+    background-color: var(--material-primary);
 }
 
-button.small,
-.btn.small {
-    font-size: 11px;
-    padding: 8px 15px;
+.btn:hover,
+button:hover {
+    color: var(--material-color-on-dark);
+    background-color: var(--material-primary-dark);
+    @include shadow(4);
 }
 
-button.small .material-icons,
-.btn.small .material-icons {
-    display: none;
+.btn:active,
+button:active {
+    @include shadow(8);
 }
 
-// FAB
-.fab {
-    border-radius: 50px;
-    padding: 15px 15px;
-    line-height: 1.8;
+.btn:focus-visible,
+button:focus-visible {
+    color: var(--material-color-on-dark);
+    background-color: var(--material-primary-darker);
+    @include shadow(8);
 }
 
-.fab.with-text {
-    padding: 10px 15px;
+//Text button
+button.text,
+.btn.text {
+    color: var(--material-primary);
+    --ripple-color: #{rgba($p, 0.2)};
 }
 
-.fab.small {
-    padding: 8px !important;
+button.text:hover,
+.btn.text:hover {
+    background-color: rgba($p, 0.05) !important;
+    color: var(--material-primary-dark);
 }
 
-.fab.small .material-icons {
-    display: block;
+button.text:focus-visible,
+.btn.text:focus-visible {
+    background-color: rgba($p, 0.2) !important;
+    color: var(--material-primary-darker);
 }
 
-// BUTTON GROUP
-.button-group button,
-.button-group .btn {
-    margin-right: -6px !important;
-    border-radius: 0px;
+//Outlined button
+button.outlined,
+.btn.outlined {
+    color: var(--material-primary-light);
+    box-shadow: inset 0px 0px 0px 1px var(--material-primary-light);
+    --ripple-color: #{rgba($p, 0.2)};
 }
 
-.button-group button:last-child,
-.button-group .btn:last-child {
-    border-radius: 4px;
+button.outlined:active,
+.btn.outlined:active {
+    box-shadow: inset 0px 0px 0px 1px var(--material-primary-light);
 }
 
-.button-group button:first-child,
-.button-group .btn:first-child {
-    border-radius: 4px;
+button.outlined:hover,
+.btn.outlined:hover {
+    color: var(--material-primary-dark);
+    box-shadow: inset 0px 0px 0px 1px var(--material-primary-dark);
+    background-color: rgba($p, 0.02) !important;
 }
 
-button:not(.icon, .fab) .material-icons,
-.btn:not(.icon, .fab) .material-icons {
-    font-size: 13px !important;
-    height: 18px;
-    width: 18px;
+button.outlined:focus-visible,
+.btn.outlined:focus-visible {
+    background-color: rgba($p, 0.1) !important;
+    color: var(--material-primary-darker);
 }
 
-// BUTTON STYLES
-button.shaped,
-.btn.shaped {
-    border-radius: 50px !important;
+//Secondary color
+//Normal button
+button.secondary,
+.btn.secondary {
+    color: var(--material-color-on-dark);
+    background-color: var(--material-secondary);
 }
 
-button.square,
-.btn.square {
-    border-radius: 0px !important;
+.btn.secondary:hover,
+button.secondary:hover {
+    color: var(--material-color-on-dark);
+    background-color: var(--material-secondary-dark);
+    @include shadow(4);
+}
+
+.btn.secondary:active,
+button.secondary:active {
+    @include shadow(8);
+}
+
+.btn.secondary:focus-visible,
+button.secondary:focus-visible {
+    color: var(--material-color-on-dark);
+    background-color: var(--material-secondary-darker);
+    @include shadow(8);
+}
+
+//Text button
+button.secondary.text,
+.btn.secondary.text {
+    color: var(--material-secondary);
+    --ripple-color: #{rgba($s, 0.2)};
+}
+
+button.secondary.text:hover,
+.btn.secondary.text:hover {
+    background-color: rgba($s, 0.05) !important;
+    color: var(--material-secondary-dark);
+}
+
+button.secondary.text:focus-visible,
+.btn.secondary.text:focus-visible {
+    background-color: rgba($s, 0.2) !important;
+    color: var(--material-secondary-darker);
+}
+
+//Outlined button
+button.secondary.outlined,
+.btn.secondary.outlined {
+    color: var(--material-secondary-light);
+    box-shadow: inset 0px 0px 0px 1px var(--material-secondary-light);
+    --ripple-color: #{rgba($s, 0.2)};
+}
+
+button.secondary.outlined:hover,
+.btn.secondary.outlined:hover {
+    color: var(--material-secondary-dark);
+    box-shadow: inset 0px 0px 0px 1px var(--material-secondary-dark);
+    background-color: rgba($s, 0.02) !important;
+}
+
+button.secondary.outlined:focus-visible,
+.btn.secondary.outlined:focus-visible {
+    background-color: rgba($s, 0.1) !important;
+    color: var(--material-secondary-darker);
+}
+
+//Success color
+//Normal button
+button.success,
+.btn.success {
+    color: var(--material-color-on-dark);
+    background-color: var(--material-success);
+}
+
+.btn.success:hover,
+button.success:hover {
+    color: var(--material-color-on-dark);
+    background-color: var(--material-success-dark);
+    @include shadow(4);
+}
+
+.btn.success:active,
+button.success:active {
+    @include shadow(8);
+}
+
+.btn.success:focus-visible,
+button.success:focus-visible {
+    color: var(--material-color-on-dark);
+    background-color: var(--material-success-darker);
+    @include shadow(8);
+}
+
+//Text button
+button.success.text,
+.btn.success.text {
+    color: var(--material-success);
+    --ripple-color: #{rgba($su, 0.2)};
+}
+
+button.success.text:hover,
+.btn.success.text:hover {
+    background-color: rgba($su, 0.05) !important;
+    color: var(--material-success-dark);
+}
+
+button.success.text:focus-visible,
+.btn.success.text:focus-visible {
+    background-color: rgba($su, 0.2) !important;
+    color: var(--material-success-darker);
+}
+
+//Outlined button
+button.success.outlined,
+.btn.success.outlined {
+    color: var(--material-success-light);
+    box-shadow: inset 0px 0px 0px 1px var(--material-success-light);
+    --ripple-color: #{rgba($su, 0.2)};
+}
+
+button.success.outlined:hover,
+.btn.success.outlined:hover {
+    color: var(--material-success-dark);
+    box-shadow: inset 0px 0px 0px 1px var(--material-success-dark);
+    background-color: rgba($su, 0.02) !important;
+}
+
+button.success.outlined:focus-visible,
+.btn.success.outlined:focus-visible {
+    background-color: rgba($su, 0.1) !important;
+    color: var(--material-success-darker);
+}
+
+//Danger color
+//Normal button
+button.danger,
+.btn.danger {
+    color: var(--material-color-on-dark);
+    background-color: var(--material-danger);
+}
+
+.btn.danger:hover,
+button.danger:hover {
+    color: var(--material-color-on-dark);
+    background-color: var(--material-danger-dark);
+    @include shadow(4);
+}
+
+.btn.danger:active,
+button.danger:active {
+    @include shadow(8);
+}
+
+.btn.danger:focus-visible,
+button.danger:focus-visible {
+    color: var(--material-color-on-dark);
+    background-color: var(--material-danger-darker);
+    @include shadow(8);
+}
+
+//Text button
+button.danger.text,
+.btn.danger.text {
+    color: var(--material-danger);
+    --ripple-color: #{rgba($d, 0.2)};
+}
+
+button.danger.text:hover,
+.btn.danger.text:hover {
+    background-color: rgba($d, 0.05) !important;
+    color: var(--material-danger-dark);
+}
+
+button.danger.text:focus-visible,
+.btn.danger.text:focus-visible {
+    background-color: rgba($d, 0.2) !important;
+    color: var(--material-danger-darker);
+}
+
+//Outlined button
+button.danger.outlined,
+.btn.danger.outlined {
+    color: var(--material-danger-light);
+    box-shadow: inset 0px 0px 0px 1px var(--material-danger-light);
+    --ripple-color: #{rgba($d, 0.2)};
+}
+
+button.danger.outlined:hover,
+.btn.danger.outlined:hover {
+    color: var(--material-danger-dark);
+    box-shadow: inset 0px 0px 0px 1px var(--material-danger-dark);
+    background-color: rgba($d, 0.02) !important;
+}
+
+button.danger.outlined:focus-visible,
+.btn.danger.outlined:focus-visible {
+    background-color: rgba($d, 0.1) !important;
+    color: var(--material-danger-darker);
+}
+
+//Dark color
+//Normal button
+button.dark,
+.btn.dark {
+    color: var(--material-color-on-dark);
+    background-color: var(--material-dark);
+}
+
+.btn.dark:hover,
+button.dark:hover {
+    background-color: lighten($bl, 6%);
+    @include shadow(4);
+}
+
+.btn.dark:active,
+button.dark:active {
+    @include shadow(8);
+}
+
+.btn.dark:focus-visible,
+button.dark:focus-visible {
+    @include shadow(8);
+}
+
+//Text button
+button.dark.text,
+.btn.dark.text {
+    color: var(--material-dark);
+    --ripple-color: #{rgba($bl, 0.2)};
+}
+
+button.dark.text:hover,
+.btn.dark.text:hover {
+    background-color: rgba($bl, 0.05) !important;
+}
+
+button.dark.text:focus-visible,
+.btn.dark.text:focus-visible {
+    background-color: rgba($bl, 0.2) !important;
+}
+
+//Outlined button
+button.dark.outlined,
+.btn.dark.outlined {
+    color: var(--material-dark);
+    box-shadow: inset 0px 0px 0px 1px var(--material-dark);
+    --ripple-color: #{rgba($bl, 0.2)};
+}
+
+button.dark.outlined:hover,
+.btn.dark.outlined:hover {
+    box-shadow: inset 0px 0px 0px 2px var(--material-dark);
+    background-color: rgba($bl, 0.02) !important;
+}
+
+button.dark.outlined:focus-visible,
+.btn.dark.outlined:focus-visible {
+    background-color: rgba($bl, 0.1) !important;
+}
+
+//Warning color
+//Normal button
+button.warning,
+.btn.warning {
+    color: var(--material-color-on-dark);
+    background-color: var(--material-warning);
+}
+
+.btn.warning:hover,
+button.warning:hover {
+    color: var(--material-color-on-dark);
+    background-color: var(--material-warning-dark);
+    @include shadow(4);
+}
+
+.btn.warning:active,
+button:active {
+    @include shadow(8);
+}
+
+.btn.warning:focus-visible,
+button.warning:focus-visible {
+    color: var(--material-color-on-dark);
+    background-color: var(--material-warning-darker);
+    @include shadow(8);
+}
+
+//Text button
+button.warning.text,
+.btn.warning.text {
+    color: var(--material-warning);
+    --ripple-color: #{rgba($w, 0.2)};
+}
+
+button.warning.text:hover,
+.btn.warning.text:hover {
+    background-color: rgba($w, 0.05) !important;
+    color: var(--material-warning-dark);
+}
+
+button.warning.text:focus-visible,
+.btn.warning.text:focus-visible {
+    background-color: rgba($w, 0.2) !important;
+    color: var(--material-warning-darker);
+}
+
+//Outlined button
+button.warning.outlined,
+.btn.warning.outlined {
+    color: var(--material-warning-light);
+    box-shadow: inset 0px 0px 0px 1px var(--material-warning-light);
+    --ripple-color: #{rgba($w, 0.2)};
+}
+
+button.warning.outlined:hover,
+.btn.warning.outlined:hover {
+    color: var(--material-warning-dark);
+    box-shadow: inset 0px 0px 0px 1px var(--material-warning-dark);
+    background-color: rgba($w, 0.02) !important;
+}
+
+button.warning.outlined:focus-visible,
+.btn.warning.outlined:focus-visible {
+    background-color: rgba($w, 0.1) !important;
+    color: var(--material-warning-darker);
+}
+
+//Button sizes
+.btn.large,
+button.large {
+    padding: 18px 20px;
+    font-size: 20px;
+}
+
+.btn.small,
+button.small {
+    padding: 4px 5px;
+    font-size: 10px;
+}
+
+.btn.disabled,
+button.disabled,
+.btn:disabled,
+button:disabled {
+    background-color: #707070 !important;
+    color: #dadada !important;
+    cursor: not-allowed !important;
+    --ripple-color: transparent !important;
 }

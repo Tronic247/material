@@ -7,11 +7,7 @@
   <a href="https://discord.gg/Xusx5WFwMH"> <img src="https://img.shields.io/discord/868761454914981941.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2"/> </a>
 </p>
 
->## Important!
-> Version 3 of <b>Tronic247 Material will come in December or November.</b><br>
-> It will be only pure JS and a11y friendly.
-> ### So, this project is a WIP. Use this project at your own risk.
-> Thank you!
+>Contributors needed
 
 ## Demo
 ![image](https://user-images.githubusercontent.com/76736580/130359045-3fb3dcb1-f3c1-441a-a18c-606a2238409a.png)
