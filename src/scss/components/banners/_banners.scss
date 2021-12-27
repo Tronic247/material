@@ -1,0 +1,33 @@
+.banner {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid material-color($dk, "200");
+  border-radius: $border-radius * 4px;
+
+  & .top {
+    display: flex;
+
+    & .left {
+      flex: 1;
+      padding: $padding * 20px;
+      max-width: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: material-color($dk, "700");
+    }
+
+    & .right {
+      flex: 1;
+      padding: $padding * 10px;
+    }
+  }
+
+  & .actions {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: $padding * 20px;
+    padding-bottom: $padding * 20px;
+  }
+}

@@ -1,0 +1,315 @@
+.btn {
+  border: none;
+  border-radius: $border-radius * 4px;
+  background: material-color($dk, "200");
+  font-size: $font-size * 14px;
+  font-weight: 500;
+  padding: #{$padding * 10px} #{$padding * 16px};
+  color: material-color($dk, "800");
+  text-transform: uppercase;
+  cursor: pointer;
+  outline: none;
+  display: inline-flex;
+  user-select: none;
+  align-items: center;
+  justify-content: center;
+  @include elevation(2);
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: material-color($dk, "300");
+    @include elevation(4);
+  }
+
+  &:focus-visible {
+    background: material-color($dk, "400");
+  }
+
+  &:active {
+    @include elevation(8);
+  }
+
+  &.primary {
+    background: material-color($p, "500");
+    color: #fff;
+
+    &:hover {
+      background: material-color($p, "600");
+    }
+
+    &:focus-visible {
+      background: material-color($p, "700");
+    }
+  }
+
+  &.secondary {
+    background: material-color($s, "500");
+    color: #fff;
+
+    &:hover {
+      background: material-color($s, "600");
+    }
+
+    &:focus-visible {
+      background: material-color($s, "700");
+    }
+  }
+
+  &.danger {
+    background: material-color($d, "500");
+    color: #fff;
+
+    &:hover {
+      background: material-color($d, "600");
+    }
+
+    &:focus-visible {
+      background: material-color($d, "700");
+    }
+  }
+
+  &.success {
+    background: material-color($g, "500");
+    color: #fff;
+
+    &:hover {
+      background: material-color($g, "600");
+    }
+
+    &:focus-visible {
+      background: material-color($g, "700");
+    }
+  }
+
+  &.warning {
+    background: material-color($w, "500");
+    color: #000;
+
+    &:hover {
+      background: material-color($w, "600");
+    }
+
+    &:focus-visible {
+      background: material-color($w, "700");
+    }
+  }
+
+  &.disabled,
+  &:disabled {
+    background: material-color($dk, "200");
+    color: material-color($dk, "800");
+    cursor: not-allowed;
+
+    & .ripple {
+      display: none !important;
+    }
+  }
+
+
+
+  //
+  // Outlined
+  //
+
+  &.outlined {
+    background: transparent;
+    outline: 1px solid material-color($dk, "300");
+    outline-offset: -1px;
+    color: material-color($dk, "800");
+    box-shadow: none;
+
+    &:hover {
+      background: transparent;
+      outline: 1px solid material-color($dk, "400");
+    }
+
+    &:focus-visible {
+      background: material-color($dk, "200");
+      outline: 1px solid material-color($dk, "500");
+    }
+
+    &.primary {
+      outline-color: material-color($p, "300");
+      color: material-color($p, "500");
+
+      &:hover {
+        outline-color: material-color($p, "600");
+      }
+
+      &:focus-visible {
+        background: rgba(material-color($p, "500"), 0.12);
+        outline-color: 1px solid material-color($p, "800");
+      }
+    }
+
+    &.secondary {
+      outline-color: material-color($s, "300");
+      color: material-color($s, "500");
+
+      &:hover {
+        outline-color: material-color($s, "600");
+      }
+
+      &:focus-visible {
+        background: rgba(material-color($s, "500"), 0.12);
+        outline-color: 1px solid material-color($s, "800");
+      }
+    }
+
+    &.danger {
+      outline-color: material-color($d, "300");
+      color: material-color($d, "500");
+
+      &:hover {
+        outline-color: material-color($d, "600");
+      }
+
+      &:focus-visible {
+        background: rgba(material-color($d, "500"), 0.12);
+        outline-color: 1px solid material-color($d, "800");
+      }
+    }
+
+    &.success {
+      outline-color: material-color($g, "300");
+      color: material-color($g, "500");
+
+      &:hover {
+        outline-color: material-color($g, "600");
+      }
+
+      &:focus-visible {
+        background: rgba(material-color($g, "500"), 0.12);
+        outline-color: 1px solid material-color($g, "800");
+      }
+    }
+
+    &.warning {
+      outline-color: material-color($w, "300");
+      color: material-color($w, "500");
+
+      &:hover {
+        outline-color: material-color($w, "600");
+      }
+
+      &:focus-visible {
+        background: rgba(material-color($w, "500"), 0.12);
+        outline-color: 1px solid material-color($w, "800");
+      }
+    }
+
+    &.disabled,
+    &:disabled {
+      background: transparent;
+      outline-color: material-color($dk, "300");
+      color: material-color($dk, "800");
+      cursor: not-allowed;
+    }
+  }
+
+  //
+  // Text Button
+  //
+
+  &.text {
+    background: transparent;
+    box-shadow: none;
+
+    &:hover {
+      background: rgba(material-color($dk, "500"), 0.1);
+    }
+
+    &:focus-visible {
+      background: rgba(material-color($dk, "500"), 0.2);
+    }
+
+    &.primary {
+      color: material-color($p, "500");
+
+      &:hover {
+        background: rgba(material-color($p, "500"), 0.1);
+      }
+
+      &:focus-visible {
+        background: rgba(material-color($p, "500"), 0.2);
+      }
+    }
+
+    &.secondary {
+      color: material-color($s, "500");
+
+      &:hover {
+        background: rgba(material-color($s, "500"), 0.1);
+      }
+
+      &:focus-visible {
+        background: rgba(material-color($s, "500"), 0.2);
+      }
+    }
+
+    &.danger {
+      color: material-color($d, "500");
+
+      &:hover {
+        background: rgba(material-color($d, "500"), 0.1);
+      }
+
+      &:focus-visible {
+        background: rgba(material-color($d, "500"), 0.2);
+      }
+    }
+
+    &.success {
+      color: material-color($g, "500");
+
+      &:hover {
+        background: rgba(material-color($g, "500"), 0.1);
+      }
+
+      &:focus-visible {
+        background: rgba(material-color($g, "500"), 0.2);
+      }
+    }
+
+    &.warning {
+      color: material-color($w, "500");
+
+      &:hover {
+        background: rgba(material-color($w, "500"), 0.1);
+      }
+
+      &:focus-visible {
+        background: rgba(material-color($w, "500"), 0.2);
+      }
+    }
+
+    &.disabled,
+    &:disabled {
+      background: transparent;
+      color: material-color($dk, "800");
+      cursor: not-allowed;
+    }
+  }
+
+  //
+  // Unelevated
+  //
+
+  &.unelevated {
+    box-shadow: none !important;
+  }
+
+  //
+  // Size
+  //
+
+  &.small {
+    font-size: $font-size * 14px;
+    padding: $padding * 8px #{$padding * 10px};
+  }
+
+  &.large {
+    font-size: $font-size * 20px;
+    padding: $padding * 14px #{$padding * 25px};
+  }
+}
