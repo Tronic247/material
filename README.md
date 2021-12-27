@@ -7,8 +7,8 @@
   <a href="https://discord.gg/Xusx5WFwMH"> <img src="https://img.shields.io/discord/868761454914981941.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2"/> </a>
 </p>
 
->## Don't think this is deprecated
->Yes, I haven't pushed any updates yet. but stay calm.
+>## V3 Will be released very soon!
+>Version 3 will be released very soon! Stay tuned
 
 ## Demo
 ![image](https://user-images.githubusercontent.com/76736580/130359045-3fb3dcb1-f3c1-441a-a18c-606a2238409a.png)
