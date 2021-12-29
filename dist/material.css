@@ -1144,7 +1144,6 @@ h6, .h6 {
   top: 0;
   left: 0;
   height: 100%;
-  background: #fff;
   transform: translateX(-100%);
   transition: all 0.2s ease; }
   .dialog .drawer .content {
@@ -1164,6 +1163,7 @@ h6, .h6 {
   min-height: 100vh;
   max-height: 100vh;
   max-width: 400px;
+  background: #fff;
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
