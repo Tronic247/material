@@ -7,8 +7,14 @@
   <a href="https://discord.gg/Xusx5WFwMH"> <img src="https://img.shields.io/discord/868761454914981941.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2"/> </a>
 </p>
 
-## Demo
-![image](https://user-images.githubusercontent.com/76736580/130359045-3fb3dcb1-f3c1-441a-a18c-606a2238409a.png)
+![image](https://user-images.githubusercontent.com/76736580/147639923-74dba5fd-3c44-45d3-a6f6-c2571f63c5cf.png)
+
+## Demos
+![image](https://user-images.githubusercontent.com/76736580/147640000-94d6ec43-57fd-4d0c-a90c-b2d202900c97.png)
+![image](https://user-images.githubusercontent.com/76736580/147640014-75e0b35a-e59f-4fbd-80fb-bd6daa2eeee9.png)
+![image](https://user-images.githubusercontent.com/76736580/147640039-f7b55b86-3edb-43e2-a1e3-344b20355cee.png)
+![image](https://user-images.githubusercontent.com/76736580/147640082-1fac5957-f860-408b-9131-fb1be7da27c7.png)
+
 
 ## Getting started
 See how to [getting started here](https://material.pages.dev/getting-started).
