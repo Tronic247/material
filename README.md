@@ -1,4 +1,4 @@
-<p align="center"><img src="https://user-images.githubusercontent.com/76736580/129062328-0df40878-f5ac-4e57-8d38-2b13ab6ae149.gif" height="200"/></p>
+<p align="center"><img src="https://material.tronic247.com/logo.svg" height="200"/></p>
 <p align="center"><b>Modern Material design framework</b></p>
 <p align="center"><img src="https://img.shields.io/github/stars/tronic247/material?style=flat-square"/>
 <img src="https://img.shields.io/github/last-commit/tronic247/material?style=flat-square"/>
