@@ -1,7 +1,7 @@
 .btn-group {
   display: flex;
 
-  & * {
+  & :not(.ripple) {
     flex: 1;
     border-radius: 0px;
   }
