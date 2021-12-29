@@ -1247,7 +1247,6 @@ h6, .h6 {
     box-sizing: border-box;
     width: 60px;
     height: 60px;
-    background-color: #fff;
     padding: 0px;
     -webkit-mask-image: linear-gradient(transparent 50%, white 50%), linear-gradient(to right, transparent 50%, white 50%);
             mask-image: linear-gradient(transparent 50%, white 50%), linear-gradient(to right, transparent 50%, white 50%);
