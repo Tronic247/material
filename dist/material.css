@@ -1016,9 +1016,9 @@ h6 {
   .btn-group :not(.ripple) {
     flex: 1;
     border-radius: 0px; }
-  .btn-group :first-child {
+  .btn-group :first-child:not(.ripple) {
     border-radius: 4px 0px 0px 4px; }
-  .btn-group :last-child {
+  .btn-group :last-child:not(.ripple) {
     border-radius: 0px 4px 4px 0px; }
 
 .icon {
