@@ -16,3 +16,11 @@ jobs:
         run: curl https://purge.jsdelivr.net/gh/tronic247/material/dist/material.min.css
       - name: Update JS CDN
         run: curl https://purge.jsdelivr.net/gh/tronic247/material/dist/material.min.js
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.x'
+          registry-url: 'https://registry.npmjs.org'
+      - run: npm ci
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
