@@ -5,7 +5,7 @@
     "main": "index.js",
     "scripts": {
         "build": "webpack && npm run build_css",
-        "build_css": "node-sass src/scss/index.scss dist/material.css && npm run prefix_css",
+        "build_css": "node-sass src/scss/index.scss dist/material.css --source-map false && npm run prefix_css",
         "prefix_css": "npx postcss dist/material.css --use autoprefixer -d dist/ && css-minify -f dist/material.css -o dist"
     },
     "keywords": [],
