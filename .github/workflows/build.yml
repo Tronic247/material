@@ -26,24 +26,3 @@ jobs:
           commit_message: "Compile Files"
           branch: v3-dev
      
-  build_js:
-    runs-on: ubuntu-latest
-				
-    steps:
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.5.0
-				
-      - name: Install dependencies
-        run: npm install
-
-      - name: Checkout source Git branch
-        uses: actions/checkout@v2
-				
-      - name: Compile JS
-        run: npm run build
-
-      - name: Auto committing build files
-        uses: stefanzweifel/git-auto-commit-action@v3.0.0
-        with:
-          commit_message: "Compile Files"
-          branch: v3-dev
