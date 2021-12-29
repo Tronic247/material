@@ -3,7 +3,6 @@
     top: 0;
     left: 0;
     height: 100%;
-    background: #fff;
     transform: translateX(-100%);
     transition: all 0.2s ease;
 
@@ -27,6 +26,7 @@
     min-height: 100vh;
     max-height: 100vh;
     max-width: 400px;
+    background: #fff;
     width: max-content;
     min-width: 200px;
     padding: 0;
