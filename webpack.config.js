@@ -20,14 +20,12 @@ module.exports = {
     mode: "production",
     plugins: [
         new webpack.BannerPlugin(`
-/*
- * Tronic247 Material design - v3.0
- * https://material.tronic247.com
- *
- * Copyright (C) 2021 "Tronic247" Posandu Mapa
- * licensed under the MIT license.
- * https://github.com/Tronic247/material/blob/Main/LICENSE
- */
+ Tronic247 Material design - v3.0
+ https://material.tronic247.com
+
+ Copyright (C) 2021 "Tronic247" Posandu Mapa
+ licensed under the MIT license.
+ https://github.com/Tronic247/material/blob/Main/LICENSE
  `)
     ],
     optimization: {
