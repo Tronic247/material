@@ -12,10 +12,6 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Update Build Files
-      - name: Update CSS CDN
-        run: curl https://purge.jsdelivr.net/gh/tronic247/material/dist/material.min.css
-      - name: Update JS CDN
-        run: curl https://purge.jsdelivr.net/gh/tronic247/material/dist/material.min.js
       - uses: actions/setup-node@v2
         with:
           node-version: '16.x'
