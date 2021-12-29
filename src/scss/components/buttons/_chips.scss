@@ -1,0 +1,38 @@
+.chip {
+  padding: $padding * 8px #{$padding * 10px};
+  user-select: none;
+  background: material-color($dk, "300");
+  border-radius: $border-radius * 50px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    background: material-color($dk, "400");
+  }
+
+  &:active,
+  &:focus-visible {
+    background: material-color($dk, "500");
+  }
+
+  &.active {
+    background: rgba(material-color($p, "100"), 0.4);
+    color: material-color($p, "500");
+
+    &:hover {
+      background: rgba(material-color($p, "100"), 0.8);
+    }
+
+    &:active,
+    &:focus-visible {
+      background: material-color($p, "200");
+    }
+  }
+
+  &.disabled,
+  &:disabled {
+    background: material-color($dk, "200");
+    color: material-color($dk, "800");
+    cursor: default;
+  }
+}

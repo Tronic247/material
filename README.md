@@ -17,6 +17,6 @@
 See how to [getting started here](https://material.pages.dev/getting-started).
 
 ## Developers who love this framework
-[![Stargazers repo roster for @Tronic247/material](https://reporoster.com/stars/notext/Tronic247/material)](https://github.com/Tronic247/material/stargazers)
+[![Stargazers for @Tronic247/material](https://reporoster.com/stars/notext/Tronic247/material)](https://github.com/Tronic247/material/stargazers)
 
 

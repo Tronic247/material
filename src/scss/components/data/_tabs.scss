@@ -1,0 +1,48 @@
+.tabs {
+  display: flex;
+  flex-direction: column;
+
+  & .header {
+    display: flex;
+    border-bottom: 1px solid material-color($dk, "200");
+
+    & .item {
+      flex: 1;
+      text-align: center;
+      padding: #{$padding * 14px} #{$padding * 20px};
+      color: material-color($dk, "600");
+      font-size: $font-size * 14px;
+      font-weight: 500;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: border-bottom-color 0.2s ease;
+
+      &:hover {
+        background-color: material-color($dk, "200");
+      }
+
+      &:focus-visible {
+        box-shadow: 0 0 0 2px material-color($p, "100");
+      }
+
+      &.active {
+        color: material-color($dk, "900");
+        background: rgba(material-color($p, "200"), 0.2);
+        border-bottom-color: material-color($p);
+      }
+    }
+  }
+
+  & .content {
+    visibility: hidden;
+    opacity: 0;
+    max-height: 0px;
+    transition: opacity 0.2s ease;
+
+    &.active {
+      visibility: visible;
+      max-height: 8000px;
+      opacity: 1;
+    }
+  }
+}

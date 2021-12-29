@@ -1,0 +1,45 @@
+.dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: all 0.2s ease;
+
+  & .content {
+    background: white;
+    padding: $padding * 20px #{$padding * 30px};
+    border-radius: $border-radius * 4px;
+    transform: scale(0.9);
+    max-width: 80vw;
+    max-height: 80vh;
+    overflow: auto;
+    transition: all 0.2s ease;
+    margin-right: var(--scrollbar-width);
+    @include elevation(20);
+  }
+
+  &.open {
+    opacity: 1;
+    pointer-events: all;
+    & .content {
+      transform: scale(1);
+    }
+  }
+
+  &.bottom-sheet  {
+    align-items: flex-end;
+  }
+}
+
+body.overflow-hidden {
+  overflow: hidden;
+  padding-right: var(--scrollbar-width);
+}

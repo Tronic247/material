@@ -1,0 +1,26 @@
+.snackbar {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: material-color($dk, "900");
+  color: #fff;
+  padding: $padding * 1px #{$padding * 16px};
+  border-radius: $border-radius * 4px;
+  @include elevation(4);
+  transition: all 0.4s ease;
+  transform: translate(-50%, 100%);
+  opacity: 0;
+
+  &.show {
+    transform: translate(-50%, -10%);
+    opacity: 1;
+  }
+
+  & .btn {
+    margin-left: 10px;
+  }
+}
+
