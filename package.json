@@ -1,15 +1,15 @@
 {
     "name": "tronic247-material",
     "version": "3.0.0",
-    "description": "",
+    "description": "Modern Material design framework",
     "main": "index.js",
     "scripts": {
         "build": "webpack && npm run build_css",
         "build_css": "node-sass src/scss/index.scss dist/material.css && npm run prefix_css",
         "prefix_css": "npx postcss dist/material.css --use autoprefixer --map false -d dist/ && css-minify -f dist/material.css -o dist"
     },
-    "keywords": [],
-    "author": "",
+    "keywords": ["material-design"],
+    "author": "tronic247",
     "license": "ISC",
     "devDependencies": {
         "@babel/core": "^7.15.8",
