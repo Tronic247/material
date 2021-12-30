@@ -40,7 +40,7 @@ hr {
   border-bottom-style: none;
   border-bottom-width: medium;
   border-bottom: 1px #d6d6d6 solid;
-  margin: 10px 0px; }
+  margin: 10px 0; }
 
 pre {
   font-family: monospace, monospace;
@@ -672,7 +672,7 @@ h6, .h6 {
   .appbar .title {
     font-size: 20px;
     font-weight: 500;
-    margin: 0px 8px; }
+    margin: 0 8px; }
   .appbar .appbar-input {
     padding: 8px;
     border-radius: 4px;
@@ -1014,11 +1014,11 @@ h6, .h6 {
   display: flex; }
   .btn-group :not(.ripple) {
     flex: 1;
-    border-radius: 0px; }
+    border-radius: 0; }
   .btn-group :first-child:not(.ripple) {
-    border-radius: 4px 0px 0px 4px; }
+    border-radius: 4px 0 0 4px; }
   .btn-group :last-child:not(.ripple) {
-    border-radius: 0px 4px 4px 0px; }
+    border-radius: 0 4px 4px 0; }
 
 .icon {
   max-width: 45px;
@@ -1135,7 +1135,7 @@ h6, .h6 {
       .breadcrumbs .item.active:focus {
         color: #1a237e; }
       .breadcrumbs .item.active:focus-visible {
-        box-shadow: 0px 0px 0px 2px #9fa8da; }
+        box-shadow: 0 0 0 2px #9fa8da; }
 
 .dialog .drawer {
   position: absolute;
@@ -1245,7 +1245,7 @@ h6, .h6 {
     box-sizing: border-box;
     width: 60px;
     height: 60px;
-    padding: 0px;
+    padding: 0;
     -webkit-mask-image: linear-gradient(transparent 50%, white 50%), linear-gradient(to right, transparent 50%, white 50%);
             mask-image: linear-gradient(transparent 50%, white 50%), linear-gradient(to right, transparent 50%, white 50%);
     position: relative;
@@ -1507,7 +1507,7 @@ h6, .h6 {
     .table-container table tbody tr:last-child {
       border-radius: 50px; }
     .table-container table td:focus {
-      box-shadow: inset 0px 0px 0px 1px #3f51b5; }
+      box-shadow: inset 0 0 0 1px #3f51b5; }
     .table-container table td,
     .table-container table th {
       white-space: normal; }
@@ -1539,7 +1539,7 @@ h6, .h6 {
   .tabs .content {
     visibility: hidden;
     opacity: 0;
-    max-height: 0px;
+    max-height: 0;
     transition: opacity 0.2s ease; }
     .tabs .content.active {
       visibility: visible;
@@ -4776,7 +4776,7 @@ body.overflow-hidden {
   cursor: default; }
 
 .noUi-active {
-  box-shadow: 0px 0px 0px 10px #5c6bc0; }
+  box-shadow: 0 0 0 10px #5c6bc0; }
   .noUi-active .noUi-tooltip {
     opacity: 1; }
 
@@ -4918,9 +4918,9 @@ body.overflow-hidden {
   width: max-content;
   position: relative;
   background: #f5f5f5;
-  padding: 0px 10px;
+  padding: 0 10px;
   padding-right: 0 !important;
-  border-radius: 4px 4px 0px 0px;
+  border-radius: 4px 4px 0 0;
   overflow: hidden;
   transition: all 0.2s ease; }
   .textbox:hover:not(.focus) {
@@ -5016,7 +5016,7 @@ body.overflow-hidden {
       width: calc(100% + 16px); }
   .textbox.outlined {
     background: transparent;
-    box-shadow: 0px 0px 0px 1px #bdbdbd;
+    box-shadow: 0 0 0 1px #bdbdbd;
     color: #9e9e9e;
     transition: none;
     border-radius: 4px;
@@ -5025,11 +5025,11 @@ body.overflow-hidden {
       background: transparent; }
     .textbox.outlined:hover:not(.focus) {
       background: transparent;
-      box-shadow: 0px 0px 0px 1px #757575;
+      box-shadow: 0 0 0 1px #757575;
       color: #757575; }
     .textbox.outlined.focus {
       background: transparent;
-      box-shadow: 0px 0px 0px 2px #3f51b5;
+      box-shadow: 0 0 0 2px #3f51b5;
       color: #3f51b5; }
     .textbox.outlined .input {
       padding-top: 20px;
