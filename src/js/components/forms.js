@@ -48,4 +48,5 @@ const Forms = {
         noUiSlider.create(element, options);
     }
 };
+Forms.init();
 export default Forms;
