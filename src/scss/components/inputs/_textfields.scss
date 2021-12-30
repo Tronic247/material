@@ -5,9 +5,9 @@
   width: max-content;
   position: relative;
   background: material-color($dk, "100");
-  padding: 0px 10px;
+  padding: 0 10px;
   padding-right: 0 !important;
-  border-radius: $border-radius * 4px #{$border-radius * 4px} 0px 0px;
+  border-radius: $border-radius * 4px #{$border-radius * 4px} 0 0;
   overflow: hidden;
   transition: all 0.2s ease;
 
@@ -139,7 +139,7 @@
 
   &.outlined {
     background: transparent;
-    box-shadow: 0px 0px 0px 1px material-color($dk, "400");
+    box-shadow: 0 0 0 1px material-color($dk, "400");
     color: material-color($dk, "500");
     transition: none;
     border-radius: $border-radius * 4px;
@@ -152,13 +152,13 @@
 
     &:hover:not(.focus) {
       background: transparent;
-      box-shadow: 0px 0px 0px 1px material-color($dk, "600");
+      box-shadow: 0 0 0 1px material-color($dk, "600");
       color: material-color($dk, "600");
     }
 
     &.focus {
       background: transparent;
-      box-shadow: 0px 0px 0px 2px material-color($p);
+      box-shadow: 0 0 0 2px material-color($p);
       color: material-color($p);
     }
 

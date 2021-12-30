@@ -33,7 +33,7 @@
       border-radius: 50px;
     }
     & td:focus {
-        box-shadow:inset 0px 0px 0px 1px material-color($p);
+        box-shadow:inset 0 0 0 1px material-color($p);
     }
     & td,
     & th {

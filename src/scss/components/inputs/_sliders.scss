@@ -134,7 +134,7 @@
 }
 
 .noUi-active {
-  box-shadow: 0px 0px 0px 10px material-color($p, "400");
+  box-shadow: 0 0 0 10px material-color($p, "400");
   & .noUi-tooltip {
     opacity: 1;
   }
