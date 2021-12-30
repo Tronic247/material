@@ -321,40 +321,40 @@ $dk: $dark-color;
 $i: 1;
 @for $i from 1 to 10 {
   .bg-primary-#{$i} {
-    background-color: material-color($primary-color, #{$i * 100});
+    background-color: material-color($primary-color, #{$i * 100}) !important;
   }
   .bg-secondary-#{$i} {
-    background-color: material-color($secondary-color, #{$i * 100});
+    background-color: material-color($secondary-color, #{$i * 100}) !important;
   }
   .bg-danger-#{$i} {
-    background-color: material-color($danger-color, #{$i * 100});
+    background-color: material-color($danger-color, #{$i * 100}) !important;
   }
   .bg-success-#{$i} {
-    background-color: material-color($success-color, #{$i * 100});
+    background-color: material-color($success-color, #{$i * 100}) !important;
   }
   .bg-warning-#{$i} {
-    background-color: material-color($warning-color, #{$i * 100});
+    background-color: material-color($warning-color, #{$i * 100}) !important;
   }
   .bg-dark-#{$i} {
-    background-color: material-color($dark-color, #{$i * 100});
+    background-color: material-color($dark-color, #{$i * 100}) !important;
   }
 
   .color-primary-#{$i} {
-    color: material-color($primary-color, #{$i * 100});
+    color: material-color($primary-color, #{$i * 100}) !important;
   }
   .color-secondary-#{$i} {
-    color: material-color($secondary-color, #{$i * 100});
+    color: material-color($secondary-color, #{$i * 100}) !important;
   }
   .color-danger-#{$i} {
-    color: material-color($danger-color, #{$i * 100});
+    color: material-color($danger-color, #{$i * 100}) !important;
   }
   .color-success-#{$i} {
-    color: material-color($success-color, #{$i * 100});
+    color: material-color($success-color, #{$i * 100}) !important;
   }
   .color-warning-#{$i} {
-    color: material-color($warning-color, #{$i * 100});
+    color: material-color($warning-color, #{$i * 100}) !important;
   }
   .color-dark-#{$i} {
-    color: material-color($dark-color, #{$i * 100});
+    color: material-color($dark-color, #{$i * 100}) !important;
   }
 }
