@@ -4,7 +4,8 @@
 <img src="https://img.shields.io/github/last-commit/tronic247/material?style=flat-square"/>
 <img src="https://img.shields.io/github/issues/tronic247/material?style=flat-square"/>
 <img src="https://img.shields.io/badge/Tronic247-Product-%23e41c26"/>  
-  <a href="https://discord.gg/Xusx5WFwMH"> <img src="https://img.shields.io/discord/868761454914981941.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2"/> </a>
+<a href="https://discord.gg/Xusx5WFwMH"> <img src="https://img.shields.io/discord/868761454914981941.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2"/> </a>
+<a href="https://www.codefactor.io/repository/github/tronic247/material"> <img src="https://www.codefactor.io/repository/github/tronic247/material/badge"/> </a>
 </p>
 
 ![image](https://user-images.githubusercontent.com/76736580/147639923-74dba5fd-3c44-45d3-a6f6-c2571f63c5cf.png)
