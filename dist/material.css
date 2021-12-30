@@ -84,7 +84,8 @@ sup {
   top: -0.5em; }
 
 img {
-  border-style: none; }
+  border-style: none;
+  max-width: 100%; }
 
 button,
 input,
@@ -161,9 +162,6 @@ template {
 
 [hidden] {
   display: none; }
-
-img {
-  max-width: 100%; }
 
 .bg-primary-1 {
   background-color: #c5cae9 !important; }
