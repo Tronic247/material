@@ -5043,14 +5043,17 @@ body.overflow-hidden {
     padding-top: 10px; }
 
 .radio {
+  color: rgba(0, 0, 0, 0.87);
+  display: inline-flex;
   position: relative;
-  display: inline-block;
-  color: rgba(0, 0, 0, 0.87); }
+  align-items: center;
+  justify-content: center;
+  line-height: 24px; }
   .radio > input {
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
-    z-index: -1;
+    z-index: 9;
     position: absolute;
     left: -10px;
     top: -8px;
