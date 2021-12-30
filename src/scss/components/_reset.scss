@@ -29,14 +29,11 @@ main {
 }
 hr {
   border: none;
-  border-bottom-color: currentcolor;
-  border-bottom-style: none;
-  border-bottom-width: medium;
   border-bottom: 1px #d6d6d6 solid;
   margin: 10px 0;
 }
 pre {
-  font-family: monospace, monospace;
+  font-family: monospace;
   font-size: 1em;
 }
 a {
@@ -47,8 +44,7 @@ a {
 abbr[title] {
   border-bottom: none;
   text-decoration: underline;
-  -webkit-text-decoration: underline dotted;
-  text-decoration: underline dotted;
+  -webkit-text-decoration: underline;
 }
 b,
 strong {
