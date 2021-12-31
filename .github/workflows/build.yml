@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Install 
+      - name: Install
         run: npm install
       - name: Build
         run: npm run build
@@ -19,6 +19,6 @@ jobs:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
       - run: npm ci
-      - run: npm update 
+      - run: npm update
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
