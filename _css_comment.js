@@ -15,5 +15,5 @@ var buffer = new Buffer(
 
 fs.writeSync(fd, buffer, 0, buffer.length, 0); //write new data
 fs.writeSync(fd, data, 0, data.length, buffer.length); //append old data
-// or fs.appendFile(fd, data);
+fs.appendFileSync(file, '/*# sourceMappingURL=material.css.map */');
 fs.close(fd);
