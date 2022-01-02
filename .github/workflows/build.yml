@@ -14,11 +14,5 @@ jobs:
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Update Build Files
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '16.x'
-          registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
-      - run: npm update
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
