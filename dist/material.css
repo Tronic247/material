@@ -179,21 +179,33 @@ template {
 
 .color-primary-1 {
   color: #c5cae9 !important; }
+  .color-primary-1 .ripple {
+    color: #c5cae9 !important; }
 
 .color-secondary-1 {
   color: #f8bbd0 !important; }
+  .color-secondary-1 .ripple {
+    color: #f8bbd0 !important; }
 
 .color-danger-1 {
   color: #ffcdd2 !important; }
+  .color-danger-1 .ripple {
+    color: #ffcdd2 !important; }
 
 .color-success-1 {
   color: #c8e6c9 !important; }
+  .color-success-1 .ripple {
+    color: #c8e6c9 !important; }
 
 .color-warning-1 {
   color: #ffe0b2 !important; }
+  .color-warning-1 .ripple {
+    color: #ffe0b2 !important; }
 
 .color-dark-1 {
   color: #f5f5f5 !important; }
+  .color-dark-1 .ripple {
+    color: #f5f5f5 !important; }
 
 .bg-primary-2 {
   background-color: #9fa8da !important; }
@@ -215,21 +227,33 @@ template {
 
 .color-primary-2 {
   color: #9fa8da !important; }
+  .color-primary-2 .ripple {
+    color: #9fa8da !important; }
 
 .color-secondary-2 {
   color: #f48fb1 !important; }
+  .color-secondary-2 .ripple {
+    color: #f48fb1 !important; }
 
 .color-danger-2 {
   color: #ef9a9a !important; }
+  .color-danger-2 .ripple {
+    color: #ef9a9a !important; }
 
 .color-success-2 {
   color: #a5d6a7 !important; }
+  .color-success-2 .ripple {
+    color: #a5d6a7 !important; }
 
 .color-warning-2 {
   color: #ffcc80 !important; }
+  .color-warning-2 .ripple {
+    color: #ffcc80 !important; }
 
 .color-dark-2 {
   color: #eeeeee !important; }
+  .color-dark-2 .ripple {
+    color: #eeeeee !important; }
 
 .bg-primary-3 {
   background-color: #7986cb !important; }
@@ -251,21 +275,33 @@ template {
 
 .color-primary-3 {
   color: #7986cb !important; }
+  .color-primary-3 .ripple {
+    color: #7986cb !important; }
 
 .color-secondary-3 {
   color: #f06292 !important; }
+  .color-secondary-3 .ripple {
+    color: #f06292 !important; }
 
 .color-danger-3 {
   color: #e57373 !important; }
+  .color-danger-3 .ripple {
+    color: #e57373 !important; }
 
 .color-success-3 {
   color: #81c784 !important; }
+  .color-success-3 .ripple {
+    color: #81c784 !important; }
 
 .color-warning-3 {
   color: #ffb74d !important; }
+  .color-warning-3 .ripple {
+    color: #ffb74d !important; }
 
 .color-dark-3 {
   color: #e0e0e0 !important; }
+  .color-dark-3 .ripple {
+    color: #e0e0e0 !important; }
 
 .bg-primary-4 {
   background-color: #5c6bc0 !important; }
@@ -287,21 +323,33 @@ template {
 
 .color-primary-4 {
   color: #5c6bc0 !important; }
+  .color-primary-4 .ripple {
+    color: #5c6bc0 !important; }
 
 .color-secondary-4 {
   color: #ec407a !important; }
+  .color-secondary-4 .ripple {
+    color: #ec407a !important; }
 
 .color-danger-4 {
   color: #ef5350 !important; }
+  .color-danger-4 .ripple {
+    color: #ef5350 !important; }
 
 .color-success-4 {
   color: #66bb6a !important; }
+  .color-success-4 .ripple {
+    color: #66bb6a !important; }
 
 .color-warning-4 {
   color: #ffa726 !important; }
+  .color-warning-4 .ripple {
+    color: #ffa726 !important; }
 
 .color-dark-4 {
   color: #bdbdbd !important; }
+  .color-dark-4 .ripple {
+    color: #bdbdbd !important; }
 
 .bg-primary-5 {
   background-color: #3f51b5 !important; }
@@ -323,21 +371,33 @@ template {
 
 .color-primary-5 {
   color: #3f51b5 !important; }
+  .color-primary-5 .ripple {
+    color: #3f51b5 !important; }
 
 .color-secondary-5 {
   color: #e91e63 !important; }
+  .color-secondary-5 .ripple {
+    color: #e91e63 !important; }
 
 .color-danger-5 {
   color: #f44336 !important; }
+  .color-danger-5 .ripple {
+    color: #f44336 !important; }
 
 .color-success-5 {
   color: #4caf50 !important; }
+  .color-success-5 .ripple {
+    color: #4caf50 !important; }
 
 .color-warning-5 {
   color: #ff9800 !important; }
+  .color-warning-5 .ripple {
+    color: #ff9800 !important; }
 
 .color-dark-5 {
   color: #9e9e9e !important; }
+  .color-dark-5 .ripple {
+    color: #9e9e9e !important; }
 
 .bg-primary-6 {
   background-color: #3949ab !important; }
@@ -359,21 +419,33 @@ template {
 
 .color-primary-6 {
   color: #3949ab !important; }
+  .color-primary-6 .ripple {
+    color: #3949ab !important; }
 
 .color-secondary-6 {
   color: #d81b60 !important; }
+  .color-secondary-6 .ripple {
+    color: #d81b60 !important; }
 
 .color-danger-6 {
   color: #e53935 !important; }
+  .color-danger-6 .ripple {
+    color: #e53935 !important; }
 
 .color-success-6 {
   color: #43a047 !important; }
+  .color-success-6 .ripple {
+    color: #43a047 !important; }
 
 .color-warning-6 {
   color: #fb8c00 !important; }
+  .color-warning-6 .ripple {
+    color: #fb8c00 !important; }
 
 .color-dark-6 {
   color: #757575 !important; }
+  .color-dark-6 .ripple {
+    color: #757575 !important; }
 
 .bg-primary-7 {
   background-color: #303f9f !important; }
@@ -395,21 +467,33 @@ template {
 
 .color-primary-7 {
   color: #303f9f !important; }
+  .color-primary-7 .ripple {
+    color: #303f9f !important; }
 
 .color-secondary-7 {
   color: #c2185b !important; }
+  .color-secondary-7 .ripple {
+    color: #c2185b !important; }
 
 .color-danger-7 {
   color: #d32f2f !important; }
+  .color-danger-7 .ripple {
+    color: #d32f2f !important; }
 
 .color-success-7 {
   color: #388e3c !important; }
+  .color-success-7 .ripple {
+    color: #388e3c !important; }
 
 .color-warning-7 {
   color: #f57c00 !important; }
+  .color-warning-7 .ripple {
+    color: #f57c00 !important; }
 
 .color-dark-7 {
   color: #616161 !important; }
+  .color-dark-7 .ripple {
+    color: #616161 !important; }
 
 .bg-primary-8 {
   background-color: #283593 !important; }
@@ -431,21 +515,33 @@ template {
 
 .color-primary-8 {
   color: #283593 !important; }
+  .color-primary-8 .ripple {
+    color: #283593 !important; }
 
 .color-secondary-8 {
   color: #ad1457 !important; }
+  .color-secondary-8 .ripple {
+    color: #ad1457 !important; }
 
 .color-danger-8 {
   color: #c62828 !important; }
+  .color-danger-8 .ripple {
+    color: #c62828 !important; }
 
 .color-success-8 {
   color: #2e7d32 !important; }
+  .color-success-8 .ripple {
+    color: #2e7d32 !important; }
 
 .color-warning-8 {
   color: #ef6c00 !important; }
+  .color-warning-8 .ripple {
+    color: #ef6c00 !important; }
 
 .color-dark-8 {
   color: #424242 !important; }
+  .color-dark-8 .ripple {
+    color: #424242 !important; }
 
 .bg-primary-9 {
   background-color: #1a237e !important; }
@@ -467,21 +563,33 @@ template {
 
 .color-primary-9 {
   color: #1a237e !important; }
+  .color-primary-9 .ripple {
+    color: #1a237e !important; }
 
 .color-secondary-9 {
   color: #880e4f !important; }
+  .color-secondary-9 .ripple {
+    color: #880e4f !important; }
 
 .color-danger-9 {
   color: #b71c1c !important; }
+  .color-danger-9 .ripple {
+    color: #b71c1c !important; }
 
 .color-success-9 {
   color: #1b5e20 !important; }
+  .color-success-9 .ripple {
+    color: #1b5e20 !important; }
 
 .color-warning-9 {
   color: #e65100 !important; }
+  .color-warning-9 .ripple {
+    color: #e65100 !important; }
 
 .color-dark-9 {
   color: #212121 !important; }
+  .color-dark-9 .ripple {
+    color: #212121 !important; }
 
 h1, .h1 {
   font-size: 41.49px;
