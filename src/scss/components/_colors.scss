@@ -341,20 +341,38 @@ $i: 1;
 
   .color-primary-#{$i} {
     color: material-color($primary-color, #{$i * 100}) !important;
+    & .ripple {
+      color: material-color($primary-color, #{$i * 100}) !important;
+    }
   }
   .color-secondary-#{$i} {
     color: material-color($secondary-color, #{$i * 100}) !important;
+    & .ripple {
+      color: material-color($secondary-color, #{$i * 100}) !important;
+    }
   }
   .color-danger-#{$i} {
     color: material-color($danger-color, #{$i * 100}) !important;
+    & .ripple {
+      color: material-color($danger-color, #{$i * 100}) !important;
+    }
   }
   .color-success-#{$i} {
     color: material-color($success-color, #{$i * 100}) !important;
+    & .ripple {
+      color: material-color($success-color, #{$i * 100}) !important;
+    }
   }
   .color-warning-#{$i} {
     color: material-color($warning-color, #{$i * 100}) !important;
+    & .ripple {
+      color: material-color($warning-color, #{$i * 100}) !important;
+    }
   }
   .color-dark-#{$i} {
     color: material-color($dark-color, #{$i * 100}) !important;
+    & .ripple {
+      color: material-color($dark-color, #{$i * 100}) !important;
+    }
   }
 }
