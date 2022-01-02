@@ -1,6 +1,6 @@
 {
     "name": "tronic247-material",
-    "version": "3.0.0",
+    "version": "3.0.1",
     "description": "Modern Material design framework",
     "main": "index.js",
     "scripts": {
