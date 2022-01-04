@@ -1,8 +1,8 @@
 const fs = require('fs');
 const file = "dist/material.min.css";
-var data = fs.readFileSync(file); //read existing contents into data
-var fd = fs.openSync(file, 'w+');
-var buffer = new Buffer(
+const data = fs.readFileSync(file); 
+const fd = fs.openSync(file, 'w+');
+const buffer = new Buffer(
  `/*
  * Tronic247 Material design - v3.0
  * https://material.tronic247.com
@@ -13,7 +13,7 @@ var buffer = new Buffer(
  */`+"\n"
 );
 
-fs.writeSync(fd, buffer, 0, buffer.length, 0); //write new data
-fs.writeSync(fd, data, 0, data.length, buffer.length); //append old data
+fs.writeSync(fd, buffer, 0, buffer.length, 0);
+fs.writeSync(fd, data, 0, data.length, buffer.length); 
 fs.appendFileSync(file, "\n \n /*# sourceMappingURL=material.css.map */");
 fs.close(fd);
