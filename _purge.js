@@ -11,7 +11,7 @@ files.forEach((file) => {
             body += `${file.toString()}`;
         });
         res.on("end", (r) => {
-            console.log(`Purged cache for file ${body}`);
+            console.log('\x1b[34m',`Purged cache for file ${body}`);
         });
     });
 });
