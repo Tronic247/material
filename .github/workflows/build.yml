@@ -9,8 +9,8 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
-      - name: Add CSS comment
-        run: node _css_comment.js
+      - name: Add comments
+        run: node _comment.js
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Update Build Files
