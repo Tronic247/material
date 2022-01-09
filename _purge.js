@@ -8,10 +8,10 @@ files.forEach((file) => {
         let body = {};
         res.on("data", (data) => {
             const r = data;
-            body += `${file}`;
+            body += `${file.toString()}`;
         });
         res.on("end", (r) => {
-            console.log(`Purged cache for file ${body.toString()}`);
+            console.log(`Purged cache for file ${body}`);
         });
     });
 });
