@@ -12,7 +12,7 @@ jobs:
       - name: Add comments
         run: node _comment.js
       - name: Purge Cache
-        run: curl https://cdn.jsdelivr.net/gh/tronic247/material/dist/material.min.js https://cdn.jsdelivr.net/gh/tronic247/material/dist/material.min.css
+        run: curl https://purge.jsdelivr.net/gh/tronic247/material/dist/material.min.js https://purge.jsdelivr.net/gh/tronic247/material/dist/material.min.css
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
           commit_message: Update Build Files
