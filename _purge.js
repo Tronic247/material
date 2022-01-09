@@ -7,7 +7,7 @@ files.forEach((file) => {
         res.setEncoding("utf8");
         let body = {};
         res.on("data", (data) => {
-            const r = JSON.parse(data);
+            const r = data;
             body += `${file} Status: ${r.status}`;
         });
         res.on("end", (r) => {
