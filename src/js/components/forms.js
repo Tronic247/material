@@ -44,9 +44,7 @@ const Forms = {
             });
         }
     },
-    initRangeSlider: function (element,options) {
-        noUiSlider.create(element, options);
-    }
+    initRangeSlider: noUiSlider
 };
 Forms.init();
 export default Forms;
