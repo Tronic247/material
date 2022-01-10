@@ -7,7 +7,6 @@ files.forEach((file) => {
         res.setEncoding("utf8");
         let body = '';
         res.on("data", (data) => {
-            const r = data;
             body += `${file.toString()}`;
         });
         res.on("end", (r) => {
