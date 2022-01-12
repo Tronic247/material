@@ -9,7 +9,7 @@ files.forEach((file) => {
         res.on("data", () => {
             body += `${file.toString()}`;
         });
-        res.on("end", (r) => {
+        res.on("end", () => {
             console.log('\x1b[34m',`Purged cache for file ${body}`);
         });
     });
