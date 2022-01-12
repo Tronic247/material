@@ -5351,7 +5351,6 @@ body.overflow-hidden {
     transform: scale(1); } }
 
 .flatpickr-calendar {
-  background: transparent;
   opacity: 0;
   pointer-events: none;
   text-align: center;
@@ -5621,12 +5620,11 @@ body.overflow-hidden {
   position: absolute;
   width: 75%;
   left: 12.5%;
-  padding: 7.48px 0 0 0;
-  line-height: 1;
+  padding: 7.48px 0 0;
   height: 34px;
   display: inline-block;
   text-align: center;
-  transform: translate3d(0px, 0px, 0px); }
+  transform: translate3d(0, 0, 0); }
 
 .flatpickr-current-month span.cur-month {
   font-family: inherit;
@@ -5693,7 +5691,7 @@ body.overflow-hidden {
   font-weight: 300;
   height: auto;
   line-height: inherit;
-  margin: -1px 0 0 0;
+  margin: -1px 0 0;
   outline: none;
   padding: 0 0 0 0.5ch;
   position: relative;
@@ -5745,7 +5743,7 @@ span.flatpickr-weekday {
 
 .dayContainer,
 .flatpickr-weeks {
-  padding: 1px 0 0 0; }
+  padding: 1px 0 0; }
 
 .flatpickr-days {
   position: relative;
@@ -5767,7 +5765,7 @@ span.flatpickr-weekday {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  transform: translate3d(0px, 0px, 0px);
+  transform: translate3d(0, 0, 0);
   opacity: 1; }
 
 .dayContainer + .dayContainer {
@@ -5922,7 +5920,6 @@ span.flatpickr-weekday {
 .flatpickr-time {
   text-align: center;
   outline: 0;
-  display: block;
   height: 0;
   line-height: 40px;
   max-height: 40px;
