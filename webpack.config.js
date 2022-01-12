@@ -35,7 +35,6 @@ module.exports = {
         const TerserPlugin = require("terser-webpack-plugin");
         new TerserPlugin({
           terserOptions: {
-            caseSensitive: true,
             collapseBooleanAttributes: true,
             collapseInlineTagWhitespace: false,
             collapseWhitespace: true,
