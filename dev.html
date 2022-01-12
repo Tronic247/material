@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="dist/material.css">
+    <title>Development</title>
+</head>
+
+<body>
+
+    <input type="text" class="picker">
+    <div class="textbox">
+        <div class="left">
+        </div>
+        <div class="middle">
+            <label for="aaaa" class="label">Label</label>
+            <input type="text" id="aaaa" class="input picker">
+        </div>
+        <div class="right"></div>
+    </div>
+
+    <script src="dist/material.min.js"></script>
+    <script>
+        Material.Picker(".picker",
+            {
+                enableTime: true,
+                minTime: "16:00",
+                maxTime: "22:00"
+            }
+        );
+    </script>
+</body>
+
+</html>

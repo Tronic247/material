@@ -25,5 +25,6 @@ import Menu from "./components/menu.js";
 import Tooltip from "./components/tooltip.js";
 import Snackbar from "./components/snackbar.js";
 import Dialog from "./components/dialog.js";
+import Picker from "./components/picker.js";
 
-export { Forms, Ripple, Accordion, Tabs, Appbar, Menu, Tooltip, Snackbar, Dialog };
+export { Forms, Ripple, Accordion, Tabs, Appbar, Menu, Tooltip, Snackbar, Dialog, Picker };

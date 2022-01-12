@@ -6,9 +6,13 @@
     "scripts": {
         "build": "webpack && npm run build_css",
         "build_css": "node-sass src/scss/index.scss dist/material.css && npm run prefix_css",
-        "prefix_css": "npx postcss dist/material.css --use autoprefixer --map false -d dist/ && css-minify -f dist/material.css -o dist"
+        "prefix_css": "npx postcss dist/material.css --use autoprefixer --map false -d dist/ && css-minify -f dist/material.css -o dist",
+        "watch": "webpack --watch",
+        "watch_css": "node-sass src/scss/index.scss dist/material.css --watch --recursive"
     },
-    "keywords": ["material-design"],
+    "keywords": [
+        "material-design"
+    ],
     "author": "tronic247",
     "license": "ISC",
     "devDependencies": {
@@ -29,6 +33,6 @@
         "postcss": "^8.4.5",
         "postcss-cli": "^9.1.0",
         "autoprefixer": "^10.4.0",
-        "css-minify":"^2.0.0"
+        "css-minify": "^2.0.0"
     }
 }
