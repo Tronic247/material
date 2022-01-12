@@ -1,5 +1,6 @@
 const path = require("path");
 const webpack = require("webpack");
+const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
     entry: path.resolve(__dirname, "src/js/index.js"),
@@ -28,6 +29,7 @@ module.exports = {
          licensed under the MIT license.
          https://github.com/Tronic247/material/blob/Main/LICENSE
          `),
+         new CompressionPlugin()
     ],
     optimization: {
         minimizer: [
