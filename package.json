@@ -1,6 +1,6 @@
 {
     "name": "tronic247-material",
-    "version": "3.0.1",
+    "version": "3.0.0",
     "description": "Modern Material design framework",
     "main": "index.js",
     "scripts": {
@@ -33,6 +33,7 @@
         "postcss": "^8.4.5",
         "postcss-cli": "^9.1.0",
         "autoprefixer": "^10.4.0",
-        "css-minify": "^2.0.0"
+        "css-minify": "^2.0.0",
+        "flatpickr": "^4.6.3"
     }
 }
