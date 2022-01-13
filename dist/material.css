@@ -1360,6 +1360,7 @@ h6, .h6 {
     width: 60px;
     height: 60px;
     padding: 0;
+    background: transparent !important;
     -webkit-mask-image: linear-gradient(transparent 50%, white 50%), linear-gradient(to right, transparent 50%, white 50%);
             mask-image: linear-gradient(transparent 50%, white 50%), linear-gradient(to right, transparent 50%, white 50%);
     position: relative;
