@@ -591,6 +591,16 @@ template {
   .color-dark-9 .ripple {
     color: #212121 !important; }
 
+.color-white {
+  color: #fff !important; }
+  .color-white .ripple {
+    color: #fff !important; }
+
+.color-dark {
+  color: #000 !important; }
+  .color-dark .ripple {
+    color: #000 !important; }
+
 h1, .h1 {
   font-size: 41.49px;
   font-weight: 400; }
