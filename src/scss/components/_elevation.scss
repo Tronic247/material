@@ -82,3 +82,10 @@ $i: 0;
     @include elevation($i);
   }
 }
+
+$i: 0;
+@for $i from 1 to 25 {
+  .hover-elevation-#{$i}:hover {
+    @include elevation($i);
+  }
+}
