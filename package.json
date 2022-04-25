@@ -9,7 +9,7 @@
         "prefix_css": "npx postcss dist/material.css --use autoprefixer --map false -d dist/ && css-minify -f dist/material.css -o dist",
         "watch": "webpack --watch",
         "watch_css": "node-sass src/scss/index.scss dist/material.css --watch --recursive"
-    },
+    }, 
     "keywords": [
         "material-design"
     ],
