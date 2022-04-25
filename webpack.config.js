@@ -1,6 +1,5 @@
 const path = require("path");
 const webpack = require("webpack");
-const ClosurePlugin = require("closure-webpack-plugin");
 
 module.exports = {
 	entry: path.resolve(__dirname, "src/js/index.js"),
@@ -35,8 +34,7 @@ module.exports = {
 			(compiler) => {
 				const TerserPlugin = require("terser-webpack-plugin");
 				new TerserPlugin().apply(compiler);
-			},
-			new ClosurePlugin({ mode: "STANDARD" }),
+			}
 		],
 	},
 };
