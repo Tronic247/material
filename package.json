@@ -33,7 +33,7 @@
         "node-sass": "^7.0.1",
         "nouislider": "^15.5.0",
         "postcss": "^8.4.5",
-        "postcss-cli": "^9.1.0",
+        "postcss-cli": "^10.0.0",
         "tabbable": "^5.2.1"
     }
 }
