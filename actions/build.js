@@ -17,15 +17,6 @@ fs.rmSync(config.dist, { recursive: true });
 
 build({
 	entryPoints: [config.jsMain],
-	outfile: config.dist + "material.js",
-	bundle: true,
-	sourcemap: true,
-}).then(() => {
-	console.log(c.Green("-> Bundling... unminified version done"));
-});
-
-build({
-	entryPoints: [config.jsMain],
 	outfile: config.dist + "material.min.js",
 	bundle: true,
 	minify: true,
