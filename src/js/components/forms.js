@@ -1,8 +1,13 @@
 import noUiSlider from 'nouislider';
 
 const Forms = {
-    init: function (element = document.body) {
+    init: function (element) {
+        element = element || document;
+
         const forms = element.querySelectorAll(".textbox");
+
+        if(!forms) return;
+
         for (let i = 0; i < forms.length; i++) {
             let parent = forms[i];
             let input = parent.querySelector(".input");

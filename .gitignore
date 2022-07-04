@@ -1,1 +1,4 @@
 node_modules/
+dev/*.js
+dev/*.map
+dev/*.css

@@ -1,2 +1,6 @@
 # Source files
-here are the source files
+
+```
+js/ For javascript files
+scss/ For scss files
+```

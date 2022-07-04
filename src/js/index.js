@@ -1,16 +1,9 @@
-/*
- * Tronic247 Material Design - v2.0
- * https://tronic247.com/material
- *
- * Copyright (C) 2021 "Tronic247" Posandu Mapa
- * licensed under the MIT license.
- * https://github.com/Tronic247/material/blob/Main/LICENSE
- */
+import { exportGlobal } from "./exportGlobal.js";
 
 /**
- * 
+ *
  * Import Modules
- * 
+ *
  */
 
 /**
@@ -27,4 +20,13 @@ import Snackbar from "./components/snackbar.js";
 import Dialog from "./components/dialog.js";
 import Picker from "./components/picker.js";
 
-export { Forms, Ripple, Accordion, Tabs, Appbar, Menu, Tooltip, Snackbar, Dialog, Picker };
+exportGlobal("Ripple", Ripple);
+exportGlobal("Forms", Forms);
+exportGlobal("Accordion", Accordion);
+exportGlobal("Tabs", Tabs);
+exportGlobal("Appbar", Appbar);
+exportGlobal("Menu", Menu);
+exportGlobal("Tooltip", Tooltip);
+exportGlobal("Snackbar", Snackbar);
+exportGlobal("Dialog", Dialog);
+exportGlobal("Picker", Picker);
