@@ -11,8 +11,6 @@ import { config } from "./config.js";
  * Bundle JavaScript
  *
  */
-console.log(c.Blue("Building JavaScript... \n"));
-
 console.log(c.Cyan("-> Bundling JavaScript..."));
 
 fs.rmSync(config.dist, { recursive: true });
@@ -41,7 +39,7 @@ build({
  * Generate CSS from SCSS
  *
  */
-console.log(c.Blue("Building CSS... \n"));
+console.log(c.Cyan("-> Building CSS... \n"));
 
 compileAsync(config.scssMain).then((result) => {
 	fs.writeFileSync(config.dist + "material.css", result.css);

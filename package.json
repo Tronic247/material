@@ -26,6 +26,7 @@
 		"tabbable": "^5.2.1"
 	},
 	"dependencies": {
+		"animejs": "^3.2.1",
 		"tcol": "^1.0.2"
 	}
 }

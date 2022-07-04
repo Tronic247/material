@@ -1,78 +1,34 @@
+.accordion_parent {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
 .accordion {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	@include elevation(2);
+	background: var(--tm-light-color);
 
-  & .item {
-    flex: 1;
-    margin-top: -4px;
-    @include elevation(2);
-    background: #fff;
-    transition: margin-top 0.2s linear, margin-top 0.2s linear;
+	&--open &_body {
+		display: block;
+	}
 
-    &.open .header:hover {
-      background: #fff;
-    }
+	&_head {
+		display: flex;
+		align-items: center;
+		padding: $padding * 10px;
+		border-radius: $border-radius * 4px;
+		z-index: 99;
+		position: relative;
 
-    & .header {
-      display: flex;
-      align-items: center;
-      padding: $padding * 10px;
-      border-radius: $border-radius * 4px;
-      z-index: 99;
-      position: relative;
+		&:hover {
+			background: material-color($dk, "100");
+		}
+	}
 
-      &:hover {
-        background: material-color($dk, "100");
-      }
-
-      & .left {
-        display: flex;
-        align-items: center;
-        margin-right: 20px;
-        justify-content: flex-start;
-      }
-
-      & .middle {
-        flex: 1;
-        display: flex;
-        align-items: center;
-        justify-content: flex-start;
-      }
-
-      & .right {
-        display: flex;
-        margin-left: 20px;
-        align-items: center;
-        justify-content: flex-end;
-      }
-    }
-
-    & .content {
-      max-height: 0;
-      padding: 0;
-      overflow: hidden;
-      transition: all 0.6s ease;
-    }
-
-    &.open {
-      border-radius: $border-radius * 4px;
-
-      & .content {
-        max-height: var(--max-height);
-      }
-    }
-  }
-
-  & .item:first-of-type {
-    margin-top: 0 !important;
-  }
-
-  & .item:last-of-type {
-    margin-bottom: 0 !important;
-  }
-
-  & .item:first-of-type,
-  & .item:last-of-type {
-    border-radius: 4px;
-  }
+	&_body {
+		display: none;
+	}
 }

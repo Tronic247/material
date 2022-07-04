@@ -1,5 +1,4 @@
-import flatpickr from "flatpickr";
 
-const Picker = flatpickr
+const Picker = {}
 
 export default Picker

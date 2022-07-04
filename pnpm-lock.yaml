@@ -2,6 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@popperjs/core': ^2.11.0
+  animejs: ^3.2.1
   chokidar: ^3.5.3
   css-minify: ^2.0.0
   esbuild: ^0.14.48
@@ -13,6 +14,7 @@ specifiers:
   tcol: ^1.0.2
 
 dependencies:
+  animejs: 3.2.1
   tcol: 1.0.2
 
 devDependencies:
@@ -36,6 +38,10 @@ packages:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
     engines: {node: '>=10.13.0'}
     dev: true
+
+  /animejs/3.2.1:
+    resolution: {integrity: sha512-sWno3ugFryK5nhiDm/2BKeFCpZv7vzerWUcUPyAZLDhMek3+S/p418ldZJbJXo5ZUOpfm2kP2XRO4NJcULMy9A==}
+    dev: false
 
   /anymatch/3.1.2:
     resolution: {integrity: sha512-P43ePfOAIupkguHUycrc4qJ9kz8ZiuOUijaETwX7THt0Y/GNK7v0aa8rY816xWjZ7rJdA5XdMcpVFTKMq+RvWg==}

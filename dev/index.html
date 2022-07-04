@@ -6,21 +6,58 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="material.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
-
-    <div class="textbox">
-        <div class="left">
-        </div>
-        <div class="middle">
-            <label for="aaaa" class="label">Label</label>
-            <input type="text" id="aaaa" class="input">
-        </div>
-        <div class="right"></div>
-    </div>
+    <h1>
+        Material Sandbox
+    </h1>
+    <p class="text-gray-6">
+        This is a sandbox for testing Material Design components.
+    </p>
 
     
+    <ul class="accordion_parent">
+        <li class="accordion">
+            <div class="accordion_head">
+                <p>
+                    Accordion
+                </p>
+
+                <button data-accordion-toggle>
+                    Toggle
+                </button>
+            </div>
+
+            <div class="accordion_body">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.</p>
+            </div>
+        </li>
+
+        <li class="accordion accordion--open">
+            <div class="accordion_head">
+                <p>
+                    Accordion
+                </p>
+
+                <button data-accordion-toggle>
+                    Toggle
+                </button>
+            </div>
+
+            <div class="accordion_body">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem.</p>
+            </div>
+        </li>
+    </ul>
+
+
     <script src="material.js"></script>
 </body>
 
