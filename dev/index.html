@@ -27,6 +27,10 @@
     <section component="appbars"></section>
     <section component="snackbar"></section>
     <section component="popover"></section>
+    <section component="tooltip"></section>
+    <section component="checkbox"></section>
+
+    
 
 
 
@@ -70,11 +74,14 @@
                             });
                         };
 
-                        Material.Popover.init("#popover_example");
+
 
                         $$("#popover_trigger").onclick = () => {
+                            Material.Popover.init("#popover_example");
                             $$("#popover_example").Material.Popover.toggle();
                         };
+
+                        Material.Tooltip()
                     };
                 });
         })

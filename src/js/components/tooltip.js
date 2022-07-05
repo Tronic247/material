@@ -1,42 +1,56 @@
-import { createPopper } from '@popperjs/core';
+import {
+	$$,
+	$addClass,
+	$addEvents,
+	$element,
+	$hasClass,
+	$removeClass,
+} from "../element";
+import { createPopper } from "@popperjs/core";
 
-let tooltip_id;
-const Tooltip = {
-    init: () => {
-        const trigger = document.querySelectorAll('[data-tooltip]');
+function Tooltip() {
+	const tooltipEls = $$("[data-tooltip]");
+	const tooltipActiveClass = "tooltip--open";
 
-        trigger.forEach(el => {
-            const show = () => Tooltip.show(el);
-            const hide = () => Tooltip.hide(tooltip_id);
-            const mouseshowevents = ['mouseenter', 'touchstart'];
-            const mousehideevents = ['mouseleave', 'touchend'];
+	tooltipEls.forEach((el) => {
+		if ($hasClass(el, "tooltip-init")) return;
 
-            mouseshowevents.forEach(event => el.addEventListener(event, show));
-            mousehideevents.forEach(event => el.addEventListener(event, hide));
-        });
-    },
+		const tooltipEl = $element("div");
+		$addClass(tooltipEl, "tooltip");
+		$addClass(el, "tooltip-init");
 
-    show: (el) => {
-        const target = el.getAttribute('data-tooltip');
-        const tooltip = document.createElement('div');
-        tooltip.classList.add('tooltip');
-        tooltip_id = "__" + (Math.random() + 1).toString(36).substring(7) + "__" + (Math.random() + 1).toString(36).substring(7);
-        tooltip.id = tooltip_id;
-        tooltip.innerHTML = target;
-        createPopper(el, tooltip);
-        setTimeout(() => {
-            tooltip.classList.add('show');
-        }, 100);
-        document.body.appendChild(tooltip);
-    },
+		const tooltipText = el.getAttribute("data-tooltip");
+		tooltipEl.innerHTML = tooltipText;
 
-    hide: (id) => {
-        const tooltip = document.getElementById(id);
-        tooltip.classList.remove('show');
-        setTimeout(() => {
-            tooltip.remove();
-        }, 300);
-    }
-};
-Tooltip.init();
+		function show() {
+			document.body.appendChild(tooltipEl);
+
+			createPopper(el, tooltipEl, {
+				placement: el.getAttribute("data-placement") || "bottom",
+				modifiers: [
+					{
+						name: "offset",
+						options: {
+							offset: [4, 4],
+						},
+					},
+				],
+			});
+
+			$addClass(tooltipEl, tooltipActiveClass);
+		}
+
+		function hide() {
+			$removeClass(tooltipEl, tooltipActiveClass);
+			setTimeout(() => {
+				tooltipEl.remove();
+			}, 300);
+		}
+
+		$addEvents(el, "mouseenter, touchstart", show);
+		$addEvents(el, "mouseleave, touchend", hide);
+	});
+}
+Tooltip();
+
 export default Tooltip;

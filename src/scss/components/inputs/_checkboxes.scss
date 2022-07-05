@@ -1,131 +1,90 @@
+$checked-svg: "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='UTF-8'%3F%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg enable-background='new 0 0 78.369 78.369' fill='white' version='1.1' viewBox='0 0 78.369 78.369' xml:space='preserve' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='m78.049 19.015-48.591 48.591c-0.428 0.428-1.121 0.428-1.548 0l-27.59-27.591c-0.427-0.426-0.427-1.119 0-1.547l6.704-6.704c0.428-0.427 1.121-0.427 1.548 0l20.113 20.112 41.113-41.113c0.429-0.427 1.12-0.427 1.548 0l6.703 6.704c0.428 0.427 0.428 1.119 0 1.548z'/%3E%3C/svg%3E%0A";
+
 .checkbox {
-  z-index: 0;
-  position: relative;
-  display: inline-block;
-  color: rgba(0, 0, 0, 0.87);
-  font-size: 16px;
-  line-height: 1.5;
+	position: relative;
+	appearance: none;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	height: 40px;
+	width: 40px;
 
-  & input {
-    appearance: none;
-    z-index: -1;
-    position: absolute;
-    left: -10px;
-    top: -8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    background-color: rgba(0, 0, 0, 0.6);
-    box-shadow: none;
-    outline: none;
-    opacity: 0;
-    transform: scale(1);
-    pointer-events: none;
-    transition: opacity 0.3s, transform 0.2s;
-  }
+	&[type="radio"] {
+		border-radius: 50%;
 
-  & > span {
-    display: inline-block;
-    width: 100%;
-    cursor: pointer;
-  }
+		&::after {
+			border-radius: 100%;
+			background-image: none;
+		}
 
-  & > span::before {
-    content: "";
-    display: inline-block;
-    box-sizing: border-box;
-    margin: 3px 11px 3px 1px;
-    border: solid 2px;
-    border-color: rgba(0, 0, 0, 0.6);
-    border-radius: 2px;
-    width: 18px;
-    height: 18px;
-    vertical-align: top;
-    transition: border-color 0.2s, background-color 0.2s;
-  }
+		&:checked::after {
+			outline-width: 4px;
+			outline-offset: -2px;
+			background-color: tm-color("white");
+		}
+	}
 
-  & > span::after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 4px;
-    left: 2px;
-    width: 10px;
-    height: 5px;
-    border: solid 2px transparent;
-    border-right: none;
-    border-top: none;
-    transform: translate(3px, 4px) rotate(-45deg);
-  }
+	&:after,
+	&:before {
+		pointer-events: none;
+	}
 
-  & > input:checked,
-  & > input:indeterminate {
-    background-color: material-color($p);
-  }
+	&:after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		height: 16px;
+		width: 16px;
+		background-size: 0px 0px;
+		background-position: center;
+		transform: translate(-50%, -50%);
+		background-image: url("#{$checked-svg}");
+		background-color: transparent;
+		outline: 2px solid tm-color("gray", 6);
+		background-repeat: no-repeat;
 
-  & > input:checked + span::before,
-  & > input:indeterminate + span::before {
-    border-color: material-color($p);
-    background-color: material-color($p);
-  }
+		@include rounded(2);
+		@include transition();
+	}
 
-  & > input:checked + span::after,
-  & > input:indeterminate + span::after {
-    border-color: rgb(255, 255, 255);
-  }
+	&:before {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background: transparent;
+		height: 40px;
+		width: 40px;
 
-  & > input:indeterminate + span::after {
-    border-left: none;
-    transform: translate(4px, 3px);
-  }
+		@include rounded(100);
+	}
 
-  &:hover > input {
-    opacity: 0.4;
-  }
+	&:hover:before {
+		background: tm-color("gray", 1);
+	}
 
-  & > input:focus {
-    opacity: 0.12;
-  }
+	&:active:before,
+	&:focus-visible:before {
+		background: tm-color("gray", 2);
+	}
 
-  &:hover > input:focus {
-    opacity: 0.16;
-  }
+	&:checked {
+		&:after {
+			background-color: tm-color("primary");
+			outline-color: tm-color("primary");
+			background-size: 10px 10px;
+		}
 
-  & > input:active {
-    opacity: 1;
-    transform: scale(0);
-    transition: transform 0s, opacity 0s;
-  }
+		&:active:before,
+		&:focus-visible:before {
+			background: tm-color("primary", 2);
+		}
 
-  & > input:active + span::before {
-    border-color: material-color($p);
-  }
-
-  & > input:checked:active + span::before {
-    border-color: transparent;
-    background-color: rgba(0, 0, 0, 0.6);
-  }
-
-  & > input:disabled {
-    opacity: 0;
-  }
-
-  & > input:disabled + span {
-    color: rgba(0, 0, 0, 0.38);
-    cursor: initial;
-  }
-
-  & > input:disabled + span::before {
-    border-color: currentColor;
-  }
-
-  & > input:checked:disabled + span::before,
-  & > input:indeterminate:disabled + span::before {
-    border-color: transparent;
-    background-color: currentColor;
-  }
+		&:hover:before {
+			background: tm-color("primary", 1);
+		}
+	}
 }
