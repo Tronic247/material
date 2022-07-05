@@ -320,7 +320,7 @@ $g: $green-color;
 $w: $yellow-color;
 $dk: $gray-color;
 
-:root {
+body:not(.dark) {
 	@for $i from 1 to 10 {
 		--tm-primary-#{$i}: #{material-color($primary-color, #{$i * 100})};
 	}
@@ -351,6 +351,42 @@ $dk: $gray-color;
 
 	--tm-light-color: #fff;
 	--tm-dark-color: #000;
+}
+
+body.dark {
+	@for $i from 1 to 10 {
+		--tm-primary-#{$i}: #{material-color($primary-color, #{1000 - $i * 100})};
+	}
+
+	@for $i from 1 to 10 {
+		--tm-secondary-#{$i}: #{material-color(
+				$secondary-color,
+				#{1000 - $i * 100}
+			)};
+	}
+
+	@for $i from 1 to 10 {
+		--tm-blue-#{$i}: #{material-color($blue-color, #{1000 - $i * 100})};
+	}
+
+	@for $i from 1 to 10 {
+		--tm-red-#{$i}: #{material-color($red-color, #{1000 - $i * 100})};
+	}
+
+	@for $i from 1 to 10 {
+		--tm-green-#{$i}: #{material-color($green-color, #{1000 - $i * 100})};
+	}
+
+	@for $i from 1 to 10 {
+		--tm-yellow-#{$i}: #{material-color($yellow-color, #{1000 - $i * 100})};
+	}
+
+	@for $i from 1 to 10 {
+		--tm-gray-#{$i}: #{material-color($gray-color, #{1000 - $i * 100})};
+	}
+
+	--tm-light-color: #141723;
+	--tm-dark-color: #fff;
 }
 
 @function tm-color($name, $variant: 5) {

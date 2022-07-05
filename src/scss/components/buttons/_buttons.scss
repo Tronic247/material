@@ -122,7 +122,7 @@
 
 	&:hover,
 	&:focus-visible {
-		background: tm-color($color, 1);
+		background: tm-color("gray", 1);
 	}
 }
 
