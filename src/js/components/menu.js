@@ -1,66 +1,79 @@
-import * as focusTrap from 'focus-trap';
-import { createPopper } from '@popperjs/core';
-let trap;
-let element;
-const Menu = {
-    init: () => {
-        const trigger = document.querySelectorAll('[data-toggle-menu]');
+import { createFocusTrap } from "focus-trap";
+import { createPopper } from "@popperjs/core";
+import { $addClass, $removeClass, $addEvents, $hasClass } from "../element";
 
-        trigger.forEach(el => {
-            const target = el.getAttribute('data-toggle-menu');
-            const menu = document.querySelector(`[data-menu-id="${target}"]`);
-            const children = menu.querySelectorAll('*');
-            element = el;
+class Menu {
+	init(element) {
+		if (!element.Material) element.Material = {};
+		if (element.Material.Menu) return;
 
-            const toggle = () => {
-                Menu.toggle(menu);
-            };
+		const trap = createFocusTrap(element, {
+			allowOutsideClick: true,
+		});
+		const openClass = "menu--open";
 
-            el.addEventListener('pointerdown', toggle);
-            el.addEventListener('click', (e) => {
-                if (e.clientX == 0 || e.clientY == 0) {
-                    toggle();
-                }
-            });
+		let trigger = null;
 
-            children.forEach(child => {
-                child.addEventListener('click', () => {
-                    const target = element.getAttribute('data-toggle-menu');
-                    const menu = document.querySelector(`[data-menu-id="${target}"]`);
-                    Menu.close(menu);
-                });
-            });
-        });
-    },
+		element.Material.Menu = {
+			open,
+			close,
+			toggle,
+			popperCreated: false,
+		};
 
-    toggle: (menu) => {
-        if (menu.classList.contains('open')) {
-            Menu.close(menu);
-        }
-        else {
-            Menu.open(menu);
-        }
-    },
+		function create_popper(trigger) {
+			if (element.Material.Menu.popperCreated) return;
+			element.Material.Menu.popperCreated = true;
 
-    open: (menu) => {
-        trap = focusTrap.createFocusTrap(menu, {
-            onActivate: () => {
-                menu.classList.add('open');
-            },
-            onDeactivate: () => {
-                menu.classList.remove('open');
-            }
-        });
-        trap.activate();
-        createPopper(element, menu);
-        menu.removeAttribute('tabindex');
-    },
+			const popper = createPopper(trigger, element, {
+				placement: "bottom",
+			});
+		}
 
-    close: (menu) => {
-        menu.classList.remove('open');
-        trap.deactivate();
-        menu.setAttribute('tabindex', '-1');
-    }
-};
-Menu.init();
-export default Menu;
+		element.setAttribute("tabindex", -1);
+
+		function open(el) {
+			trigger = el;
+			create_popper(trigger);
+
+			trap.activate();
+			$addClass(element, openClass);
+		}
+
+		function close(el) {
+			trigger = el;
+			create_popper(trigger);
+
+			trap.deactivate();
+			$removeClass(element, openClass);
+		}
+
+		function toggle(el) {
+			trigger = el;
+			create_popper(trigger);
+
+			if ($hasClass(element, openClass)) {
+				close(el);
+			} else {
+				open(el);
+			}
+		}
+
+		$addEvents(document, "keydown", (e) => {
+			if (e.key === "Escape") {
+				close();
+			}
+		});
+
+		/**
+		 * Close the menu when the user clicks inside of it.
+		 */
+		$addEvents(document, "click", (e) => {
+			if (!$hasClass(element, openClass)) return;
+			if (!element.contains(e.target)) return;
+			close();
+		});
+	}
+}
+const instance = new Menu();
+export default instance;

@@ -1,16 +1,18 @@
 .menu {
-  display: inline-block;
-  min-width: 100px;
-  background: #fff;
-  border-radius: $border-radius * 4px;
-  transition: opacity 0.2s ease;
+	max-width: 100px;
+	max-height: 100px;
+	overflow: auto;
   opacity: 0;
-  pointer-events: none;
-  position: fixed;
+  transition: max-height 0.2s ease, max-width 0.2s ease, opacity 0.2s ease;
+
+  background: tm-color("white");
+
+  @include rounded();
   @include elevation(4);
 
-  &.open {
+  &--open {
     opacity: 1;
-    pointer-events: all;
+    max-height: 300px;
+    max-width: 200px;
   }
 }

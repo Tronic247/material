@@ -385,7 +385,7 @@ body.dark {
 		--tm-gray-#{$i}: #{material-color($gray-color, #{1000 - $i * 100})};
 	}
 
-	--tm-light-color: #141723;
+	--tm-light-color: #0a0c17;
 	--tm-dark-color: #fff;
 }
 
