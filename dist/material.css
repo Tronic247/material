@@ -186,7 +186,7 @@ template {
   display: none;
 }
 
-:root {
+body:not(.dark) {
   --tm-primary-1: #c5cae9;
   --tm-primary-2: #9fa8da;
   --tm-primary-3: #7986cb;
@@ -252,6 +252,74 @@ template {
   --tm-gray-9: #212121;
   --tm-light-color: #fff;
   --tm-dark-color: #000;
+}
+
+body.dark {
+  --tm-primary-1: #1a237e;
+  --tm-primary-2: #283593;
+  --tm-primary-3: #303f9f;
+  --tm-primary-4: #3949ab;
+  --tm-primary-5: #3f51b5;
+  --tm-primary-6: #5c6bc0;
+  --tm-primary-7: #7986cb;
+  --tm-primary-8: #9fa8da;
+  --tm-primary-9: #c5cae9;
+  --tm-secondary-1: #880e4f;
+  --tm-secondary-2: #ad1457;
+  --tm-secondary-3: #c2185b;
+  --tm-secondary-4: #d81b60;
+  --tm-secondary-5: #e91e63;
+  --tm-secondary-6: #ec407a;
+  --tm-secondary-7: #f06292;
+  --tm-secondary-8: #f48fb1;
+  --tm-secondary-9: #f8bbd0;
+  --tm-blue-1: #0d47a1;
+  --tm-blue-2: #1565c0;
+  --tm-blue-3: #1976d2;
+  --tm-blue-4: #1e88e5;
+  --tm-blue-5: #2196f3;
+  --tm-blue-6: #42a5f5;
+  --tm-blue-7: #64b5f6;
+  --tm-blue-8: #90caf9;
+  --tm-blue-9: #bbdefb;
+  --tm-red-1: #b71c1c;
+  --tm-red-2: #c62828;
+  --tm-red-3: #d32f2f;
+  --tm-red-4: #e53935;
+  --tm-red-5: #f44336;
+  --tm-red-6: #ef5350;
+  --tm-red-7: #e57373;
+  --tm-red-8: #ef9a9a;
+  --tm-red-9: #ffcdd2;
+  --tm-green-1: #1b5e20;
+  --tm-green-2: #2e7d32;
+  --tm-green-3: #388e3c;
+  --tm-green-4: #43a047;
+  --tm-green-5: #4caf50;
+  --tm-green-6: #66bb6a;
+  --tm-green-7: #81c784;
+  --tm-green-8: #a5d6a7;
+  --tm-green-9: #c8e6c9;
+  --tm-yellow-1: #f57f17;
+  --tm-yellow-2: #f9a825;
+  --tm-yellow-3: #fbc02d;
+  --tm-yellow-4: #fdd835;
+  --tm-yellow-5: #ffeb3b;
+  --tm-yellow-6: #ffee58;
+  --tm-yellow-7: #fff176;
+  --tm-yellow-8: #fff59d;
+  --tm-yellow-9: #fff9c4;
+  --tm-gray-1: #212121;
+  --tm-gray-2: #424242;
+  --tm-gray-3: #616161;
+  --tm-gray-4: #757575;
+  --tm-gray-5: #9e9e9e;
+  --tm-gray-6: #bdbdbd;
+  --tm-gray-7: #e0e0e0;
+  --tm-gray-8: #eeeeee;
+  --tm-gray-9: #f5f5f5;
+  --tm-light-color: #141723;
+  --tm-dark-color: #fff;
 }
 
 .bg-primary-1 {
@@ -1386,38 +1454,38 @@ h6, .h6 {
   color: var(--tm-primary-5);
 }
 .btn.text.primary:hover, .btn.text.primary:focus-visible {
-  background: var(--tm-primary-1);
+  background: var(--tm-gray-1);
 }
 .btn.text.secondary {
   color: var(--tm-secondary-5);
 }
 .btn.text.secondary:hover, .btn.text.secondary:focus-visible {
-  background: var(--tm-secondary-1);
+  background: var(--tm-gray-1);
 }
 .btn.text.blue {
   color: var(--tm-blue-5);
 }
 .btn.text.blue:hover, .btn.text.blue:focus-visible {
-  background: var(--tm-blue-1);
+  background: var(--tm-gray-1);
 }
 .btn.text.danger {
   color: var(--tm-red-5);
 }
 .btn.text.danger:hover, .btn.text.danger:focus-visible {
-  background: var(--tm-red-1);
+  background: var(--tm-gray-1);
 }
 .btn.text.success {
   color: var(--tm-green-5);
 }
 .btn.text.success:hover, .btn.text.success:focus-visible {
-  background: var(--tm-green-1);
+  background: var(--tm-gray-1);
 }
 .btn.text.warning {
   color: var(--tm-yellow-5);
   color: var(--tm-yellow-8);
 }
 .btn.text.warning:hover, .btn.text.warning:focus-visible {
-  background: var(--tm-yellow-1);
+  background: var(--tm-gray-1);
 }
 .btn.text.disabled {
   color: var(--tm-gray-8);
