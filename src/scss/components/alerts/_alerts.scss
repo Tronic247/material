@@ -1,44 +1,60 @@
 .alert {
-  padding: 15px;
-  border-radius: #{$border-radius * 6+"px"};
-  color: material-color($dk, "800");
-  background: material-color($dk, "100");
-  border: 1px solid #{material-color($dk, "200")};
-  display: flex;
+	display: flex;
+	align-items: center;
+	justify-content: start;
+	width: 100%;
 
-  & .alert-center {
-    flex: 1;
-    margin-left: 8px;
-    margin-right: 8px;
+	background-color: tm-color("gray", 1);
+	color: tm-color("black");
+
+	@include rounded(4);
+	@include padding(8, 10);
+	@include font-size(15);
+
+	&_left {
+		margin-right: 10px;
+	}
+
+	&_center {
+		flex: 1;
+	}
+
+	&_right {
+		margin-left: 10px;
+	}
+
+	/**
+  *
+  * Colors
+  *
+  */
+	&.primary {
+		background-color: tm-color("primary", 1);
+		color: tm-color("primary", 9);
+	}
+
+	&.secondary {
+		background-color: tm-color("secondary", 1);
+		color: tm-color("secondary", 9);
+	}
+
+	&.success {
+		background-color: tm-color("green", 1);
+		color: tm-color("green", 9);
   }
 
-  &.primary {
-    color: material-color($p, "900");
-    background: material-color($p, "100");
-    border: 1px solid #{material-color($p, "200")};
-  }
+	&.danger {
+		background-color: tm-color("red", 1);
+		color: tm-color("red", 9);
+	}
 
-  &.secondary {
-    color: material-color($s, "900");
-    background: material-color($s, "100");
-    border: 1px solid #{material-color($s, "200")};
-  }
+	&.warning {
+		background-color: tm-color("yellow", 1);
+		color: tm-color("black", 9);
+	}
 
-  &.danger {
-    color: material-color($d, "900");
-    background: material-color($d, "100");
-    border: 1px solid #{material-color($d, "200")};
-  }
-
-  &.success {
-    color: material-color($g, "900");
-    background: material-color($g, "100");
-    border: 1px solid #{material-color($g, "200")};
-  }
-
-  &.warning {
-    color: material-color($w, "900");
-    background: material-color($w, "100");
-    border: 1px solid #{material-color($w, "200")};
+  &.blue {
+    background-color: tm-color("blue", 1);
+    color: tm-color("blue", 9);
   }
 }

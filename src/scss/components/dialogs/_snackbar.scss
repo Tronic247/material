@@ -1,26 +1,40 @@
-.snackbar {
-  position: fixed;
-  bottom: 10px;
-  left: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: material-color($dk, "900");
-  color: #fff;
-  padding: $padding * 1px #{$padding * 16px};
-  border-radius: $border-radius * 4px;
-  @include elevation(4);
-  transition: all 0.4s ease;
-  transform: translate(-50%, 100%);
-  opacity: 0;
-
-  &.show {
-    transform: translate(-50%, -10%);
-    opacity: 1;
-  }
-
-  & .btn {
-    margin-left: 10px;
-  }
+.snackbar_container {
+	position: fixed;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	z-index: 100;
 }
 
+.snackbar {
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	justify-content: space-between;
+	transform: scale(0.8);
+	opacity: 0;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: max-content;
+
+	background: tm-color("gray", 9);
+	color: tm-color("white");
+
+	@include padding(15, 20);
+	@include transition();
+	@include elevation(4);
+	@include rounded();
+
+	&--open {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+  & &_message {
+    margin-right: 6px;
+  }
+}

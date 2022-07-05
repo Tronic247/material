@@ -1,60 +1,96 @@
+import { $, $element, $addClass, $removeClass } from "../element";
+import { uid, noop } from "../utils";
 import Ripple from "./ripple";
-const Snackbar = {
-    show: (message, button = "Got It", action = "", duration = 3000) => {
-        let randomId;
-        let _action;
-        if (action === "") {
-            _action = () => {
-                // do something
-            }
-        }
-        else {
-            _action = action;
-        }
-        const show_snackbar = () => {
-            const snackbar = document.createElement("div");
-            snackbar.classList.add("snackbar");
-            randomId = "__" + (Math.random() + 1).toString(36).substring(7) + '-' + (Math.random() + 1).toString(36).substring(7);
-            snackbar.innerHTML = `
-                <p>${message}</p>
-                <button class="btn small text primary ripple-e" id="${randomId}">${button}</button>
-            `;
-            document.body.appendChild(snackbar);
-            document.getElementById(randomId).addEventListener("click", _action);
-            document.getElementById(randomId).addEventListener("click", () => {
-                snackbar.classList.remove("show");
-                setTimeout(() => {
-                    snackbar.remove();
-                }, 300);
-            });
+import anime from "animejs";
 
-            setTimeout(() => {
-                snackbar.classList.add("show");
-            }, 300);
-
-            Ripple.init();
-
-            setTimeout(() => {
-                snackbar.classList.remove("show");
-                setTimeout(() => {
-                    snackbar.remove();
-                }, 300);
-            }, duration);
-        };
-
-        const snackbar_there = document.querySelector(".snackbar");
-        if (snackbar_there) {
-            document.querySelector(".snackbar").classList.remove("show");
-            setTimeout(() => {
-                document.querySelector(".snackbar").remove();
-                setTimeout(() => {
-                    show_snackbar();
-                }, 300);
-            }, 300);
-        }
-        else {
-            show_snackbar();
-        }
-    },
+const defaultOptions = {
+	action: "",
+	duration: 3000,
+	onClose: noop,
+	onOpen: noop,
+	onDestroy: noop,
+	actionHandler: noop,
 };
+
+let snackbarContainer = $element("div");
+if ($(".snackbar_container")) snackbarContainer = $(".snackbar_container");
+else {
+	$addClass(snackbarContainer, "snackbar_container");
+	document.body.appendChild(snackbarContainer);
+}
+
+/**
+ * Create span
+ */
+const span = document.createElement("span");
+span.style.display = "none";
+snackbarContainer.appendChild(span);
+
+function Snackbar(message, options = {}) {
+	options = { ...defaultOptions, ...options };
+
+	const snackBarParent = $element("div");
+	$addClass(snackBarParent, "snackbar");
+
+	function open() {
+		const actionId = uid();
+
+		snackBarParent.innerHTML = `
+            <div class="snackbar_message">${message}</div>
+
+            ${
+							options.action
+								? `<button class="btn text primary" id="${actionId}">${options.action}</button>`
+								: ``
+						}
+        `;
+
+		setTimeout(() => {
+			const actionButton = $(`#${actionId}`);
+
+			Ripple.init();
+
+			actionButton?.addEventListener("click", () => {
+				options.actionHandler();
+				close();
+			});
+		}, 100);
+
+		snackbarContainer.insertBefore(
+			snackBarParent,
+			snackbarContainer.firstChild
+		);
+
+		setTimeout(() => {
+			$addClass(snackBarParent, "snackbar--open");
+			options.onOpen();
+		}, 100);
+	}
+
+	open();
+
+	function close() {
+		$removeClass(snackBarParent, "snackbar--open");
+		anime({
+			targets: snackBarParent,
+			height: 0,
+			duration: 200,
+			easing: "easeInOutQuad",
+			complete() {
+				options.onClose();
+
+				destroy();
+			},
+		});
+	}
+
+	setTimeout(close, options.duration);
+
+	function destroy() {
+		snackBarParent.remove();
+
+		options.onDestroy();
+	}
+}
+
 export default Snackbar;

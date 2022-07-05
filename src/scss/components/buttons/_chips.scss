@@ -1,38 +1,58 @@
 .chip {
-  padding: $padding * 8px #{$padding * 10px};
-  user-select: none;
-  background: material-color($dk, "300");
-  border-radius: $border-radius * 50px;
-  transition: all 0.2s ease;
-  cursor: pointer;
+	display: inline-flex;
+  align-items: center;
+  justify-content: center;
+	cursor: pointer;
 
-  &:hover {
-    background: material-color($dk, "400");
+	background-color: tm-color("gray", 3);
+
+	@include rounded(100);
+	@include padding(8, 14);
+	@include font-size(14);
+	@include transition();
+
+	&:hover {
+		background-color: tm-color("gray", 4);
+	}
+
+	&:active,
+	&:focus {
+		background-color: tm-color("gray", 5);
+	}
+
+	/**
+  *
+  * Active state
+  *
+  */
+	&.active {
+		background-color: tm-color("primary", 1);
+		color: tm-color("primary", 9);
+
+		&:hover {
+			background-color: tm-color("primary", 2);
+		}
+
+		&:active,
+		&:focus {
+			background-color: tm-color("primary", 3);
+		}
+	}
+
+  /*
+  *
+  * After, Before items
+  *
+  */
+  &_after {
+    margin-left: 8px;
   }
 
-  &:active,
-  &:focus-visible {
-    background: material-color($dk, "500");
+  &_before {
+    margin-right: 8px;
   }
 
-  &.active {
-    background: rgba(material-color($p, "100"), 0.4);
-    color: material-color($p, "500");
-
-    &:hover {
-      background: rgba(material-color($p, "100"), 0.8);
-    }
-
-    &:active,
-    &:focus-visible {
-      background: material-color($p, "200");
-    }
-  }
-
-  &.disabled,
-  &:disabled {
-    background: material-color($dk, "200");
-    color: material-color($dk, "800");
-    cursor: default;
+  &_center {
+    flex: 1;
   }
 }

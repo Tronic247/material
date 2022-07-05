@@ -1,68 +1,61 @@
-.fab {
-  $temp: $padding * 60px;
-  max-width: $temp;
-  max-height: $temp;
-  min-width: $temp;
-  min-height: $temp;
-  border-radius: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  background: material-color($dk, "200");
-  color: #000;
-  cursor: pointer;
-  @include elevation(4);
-  transition: all 0.2s ease;
+.icon.floating {
+	$size: #{$padding * 60px};
 
-  & .mdi {
-    font-size: $font-size * 25px;
-  }
+	min-height: $size;
+	min-width: $size;
+	max-height: $size;
+	max-width: $size;
 
-  &:hover {
-    background: material-color($dk, "300");
-    @include elevation(8);
-  }
+	background: tm-color("primary");
+	color: tm-color("white");
 
-  &:active,
-  &:focus-visible {
-    background: material-color($dk, "400");
-    @include elevation(14);
-  }
+	@include transition();
+	@include font-size(20);
+	@include elevation(4);
 
-  &.primary {
-    background: material-color($p, "500");
-    color: #fff;
+	&:hover,
+	&:focus-visible {
+		background: tm-color("primary", 6);
 
-    &:hover {
-      background: material-color($p, "600");
-    }
+		@include elevation(8);
+	}
+}
 
-    &:active,
-    &:focus-visible {
-      background: material-color($p, "700");
-    }
-  }
+@mixin floating-button($color) {
+	background: tm-color($color);
+	color: tm-color("white");
 
-  &.secondary {
-    background: material-color($s, "500");
-    color: #fff;
+	&:hover,
+	&:focus-visible {
+		background: tm-color($color, 6);
+	}
+}
 
-    &:hover {
-      background: material-color($s, "600");
-    }
+/**
+*
+* Colors
+*
+*/
+.icon.floating {
+	&.secondary {
+		@include floating-button("secondary");
+	}
 
-    &:active,
-    &:focus-visible {
-      background: material-color($s, "700");
-    }
-  }
+	&.danger {
+		@include floating-button("red");
+	}
 
-  &.disabled,
-  &:disabled {
-    background: material-color($dk, "200");
-    color: material-color($dk, "600");
-    cursor: default;
-    @include elevation(0);
-  }
+	&.success {
+		@include floating-button("green");
+	}
+
+	&.warning {
+		@include floating-button("yellow");
+
+		color: #000;
+	}
+
+	&.blue {
+		@include floating-button("blue");
+	}
 }

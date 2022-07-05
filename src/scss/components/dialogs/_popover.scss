@@ -1,0 +1,17 @@
+.popover {
+    background-color: tm-color("white");
+    color: tm-color("black");
+    max-width: 400px;
+    opacity: 0;
+    pointer-events: none;
+
+    @include elevation(4);
+    @include rounded();
+    @include padding(10, 14);
+    @include transition(opacity);
+
+    &--open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}

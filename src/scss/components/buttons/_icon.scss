@@ -1,40 +1,48 @@
+@mixin icon($size) {
+	min-height: $size;
+	min-width: $size;
+	max-height: $size;
+	max-width: $size;
+}
+
 .icon {
-  $temp: $padding * 45px;
-  max-width: $temp;
-  max-height: $temp;
-  min-width: $temp;
-  min-height: $temp;
-  display: inline-flex;
-  align-items: center;
-  overflow: hidden;
-  justify-content: center;
-  border-radius: 100%;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  color: material-color($dk, "700");
-  position: relative;
+	$size: #{$padding * 40};
 
-  & .mdi {
-    font-size: $font-size * 20px;
-    pointer-events: none;
-  }
+	display: inline-flex;
+	user-select: none;
+	align-items: center;
+	justify-content: center;
+	border: none;
+	outline: none;
+	background: transparent;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
 
-  &:hover {
-    background: material-color($dk, "300");
-    color: material-color($dk, "900");
-  }
+	color: tm-color("gray", 8);
 
-  &:focus-visible {
-    background: material-color($dk, "400");
-    color: material-color($dk, "900");
-  }
+	@include transition();
+	@include rounded(100);
+	@include font-size(20);
+	@include icon(#{$size}px);
 
-  &.disabled,
-  &:disabled {
-    background: material-color($dk, "200");
-    color: material-color($dk, "500");
-    cursor: not-allowed;
-  }
+	&:hover,
+	&:focus-visible {
+		background: rgba(0, 0, 0, 0.1);
+	}
+
+	/**
+  *
+  * Sizes
+  *
+  */
+	&.sm {
+		@include font-size(16);
+		@include icon(30px);
+	}
+
+	&.lg {
+		@include font-size(24);
+		@include icon(40px);
+	}
 }

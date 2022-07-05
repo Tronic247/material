@@ -7,3 +7,23 @@
 .rounded-xll {
 	border-radius: 50px;
 }
+
+@mixin rounded($radius: 4) {
+	border-radius: #{$border-radius * $radius}px;
+}
+
+@mixin font-size($size: 14) {
+	font-size: #{$font-size * $size}px;
+}
+
+@mixin padding($x: 0, $y: 0) {
+	padding: #{$padding * $x}px #{$padding * $y}px;
+}
+
+@mixin transition($property: all, $duration: 0.2s) {
+	transition: #{$property} #{$duration} ease;
+
+	@media (prefers-reduced-motion: reduce) {
+		transition: none;
+	}
+}

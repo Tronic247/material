@@ -354,6 +354,14 @@ $dk: $gray-color;
 }
 
 @function tm-color($name, $variant: 5) {
+	@if $name == "white" {
+		@return var(--tm-light-color);
+	}
+
+	@if $name == "black" {
+		@return var(--tm-dark-color);
+	}
+
 	@return var(--tm-#{$name}-#{$variant});
 }
 
