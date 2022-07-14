@@ -1286,7 +1286,7 @@
             var to = scope_Spectrum.getStep(proposal);
             var value = scope_Spectrum.fromStepping(to);
             Object.keys(scope_Events).forEach(function(targetEvent) {
-              if (targetEvent.split(".")[0] === "hover") {
+              if ("hover" === targetEvent.split(".")[0]) {
                 scope_Events[targetEvent].forEach(function(callback) {
                   callback.call(scope_Self, value);
                 });
@@ -2304,7 +2304,7 @@
   }
   function _objectSpread2(target) {
     for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i] != null ? arguments[i] : {};
+      var source = null != arguments[i] ? arguments[i] : {};
       i % 2 ? ownKeys(Object(source), true).forEach(function(key) {
         _defineProperty(target, key, source[key]);
       }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function(key) {
