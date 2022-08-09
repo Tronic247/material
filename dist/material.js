@@ -16,7 +16,10 @@
     }
     return to;
   };
-  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target, mod));
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
+  ));
 
   // node_modules/nouislider/dist/nouislider.js
   var require_nouislider = __commonJS({
@@ -1424,7 +1427,15 @@
               var eventType = targetEvent.split(".")[0];
               if (eventName === eventType) {
                 scope_Events[targetEvent].forEach(function(callback) {
-                  callback.call(scope_Self, scope_Values.map(options.format.to), handleNumber, scope_Values.slice(), tap || false, scope_Locations.slice(), scope_Self);
+                  callback.call(
+                    scope_Self,
+                    scope_Values.map(options.format.to),
+                    handleNumber,
+                    scope_Values.slice(),
+                    tap || false,
+                    scope_Locations.slice(),
+                    scope_Self
+                  );
                 });
               }
             });
