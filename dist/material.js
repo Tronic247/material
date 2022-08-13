@@ -2922,33 +2922,52 @@
   var min = Math.min;
   var round = Math.round;
 
+  // node_modules/@popperjs/core/lib/utils/userAgent.js
+  function getUAString() {
+    var uaData = navigator.userAgentData;
+    if (uaData != null && uaData.brands) {
+      return uaData.brands.map(function(item) {
+        return item.brand + "/" + item.version;
+      }).join(" ");
+    }
+    return navigator.userAgent;
+  }
+
+  // node_modules/@popperjs/core/lib/dom-utils/isLayoutViewport.js
+  function isLayoutViewport() {
+    return !/^((?!chrome|android).)*safari/i.test(getUAString());
+  }
+
   // node_modules/@popperjs/core/lib/dom-utils/getBoundingClientRect.js
-  function getBoundingClientRect(element2, includeScale) {
+  function getBoundingClientRect(element2, includeScale, isFixedStrategy) {
     if (includeScale === void 0) {
       includeScale = false;
     }
-    var rect = element2.getBoundingClientRect();
+    if (isFixedStrategy === void 0) {
+      isFixedStrategy = false;
+    }
+    var clientRect = element2.getBoundingClientRect();
     var scaleX = 1;
     var scaleY = 1;
-    if (isHTMLElement(element2) && includeScale) {
-      var offsetHeight = element2.offsetHeight;
-      var offsetWidth = element2.offsetWidth;
-      if (offsetWidth > 0) {
-        scaleX = round(rect.width) / offsetWidth || 1;
-      }
-      if (offsetHeight > 0) {
-        scaleY = round(rect.height) / offsetHeight || 1;
-      }
+    if (includeScale && isHTMLElement(element2)) {
+      scaleX = element2.offsetWidth > 0 ? round(clientRect.width) / element2.offsetWidth || 1 : 1;
+      scaleY = element2.offsetHeight > 0 ? round(clientRect.height) / element2.offsetHeight || 1 : 1;
     }
+    var _ref = isElement(element2) ? getWindow(element2) : window, visualViewport = _ref.visualViewport;
+    var addVisualOffsets = !isLayoutViewport() && isFixedStrategy;
+    var x = (clientRect.left + (addVisualOffsets && visualViewport ? visualViewport.offsetLeft : 0)) / scaleX;
+    var y = (clientRect.top + (addVisualOffsets && visualViewport ? visualViewport.offsetTop : 0)) / scaleY;
+    var width = clientRect.width / scaleX;
+    var height = clientRect.height / scaleY;
     return {
-      width: rect.width / scaleX,
-      height: rect.height / scaleY,
-      top: rect.top / scaleY,
-      right: rect.right / scaleX,
-      bottom: rect.bottom / scaleY,
-      left: rect.left / scaleX,
-      x: rect.left / scaleX,
-      y: rect.top / scaleY
+      width,
+      height,
+      top: y,
+      right: x + width,
+      bottom: y + height,
+      left: x,
+      x,
+      y
     };
   }
 
@@ -3019,8 +3038,8 @@
     return element2.offsetParent;
   }
   function getContainingBlock(element2) {
-    var isFirefox = navigator.userAgent.toLowerCase().indexOf("firefox") !== -1;
-    var isIE = navigator.userAgent.indexOf("Trident") !== -1;
+    var isFirefox = /firefox/i.test(getUAString());
+    var isIE = /Trident/i.test(getUAString());
     if (isIE && isHTMLElement(element2)) {
       var elementCss = getComputedStyle2(element2);
       if (elementCss.position === "fixed") {
@@ -3368,7 +3387,7 @@
   }
 
   // node_modules/@popperjs/core/lib/dom-utils/getViewportRect.js
-  function getViewportRect(element2) {
+  function getViewportRect(element2, strategy) {
     var win = getWindow(element2);
     var html = getDocumentElement(element2);
     var visualViewport = win.visualViewport;
@@ -3379,7 +3398,8 @@
     if (visualViewport) {
       width = visualViewport.width;
       height = visualViewport.height;
-      if (!/^((?!chrome|android).)*safari/i.test(navigator.userAgent)) {
+      var layoutViewport = isLayoutViewport();
+      if (layoutViewport || !layoutViewport && strategy === "fixed") {
         x = visualViewport.offsetLeft;
         y = visualViewport.offsetTop;
       }
@@ -3455,8 +3475,8 @@
   }
 
   // node_modules/@popperjs/core/lib/dom-utils/getClippingRect.js
-  function getInnerBoundingClientRect(element2) {
-    var rect = getBoundingClientRect(element2);
+  function getInnerBoundingClientRect(element2, strategy) {
+    var rect = getBoundingClientRect(element2, false, strategy === "fixed");
     rect.top = rect.top + element2.clientTop;
     rect.left = rect.left + element2.clientLeft;
     rect.bottom = rect.top + element2.clientHeight;
@@ -3467,8 +3487,8 @@
     rect.y = rect.top;
     return rect;
   }
-  function getClientRectFromMixedType(element2, clippingParent) {
-    return clippingParent === viewport ? rectToClientRect(getViewportRect(element2)) : isElement(clippingParent) ? getInnerBoundingClientRect(clippingParent) : rectToClientRect(getDocumentRect(getDocumentElement(element2)));
+  function getClientRectFromMixedType(element2, clippingParent, strategy) {
+    return clippingParent === viewport ? rectToClientRect(getViewportRect(element2, strategy)) : isElement(clippingParent) ? getInnerBoundingClientRect(clippingParent, strategy) : rectToClientRect(getDocumentRect(getDocumentElement(element2)));
   }
   function getClippingParents(element2) {
     var clippingParents2 = listScrollParents(getParentNode(element2));
@@ -3481,18 +3501,18 @@
       return isElement(clippingParent) && contains(clippingParent, clipperElement) && getNodeName(clippingParent) !== "body";
     });
   }
-  function getClippingRect(element2, boundary, rootBoundary) {
+  function getClippingRect(element2, boundary, rootBoundary, strategy) {
     var mainClippingParents = boundary === "clippingParents" ? getClippingParents(element2) : [].concat(boundary);
     var clippingParents2 = [].concat(mainClippingParents, [rootBoundary]);
     var firstClippingParent = clippingParents2[0];
     var clippingRect = clippingParents2.reduce(function(accRect, clippingParent) {
-      var rect = getClientRectFromMixedType(element2, clippingParent);
+      var rect = getClientRectFromMixedType(element2, clippingParent, strategy);
       accRect.top = max(rect.top, accRect.top);
       accRect.right = min(rect.right, accRect.right);
       accRect.bottom = min(rect.bottom, accRect.bottom);
       accRect.left = max(rect.left, accRect.left);
       return accRect;
-    }, getClientRectFromMixedType(element2, firstClippingParent));
+    }, getClientRectFromMixedType(element2, firstClippingParent, strategy));
     clippingRect.width = clippingRect.right - clippingRect.left;
     clippingRect.height = clippingRect.bottom - clippingRect.top;
     clippingRect.x = clippingRect.left;
@@ -3560,12 +3580,12 @@
     if (options === void 0) {
       options = {};
     }
-    var _options = options, _options$placement = _options.placement, placement = _options$placement === void 0 ? state.placement : _options$placement, _options$boundary = _options.boundary, boundary = _options$boundary === void 0 ? clippingParents : _options$boundary, _options$rootBoundary = _options.rootBoundary, rootBoundary = _options$rootBoundary === void 0 ? viewport : _options$rootBoundary, _options$elementConte = _options.elementContext, elementContext = _options$elementConte === void 0 ? popper : _options$elementConte, _options$altBoundary = _options.altBoundary, altBoundary = _options$altBoundary === void 0 ? false : _options$altBoundary, _options$padding = _options.padding, padding = _options$padding === void 0 ? 0 : _options$padding;
+    var _options = options, _options$placement = _options.placement, placement = _options$placement === void 0 ? state.placement : _options$placement, _options$strategy = _options.strategy, strategy = _options$strategy === void 0 ? state.strategy : _options$strategy, _options$boundary = _options.boundary, boundary = _options$boundary === void 0 ? clippingParents : _options$boundary, _options$rootBoundary = _options.rootBoundary, rootBoundary = _options$rootBoundary === void 0 ? viewport : _options$rootBoundary, _options$elementConte = _options.elementContext, elementContext = _options$elementConte === void 0 ? popper : _options$elementConte, _options$altBoundary = _options.altBoundary, altBoundary = _options$altBoundary === void 0 ? false : _options$altBoundary, _options$padding = _options.padding, padding = _options$padding === void 0 ? 0 : _options$padding;
     var paddingObject = mergePaddingObject(typeof padding !== "number" ? padding : expandToHashMap(padding, basePlacements));
     var altContext = elementContext === popper ? reference : popper;
     var popperRect = state.rects.popper;
     var element2 = state.elements[altBoundary ? altContext : elementContext];
-    var clippingClientRect = getClippingRect(isElement(element2) ? element2 : element2.contextElement || getDocumentElement(state.elements.popper), boundary, rootBoundary);
+    var clippingClientRect = getClippingRect(isElement(element2) ? element2 : element2.contextElement || getDocumentElement(state.elements.popper), boundary, rootBoundary, strategy);
     var referenceClientRect = getBoundingClientRect(state.elements.reference);
     var popperOffsets2 = computeOffsets({
       reference: referenceClientRect,
@@ -3972,7 +3992,7 @@
     var isOffsetParentAnElement = isHTMLElement(offsetParent);
     var offsetParentIsScaled = isHTMLElement(offsetParent) && isElementScaled(offsetParent);
     var documentElement = getDocumentElement(offsetParent);
-    var rect = getBoundingClientRect(elementOrVirtualElement, offsetParentIsScaled);
+    var rect = getBoundingClientRect(elementOrVirtualElement, offsetParentIsScaled, isFixed);
     var scroll = {
       scrollLeft: 0,
       scrollTop: 0
