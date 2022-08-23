@@ -2029,7 +2029,7 @@
   Appbar.init();
   var appbar_default = Appbar;
 
-  // node_modules/tabbable/dist/index.esm.js
+  // node_modules/focus-trap/node_modules/tabbable/dist/index.esm.js
   var candidateSelectors = ["input", "select", "textarea", "a[href]", "button", "[tabindex]:not(slot)", "audio[controls]", "video[controls]", '[contenteditable]:not([contenteditable="false"])', "details>summary:first-of-type", "details"];
   var candidateSelector = /* @__PURE__ */ candidateSelectors.join(",");
   var NoElement = typeof Element === "undefined";
