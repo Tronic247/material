@@ -20,7 +20,7 @@
 		"css-minify": "^2.0.0",
 		"esbuild": "^0.15.0",
 		"flatpickr": "^4.6.3",
-		"focus-trap": "^6.7.1",
+		"focus-trap": "^7.0.0",
 		"nouislider": "^15.5.0",
 		"sass": "^1.53.0",
 		"tabbable": "^6.0.0"
