@@ -23,7 +23,7 @@
 		"focus-trap": "^6.7.1",
 		"nouislider": "^15.5.0",
 		"sass": "^1.53.0",
-		"tabbable": "^5.2.1"
+		"tabbable": "^6.0.0"
 	},
 	"dependencies": {
 		"tcol": "^1.0.2"
