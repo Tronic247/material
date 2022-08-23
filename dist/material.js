@@ -2029,7 +2029,7 @@
   Appbar.init();
   var appbar_default = Appbar;
 
-  // node_modules/focus-trap/node_modules/tabbable/dist/index.esm.js
+  // node_modules/tabbable/dist/index.esm.js
   var candidateSelectors = ["input", "select", "textarea", "a[href]", "button", "[tabindex]:not(slot)", "audio[controls]", "video[controls]", '[contenteditable]:not([contenteditable="false"])', "details>summary:first-of-type", "details"];
   var candidateSelector = /* @__PURE__ */ candidateSelectors.join(",");
   var NoElement = typeof Element === "undefined";
@@ -2147,6 +2147,17 @@
   var isNonTabbableRadio = function isNonTabbableRadio2(node) {
     return isRadio(node) && !isTabbableRadio(node);
   };
+  var isNodeAttached = function isNodeAttached2(node) {
+    var _nodeRootHost;
+    var nodeRootHost = getRootNode(node).host;
+    var attached = !!((_nodeRootHost = nodeRootHost) !== null && _nodeRootHost !== void 0 && _nodeRootHost.ownerDocument.contains(nodeRootHost) || node.ownerDocument.contains(node));
+    while (!attached && nodeRootHost) {
+      var _nodeRootHost2;
+      nodeRootHost = getRootNode(nodeRootHost).host;
+      attached = !!((_nodeRootHost2 = nodeRootHost) !== null && _nodeRootHost2 !== void 0 && _nodeRootHost2.ownerDocument.contains(nodeRootHost));
+    }
+    return attached;
+  };
   var isZeroArea = function isZeroArea2(node) {
     var _node$getBoundingClie = node.getBoundingClientRect(), width = _node$getBoundingClie.width, height = _node$getBoundingClie.height;
     return width === 0 && height === 0;
@@ -2161,9 +2172,7 @@
     if (matches.call(nodeUnderDetails, "details:not([open]) *")) {
       return true;
     }
-    var nodeRootHost = getRootNode(node).host;
-    var nodeIsAttached = (nodeRootHost === null || nodeRootHost === void 0 ? void 0 : nodeRootHost.ownerDocument.contains(nodeRootHost)) || node.ownerDocument.contains(node);
-    if (!displayCheck || displayCheck === "full") {
+    if (!displayCheck || displayCheck === "full" || displayCheck === "legacy-full") {
       if (typeof getShadowRoot === "function") {
         var originalNode = node;
         while (node) {
@@ -2181,8 +2190,11 @@
         }
         node = originalNode;
       }
-      if (nodeIsAttached) {
+      if (isNodeAttached(node)) {
         return !node.getClientRects().length;
+      }
+      if (displayCheck !== "legacy-full") {
+        return true;
       }
     } else if (displayCheck === "non-zero-area") {
       return isZeroArea(node);
@@ -6922,11 +6934,11 @@
   exportGlobal("Picker", picker_default);
 })();
 /*!
-* focus-trap 6.9.4
+* focus-trap 7.0.0
 * @license MIT, https://github.com/focus-trap/focus-trap/blob/master/LICENSE
 */
 /*!
-* tabbable 5.3.3
+* tabbable 6.0.0
 * @license MIT, https://github.com/focus-trap/tabbable/blob/master/LICENSE
 */
 //# sourceMappingURL=material.js.map
