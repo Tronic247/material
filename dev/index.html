@@ -32,17 +32,11 @@
     <section component="popover"></section>
     <section component="tooltip"></section>
     <section component="checkbox"></section>
-
-    <button id="menu-opener">Open menu</button>
-    <div class="menu">
-        <button></button>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est dignissimos ipsum quasi blanditiis iusto consequuntur, unde tempora fuga cumque repellat natus dolorum odio iure. Corrupti eum veniam odit dolore iure.
-        Quisquam incidunt consequatur perferendis nam eligendi qui possimus odit, distinctio molestiae ipsum repellat culpa ipsa animi dolore corrupti sapiente quidem. Ipsam rerum quae aperiam quis reprehenderit ea consequuntur id odio.
-        Sit quisquam, nihil corrupti neque dolorum architecto nam quaerat illo sed nemo mollitia, quos ea! Tenetur rerum voluptas excepturi, iusto odio similique vitae alias optio labore ullam numquam et fuga!
-        Cupiditate veniam molestiae, dicta laudantium vel voluptates nemo magni rerum, doloremque laboriosam laborum adipisci incidunt mollitia nobis cumque. Odio repellat sequi expedita cupiditate accusamus iure saepe, ad mollitia similique ullam.
-    </div>
+    <section component="menus"></section>
 
     
+
+
 
 
 
@@ -52,7 +46,6 @@
             const component = elem.getAttribute("component");
 
             elem.innerHTML = "<button>Load " + component + "</button>";
-
 
             const $$ = sel => document.querySelector(sel) || {}
 
@@ -94,14 +87,16 @@
                         };
 
                         Material.Tooltip()
+
+                        document.querySelector("#menu-opener").onclick = (e) => {
+                            Material.Menu.init(document.querySelector(".menu"));
+                            document.querySelector(".menu").Material.Menu.toggle(e.target);
+                        };
                     };
                 });
         })
 
-        document.querySelector("#menu-opener").onclick = (e) => {
-            Material.Menu.init(document.querySelector(".menu"));
-            document.querySelector(".menu").Material.Menu.toggle(e.target);
-        };
+
     </script>
 </body>
 
