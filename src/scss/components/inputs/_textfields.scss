@@ -1,178 +1,179 @@
 .textbox {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: max-content;
-  position: relative;
-  background: material-color($dk, "100");
-  padding: 0 10px;
-  padding-right: 0 !important;
-  border-radius: $border-radius * 4px #{$border-radius * 4px} 0 0;
-  overflow: hidden;
-  transition: all 0.2s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: max-content;
+	position: relative;
+	overflow: hidden;
 
-  &:hover:not(.focus) {
-    background: material-color($dk, "200");
-  }
+	background: tm-color("gray", 3);
+	color: tm-color("gray", 8);
 
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: material-color($p);
-    transform: scaleX(0);
-    transition: all 0.2s ease;
-  }
+	@include rounded();
+	@include transition();
 
-  &::before {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: material-color($dk, "500");
-    transition: all 0.2s ease;
-  }
+	&:hover:not(.focus) {
+		background: tm-color("gray", 4);
+	}
 
-  &:hover::before {
-    height: 2px;
-    background: material-color($dk, "900");
-  }
+	&::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 2px;
+		background: tm-color("primary", 5);
+		transform: scaleX(0);
+		transition: all 0.2s ease;
+	}
 
-  &.focus::after {
-    transform: scaleX(1);
-  }
+	&::before {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 1px;
+		background: tm-color("primary", 5);
+		transition: all 0.2s ease;
+	}
 
-  & .left,
-  & .right {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-  }
+	&:hover::before {
+		height: 2px;
+		background: tm-color("gray", 5);
+	}
 
-  & .left {
-    margin-right: 10px;
-  }
+	&.focus::after {
+		transform: scaleX(1);
+	}
 
-  & .right {
-    margin-left: 10px;
-    margin-right: 10px;
-  }
+	& .left,
+	& .right {
+		flex: 1;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		pointer-events: none;
+	}
 
-  & .action {
-    pointer-events: all;
-  }
+	& .left {
+		margin-right: 10px;
+	}
 
-  & .mdi {
-    font-size: $font-size * 20px;
-    color: material-color($dk);
-  }
+	& .right {
+		margin-left: 10px;
+		margin-right: 10px;
+	}
 
-  &:not(.floating) .input {
-    color: transparent;
-  }
+	& .action {
+		pointer-events: all;
+	}
 
-  & .middle {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
+	& .mdi {
+		font-size: $font-size * 20px;
+		color: tm-color("gray", 5);
+	}
 
-    & .label {
-      position: absolute;
-      top: 50%;
-      left: 0%;
-      user-select: none;
-      transform: translateY(-50%);
-      font-size: $font-size * 1.2;
-      transition: all 0.2s ease-in-out;
-      pointer-events: none;
-      color: material-color($dk, "800");
-    }
+	&:not(.floating) .input {
+		color: transparent;
+	}
 
-    & .input {
-      width: 100%;
-      padding-top: 30px;
-      padding-bottom: 10px;
-      border: none;
-      outline: none;
-      appearance: none;
-      background: transparent;
-    }
-  }
+	& .middle {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		position: relative;
 
-  &.textarea .label {
-    top: 0%;
-    transform: translateY(20px);
-  }
+		& .label {
+			position: absolute;
+			top: 50%;
+			left: 0%;
+			user-select: none;
+			transform: translateY(-50%);
+			font-size: $font-size * 1.2;
+			transition: all 0.2s cubic-bezier(0.65, 0.05, 0, 1.01);
+			pointer-events: none;
+			color: tm-color("gray", 8);
+		}
 
-  &.floating .label {
-    left: 0%;
-    top: 0%;
-    font-size: $font-size * 12px;
-    transform: translateY(50%) translateX(2px);
-  }
+		& .input {
+			width: 100%;
+			padding-top: 30px;
+			padding-bottom: 10px;
+			border: none;
+			outline: none;
+			appearance: none;
+			background: transparent;
+		}
+	}
 
-  &.focus.floating .label {
-    color: material-color($p);
-  }
+	&.textarea .label {
+		top: 0%;
+		transform: translateY(20px);
+	}
 
-  &.border-bottom {
-    background: transparent !important;
+	&.floating .label {
+		left: 0%;
+		top: 0%;
+		font-size: $font-size * 12px;
+		transform: translateY(50%) translateX(2px);
+	}
 
-    & .label,
-    & .input {
-      margin-left: -8px !important;
-    }
+	&.focus.floating .label {
+		color: tm-color("primary", 5);
+	}
 
-    & .input {
-      width: calc(100% + 16px);
-    }
-  }
+	&.border-bottom {
+		background: transparent !important;
 
-  &.outlined {
-    background: transparent;
-    box-shadow: 0 0 0 1px material-color($dk, "400");
-    color: material-color($dk, "500");
-    transition: none;
-    border-radius: $border-radius * 4px;
-    overflow: visible;
+		& .label,
+		& .input {
+			margin-left: -8px !important;
+		}
 
-    &::after,
-    &::before {
-      background: transparent;
-    }
+		& .input {
+			width: calc(100% + 16px);
+		}
+	}
 
-    &:hover:not(.focus) {
-      background: transparent;
-      box-shadow: 0 0 0 1px material-color($dk, "600");
-      color: material-color($dk, "600");
-    }
+	&.outlined {
+		background: transparent;
+		box-shadow: 0 0 0 1px tm-color("gray", 5);
+		color: tm-color("gray", 8);
+		transition: none;
+		border-radius: $border-radius * 4px;
+		overflow: visible;
 
-    &.focus {
-      background: transparent;
-      box-shadow: 0 0 0 2px material-color($p);
-      color: material-color($p);
-    }
+		&::after,
+		&::before {
+			background: transparent;
+		}
 
-    & .input {
-      padding-top: 20px;
-      padding-bottom: 20px;
-    }
+		&:hover:not(.focus) {
+			background: transparent;
+			box-shadow: 0 0 0 1px tm-color("gray", 5);
+			color: tm-color("gray", 8);
+		}
 
-    &.floating .label {
-      margin-top: -15px;
-      background: white;
-    }
-  }
+		&.focus {
+			background: transparent;
+			box-shadow: 0 0 0 2px tm-color("primary", 5);
+			color: tm-color("primary", 5);
+		}
 
-  &.textarea.outlined .input {
-    padding-top: 10px;
-  }
+		& .input {
+			padding-top: 20px;
+			padding-bottom: 20px;
+		}
+
+		&.floating .label {
+			margin-top: -15px;
+			background: white;
+		}
+	}
+
+	&.textarea.outlined .input {
+		padding-top: 10px;
+	}
 }

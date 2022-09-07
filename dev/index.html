@@ -12,6 +12,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
+        <style> </style>
 </head>
 
 <body>
@@ -34,12 +35,20 @@
     <section component="checkbox"></section>
     <section component="menus"></section>
 
+    <div class="textbox">
+        <div class="left">
+        </div>
+        <div class="middle">
+            <label for="aaaa" class="label">Label</label>
+            <input type="text" id="aaaa" class="input">
+        </div>
+        <div class="right"></div>
+    </div>
     
 
 
 
-
-
+    <button class="btn" onclick="document.getElementById('a').classList.toggle('open')">Open</button>
     <script src="material.js"></script>
     <script>
         document.querySelectorAll("[component]").forEach(elem => {

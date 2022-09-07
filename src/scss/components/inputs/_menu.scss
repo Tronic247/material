@@ -2,17 +2,17 @@
 	max-width: 100px;
 	max-height: 100px;
 	overflow: auto;
-  opacity: 0;
-  transition: max-height 0.2s ease, max-width 0.2s ease, opacity 0.2s ease;
+	opacity: 0;
+	transition: max-height 0.2s ease, max-width 0.2s ease, opacity 0.2s ease;
 
-  background: tm-color("white");
+	background: tm-color("white");
 
-  @include rounded();
-  @include elevation(4);
+	@include rounded();
+	@include elevation(4);
 
-  &--open {
-    opacity: 1;
-    max-height: 300px;
-    max-width: 200px;
-  }
+	&--open {
+		opacity: 1;
+		max-height: 300px;
+		max-width: 200px;
+	}
 }

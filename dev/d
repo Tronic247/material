@@ -1,0 +1,62 @@
+
+
+
+    <div class="dialog" id="a">
+        <div class="dialog-box">
+    
+           <div class="dialog-header">
+             <div class="dialog-header-text">Title here!</div>
+           </div>
+    
+            <div class="dialog-content">
+              Noodles are yummy!
+            </div>
+    
+           <div class="dialog-footer">
+             <button id=aa class="btn text primary" onclick="document.getElementById('a').classList.toggle('open')">Agree</button>
+          </div>
+    
+        </div>
+    </div>
+
+    .dialog .dialog-box {
+        background-color: #fff;
+        padding: 0;
+        border-radius: 4px;
+        transform: translateY(-12px);
+        transition: transform .2s cubic-bezier(0.6, 0.64, 0.21, 0.66);
+        transform-origin: top;
+        min-width: 500px;
+      }
+     
+      .dialog.open .dialog-box {
+        transform: translateY(0);
+      }
+     
+      .dialog .dialog-box .dialog-header {
+        /* padding: 3px 12px; */
+        padding: 9px 12px 3px 12px;
+        font-size: 20px;
+        display: flex;
+        font-weight: 600;
+        align-items: center;
+        min-height: 46px;
+        /* border-bottom: 1px solid rgb(0 0 0 / 5%); */
+      }
+     
+      .dialog .dialog-box .dialog-header .dialog-header-text {
+        flex: 1 100%;
+      }
+     
+      .dialog .dialog-box .dialog-content {
+        padding: 3px 12px;
+        margin: 12px 0;
+      }
+     
+      .dialog .dialog-box .dialog-footer {
+        justify-content: flex-end;
+        display: flex;
+        min-height: 46px;
+        padding: 3px 12px;
+        align-items: center;
+      }
