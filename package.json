@@ -18,12 +18,12 @@
 		"@popperjs/core": "^2.11.0",
 		"chokidar": "^3.5.3",
 		"css-minify": "^2.0.0",
-		"esbuild": "^0.14.48",
+		"esbuild": "^0.15.0",
 		"flatpickr": "^4.6.3",
-		"focus-trap": "^6.7.1",
+		"focus-trap": "^7.0.0",
 		"nouislider": "^15.5.0",
 		"sass": "^1.53.0",
-		"tabbable": "^5.2.1"
+		"tabbable": "^6.0.0"
 	},
 	"dependencies": {
 		"animejs": "^3.2.1",
