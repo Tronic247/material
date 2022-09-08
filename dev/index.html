@@ -39,31 +39,7 @@
 		<section component="checkbox"></section>
 		<section component="menus"></section>
 		<section component="textfields"></section>
-
-        <div class="dialog" id="a">
-            <div class="dialog-box">
-        
-               <div class="dialog-header">
-                 <div class="dialog-header-text">Title here!</div>
-               </div>
-        
-                <div class="dialog-content">
-                  Noodles are yummy!
-                </div>
-        
-               <div class="dialog-footer">
-                 <button id=aa class="btn text primary">Agree</button>
-              </div>
-        
-            </div>
-        </div>
-
-		<button
-			class="btn"
-			onclick="document.getElementById('a').classList.toggle('dialog--open')"
-		>
-			Open
-		</button>
+		<section component="dialogs"></section>
 
 		<script src="material.js"></script>
 		<script>
@@ -118,6 +94,16 @@
 							};
 
 							Material.Forms();
+
+							if (document.getElementById("a")) {
+								Material.Dialog(document.getElementById("a"));
+								$$("#aa").onclick = () => {
+									a.Material.Dialog.hide();
+								};
+								$$("#modalopen").onclick = () => {
+									a.Material.Dialog.open();
+								};
+							}
 						};
 					});
 			});

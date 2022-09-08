@@ -18,19 +18,19 @@ function Appbar() {
 		});
 	});
 
-    const elevatingAppbars = $$(".appbar.elevated-anim");
+	const elevatingAppbars = $$(".appbar.elevated-anim");
 
-    elevatingAppbars.forEach((appbar) => {
-        const offset = appbar.dataset.offset || 100;
+	elevatingAppbars.forEach((appbar) => {
+		const offset = appbar.dataset.offset || 100;
 
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > offset) {
-                $addClass(appbar, "elevated");
-            } else {
-                $removeClass(appbar, "elevated");
-            }
-        });
-    })
+		window.addEventListener("scroll", () => {
+			if (window.scrollY > offset) {
+				$addClass(appbar, "elevated");
+			} else {
+				$removeClass(appbar, "elevated");
+			}
+		});
+	});
 }
 
 Appbar();

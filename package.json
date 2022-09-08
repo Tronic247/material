@@ -6,7 +6,9 @@
 	"scripts": {
 		"build": "node actions/build.js",
 		"watch": "node actions/watch.js",
-		"publish": "node actions/publish.js"
+		"publish": "node actions/publish.js",
+		"lint": "eslint src/js/**/*.js",
+		"lint:fix": "eslint src/js/**/*.js --fix"
 	},
 	"keywords": [
 		"material-design"

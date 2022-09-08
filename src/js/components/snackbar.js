@@ -44,10 +44,10 @@ function Snackbar(message, options = {}) {
             <div class="snackbar_message">${message}</div>
 
             ${
-							options.action
-								? `<button class="btn text primary" id="${actionId}">${options.action}</button>`
-								: ``
-						}
+	options.action
+		? `<button class="btn text primary" id="${actionId}">${options.action}</button>`
+		: ""
+}
         `;
 
 		setTimeout(() => {

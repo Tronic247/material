@@ -3,9 +3,9 @@ import { createPopper } from "@popperjs/core";
 import { $addClass, $removeClass, $addEvents, $hasClass } from "../element";
 
 /**
- * Menu	
- * @param {Element} element 
- * @returns 
+ * Menu
+ * @param {Element} element
+ * @returns
  */
 function Menu(element) {
 	if (!element.Material) element.Material = {};
@@ -29,7 +29,7 @@ function Menu(element) {
 		if (element.Material.Menu.popperCreated) return;
 		element.Material.Menu.popperCreated = true;
 
-		const popper = createPopper(trigger, element, {
+		createPopper(trigger, element, {
 			placement: "bottom",
 		});
 	}
