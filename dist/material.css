@@ -2119,7 +2119,7 @@ h6, .h6 {
   left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   z-index: 999;
@@ -2135,7 +2135,8 @@ h6, .h6 {
   transform: translateY(-12px);
   transition: transform 0.2s cubic-bezier(0.6, 0.64, 0.21, 0.66);
   transform-origin: top;
-  min-width: 500px;
+  max-width: 90vw;
+  min-width: 300px;
 }
 .dialog .dialog-header {
   padding: 9px 12px 3px 12px;
@@ -2148,6 +2149,8 @@ h6, .h6 {
 .dialog .dialog-content {
   padding: 3px 12px;
   margin: 12px 0;
+  max-height: 70vh;
+  overflow-y: auto;
 }
 .dialog .dialog-footer {
   justify-content: flex-end;
@@ -2157,7 +2160,7 @@ h6, .h6 {
   align-items: center;
 }
 .dialog--open {
-  opacity: 1;
+  pointer-events: all;
 }
 .dialog--open .dialog-box {
   transform: translateY(0);
@@ -2247,6 +2250,14 @@ h6, .h6 {
   pointer-events: auto;
 }
 
+/****
+***
+**
+** TYSM to
+** Bootstrap for the grid system
+***
+****
+****/
 .container,
 .container-fluid,
 .container-xxl,
