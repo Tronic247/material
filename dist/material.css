@@ -2112,89 +2112,55 @@ h6, .h6 {
   white-space: normal;
 }
 
-.tabs {
-  display: flex;
-  flex-direction: column;
-}
-.tabs .header {
-  display: flex;
-  border-bottom: 1px solid #eeeeee;
-}
-.tabs .header .item {
-  flex: 1;
-  text-align: center;
-  padding: 14px 20px;
-  color: #757575;
-  font-size: 14px;
-  font-weight: 500;
-  border-bottom: 2px solid transparent;
-  cursor: pointer;
-  transition: border-bottom-color 0.2s ease;
-}
-.tabs .header .item:hover {
-  background-color: #eeeeee;
-}
-.tabs .header .item:focus-visible {
-  box-shadow: 0 0 0 2px #c5cae9;
-}
-.tabs .header .item.active {
-  color: #212121;
-  background: rgba(159, 168, 218, 0.2);
-  border-bottom-color: #3f51b5;
-}
-.tabs .content {
-  visibility: hidden;
-  opacity: 0;
-  max-height: 0;
-  transition: opacity 0.2s ease;
-}
-.tabs .content.active {
-  visibility: visible;
-  max-height: 8000px;
-  opacity: 1;
-}
-
 .dialog {
   position: fixed;
+  background: rgba(0, 0, 0, 0.8117647059);
   top: 0;
   left: 0;
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
   width: 100%;
-  pointer-events: none;
-  background: rgba(0, 0, 0, 0.5);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
   opacity: 0;
+  pointer-events: none;
   transition: all 0.2s ease;
 }
-.dialog .content {
-  background: white;
-  padding: 20px 30px;
+.dialog .dialog-box {
+  background-color: var(--tm-light-color);
+  color: var(--tm-dark-color);
+  padding: 0;
   border-radius: 4px;
-  transform: scale(0.9);
-  max-width: 80vw;
-  max-height: 80vh;
-  overflow: auto;
-  transition: all 0.2s ease;
-  margin-right: var(--scrollbar-width);
-  box-shadow: 0 10px 13px -6px rgba(0, 0, 0, 0.2), 0 20px 31px 3px rgba(0, 0, 0, 0.14), 0 8px 38px 7px rgba(0, 0, 0, 0.12);
+  transform: translateY(-12px);
+  transition: transform 0.2s cubic-bezier(0.6, 0.64, 0.21, 0.66);
+  transform-origin: top;
+  min-width: 500px;
 }
-.dialog.open {
+.dialog .dialog-header {
+  padding: 9px 12px 3px 12px;
+  font-size: 20px;
+  display: flex;
+  font-weight: 600;
+  align-items: center;
+  min-height: 46px;
+}
+.dialog .dialog-content {
+  padding: 3px 12px;
+  margin: 12px 0;
+}
+.dialog .dialog-footer {
+  justify-content: flex-end;
+  display: flex;
+  min-height: 46px;
+  padding: 3px 12px;
+  align-items: center;
+}
+.dialog--open {
   opacity: 1;
-  pointer-events: all;
 }
-.dialog.open .content {
-  transform: scale(1);
-}
-.dialog.bottom-sheet {
-  align-items: flex-end;
-}
-
-body.overflow-hidden {
-  overflow: hidden;
-  padding-right: var(--scrollbar-width);
+.dialog--open .dialog-box {
+  transform: translateY(0);
 }
 
 .snackbar_container {
