@@ -1,144 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="material.css" />
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css"
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+			rel="stylesheet"
+		/>
+		<style></style>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="material.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
-        rel="stylesheet">
-        <style> </style>
-</head>
+	<body>
+		<h1>Material Sandbox</h1>
+		<p class="text-gray-6">
+			This is a sandbox for testing Material Design components.
+		</p>
+		<button
+			onclick="body.classList.toggle('dark')"
+			style="position: sticky; top: 0"
+		>
+			Toggle dark mode
+		</button>
 
-<body>
-    <h1>
-        Material Sandbox
-    </h1>
-    <p class="text-gray-6">
-        This is a sandbox for testing Material Design components.
-    </p>
-    <button onclick="body.classList.toggle('dark')" style="position: sticky; top:0">
-        Toggle dark mode
-    </button>
+		<section component="buttons"></section>
+		<section component="alerts"></section>
+		<section component="appbars"></section>
+		<section component="snackbar"></section>
+		<section component="popover"></section>
+		<section component="tooltip"></section>
+		<section component="checkbox"></section>
+		<section component="menus"></section>
+		<section component="textfields"></section>
 
-    <section component="buttons"></section>
-    <section component="alerts"></section>
-    <section component="appbars"></section>
-    <section component="snackbar"></section>
-    <section component="popover"></section>
-    <section component="tooltip"></section>
-    <section component="checkbox"></section>
-    <section component="menus"></section>
-
-    <div class="textbox">
-        <div class="left">
+        <div class="dialog" id="a">
+            <div class="dialog-box">
+        
+               <div class="dialog-header">
+                 <div class="dialog-header-text">Title here!</div>
+               </div>
+        
+                <div class="dialog-content">
+                  Noodles are yummy!
+                </div>
+        
+               <div class="dialog-footer">
+                 <button id=aa class="btn text primary">Agree</button>
+              </div>
+        
+            </div>
         </div>
-        <div class="middle">
-            <label for="aaaa" class="label">Label</label>
-            <input type="text" id="aaaa" class="input">
-        </div>
-        <div class="right"></div>
-    </div>
- <br>
-    <div class="textbox outlined">
-        <div class="left">
-        </div>
-        <div class="middle">
-            <label for="aaaa" class="label">Label</label>
-            <input type="text" id="aaaa" class="input">
-        </div>
-        <div class="right"></div>
-    </div>
-<br>
-    <div class="textbox border-bottom">
-        <div class="left">
-        </div>
-        <div class="middle">
-            <label for="aaaa" class="label">Label</label>
-            <input type="text" id="aaaa" class="input">
-        </div>
-        <div class="right"></div>
-    </div>
-    <br>
-    <div class="textbox textarea">
-        <div class="left">
-            <i class="mdi mdi-heart"></i>
-        </div>
-        <div class="middle">
-            <label for="a4" class="label">Label</label>
-            <textarea type="text" id="a4" class="input">, </textarea>
-        </div>
-        <div class="right">
-            <i class="mdi mdi-heart"></i>
-        </div>
-    </div>
 
+		<button
+			class="btn"
+			onclick="document.getElementById('a').classList.toggle('dialog--open')"
+		>
+			Open
+		</button>
 
+		<script src="material.js"></script>
+		<script>
+			document.querySelectorAll("[component]").forEach((elem) => {
+				const component = elem.getAttribute("component");
 
-    <button class="btn" onclick="document.getElementById('a').classList.toggle('open')">Open</button>
-    <script src="material.js"></script>
-    <script>
-        document.querySelectorAll("[component]").forEach(elem => {
-            const component = elem.getAttribute("component");
+				elem.innerHTML = "<button>Load " + component + "</button>";
 
-            elem.innerHTML = "<button>Load " + component + "</button>";
+				const $$ = (sel) => document.querySelector(sel) || {};
 
-            const $$ = sel => document.querySelector(sel) || {}
+				fetch(`${component}.html`)
+					.then((response) => response.text())
+					.then((html) => {
+						elem.onclick = () => {
+							elem.innerHTML = html;
+							elem.onclick = null;
 
-            fetch(`${component}.html`)
-                .then(response => response.text())
-                .then(html => {
-                    elem.onclick = () => {
-                        elem.innerHTML = html;
-                        elem.onclick = null;
+							Material.Ripple();
+							Material.Appbar();
 
-                        Material.Ripple.init();
-                        Material.Appbar();
-                        $$("#openSnackbar").onclick = () => {
-                            Material.Snackbar("This is a normal snackbar");
-                        };
+							$$("#openSnackbar").onclick = () => {
+								Material.Snackbar("This is a normal snackbar");
+							};
 
-                        $$("#openSnackbarAction").onclick = () => {
-                            Material.Snackbar("This is a snackbar with action button", {
-                                action: "Action",
-                                actionHandler: () => {
-                                    Material.Snackbar("Action button clicked");
-                                }
-                            });
-                        };
+							$$("#openSnackbarAction").onclick = () => {
+								Material.Snackbar("This is a snackbar with action button", {
+									action: "Action",
+									actionHandler: () => {
+										Material.Snackbar("Action button clicked");
+									},
+								});
+							};
 
-                        $$("#openSnackbarEvent").onclick = () => {
-                            Material.Snackbar("This is a snackbar with events", {
-                                onClose: () => {
-                                    Material.Snackbar("Snackbar closed");
-                                }
-                            });
-                        };
+							$$("#openSnackbarEvent").onclick = () => {
+								Material.Snackbar("This is a snackbar with events", {
+									onClose: () => {
+										Material.Snackbar("Snackbar closed");
+									},
+								});
+							};
 
+							$$("#popover_trigger").onclick = () => {
+								Material.Popover("#popover_example");
+								$$("#popover_example").Material.Popover.toggle();
+							};
 
+							Material.Tooltip();
 
-                        $$("#popover_trigger").onclick = () => {
-                            Material.Popover.init("#popover_example");
-                            $$("#popover_example").Material.Popover.toggle();
-                        };
+							$$("#menu-opener").onclick = (e) => {
+								Material.Menu(document.querySelector(".menu"));
+								document.querySelector(".menu").Material.Menu.toggle(e.target);
+							};
 
-                        Material.Tooltip()
-
-                        document.querySelector("#menu-opener").onclick = (e) => {
-                            Material.Menu.init(document.querySelector(".menu"));
-                            document.querySelector(".menu").Material.Menu.toggle(e.target);
-                        };
-                    };
-                });
-        })
-
-
-    </script>
-</body>
-
+							Material.Forms();
+						};
+					});
+			});
+		</script>
+	</body>
 </html>

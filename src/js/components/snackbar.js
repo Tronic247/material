@@ -26,6 +26,11 @@ const span = document.createElement("span");
 span.style.display = "none";
 snackbarContainer.appendChild(span);
 
+/**
+ * Snackbar
+ * @param {String} message
+ * @param {defaultOptions} options
+ */
 function Snackbar(message, options = {}) {
 	options = { ...defaultOptions, ...options };
 

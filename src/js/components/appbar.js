@@ -1,5 +1,8 @@
 import { $$, $addClass, $removeClass } from "../element";
 
+/**
+ * Appbar
+ */
 function Appbar() {
 	const shortingAppbars = $$(".appbar.short");
 
@@ -29,6 +32,7 @@ function Appbar() {
         });
     })
 }
+
 Appbar();
 
 export default Appbar;

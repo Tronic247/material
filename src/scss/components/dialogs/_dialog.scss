@@ -1,45 +1,56 @@
 .dialog {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  pointer-events: none;
-  background: rgba(0, 0, 0, 0.5);
-  opacity: 0;
-  transition: all 0.2s ease;
+	position: fixed;
+	background: #000000cf;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 999;
+	opacity: 0;
+	pointer-events: none;
+	transition: all 0.2s ease;
 
-  & .content {
-    background: white;
-    padding: $padding * 20px #{$padding * 30px};
-    border-radius: $border-radius * 4px;
-    transform: scale(0.9);
-    max-width: 80vw;
-    max-height: 80vh;
-    overflow: auto;
-    transition: all 0.2s ease;
-    margin-right: var(--scrollbar-width);
-    @include elevation(20);
-  }
+	& .dialog-box {
+		background-color: tm-color('white');
+		color: tm-color('black');
+		padding: 0;
+		border-radius: 4px;
+		transform: translateY(-12px);
+		transition: transform 0.2s cubic-bezier(0.6, 0.64, 0.21, 0.66);
+		transform-origin: top;
+		min-width: 500px;
+	}
 
-  &.open {
-    opacity: 1;
-    pointer-events: all;
-    & .content {
-      transform: scale(1);
-    }
-  }
+	& .dialog-header {
+		padding: 9px 12px 3px 12px;
+		font-size: 20px;
+		display: flex;
+		font-weight: 600;
+		align-items: center;
+		min-height: 46px;
+	}
 
-  &.bottom-sheet  {
-    align-items: flex-end;
-  }
-}
+	& .dialog-content {
+		padding: 3px 12px;
+		margin: 12px 0;
+	}
 
-body.overflow-hidden {
-  overflow: hidden;
-  padding-right: var(--scrollbar-width);
+	& .dialog-footer {
+		justify-content: flex-end;
+		display: flex;
+		min-height: 46px;
+		padding: 3px 12px;
+		align-items: center;
+	}
+
+	&--open {
+		opacity: 1;
+
+		& .dialog-box {
+			transform: translateY(0);
+		}
+	}
 }

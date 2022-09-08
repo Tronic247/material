@@ -19,6 +19,7 @@
 		"chokidar": "^3.5.3",
 		"css-minify": "^2.0.0",
 		"esbuild": "^0.15.0",
+		"eslint": "^8.23.0",
 		"flatpickr": "^4.6.3",
 		"focus-trap": "^7.0.0",
 		"nouislider": "^15.5.0",

@@ -12,6 +12,6 @@ export function exportGlobal(name, value) {
 	if (typeof window !== "undefined") {
 		window["Material"][name] = value;
 	} else {
-		throw new Error(`Material - Cannot export global variable.`);
+		throw new Error("Material - Cannot export global variable.");
 	}
 }

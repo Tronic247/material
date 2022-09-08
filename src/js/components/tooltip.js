@@ -8,6 +8,9 @@ import {
 } from "../element";
 import { createPopper } from "@popperjs/core";
 
+/**
+ * Tooltips
+ */
 function Tooltip() {
 	const tooltipEls = $$("[data-tooltip]");
 	const tooltipActiveClass = "tooltip--open";
@@ -51,6 +54,7 @@ function Tooltip() {
 		$addEvents(el, "mouseleave, touchend", hide);
 	});
 }
+
 Tooltip();
 
 export default Tooltip;
