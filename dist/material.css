@@ -7177,10 +7177,11 @@ body.overflow-hidden {
   width: max-content;
   position: relative;
   overflow: hidden;
-  background: var(--tm-gray-3);
-  color: var(--tm-gray-8);
+  background: var(--tm-gray-2);
+  color: var(--tm-dark-color);
   border-radius: 4px;
   transition: all 0.2s ease;
+  padding: 0px 10px;
 }
 @media (prefers-reduced-motion: reduce) {
   .textbox {
@@ -7188,7 +7189,7 @@ body.overflow-hidden {
   }
 }
 .textbox:hover:not(.focus) {
-  background: var(--tm-gray-4);
+  background: var(--tm-gray-3);
 }
 .textbox::after {
   content: "";
@@ -7208,12 +7209,12 @@ body.overflow-hidden {
   left: 0;
   width: 100%;
   height: 1px;
-  background: var(--tm-primary-5);
+  background: var(--tm-gray-5);
   transition: all 0.2s ease;
 }
 .textbox:hover::before {
   height: 2px;
-  background: var(--tm-gray-5);
+  background: var(--tm-gray-6);
 }
 .textbox.focus::after {
   transform: scaleX(1);
@@ -7267,6 +7268,7 @@ body.overflow-hidden {
   outline: none;
   appearance: none;
   background: transparent;
+  color: var(--tm-dark-color);
 }
 .textbox.textarea .label {
   top: 0%;
@@ -7303,7 +7305,7 @@ body.overflow-hidden {
 }
 .textbox.outlined:hover:not(.focus) {
   background: transparent;
-  box-shadow: 0 0 0 1px var(--tm-gray-5);
+  box-shadow: 0 0 0 1px var(--tm-gray-6);
   color: var(--tm-gray-8);
 }
 .textbox.outlined.focus {
@@ -7317,7 +7319,7 @@ body.overflow-hidden {
 }
 .textbox.outlined.floating .label {
   margin-top: -15px;
-  background: white;
+  background: var(--tm-light-color);
 }
 .textbox.textarea.outlined .input {
   padding-top: 10px;
