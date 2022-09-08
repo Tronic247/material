@@ -6,14 +6,15 @@
 	position: relative;
 	overflow: hidden;
 
-	background: tm-color("gray", 3);
-	color: tm-color("gray", 8);
+	background: tm-color("gray", 2);
+	color: tm-color("black");
 
 	@include rounded();
 	@include transition();
+	@include padding(0,10);
 
 	&:hover:not(.focus) {
-		background: tm-color("gray", 4);
+		background: tm-color("gray", 3);
 	}
 
 	&::after {
@@ -35,13 +36,13 @@
 		left: 0;
 		width: 100%;
 		height: 1px;
-		background: tm-color("primary", 5);
+		background: tm-color("gray", 5);
 		transition: all 0.2s ease;
 	}
 
 	&:hover::before {
 		height: 2px;
-		background: tm-color("gray", 5);
+		background: tm-color("gray", 6);
 	}
 
 	&.focus::after {
@@ -105,6 +106,8 @@
 			outline: none;
 			appearance: none;
 			background: transparent;
+
+			color: tm-color("black");
 		}
 	}
 
@@ -152,7 +155,7 @@
 
 		&:hover:not(.focus) {
 			background: transparent;
-			box-shadow: 0 0 0 1px tm-color("gray", 5);
+			box-shadow: 0 0 0 1px tm-color("gray", 6);
 			color: tm-color("gray", 8);
 		}
 
@@ -169,7 +172,7 @@
 
 		&.floating .label {
 			margin-top: -15px;
-			background: white;
+			background: tm-color("white");
 		}
 	}
 
