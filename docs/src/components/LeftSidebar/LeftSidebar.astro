@@ -18,7 +18,7 @@ const sidebar = SIDEBAR[langCode];
 			Object.entries(sidebar).map(([header, children]) => (
 				<li>
 					<div class="nav-group">
-						<h2 class="h5">{header}</h2>
+						<h2>{header}</h2>
 
 						<ul class="list small">
 							{children.map((child) => {
@@ -63,5 +63,9 @@ const sidebar = SIDEBAR[langCode];
 		width: 100%;
 		margin-right: 1rem;
 		list-style: none;
+	}
+
+	h2 {
+		font-size: 26px !important;
 	}
 </style>
