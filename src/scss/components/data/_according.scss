@@ -9,7 +9,7 @@
 	flex-direction: column;
 	flex: 1;
 	@include elevation(2);
-	background: var(--tm-light-color);
+	background: tm-color("gray", 1);
 
 	&--open &_body {
 		display: block;
@@ -24,7 +24,7 @@
 		position: relative;
 
 		&:hover {
-			background: material-color($dk, "100");
+			background: tm-color("gray", 2);
 		}
 	}
 

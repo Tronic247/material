@@ -1,28 +1,30 @@
 .card {
-  background: white;
-  @include elevation(2);
-  position: relative;
-  overflow: hidden;
-  border-radius: $border-radius * 4px;
-  $a: $padding * 20px;
+	background: tm-color("white");
+	position: relative;
+	overflow: hidden;
+	border-radius: $border-radius * 4px;
+	$a: $padding * 20px;
 
-  & .body {
-    padding: 6px $a;
-  }
+	@include elevation(2);
 
-  & .footer {
-    padding: 10px $a;
-  }
+	& .card-body {
+		padding: 0 $a;
+	}
 
-  & .card-title {
-    font-size: $font-size * 26px !important;
-  }
+	& .card-footer {
+		padding: 6px $a;
+	}
 
-  &.hoverable {
-    transition: all 0.2s ease;
+	& .card-title {
+		font-size: $font-size * 26px !important;
+	}
 
-    &:hover , &:focus {
-      @include elevation(6);
-    }
-  }
+	&.hoverable {
+		@include transition();
+
+		&:hover,
+		&:focus {
+			@include elevation(6);
+		}
+	}
 }

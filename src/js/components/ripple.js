@@ -41,6 +41,7 @@ function Ripple() {
 		$addClass(element, "ripple-ready");
 
 		const ripple = (e) => {
+			e.stopPropagation();
 			const rect = element.getBoundingClientRect();
 			const radius = findFurthestPoint(
 				e.clientX,
