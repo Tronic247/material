@@ -19,6 +19,7 @@ import Tooltip from "./components/tooltip.js";
 import Snackbar from "./components/snackbar.js";
 import Dialog from "./components/dialog.js";
 import Picker from "./components/picker.js";
+import Drawer from "./components/drawer.js";
 
 exportGlobal("Ripple", Ripple);
 exportGlobal("Forms", Forms);
@@ -30,3 +31,4 @@ exportGlobal("Tooltip", Tooltip);
 exportGlobal("Snackbar", Snackbar);
 exportGlobal("Dialog", Dialog);
 exportGlobal("Picker", Picker);
+exportGlobal("Drawer", Drawer);
