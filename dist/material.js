@@ -2352,23 +2352,23 @@
   var activeFocusTraps = function() {
     var trapQueue = [];
     return {
-      activateTrap: function activateTrap(trap3) {
+      activateTrap: function activateTrap(trap4) {
         if (trapQueue.length > 0) {
           var activeTrap = trapQueue[trapQueue.length - 1];
-          if (activeTrap !== trap3) {
+          if (activeTrap !== trap4) {
             activeTrap.pause();
           }
         }
-        var trapIndex = trapQueue.indexOf(trap3);
+        var trapIndex = trapQueue.indexOf(trap4);
         if (trapIndex === -1) {
-          trapQueue.push(trap3);
+          trapQueue.push(trap4);
         } else {
           trapQueue.splice(trapIndex, 1);
-          trapQueue.push(trap3);
+          trapQueue.push(trap4);
         }
       },
-      deactivateTrap: function deactivateTrap(trap3) {
-        var trapIndex = trapQueue.indexOf(trap3);
+      deactivateTrap: function deactivateTrap(trap4) {
+        var trapIndex = trapQueue.indexOf(trap4);
         if (trapIndex !== -1) {
           trapQueue.splice(trapIndex, 1);
         }
@@ -2427,7 +2427,7 @@
       paused: false,
       delayInitialFocusTimer: void 0
     };
-    var trap3;
+    var trap4;
     var getOption = function getOption2(configOverrideOptions, optionName, configOptionName) {
       return configOverrideOptions && configOverrideOptions[optionName] !== void 0 ? configOverrideOptions[optionName] : config[configOptionName || optionName];
     };
@@ -2549,7 +2549,7 @@
         return;
       }
       if (valueOrHandler(config.clickOutsideDeactivates, e)) {
-        trap3.deactivate({
+        trap4.deactivate({
           returnFocus: config.returnFocusOnDeactivate && !isFocusable(target, config.tabbableOptions)
         });
         return;
@@ -2622,7 +2622,7 @@
     var checkKey = function checkKey2(e) {
       if (isEscapeEvent(e) && valueOrHandler(config.escapeDeactivates, e) !== false) {
         e.preventDefault();
-        trap3.deactivate();
+        trap4.deactivate();
         return;
       }
       if (isTabEvent(e)) {
@@ -2648,7 +2648,7 @@
       if (!state.active) {
         return;
       }
-      activeFocusTraps.activateTrap(trap3);
+      activeFocusTraps.activateTrap(trap4);
       state.delayInitialFocusTimer = config.delayInitialFocus ? delay(function() {
         tryFocus(getInitialFocusNode());
       }) : tryFocus(getInitialFocusNode());
@@ -2669,7 +2669,7 @@
         capture: true,
         passive: false
       });
-      return trap3;
+      return trap4;
     };
     var removeListeners = function removeListeners2() {
       if (!state.active) {
@@ -2680,9 +2680,9 @@
       doc.removeEventListener("touchstart", checkPointerDown, true);
       doc.removeEventListener("click", checkClick, true);
       doc.removeEventListener("keydown", checkKey, true);
-      return trap3;
+      return trap4;
     };
-    trap3 = {
+    trap4 = {
       get active() {
         return state.active;
       },
@@ -2735,7 +2735,7 @@
         removeListeners();
         state.active = false;
         state.paused = false;
-        activeFocusTraps.deactivateTrap(trap3);
+        activeFocusTraps.deactivateTrap(trap4);
         var onDeactivate = getOption(options, "onDeactivate");
         var onPostDeactivate = getOption(options, "onPostDeactivate");
         var checkCanReturnFocus = getOption(options, "checkCanReturnFocus");
@@ -2788,8 +2788,8 @@
         return this;
       }
     };
-    trap3.updateContainerElements(elements);
-    return trap3;
+    trap4.updateContainerElements(elements);
+    return trap4;
   };
 
   // node_modules/@popperjs/core/lib/enums.js
@@ -6921,6 +6921,70 @@
   var Picker = esm_default;
   var picker_default = Picker;
 
+  // src/js/components/drawer.js
+  var trap3;
+  var getScrollbarWidth2 = () => {
+    const outer = document.createElement("div");
+    outer.style.visibility = "hidden";
+    outer.style.width = "100px";
+    outer.style.msOverflowStyle = "scrollbar";
+    outer.style.overflow = "scroll";
+    document.body.appendChild(outer);
+    const widthNoScroll = outer.offsetWidth;
+    outer.style.overflow = "scroll";
+    const inner = document.createElement("div");
+    inner.style.width = "100%";
+    outer.appendChild(inner);
+    const widthWithScroll = inner.offsetWidth;
+    outer.parentNode.removeChild(outer);
+    return widthNoScroll - widthWithScroll;
+  };
+  var ToggleOverflow2 = (overflow) => {
+    if (overflow) {
+      document.body.style.setProperty("--scrollbar-width", `${getScrollbarWidth2()}px`);
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.style.removeProperty("--scrollbar-width");
+      document.body.classList.remove("overflow-hidden");
+    }
+  };
+  var Drawer = {
+    toggle: (el) => {
+      const dialog = el;
+      if (dialog.classList.contains("open")) {
+        Drawer.close(el);
+      } else {
+        Drawer.open(el);
+      }
+    },
+    open: (el) => {
+      const dialog = el;
+      dialog.classList.add("open");
+      dialog.removeAttribute("tabindex");
+      ToggleOverflow2(true);
+      trap3 = createFocusTrap(dialog, {
+        onDeactivate: () => {
+          Drawer.close(el);
+        }
+      });
+      trap3.activate();
+      el.addEventListener("pointerdown", (e) => {
+        if (e.target !== e.currentTarget)
+          return;
+        Drawer.close(el);
+      });
+    },
+    close: (el) => {
+      const dialog = el;
+      dialog.setAttribute("tabindex", "-1");
+      dialog.classList.remove("open");
+      document.body.classList.remove("modal-open");
+      trap3.deactivate();
+      ToggleOverflow2(false);
+    }
+  };
+  var drawer_default = Drawer;
+
   // src/js/index.js
   exportGlobal("Ripple", ripple_default);
   exportGlobal("Forms", forms_default);
@@ -6932,6 +6996,7 @@
   exportGlobal("Snackbar", snackbar_default);
   exportGlobal("Dialog", dialog_default);
   exportGlobal("Picker", picker_default);
+  exportGlobal("Drawer", drawer_default);
 })();
 /*!
 * focus-trap 7.0.0
