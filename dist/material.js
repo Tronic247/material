@@ -2061,7 +2061,7 @@
           candidates.push.apply(candidates, nestedCandidates);
         } else {
           candidates.push({
-            scope: element2,
+            scopeParent: element2,
             candidates: nestedCandidates
           });
         }
@@ -2078,7 +2078,7 @@
             candidates.push.apply(candidates, _nestedCandidates);
           } else {
             candidates.push({
-              scope: element2,
+              scopeParent: element2,
               candidates: _nestedCandidates
             });
           }
@@ -2242,8 +2242,8 @@
     var regularTabbables = [];
     var orderedTabbables = [];
     candidates.forEach(function(item, i) {
-      var isScope = !!item.scope;
-      var element2 = isScope ? item.scope : item;
+      var isScope = !!item.scopeParent;
+      var element2 = isScope ? item.scopeParent : item;
       var candidateTabindex = getTabindex(element2, isScope);
       var elements = isScope ? sortByOrder2(item.candidates) : element2;
       if (candidateTabindex === 0) {
@@ -7003,7 +7003,7 @@
 * @license MIT, https://github.com/focus-trap/focus-trap/blob/master/LICENSE
 */
 /*!
-* tabbable 6.0.0
+* tabbable 6.0.1
 * @license MIT, https://github.com/focus-trap/tabbable/blob/master/LICENSE
 */
 //# sourceMappingURL=material.js.map
