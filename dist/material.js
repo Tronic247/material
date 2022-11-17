@@ -2349,35 +2349,33 @@
     }
     return obj;
   }
-  var activeFocusTraps = function() {
-    var trapQueue = [];
-    return {
-      activateTrap: function activateTrap(trap4) {
-        if (trapQueue.length > 0) {
-          var activeTrap = trapQueue[trapQueue.length - 1];
-          if (activeTrap !== trap4) {
-            activeTrap.pause();
-          }
-        }
-        var trapIndex = trapQueue.indexOf(trap4);
-        if (trapIndex === -1) {
-          trapQueue.push(trap4);
-        } else {
-          trapQueue.splice(trapIndex, 1);
-          trapQueue.push(trap4);
-        }
-      },
-      deactivateTrap: function deactivateTrap(trap4) {
-        var trapIndex = trapQueue.indexOf(trap4);
-        if (trapIndex !== -1) {
-          trapQueue.splice(trapIndex, 1);
-        }
-        if (trapQueue.length > 0) {
-          trapQueue[trapQueue.length - 1].unpause();
+  var rooTrapStack = [];
+  var activeFocusTraps = {
+    activateTrap: function activateTrap(trapStack, trap4) {
+      if (trapStack.length > 0) {
+        var activeTrap = trapStack[trapStack.length - 1];
+        if (activeTrap !== trap4) {
+          activeTrap.pause();
         }
       }
-    };
-  }();
+      var trapIndex = trapStack.indexOf(trap4);
+      if (trapIndex === -1) {
+        trapStack.push(trap4);
+      } else {
+        trapStack.splice(trapIndex, 1);
+        trapStack.push(trap4);
+      }
+    },
+    deactivateTrap: function deactivateTrap(trapStack, trap4) {
+      var trapIndex = trapStack.indexOf(trap4);
+      if (trapIndex !== -1) {
+        trapStack.splice(trapIndex, 1);
+      }
+      if (trapStack.length > 0) {
+        trapStack[trapStack.length - 1].unpause();
+      }
+    }
+  };
   var isSelectableInput = function isSelectableInput2(node) {
     return node.tagName && node.tagName.toLowerCase() === "input" && typeof node.select === "function";
   };
@@ -2412,6 +2410,7 @@
   };
   var createFocusTrap = function createFocusTrap2(elements, userOptions) {
     var doc = (userOptions === null || userOptions === void 0 ? void 0 : userOptions.document) || document;
+    var trapStack = (userOptions === null || userOptions === void 0 ? void 0 : userOptions.trapStack) || rooTrapStack;
     var config = _objectSpread2({
       returnFocusOnDeactivate: true,
       escapeDeactivates: true,
@@ -2648,7 +2647,7 @@
       if (!state.active) {
         return;
       }
-      activeFocusTraps.activateTrap(trap4);
+      activeFocusTraps.activateTrap(trapStack, trap4);
       state.delayInitialFocusTimer = config.delayInitialFocus ? delay(function() {
         tryFocus(getInitialFocusNode());
       }) : tryFocus(getInitialFocusNode());
@@ -2735,7 +2734,7 @@
         removeListeners();
         state.active = false;
         state.paused = false;
-        activeFocusTraps.deactivateTrap(trap4);
+        activeFocusTraps.deactivateTrap(trapStack, trap4);
         var onDeactivate = getOption(options, "onDeactivate");
         var onPostDeactivate = getOption(options, "onPostDeactivate");
         var checkCanReturnFocus = getOption(options, "checkCanReturnFocus");
@@ -6999,7 +6998,7 @@
   exportGlobal("Drawer", drawer_default);
 })();
 /*!
-* focus-trap 7.0.0
+* focus-trap 7.1.0
 * @license MIT, https://github.com/focus-trap/focus-trap/blob/master/LICENSE
 */
 /*!
