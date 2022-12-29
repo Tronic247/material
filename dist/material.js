@@ -6997,12 +6997,18 @@
   exportGlobal("Picker", picker_default);
   exportGlobal("Drawer", drawer_default);
 })();
-/*!
-* focus-trap 7.1.0
-* @license MIT, https://github.com/focus-trap/focus-trap/blob/master/LICENSE
-*/
-/*!
-* tabbable 6.0.1
-* @license MIT, https://github.com/focus-trap/tabbable/blob/master/LICENSE
+/*! Bundled license information:
+
+tabbable/dist/index.esm.js:
+  (*!
+  * tabbable 6.0.1
+  * @license MIT, https://github.com/focus-trap/tabbable/blob/master/LICENSE
+  *)
+
+focus-trap/dist/focus-trap.esm.js:
+  (*!
+  * focus-trap 7.1.0
+  * @license MIT, https://github.com/focus-trap/focus-trap/blob/master/LICENSE
+  *)
 */
 //# sourceMappingURL=material.js.map
