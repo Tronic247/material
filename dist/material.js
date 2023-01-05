@@ -17,6 +17,10 @@
     return to;
   };
   var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
     isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
     mod
   ));
@@ -1226,6 +1230,8 @@
             event.stopPropagation();
             var listeners = [];
             var moveEvent = attachEvent(actions.move, scope_DocumentElement, eventMove, {
+              // The event target has changed so we need to propagate the original one so that we keep
+              // relying on it to extract target touches.
               target: event.target,
               handle,
               connect: data.connect,
@@ -1428,12 +1434,19 @@
               if (eventName === eventType) {
                 scope_Events[targetEvent].forEach(function(callback) {
                   callback.call(
+                    // Use the slider public API as the scope ('this')
                     scope_Self,
+                    // Return values as array, so arg_1[arg_2] is always valid.
                     scope_Values.map(options.format.to),
+                    // Handle index, 0 or 1
                     handleNumber,
+                    // Un-formatted slider values
                     scope_Values.slice(),
+                    // Event is fired by tap, true or false
                     tap || false,
+                    // Left offset of the handle, in relation to the slider
                     scope_Locations.slice(),
+                    // add the slider public API to an accessible parameter when this is unavailable
                     scope_Self
                   );
                 });
@@ -1762,6 +1775,7 @@
             set: valueSet,
             setHandle: valueSetHandle,
             reset: valueReset,
+            // Exposed for unit testing, don't use this in your application.
             __moveHandles: function(upward, proposal, handleNumbers) {
               moveHandles(upward, proposal, scope_Locations, handleNumbers);
             },
@@ -1780,6 +1794,7 @@
               return scope_Handles;
             },
             pips
+            // Issue #594
           };
           return scope_Self;
         }
@@ -1796,7 +1811,10 @@
           return api;
         }
         var nouislider = {
+          // Exposed for unit testing, don't use this in your application.
           __spectrum: Spectrum,
+          // A reference to the default classes, allows global changes.
+          // Use the cssClasses option for changes to one slider.
           cssClasses,
           create: initialize
         };
@@ -2070,7 +2088,8 @@
         if (validCandidate && options.filter(element2) && (includeContainer || !elements.includes(element2))) {
           candidates.push(element2);
         }
-        var shadowRoot = element2.shadowRoot || typeof options.getShadowRoot === "function" && options.getShadowRoot(element2);
+        var shadowRoot = element2.shadowRoot || // check for an undisclosed shadow
+        typeof options.getShadowRoot === "function" && options.getShadowRoot(element2);
         var validShadowRoot = !options.shadowRootFilter || options.shadowRootFilter(element2);
         if (shadowRoot && validShadowRoot) {
           var _nestedCandidates = getCandidatesIteratively2(shadowRoot === true ? element2.children : shadowRoot.children, true, options);
@@ -2220,7 +2239,8 @@
     return false;
   };
   var isNodeMatchingSelectorFocusable = function isNodeMatchingSelectorFocusable2(options, node) {
-    if (node.disabled || isHiddenInput(node) || isHidden(node, options) || isDetailsWithSummary(node) || isDisabledFromFieldset(node)) {
+    if (node.disabled || isHiddenInput(node) || isHidden(node, options) || // For a details element with a summary, the summary element gets the focus
+    isDetailsWithSummary(node) || isDisabledFromFieldset(node)) {
       return false;
     }
     return true;
@@ -2417,13 +2437,35 @@
       delayInitialFocus: true
     }, userOptions);
     var state = {
+      // containers given to createFocusTrap()
+      // @type {Array<HTMLElement>}
       containers: [],
+      // list of objects identifying tabbable nodes in `containers` in the trap
+      // NOTE: it's possible that a group has no tabbable nodes if nodes get removed while the trap
+      //  is active, but the trap should never get to a state where there isn't at least one group
+      //  with at least one tabbable node in it (that would lead to an error condition that would
+      //  result in an error being thrown)
+      // @type {Array<{
+      //   container: HTMLElement,
+      //   tabbableNodes: Array<HTMLElement>, // empty if none
+      //   focusableNodes: Array<HTMLElement>, // empty if none
+      //   firstTabbableNode: HTMLElement|null,
+      //   lastTabbableNode: HTMLElement|null,
+      //   nextTabbableNode: (node: HTMLElement, forward: boolean) => HTMLElement|undefined
+      // }>}
       containerGroups: [],
+      // same order/length as `containers` list
+      // references to objects in `containerGroups`, but only those that actually have
+      //  tabbable nodes in them
+      // NOTE: same order as `containers` and `containerGroups`, but __not necessarily__
+      //  the same length
       tabbableGroups: [],
       nodeFocusedBeforeActivation: null,
       mostRecentlyFocusedNode: null,
       active: false,
       paused: false,
+      // timer ID for when delayInitialFocus is true and initial focus in this trap
+      //  has been delayed during activation
       delayInitialFocusTimer: void 0
     };
     var trap4;
@@ -2433,7 +2475,11 @@
     var findContainerIndex = function findContainerIndex2(element2) {
       return state.containerGroups.findIndex(function(_ref) {
         var container = _ref.container, tabbableNodes = _ref.tabbableNodes;
-        return container.contains(element2) || tabbableNodes.find(function(node) {
+        return container.contains(element2) || // fall back to explicit tabbable search which will take into consideration any
+        //  web components if the `tabbableOptions.getShadowRoot` option was used for
+        //  the trap, enabling shadow DOM support in tabbable (`Node.contains()` doesn't
+        //  look inside web components even if open)
+        tabbableNodes.find(function(node) {
           return node === element2;
         });
       });
@@ -2493,6 +2539,14 @@
           focusableNodes,
           firstTabbableNode: tabbableNodes.length > 0 ? tabbableNodes[0] : null,
           lastTabbableNode: tabbableNodes.length > 0 ? tabbableNodes[tabbableNodes.length - 1] : null,
+          /**
+           * Finds the __tabbable__ node that follows the given node in the specified direction,
+           *  in this container, if any.
+           * @param {HTMLElement} node
+           * @param {boolean} [forward] True if going in forward tab order; false if going
+           *  in reverse.
+           * @returns {HTMLElement|undefined} The next tabbable node, if any.
+           */
           nextTabbableNode: function nextTabbableNode(node) {
             var forward = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
             var nodeIdx = focusableNodes.findIndex(function(n) {
@@ -2549,6 +2603,17 @@
       }
       if (valueOrHandler(config.clickOutsideDeactivates, e)) {
         trap4.deactivate({
+          // if, on deactivation, we should return focus to the node originally-focused
+          //  when the trap was activated (or the configured `setReturnFocus` node),
+          //  then assume it's also OK to return focus to the outside node that was
+          //  just clicked, causing deactivation, as long as that node is focusable;
+          //  if it isn't focusable, then return focus to the original node focused
+          //  on activation (or the configured `setReturnFocus` node)
+          // NOTE: by setting `returnFocus: false`, deactivate() will do nothing,
+          //  which will result in the outside click setting focus to the node
+          //  that was clicked, whether it's focusable or not; by setting
+          //  `returnFocus: true`, we'll attempt to re-focus the node originally-focused
+          //  on activation (or the configured `setReturnFocus` node)
           returnFocus: config.returnFocusOnDeactivate && !isFocusable(target, config.tabbableOptions)
         });
         return;
@@ -3030,7 +3095,10 @@
 
   // node_modules/@popperjs/core/lib/dom-utils/getDocumentElement.js
   function getDocumentElement(element2) {
-    return ((isElement(element2) ? element2.ownerDocument : element2.document) || window.document).documentElement;
+    return ((isElement(element2) ? element2.ownerDocument : (
+      // $FlowFixMe[prop-missing]
+      element2.document
+    )) || window.document).documentElement;
   }
 
   // node_modules/@popperjs/core/lib/dom-utils/getParentNode.js
@@ -3038,12 +3106,22 @@
     if (getNodeName(element2) === "html") {
       return element2;
     }
-    return element2.assignedSlot || element2.parentNode || (isShadowRoot(element2) ? element2.host : null) || getDocumentElement(element2);
+    return (
+      // this is a quicker (but less type safe) way to save quite some bytes from the bundle
+      // $FlowFixMe[incompatible-return]
+      // $FlowFixMe[prop-missing]
+      element2.assignedSlot || // step into the shadow DOM of the parent of a slotted node
+      element2.parentNode || // DOM Element detected
+      (isShadowRoot(element2) ? element2.host : null) || // ShadowRoot detected
+      // $FlowFixMe[incompatible-call]: HTMLElement is a Node
+      getDocumentElement(element2)
+    );
   }
 
   // node_modules/@popperjs/core/lib/dom-utils/getOffsetParent.js
   function getTrueOffsetParent(element2) {
-    if (!isHTMLElement(element2) || getComputedStyle2(element2).position === "fixed") {
+    if (!isHTMLElement(element2) || // https://github.com/popperjs/popper-core/issues/837
+    getComputedStyle2(element2).position === "fixed") {
       return null;
     }
     return element2.offsetParent;
@@ -3243,13 +3321,19 @@
       offsetParent = offsetParent;
       if (placement === top || (placement === left || placement === right) && variation === end) {
         sideY = bottom;
-        var offsetY = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.height : offsetParent[heightProp];
+        var offsetY = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.height : (
+          // $FlowFixMe[prop-missing]
+          offsetParent[heightProp]
+        );
         y -= offsetY - popperRect.height;
         y *= gpuAcceleration ? 1 : -1;
       }
       if (placement === left || (placement === top || placement === bottom) && variation === end) {
         sideX = right;
-        var offsetX = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.width : offsetParent[widthProp];
+        var offsetX = isFixed && offsetParent === win && win.visualViewport ? win.visualViewport.width : (
+          // $FlowFixMe[prop-missing]
+          offsetParent[widthProp]
+        );
         x -= offsetX - popperRect.width;
         x *= gpuAcceleration ? 1 : -1;
       }
@@ -3472,7 +3556,10 @@
     var win = getWindow(scrollParent);
     var target = isBody ? [win].concat(win.visualViewport || [], isScrollParent(scrollParent) ? scrollParent : []) : scrollParent;
     var updatedList = list.concat(target);
-    return isBody ? updatedList : updatedList.concat(listScrollParents(getParentNode(target)));
+    return isBody ? updatedList : (
+      // $FlowFixMe[incompatible-call]: isBody tells us target will be an HTMLElement here
+      updatedList.concat(listScrollParents(getParentNode(target)))
+    );
   }
 
   // node_modules/@popperjs/core/lib/utils/rectToClientRect.js
@@ -4013,7 +4100,8 @@
       y: 0
     };
     if (isOffsetParentAnElement || !isOffsetParentAnElement && !isFixed) {
-      if (getNodeName(offsetParent) !== "body" || isScrollParent(documentElement)) {
+      if (getNodeName(offsetParent) !== "body" || // https://github.com/popperjs/popper-core/issues/1078
+      isScrollParent(documentElement)) {
         scroll = getNodeScroll(offsetParent);
       }
       if (isHTMLElement(offsetParent)) {
@@ -4264,6 +4352,11 @@
           runModifierEffects();
           return instance.update();
         },
+        // Sync update – it will always be executed, even if not necessary. This
+        // is useful for low frequency updates where sync behavior simplifies the
+        // logic.
+        // For high frequency updates (e.g. `resize` and `scroll` events), always
+        // prefer the async Popper#update method
         forceUpdate: function forceUpdate() {
           if (isDestroyed) {
             return;
@@ -4309,6 +4402,8 @@
             }
           }
         },
+        // Async and optimistically optimized update – it will not be executed if
+        // not necessary (debounced to run at most once-per-tick)
         update: debounce(function() {
           return new Promise(function(resolve) {
             instance.forceUpdate();
