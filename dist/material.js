@@ -219,179 +219,182 @@
           }
           return xPct[j - 1] + closest(value - xPct[j - 1], xSteps[j - 1]);
         }
-        var Spectrum = function() {
-          function Spectrum2(entry, snap, singleStep) {
-            this.xPct = [];
-            this.xVal = [];
-            this.xSteps = [];
-            this.xNumSteps = [];
-            this.xHighestCompleteStep = [];
-            this.xSteps = [singleStep || false];
-            this.xNumSteps = [false];
-            this.snap = snap;
-            var index;
-            var ordered = [];
-            Object.keys(entry).forEach(function(index2) {
-              ordered.push([asArray(entry[index2]), index2]);
-            });
-            ordered.sort(function(a, b) {
-              return a[0][0] - b[0][0];
-            });
-            for (index = 0; index < ordered.length; index++) {
-              this.handleEntryPoint(ordered[index][1], ordered[index][0]);
+        var Spectrum = (
+          /** @class */
+          function() {
+            function Spectrum2(entry, snap, singleStep) {
+              this.xPct = [];
+              this.xVal = [];
+              this.xSteps = [];
+              this.xNumSteps = [];
+              this.xHighestCompleteStep = [];
+              this.xSteps = [singleStep || false];
+              this.xNumSteps = [false];
+              this.snap = snap;
+              var index;
+              var ordered = [];
+              Object.keys(entry).forEach(function(index2) {
+                ordered.push([asArray(entry[index2]), index2]);
+              });
+              ordered.sort(function(a, b) {
+                return a[0][0] - b[0][0];
+              });
+              for (index = 0; index < ordered.length; index++) {
+                this.handleEntryPoint(ordered[index][1], ordered[index][0]);
+              }
+              this.xNumSteps = this.xSteps.slice(0);
+              for (index = 0; index < this.xNumSteps.length; index++) {
+                this.handleStepPoint(index, this.xNumSteps[index]);
+              }
             }
-            this.xNumSteps = this.xSteps.slice(0);
-            for (index = 0; index < this.xNumSteps.length; index++) {
-              this.handleStepPoint(index, this.xNumSteps[index]);
-            }
-          }
-          Spectrum2.prototype.getDistance = function(value) {
-            var distances = [];
-            for (var index = 0; index < this.xNumSteps.length - 1; index++) {
-              distances[index] = fromPercentage(this.xVal, value, index);
-            }
-            return distances;
-          };
-          Spectrum2.prototype.getAbsoluteDistance = function(value, distances, direction) {
-            var xPct_index = 0;
-            if (value < this.xPct[this.xPct.length - 1]) {
-              while (value > this.xPct[xPct_index + 1]) {
+            Spectrum2.prototype.getDistance = function(value) {
+              var distances = [];
+              for (var index = 0; index < this.xNumSteps.length - 1; index++) {
+                distances[index] = fromPercentage(this.xVal, value, index);
+              }
+              return distances;
+            };
+            Spectrum2.prototype.getAbsoluteDistance = function(value, distances, direction) {
+              var xPct_index = 0;
+              if (value < this.xPct[this.xPct.length - 1]) {
+                while (value > this.xPct[xPct_index + 1]) {
+                  xPct_index++;
+                }
+              } else if (value === this.xPct[this.xPct.length - 1]) {
+                xPct_index = this.xPct.length - 2;
+              }
+              if (!direction && value === this.xPct[xPct_index + 1]) {
                 xPct_index++;
               }
-            } else if (value === this.xPct[this.xPct.length - 1]) {
-              xPct_index = this.xPct.length - 2;
-            }
-            if (!direction && value === this.xPct[xPct_index + 1]) {
-              xPct_index++;
-            }
-            if (distances === null) {
-              distances = [];
-            }
-            var start_factor;
-            var rest_factor = 1;
-            var rest_rel_distance = distances[xPct_index];
-            var range_pct = 0;
-            var rel_range_distance = 0;
-            var abs_distance_counter = 0;
-            var range_counter = 0;
-            if (direction) {
-              start_factor = (value - this.xPct[xPct_index]) / (this.xPct[xPct_index + 1] - this.xPct[xPct_index]);
-            } else {
-              start_factor = (this.xPct[xPct_index + 1] - value) / (this.xPct[xPct_index + 1] - this.xPct[xPct_index]);
-            }
-            while (rest_rel_distance > 0) {
-              range_pct = this.xPct[xPct_index + 1 + range_counter] - this.xPct[xPct_index + range_counter];
-              if (distances[xPct_index + range_counter] * rest_factor + 100 - start_factor * 100 > 100) {
-                rel_range_distance = range_pct * start_factor;
-                rest_factor = (rest_rel_distance - 100 * start_factor) / distances[xPct_index + range_counter];
-                start_factor = 1;
-              } else {
-                rel_range_distance = distances[xPct_index + range_counter] * range_pct / 100 * rest_factor;
-                rest_factor = 0;
+              if (distances === null) {
+                distances = [];
               }
+              var start_factor;
+              var rest_factor = 1;
+              var rest_rel_distance = distances[xPct_index];
+              var range_pct = 0;
+              var rel_range_distance = 0;
+              var abs_distance_counter = 0;
+              var range_counter = 0;
               if (direction) {
-                abs_distance_counter = abs_distance_counter - rel_range_distance;
-                if (this.xPct.length + range_counter >= 1) {
-                  range_counter--;
+                start_factor = (value - this.xPct[xPct_index]) / (this.xPct[xPct_index + 1] - this.xPct[xPct_index]);
+              } else {
+                start_factor = (this.xPct[xPct_index + 1] - value) / (this.xPct[xPct_index + 1] - this.xPct[xPct_index]);
+              }
+              while (rest_rel_distance > 0) {
+                range_pct = this.xPct[xPct_index + 1 + range_counter] - this.xPct[xPct_index + range_counter];
+                if (distances[xPct_index + range_counter] * rest_factor + 100 - start_factor * 100 > 100) {
+                  rel_range_distance = range_pct * start_factor;
+                  rest_factor = (rest_rel_distance - 100 * start_factor) / distances[xPct_index + range_counter];
+                  start_factor = 1;
+                } else {
+                  rel_range_distance = distances[xPct_index + range_counter] * range_pct / 100 * rest_factor;
+                  rest_factor = 0;
+                }
+                if (direction) {
+                  abs_distance_counter = abs_distance_counter - rel_range_distance;
+                  if (this.xPct.length + range_counter >= 1) {
+                    range_counter--;
+                  }
+                } else {
+                  abs_distance_counter = abs_distance_counter + rel_range_distance;
+                  if (this.xPct.length - range_counter >= 1) {
+                    range_counter++;
+                  }
+                }
+                rest_rel_distance = distances[xPct_index + range_counter] * rest_factor;
+              }
+              return value + abs_distance_counter;
+            };
+            Spectrum2.prototype.toStepping = function(value) {
+              value = toStepping(this.xVal, this.xPct, value);
+              return value;
+            };
+            Spectrum2.prototype.fromStepping = function(value) {
+              return fromStepping(this.xVal, this.xPct, value);
+            };
+            Spectrum2.prototype.getStep = function(value) {
+              value = getStep(this.xPct, this.xSteps, this.snap, value);
+              return value;
+            };
+            Spectrum2.prototype.getDefaultStep = function(value, isDown, size) {
+              var j = getJ(value, this.xPct);
+              if (value === 100 || isDown && value === this.xPct[j - 1]) {
+                j = Math.max(j - 1, 1);
+              }
+              return (this.xVal[j] - this.xVal[j - 1]) / size;
+            };
+            Spectrum2.prototype.getNearbySteps = function(value) {
+              var j = getJ(value, this.xPct);
+              return {
+                stepBefore: {
+                  startValue: this.xVal[j - 2],
+                  step: this.xNumSteps[j - 2],
+                  highestStep: this.xHighestCompleteStep[j - 2]
+                },
+                thisStep: {
+                  startValue: this.xVal[j - 1],
+                  step: this.xNumSteps[j - 1],
+                  highestStep: this.xHighestCompleteStep[j - 1]
+                },
+                stepAfter: {
+                  startValue: this.xVal[j],
+                  step: this.xNumSteps[j],
+                  highestStep: this.xHighestCompleteStep[j]
+                }
+              };
+            };
+            Spectrum2.prototype.countStepDecimals = function() {
+              var stepDecimals = this.xNumSteps.map(countDecimals);
+              return Math.max.apply(null, stepDecimals);
+            };
+            Spectrum2.prototype.hasNoSize = function() {
+              return this.xVal[0] === this.xVal[this.xVal.length - 1];
+            };
+            Spectrum2.prototype.convert = function(value) {
+              return this.getStep(this.toStepping(value));
+            };
+            Spectrum2.prototype.handleEntryPoint = function(index, value) {
+              var percentage;
+              if (index === "min") {
+                percentage = 0;
+              } else if (index === "max") {
+                percentage = 100;
+              } else {
+                percentage = parseFloat(index);
+              }
+              if (!isNumeric(percentage) || !isNumeric(value[0])) {
+                throw new Error("noUiSlider: 'range' value isn't numeric.");
+              }
+              this.xPct.push(percentage);
+              this.xVal.push(value[0]);
+              var value1 = Number(value[1]);
+              if (!percentage) {
+                if (!isNaN(value1)) {
+                  this.xSteps[0] = value1;
                 }
               } else {
-                abs_distance_counter = abs_distance_counter + rel_range_distance;
-                if (this.xPct.length - range_counter >= 1) {
-                  range_counter++;
-                }
+                this.xSteps.push(isNaN(value1) ? false : value1);
               }
-              rest_rel_distance = distances[xPct_index + range_counter] * rest_factor;
-            }
-            return value + abs_distance_counter;
-          };
-          Spectrum2.prototype.toStepping = function(value) {
-            value = toStepping(this.xVal, this.xPct, value);
-            return value;
-          };
-          Spectrum2.prototype.fromStepping = function(value) {
-            return fromStepping(this.xVal, this.xPct, value);
-          };
-          Spectrum2.prototype.getStep = function(value) {
-            value = getStep(this.xPct, this.xSteps, this.snap, value);
-            return value;
-          };
-          Spectrum2.prototype.getDefaultStep = function(value, isDown, size) {
-            var j = getJ(value, this.xPct);
-            if (value === 100 || isDown && value === this.xPct[j - 1]) {
-              j = Math.max(j - 1, 1);
-            }
-            return (this.xVal[j] - this.xVal[j - 1]) / size;
-          };
-          Spectrum2.prototype.getNearbySteps = function(value) {
-            var j = getJ(value, this.xPct);
-            return {
-              stepBefore: {
-                startValue: this.xVal[j - 2],
-                step: this.xNumSteps[j - 2],
-                highestStep: this.xHighestCompleteStep[j - 2]
-              },
-              thisStep: {
-                startValue: this.xVal[j - 1],
-                step: this.xNumSteps[j - 1],
-                highestStep: this.xHighestCompleteStep[j - 1]
-              },
-              stepAfter: {
-                startValue: this.xVal[j],
-                step: this.xNumSteps[j],
-                highestStep: this.xHighestCompleteStep[j]
-              }
+              this.xHighestCompleteStep.push(0);
             };
-          };
-          Spectrum2.prototype.countStepDecimals = function() {
-            var stepDecimals = this.xNumSteps.map(countDecimals);
-            return Math.max.apply(null, stepDecimals);
-          };
-          Spectrum2.prototype.hasNoSize = function() {
-            return this.xVal[0] === this.xVal[this.xVal.length - 1];
-          };
-          Spectrum2.prototype.convert = function(value) {
-            return this.getStep(this.toStepping(value));
-          };
-          Spectrum2.prototype.handleEntryPoint = function(index, value) {
-            var percentage;
-            if (index === "min") {
-              percentage = 0;
-            } else if (index === "max") {
-              percentage = 100;
-            } else {
-              percentage = parseFloat(index);
-            }
-            if (!isNumeric(percentage) || !isNumeric(value[0])) {
-              throw new Error("noUiSlider: 'range' value isn't numeric.");
-            }
-            this.xPct.push(percentage);
-            this.xVal.push(value[0]);
-            var value1 = Number(value[1]);
-            if (!percentage) {
-              if (!isNaN(value1)) {
-                this.xSteps[0] = value1;
+            Spectrum2.prototype.handleStepPoint = function(i, n) {
+              if (!n) {
+                return;
               }
-            } else {
-              this.xSteps.push(isNaN(value1) ? false : value1);
-            }
-            this.xHighestCompleteStep.push(0);
-          };
-          Spectrum2.prototype.handleStepPoint = function(i, n) {
-            if (!n) {
-              return;
-            }
-            if (this.xVal[i] === this.xVal[i + 1]) {
-              this.xSteps[i] = this.xHighestCompleteStep[i] = this.xVal[i];
-              return;
-            }
-            this.xSteps[i] = fromPercentage([this.xVal[i], this.xVal[i + 1]], n, 0) / subRangeRatio(this.xPct[i], this.xPct[i + 1]);
-            var totalSteps = (this.xVal[i + 1] - this.xVal[i]) / this.xNumSteps[i];
-            var highestStep = Math.ceil(Number(totalSteps.toFixed(3)) - 1);
-            var step = this.xVal[i] + this.xNumSteps[i] * highestStep;
-            this.xHighestCompleteStep[i] = step;
-          };
-          return Spectrum2;
-        }();
+              if (this.xVal[i] === this.xVal[i + 1]) {
+                this.xSteps[i] = this.xHighestCompleteStep[i] = this.xVal[i];
+                return;
+              }
+              this.xSteps[i] = fromPercentage([this.xVal[i], this.xVal[i + 1]], n, 0) / subRangeRatio(this.xPct[i], this.xPct[i + 1]);
+              var totalSteps = (this.xVal[i + 1] - this.xVal[i]) / this.xNumSteps[i];
+              var highestStep = Math.ceil(Number(totalSteps.toFixed(3)) - 1);
+              var step = this.xVal[i] + this.xNumSteps[i] * highestStep;
+              this.xHighestCompleteStep[i] = step;
+            };
+            return Spectrum2;
+          }()
+        );
         var defaultFormatter = {
           to: function(value) {
             return value === void 0 ? "" : value.toFixed(2);
