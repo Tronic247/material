@@ -18,7 +18,7 @@
 		"@popperjs/core": "^2.11.0",
 		"chokidar": "^3.5.3",
 		"css-minify": "^2.0.0",
-		"esbuild": "^0.16.12",
+		"esbuild": "^0.17.3",
 		"flatpickr": "^4.6.3",
 		"focus-trap": "^7.0.0",
 		"nouislider": "^15.5.0",
