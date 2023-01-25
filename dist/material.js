@@ -4730,7 +4730,7 @@
     monthSelectorType: "dropdown",
     nextArrow: "<svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='0 0 17 17'><g></g><path d='M13.207 8.472l-7.854 7.854-0.707-0.707 7.146-7.146-7.146-7.148 0.707-0.707 7.854 7.854z' /></svg>",
     noCalendar: false,
-    now: new Date(),
+    now: /* @__PURE__ */ new Date(),
     onChange: [],
     onClose: [],
     onDayCreate: [],
@@ -5109,7 +5109,7 @@
         var format2 = givenFormat || (config || defaults).dateFormat;
         var datestr = String(date).trim();
         if (datestr === "today") {
-          parsedDate = new Date();
+          parsedDate = /* @__PURE__ */ new Date();
           timeless = true;
         } else if (config && config.parseDate) {
           parsedDate = config.parseDate(date, format2);
@@ -5133,7 +5133,7 @@
             } else if (!isBackSlash)
               regexStr += ".";
           }
-          parsedDate = !config || !config.noCalendar ? new Date(new Date().getFullYear(), 0, 1, 0, 0, 0, 0) : new Date(new Date().setHours(0, 0, 0, 0));
+          parsedDate = !config || !config.noCalendar ? new Date((/* @__PURE__ */ new Date()).getFullYear(), 0, 1, 0, 0, 0, 0) : new Date((/* @__PURE__ */ new Date()).setHours(0, 0, 0, 0));
           ops.forEach(function(_a2) {
             var fn2 = _a2.fn, val = _a2.val;
             return parsedDate = fn2(parsedDate, val, locale) || parsedDate;
@@ -5344,7 +5344,7 @@
     }
     function updateTime(e) {
       if (self2.selectedDates.length === 0) {
-        var defaultDate = self2.config.minDate === void 0 || compareDates(new Date(), self2.config.minDate) >= 0 ? new Date() : new Date(self2.config.minDate.getTime());
+        var defaultDate = self2.config.minDate === void 0 || compareDates(/* @__PURE__ */ new Date(), self2.config.minDate) >= 0 ? /* @__PURE__ */ new Date() : new Date(self2.config.minDate.getTime());
         var defaults2 = getDefaultHours(self2.config);
         defaultDate.setHours(defaults2.hours, defaults2.minutes, defaults2.seconds, defaultDate.getMilliseconds());
         self2.selectedDates = [defaultDate];
@@ -6755,7 +6755,7 @@
     }
     function setupDates() {
       self2.selectedDates = [];
-      self2.now = self2.parseDate(self2.config.now) || new Date();
+      self2.now = self2.parseDate(self2.config.now) || /* @__PURE__ */ new Date();
       var preloadedDate = self2.config.defaultDate || ((self2.input.nodeName === "INPUT" || self2.input.nodeName === "TEXTAREA") && self2.input.placeholder && self2.input.value === self2.input.placeholder ? null : self2.input.value);
       if (preloadedDate)
         setSelectedDate(preloadedDate, self2.config.dateFormat);
