@@ -2077,17 +2077,36 @@
   var appbar_default = Appbar;
 
   // node_modules/tabbable/dist/index.esm.js
-  var candidateSelectors = ["input", "select", "textarea", "a[href]", "button", "[tabindex]:not(slot)", "audio[controls]", "video[controls]", '[contenteditable]:not([contenteditable="false"])', "details>summary:first-of-type", "details"];
+  var candidateSelectors = ["input:not([inert])", "select:not([inert])", "textarea:not([inert])", "a[href]:not([inert])", "button:not([inert])", "[tabindex]:not(slot):not([inert])", "audio[controls]:not([inert])", "video[controls]:not([inert])", '[contenteditable]:not([contenteditable="false"]):not([inert])', "details>summary:first-of-type:not([inert])", "details:not([inert])"];
   var candidateSelector = /* @__PURE__ */ candidateSelectors.join(",");
   var NoElement = typeof Element === "undefined";
   var matches = NoElement ? function() {
   } : Element.prototype.matches || Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
   var getRootNode = !NoElement && Element.prototype.getRootNode ? function(element2) {
-    return element2.getRootNode();
+    var _element$getRootNode;
+    return element2 === null || element2 === void 0 ? void 0 : (_element$getRootNode = element2.getRootNode) === null || _element$getRootNode === void 0 ? void 0 : _element$getRootNode.call(element2);
   } : function(element2) {
-    return element2.ownerDocument;
+    return element2 === null || element2 === void 0 ? void 0 : element2.ownerDocument;
+  };
+  var isInert = function isInert2(node, lookUp) {
+    var _node$getAttribute;
+    if (lookUp === void 0) {
+      lookUp = true;
+    }
+    var inertAtt = node === null || node === void 0 ? void 0 : (_node$getAttribute = node.getAttribute) === null || _node$getAttribute === void 0 ? void 0 : _node$getAttribute.call(node, "inert");
+    var inert = inertAtt === "" || inertAtt === "true";
+    var result = inert || lookUp && node && isInert2(node.parentNode);
+    return result;
+  };
+  var isContentEditable = function isContentEditable2(node) {
+    var _node$getAttribute2;
+    var attValue = node === null || node === void 0 ? void 0 : (_node$getAttribute2 = node.getAttribute) === null || _node$getAttribute2 === void 0 ? void 0 : _node$getAttribute2.call(node, "contenteditable");
+    return attValue === "" || attValue === "true";
   };
   var getCandidates = function getCandidates2(el, includeContainer, filter) {
+    if (isInert(el)) {
+      return [];
+    }
     var candidates = Array.prototype.slice.apply(el.querySelectorAll(candidateSelector));
     if (includeContainer && matches.call(el, candidateSelector)) {
       candidates.unshift(el);
@@ -2100,6 +2119,9 @@
     var elementsToCheck = Array.from(elements);
     while (elementsToCheck.length) {
       var element2 = elementsToCheck.shift();
+      if (isInert(element2, false)) {
+        continue;
+      }
       if (element2.tagName === "SLOT") {
         var assigned = element2.assignedElements();
         var content = assigned.length ? assigned : element2.children;
@@ -2119,7 +2141,7 @@
         }
         var shadowRoot = element2.shadowRoot || // check for an undisclosed shadow
         typeof options.getShadowRoot === "function" && options.getShadowRoot(element2);
-        var validShadowRoot = !options.shadowRootFilter || options.shadowRootFilter(element2);
+        var validShadowRoot = !isInert(shadowRoot, false) && (!options.shadowRootFilter || options.shadowRootFilter(element2));
         if (shadowRoot && validShadowRoot) {
           var _nestedCandidates = getCandidatesIteratively2(shadowRoot === true ? element2.children : shadowRoot.children, true, options);
           if (options.flatten) {
@@ -2139,7 +2161,7 @@
   };
   var getTabindex = function getTabindex2(node, isScope) {
     if (node.tabIndex < 0) {
-      if ((isScope || /^(AUDIO|VIDEO|DETAILS)$/.test(node.tagName) || node.isContentEditable) && isNaN(parseInt(node.getAttribute("tabindex"), 10))) {
+      if ((isScope || /^(AUDIO|VIDEO|DETAILS)$/.test(node.tagName) || isContentEditable(node)) && isNaN(parseInt(node.getAttribute("tabindex"), 10))) {
         return 0;
       }
     }
@@ -2196,13 +2218,19 @@
     return isRadio(node) && !isTabbableRadio(node);
   };
   var isNodeAttached = function isNodeAttached2(node) {
-    var _nodeRootHost;
-    var nodeRootHost = getRootNode(node).host;
-    var attached = !!((_nodeRootHost = nodeRootHost) !== null && _nodeRootHost !== void 0 && _nodeRootHost.ownerDocument.contains(nodeRootHost) || node.ownerDocument.contains(node));
-    while (!attached && nodeRootHost) {
-      var _nodeRootHost2;
-      nodeRootHost = getRootNode(nodeRootHost).host;
-      attached = !!((_nodeRootHost2 = nodeRootHost) !== null && _nodeRootHost2 !== void 0 && _nodeRootHost2.ownerDocument.contains(nodeRootHost));
+    var _nodeRoot;
+    var nodeRoot = node && getRootNode(node);
+    var nodeRootHost = (_nodeRoot = nodeRoot) === null || _nodeRoot === void 0 ? void 0 : _nodeRoot.host;
+    var attached = false;
+    if (nodeRoot && nodeRoot !== node) {
+      var _nodeRootHost, _nodeRootHost$ownerDo, _node$ownerDocument;
+      attached = !!((_nodeRootHost = nodeRootHost) !== null && _nodeRootHost !== void 0 && (_nodeRootHost$ownerDo = _nodeRootHost.ownerDocument) !== null && _nodeRootHost$ownerDo !== void 0 && _nodeRootHost$ownerDo.contains(nodeRootHost) || node !== null && node !== void 0 && (_node$ownerDocument = node.ownerDocument) !== null && _node$ownerDocument !== void 0 && _node$ownerDocument.contains(node));
+      while (!attached && nodeRootHost) {
+        var _nodeRoot2, _nodeRootHost2, _nodeRootHost2$ownerD;
+        nodeRoot = getRootNode(nodeRootHost);
+        nodeRootHost = (_nodeRoot2 = nodeRoot) === null || _nodeRoot2 === void 0 ? void 0 : _nodeRoot2.host;
+        attached = !!((_nodeRootHost2 = nodeRootHost) !== null && _nodeRootHost2 !== void 0 && (_nodeRootHost2$ownerD = _nodeRootHost2.ownerDocument) !== null && _nodeRootHost2$ownerD !== void 0 && _nodeRootHost2$ownerD.contains(nodeRootHost));
+      }
     }
     return attached;
   };
@@ -2268,7 +2296,10 @@
     return false;
   };
   var isNodeMatchingSelectorFocusable = function isNodeMatchingSelectorFocusable2(options, node) {
-    if (node.disabled || isHiddenInput(node) || isHidden(node, options) || // For a details element with a summary, the summary element gets the focus
+    if (node.disabled || // we must do an inert look up to filter out any elements inside an inert ancestor
+    //  because we're limited in the type of selectors we can use in JSDom (see related
+    //  note related to `candidateSelectors`)
+    isInert(node) || isHiddenInput(node) || isHidden(node, options) || // For a details element with a summary, the summary element gets the focus
     isDetailsWithSummary(node) || isDisabledFromFieldset(node)) {
       return false;
     }
@@ -2386,6 +2417,7 @@
     return target;
   }
   function _defineProperty(obj, key, value) {
+    key = _toPropertyKey(key);
     if (key in obj) {
       Object.defineProperty(obj, key, {
         value,
@@ -2398,7 +2430,22 @@
     }
     return obj;
   }
-  var rooTrapStack = [];
+  function _toPrimitive(input, hint) {
+    if (typeof input !== "object" || input === null)
+      return input;
+    var prim = input[Symbol.toPrimitive];
+    if (prim !== void 0) {
+      var res = prim.call(input, hint || "default");
+      if (typeof res !== "object")
+        return res;
+      throw new TypeError("@@toPrimitive must return a primitive value.");
+    }
+    return (hint === "string" ? String : Number)(input);
+  }
+  function _toPropertyKey(arg) {
+    var key = _toPrimitive(arg, "string");
+    return typeof key === "symbol" ? key : String(key);
+  }
   var activeFocusTraps = {
     activateTrap: function activateTrap(trapStack, trap4) {
       if (trapStack.length > 0) {
@@ -2434,6 +2481,12 @@
   var isTabEvent = function isTabEvent2(e) {
     return e.key === "Tab" || e.keyCode === 9;
   };
+  var isKeyForward = function isKeyForward2(e) {
+    return isTabEvent(e) && !e.shiftKey;
+  };
+  var isKeyBackward = function isKeyBackward2(e) {
+    return isTabEvent(e) && e.shiftKey;
+  };
   var delay = function delay2(fn2) {
     return setTimeout(fn2, 0);
   };
@@ -2457,13 +2510,16 @@
   var getActualTarget = function getActualTarget2(event) {
     return event.target.shadowRoot && typeof event.composedPath === "function" ? event.composedPath()[0] : event.target;
   };
+  var internalTrapStack = [];
   var createFocusTrap = function createFocusTrap2(elements, userOptions) {
     var doc = (userOptions === null || userOptions === void 0 ? void 0 : userOptions.document) || document;
-    var trapStack = (userOptions === null || userOptions === void 0 ? void 0 : userOptions.trapStack) || rooTrapStack;
+    var trapStack = (userOptions === null || userOptions === void 0 ? void 0 : userOptions.trapStack) || internalTrapStack;
     var config = _objectSpread2({
       returnFocusOnDeactivate: true,
       escapeDeactivates: true,
-      delayInitialFocus: true
+      delayInitialFocus: true,
+      isKeyForward,
+      isKeyBackward
     }, userOptions);
     var state = {
       // containers given to createFocusTrap()
@@ -2632,18 +2688,13 @@
       }
       if (valueOrHandler(config.clickOutsideDeactivates, e)) {
         trap4.deactivate({
-          // if, on deactivation, we should return focus to the node originally-focused
-          //  when the trap was activated (or the configured `setReturnFocus` node),
-          //  then assume it's also OK to return focus to the outside node that was
-          //  just clicked, causing deactivation, as long as that node is focusable;
-          //  if it isn't focusable, then return focus to the original node focused
-          //  on activation (or the configured `setReturnFocus` node)
           // NOTE: by setting `returnFocus: false`, deactivate() will do nothing,
           //  which will result in the outside click setting focus to the node
-          //  that was clicked, whether it's focusable or not; by setting
+          //  that was clicked (and if not focusable, to "nothing"); by setting
           //  `returnFocus: true`, we'll attempt to re-focus the node originally-focused
-          //  on activation (or the configured `setReturnFocus` node)
-          returnFocus: config.returnFocusOnDeactivate && !isFocusable(target, config.tabbableOptions)
+          //  on activation (or the configured `setReturnFocus` node), whether the
+          //  outside click was on a focusable node or not
+          returnFocus: config.returnFocusOnDeactivate
         });
         return;
       }
@@ -2664,20 +2715,21 @@
         tryFocus(state.mostRecentlyFocusedNode || getInitialFocusNode());
       }
     };
-    var checkTab = function checkTab2(e) {
-      var target = getActualTarget(e);
+    var checkKeyNav = function checkKeyNav2(event) {
+      var isBackward = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : false;
+      var target = getActualTarget(event);
       updateTabbableNodes();
       var destinationNode = null;
       if (state.tabbableGroups.length > 0) {
         var containerIndex = findContainerIndex(target);
         var containerGroup = containerIndex >= 0 ? state.containerGroups[containerIndex] : void 0;
         if (containerIndex < 0) {
-          if (e.shiftKey) {
+          if (isBackward) {
             destinationNode = state.tabbableGroups[state.tabbableGroups.length - 1].lastTabbableNode;
           } else {
             destinationNode = state.tabbableGroups[0].firstTabbableNode;
           }
-        } else if (e.shiftKey) {
+        } else if (isBackward) {
           var startOfGroupIndex = findIndex(state.tabbableGroups, function(_ref2) {
             var firstTabbableNode = _ref2.firstTabbableNode;
             return target === firstTabbableNode;
@@ -2689,6 +2741,8 @@
             var destinationGroupIndex = startOfGroupIndex === 0 ? state.tabbableGroups.length - 1 : startOfGroupIndex - 1;
             var destinationGroup = state.tabbableGroups[destinationGroupIndex];
             destinationNode = destinationGroup.lastTabbableNode;
+          } else if (!isTabEvent(event)) {
+            destinationNode = containerGroup.nextTabbableNode(target, false);
           }
         } else {
           var lastOfGroupIndex = findIndex(state.tabbableGroups, function(_ref3) {
@@ -2702,25 +2756,28 @@
             var _destinationGroupIndex = lastOfGroupIndex === state.tabbableGroups.length - 1 ? 0 : lastOfGroupIndex + 1;
             var _destinationGroup = state.tabbableGroups[_destinationGroupIndex];
             destinationNode = _destinationGroup.firstTabbableNode;
+          } else if (!isTabEvent(event)) {
+            destinationNode = containerGroup.nextTabbableNode(target);
           }
         }
       } else {
         destinationNode = getNodeForOption("fallbackFocus");
       }
       if (destinationNode) {
-        e.preventDefault();
+        if (isTabEvent(event)) {
+          event.preventDefault();
+        }
         tryFocus(destinationNode);
       }
     };
-    var checkKey = function checkKey2(e) {
-      if (isEscapeEvent(e) && valueOrHandler(config.escapeDeactivates, e) !== false) {
-        e.preventDefault();
+    var checkKey = function checkKey2(event) {
+      if (isEscapeEvent(event) && valueOrHandler(config.escapeDeactivates, event) !== false) {
+        event.preventDefault();
         trap4.deactivate();
         return;
       }
-      if (isTabEvent(e)) {
-        checkTab(e);
-        return;
+      if (config.isKeyForward(event) || config.isKeyBackward(event)) {
+        checkKeyNav(event, config.isKeyBackward(event));
       }
     };
     var checkClick = function checkClick2(e) {
@@ -7125,13 +7182,13 @@
 
 tabbable/dist/index.esm.js:
   (*!
-  * tabbable 6.0.1
+  * tabbable 6.1.1
   * @license MIT, https://github.com/focus-trap/tabbable/blob/master/LICENSE
   *)
 
 focus-trap/dist/focus-trap.esm.js:
   (*!
-  * focus-trap 7.1.0
+  * focus-trap 7.3.1
   * @license MIT, https://github.com/focus-trap/focus-trap/blob/master/LICENSE
   *)
 */
