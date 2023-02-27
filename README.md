@@ -1,5 +1,5 @@
 <p align="center"><img src="https://material.tronic247.com/logo.svg" height="200"/></p>
-<p align="center"><b>Modern Material design framework</b></p>
+<p align="center"><b>Modern Material design framework for just vanilla JS!</b></p>
 <p align="center"><img src="https://img.shields.io/github/stars/tronic247/material?style=flat-square"/>
 <img src="https://img.shields.io/github/last-commit/tronic247/material?style=flat-square"/>
 <img src="https://img.shields.io/github/issues/tronic247/material?style=flat-square"/>
@@ -19,4 +19,3 @@
 
 ## Getting started
 See how to [getting started here](https://material.tronic247.com/getting-started/).
-
