@@ -2852,17 +2852,13 @@
         state.active = true;
         state.paused = false;
         state.nodeFocusedBeforeActivation = doc.activeElement;
-        if (onActivate) {
-          onActivate();
-        }
+        onActivate === null || onActivate === void 0 ? void 0 : onActivate();
         var finishActivation = function finishActivation2() {
           if (checkCanFocusTrap) {
             updateTabbableNodes();
           }
           addListeners();
-          if (onPostActivate) {
-            onPostActivate();
-          }
+          onPostActivate === null || onPostActivate === void 0 ? void 0 : onPostActivate();
         };
         if (checkCanFocusTrap) {
           checkCanFocusTrap(state.containers.concat()).then(finishActivation, finishActivation);
@@ -2890,17 +2886,13 @@
         var onPostDeactivate = getOption(options, "onPostDeactivate");
         var checkCanReturnFocus = getOption(options, "checkCanReturnFocus");
         var returnFocus = getOption(options, "returnFocus", "returnFocusOnDeactivate");
-        if (onDeactivate) {
-          onDeactivate();
-        }
+        onDeactivate === null || onDeactivate === void 0 ? void 0 : onDeactivate();
         var finishDeactivation = function finishDeactivation2() {
           delay(function() {
             if (returnFocus) {
               tryFocus(getReturnFocusNode(state.nodeFocusedBeforeActivation));
             }
-            if (onPostDeactivate) {
-              onPostDeactivate();
-            }
+            onPostDeactivate === null || onPostDeactivate === void 0 ? void 0 : onPostDeactivate();
           });
         };
         if (returnFocus && checkCanReturnFocus) {
@@ -2910,21 +2902,29 @@
         finishDeactivation();
         return this;
       },
-      pause: function pause() {
+      pause: function pause(pauseOptions) {
         if (state.paused || !state.active) {
           return this;
         }
+        var onPause = getOption(pauseOptions, "onPause");
+        var onPostPause = getOption(pauseOptions, "onPostPause");
         state.paused = true;
+        onPause === null || onPause === void 0 ? void 0 : onPause();
         removeListeners();
+        onPostPause === null || onPostPause === void 0 ? void 0 : onPostPause();
         return this;
       },
-      unpause: function unpause() {
+      unpause: function unpause(unpauseOptions) {
         if (!state.paused || !state.active) {
           return this;
         }
+        var onUnpause = getOption(unpauseOptions, "onUnpause");
+        var onPostUnpause = getOption(unpauseOptions, "onPostUnpause");
         state.paused = false;
+        onUnpause === null || onUnpause === void 0 ? void 0 : onUnpause();
         updateTabbableNodes();
         addListeners();
+        onPostUnpause === null || onPostUnpause === void 0 ? void 0 : onPostUnpause();
         return this;
       },
       updateContainerElements: function updateContainerElements(containerElements) {
@@ -7188,7 +7188,7 @@ tabbable/dist/index.esm.js:
 
 focus-trap/dist/focus-trap.esm.js:
   (*!
-  * focus-trap 7.3.1
+  * focus-trap 7.4.0
   * @license MIT, https://github.com/focus-trap/focus-trap/blob/master/LICENSE
   *)
 */
