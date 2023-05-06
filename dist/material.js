@@ -7181,7 +7181,7 @@
 
 tabbable/dist/index.esm.js:
   (*!
-  * tabbable 6.1.1
+  * tabbable 6.1.2
   * @license MIT, https://github.com/focus-trap/tabbable/blob/master/LICENSE
   *)
 
