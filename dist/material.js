@@ -2557,14 +2557,15 @@
     var getOption = function getOption2(configOverrideOptions, optionName, configOptionName) {
       return configOverrideOptions && configOverrideOptions[optionName] !== void 0 ? configOverrideOptions[optionName] : config[configOptionName || optionName];
     };
-    var findContainerIndex = function findContainerIndex2(element2) {
+    var findContainerIndex = function findContainerIndex2(element2, event) {
+      var composedPath = typeof (event === null || event === void 0 ? void 0 : event.composedPath) === "function" ? event.composedPath() : void 0;
       return state.containerGroups.findIndex(function(_ref) {
         var container = _ref.container, tabbableNodes = _ref.tabbableNodes;
         return container.contains(element2) || // fall back to explicit tabbable search which will take into consideration any
         //  web components if the `tabbableOptions.getShadowRoot` option was used for
         //  the trap, enabling shadow DOM support in tabbable (`Node.contains()` doesn't
         //  look inside web components even if open)
-        tabbableNodes.find(function(node) {
+        (composedPath === null || composedPath === void 0 ? void 0 : composedPath.includes(container)) || tabbableNodes.find(function(node) {
           return node === element2;
         });
       });
@@ -2600,7 +2601,7 @@
       if (node === false) {
         return false;
       }
-      if (node === void 0) {
+      if (node === void 0 || !isFocusable(node, config.tabbableOptions)) {
         if (findContainerIndex(doc.activeElement) >= 0) {
           node = doc.activeElement;
         } else {
@@ -2683,7 +2684,7 @@
     };
     var checkPointerDown = function checkPointerDown2(e) {
       var target = getActualTarget(e);
-      if (findContainerIndex(target) >= 0) {
+      if (findContainerIndex(target, e) >= 0) {
         return;
       }
       if (valueOrHandler(config.clickOutsideDeactivates, e)) {
@@ -2705,7 +2706,7 @@
     };
     var checkFocusIn = function checkFocusIn2(e) {
       var target = getActualTarget(e);
-      var targetContained = findContainerIndex(target) >= 0;
+      var targetContained = findContainerIndex(target, e) >= 0;
       if (targetContained || target instanceof Document) {
         if (targetContained) {
           state.mostRecentlyFocusedNode = target;
@@ -2721,7 +2722,7 @@
       updateTabbableNodes();
       var destinationNode = null;
       if (state.tabbableGroups.length > 0) {
-        var containerIndex = findContainerIndex(target);
+        var containerIndex = findContainerIndex(target, event);
         var containerGroup = containerIndex >= 0 ? state.containerGroups[containerIndex] : void 0;
         if (containerIndex < 0) {
           if (isBackward) {
@@ -2782,7 +2783,7 @@
     };
     var checkClick = function checkClick2(e) {
       var target = getActualTarget(e);
-      if (findContainerIndex(target) >= 0) {
+      if (findContainerIndex(target, e) >= 0) {
         return;
       }
       if (valueOrHandler(config.clickOutsideDeactivates, e)) {
@@ -2832,6 +2833,32 @@
       doc.removeEventListener("keydown", checkKey, true);
       return trap4;
     };
+    var checkDomRemoval = function checkDomRemoval2(mutations) {
+      var isFocusedNodeRemoved = mutations.some(function(mutation) {
+        var removedNodes = Array.from(mutation.removedNodes);
+        return removedNodes.some(function(node) {
+          return node === state.mostRecentlyFocusedNode;
+        });
+      });
+      if (isFocusedNodeRemoved) {
+        tryFocus(getInitialFocusNode());
+      }
+    };
+    var mutationObserver = typeof window !== "undefined" && "MutationObserver" in window ? new MutationObserver(checkDomRemoval) : void 0;
+    var updateObservedNodes = function updateObservedNodes2() {
+      if (!mutationObserver) {
+        return;
+      }
+      mutationObserver.disconnect();
+      if (state.active && !state.paused) {
+        state.containers.map(function(container) {
+          mutationObserver.observe(container, {
+            subtree: true,
+            childList: true
+          });
+        });
+      }
+    };
     trap4 = {
       get active() {
         return state.active;
@@ -2858,6 +2885,7 @@
             updateTabbableNodes();
           }
           addListeners();
+          updateObservedNodes();
           onPostActivate === null || onPostActivate === void 0 ? void 0 : onPostActivate();
         };
         if (checkCanFocusTrap) {
@@ -2881,6 +2909,7 @@
         removeListeners();
         state.active = false;
         state.paused = false;
+        updateObservedNodes();
         activeFocusTraps.deactivateTrap(trapStack, trap4);
         var onDeactivate = getOption(options, "onDeactivate");
         var onPostDeactivate = getOption(options, "onPostDeactivate");
@@ -2911,6 +2940,7 @@
         state.paused = true;
         onPause === null || onPause === void 0 ? void 0 : onPause();
         removeListeners();
+        updateObservedNodes();
         onPostPause === null || onPostPause === void 0 ? void 0 : onPostPause();
         return this;
       },
@@ -2924,6 +2954,7 @@
         onUnpause === null || onUnpause === void 0 ? void 0 : onUnpause();
         updateTabbableNodes();
         addListeners();
+        updateObservedNodes();
         onPostUnpause === null || onPostUnpause === void 0 ? void 0 : onPostUnpause();
         return this;
       },
@@ -2935,6 +2966,7 @@
         if (state.active) {
           updateTabbableNodes();
         }
+        updateObservedNodes();
         return this;
       }
     };
@@ -7187,7 +7219,7 @@ tabbable/dist/index.esm.js:
 
 focus-trap/dist/focus-trap.esm.js:
   (*!
-  * focus-trap 7.4.1
+  * focus-trap 7.4.3
   * @license MIT, https://github.com/focus-trap/focus-trap/blob/master/LICENSE
   *)
 */
