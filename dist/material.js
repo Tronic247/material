@@ -1087,12 +1087,12 @@
             removePips();
             var spread = generateSpread(pips2);
             var filter = pips2.filter;
-            var format2 = pips2.format || {
+            var format = pips2.format || {
               to: function(value) {
                 return String(Math.round(value));
               }
             };
-            scope_Pips = scope_Target.appendChild(addMarking(spread, filter, format2));
+            scope_Pips = scope_Target.appendChild(addMarking(spread, filter, format));
             return scope_Pips;
           }
           function baseSize() {
@@ -3363,15 +3363,7 @@
         return;
       }
     }
-    if (true) {
-      if (!isHTMLElement(arrowElement)) {
-        console.error(['Popper: "arrow" element must be an HTMLElement (not an SVGElement).', "To use an SVG arrow, wrap it in an HTMLElement that will be used as", "the arrow."].join(" "));
-      }
-    }
     if (!contains(state.elements.popper, arrowElement)) {
-      if (true) {
-        console.error(['Popper: "arrow" modifier\'s `element` must be a child of the popper', "element."].join(" "));
-      }
       return;
     }
     state.elements.arrow = arrowElement;
@@ -3476,14 +3468,6 @@
   function computeStyles(_ref5) {
     var state = _ref5.state, options = _ref5.options;
     var _options$gpuAccelerat = options.gpuAcceleration, gpuAcceleration = _options$gpuAccelerat === void 0 ? true : _options$gpuAccelerat, _options$adaptive = options.adaptive, adaptive = _options$adaptive === void 0 ? true : _options$adaptive, _options$roundOffsets = options.roundOffsets, roundOffsets = _options$roundOffsets === void 0 ? true : _options$roundOffsets;
-    if (true) {
-      var transitionProperty = getComputedStyle2(state.elements.popper).transitionProperty || "";
-      if (adaptive && ["transform", "top", "right", "bottom", "left"].some(function(property) {
-        return transitionProperty.indexOf(property) >= 0;
-      })) {
-        console.warn(["Popper: Detected CSS transitions on at least one of the following", 'CSS properties: "transform", "top", "right", "bottom", "left".', "\n\n", 'Disable the "computeStyles" modifier\'s `adaptive` option to allow', "for smooth transitions, or remove these properties from the CSS", "transition declaration on the popper element if only transitioning", "opacity or background-color for example.", "\n\n", "We recommend using the popper element as a wrapper around an inner", "element that can have any CSS property transitioned for animations."].join(" "));
-      }
-    }
     var commonStyles = {
       placement: getBasePlacement(state.placement),
       variation: getVariation(state.placement),
@@ -3843,9 +3827,6 @@
     });
     if (allowedPlacements.length === 0) {
       allowedPlacements = placements2;
-      if (true) {
-        console.error(["Popper: The `allowedAutoPlacements` option did not allow any", "placements. Ensure the `placement` option matches the variation", "of the allowed placements.", 'For example, "auto" cannot be used to allow "bottom-start".', 'Use "auto-start" instead.'].join(" "));
-      }
     }
     var overflows = allowedPlacements.reduce(function(acc, placement2) {
       acc[placement2] = detectOverflow(state, {
@@ -4290,92 +4271,6 @@
     };
   }
 
-  // node_modules/@popperjs/core/lib/utils/format.js
-  function format(str) {
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-    return [].concat(args).reduce(function(p, c) {
-      return p.replace(/%s/, c);
-    }, str);
-  }
-
-  // node_modules/@popperjs/core/lib/utils/validateModifiers.js
-  var INVALID_MODIFIER_ERROR = 'Popper: modifier "%s" provided an invalid %s property, expected %s but got %s';
-  var MISSING_DEPENDENCY_ERROR = 'Popper: modifier "%s" requires "%s", but "%s" modifier is not available';
-  var VALID_PROPERTIES = ["name", "enabled", "phase", "fn", "effect", "requires", "options"];
-  function validateModifiers(modifiers) {
-    modifiers.forEach(function(modifier) {
-      [].concat(Object.keys(modifier), VALID_PROPERTIES).filter(function(value, index, self2) {
-        return self2.indexOf(value) === index;
-      }).forEach(function(key) {
-        switch (key) {
-          case "name":
-            if (typeof modifier.name !== "string") {
-              console.error(format(INVALID_MODIFIER_ERROR, String(modifier.name), '"name"', '"string"', '"' + String(modifier.name) + '"'));
-            }
-            break;
-          case "enabled":
-            if (typeof modifier.enabled !== "boolean") {
-              console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"enabled"', '"boolean"', '"' + String(modifier.enabled) + '"'));
-            }
-            break;
-          case "phase":
-            if (modifierPhases.indexOf(modifier.phase) < 0) {
-              console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"phase"', "either " + modifierPhases.join(", "), '"' + String(modifier.phase) + '"'));
-            }
-            break;
-          case "fn":
-            if (typeof modifier.fn !== "function") {
-              console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"fn"', '"function"', '"' + String(modifier.fn) + '"'));
-            }
-            break;
-          case "effect":
-            if (modifier.effect != null && typeof modifier.effect !== "function") {
-              console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"effect"', '"function"', '"' + String(modifier.fn) + '"'));
-            }
-            break;
-          case "requires":
-            if (modifier.requires != null && !Array.isArray(modifier.requires)) {
-              console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"requires"', '"array"', '"' + String(modifier.requires) + '"'));
-            }
-            break;
-          case "requiresIfExists":
-            if (!Array.isArray(modifier.requiresIfExists)) {
-              console.error(format(INVALID_MODIFIER_ERROR, modifier.name, '"requiresIfExists"', '"array"', '"' + String(modifier.requiresIfExists) + '"'));
-            }
-            break;
-          case "options":
-          case "data":
-            break;
-          default:
-            console.error('PopperJS: an invalid property has been provided to the "' + modifier.name + '" modifier, valid properties are ' + VALID_PROPERTIES.map(function(s) {
-              return '"' + s + '"';
-            }).join(", ") + '; but "' + key + '" was provided.');
-        }
-        modifier.requires && modifier.requires.forEach(function(requirement) {
-          if (modifiers.find(function(mod) {
-            return mod.name === requirement;
-          }) == null) {
-            console.error(format(MISSING_DEPENDENCY_ERROR, String(modifier.name), requirement, requirement));
-          }
-        });
-      });
-    });
-  }
-
-  // node_modules/@popperjs/core/lib/utils/uniqueBy.js
-  function uniqueBy(arr, fn2) {
-    var identifiers = /* @__PURE__ */ new Set();
-    return arr.filter(function(item) {
-      var identifier = fn2(item);
-      if (!identifiers.has(identifier)) {
-        identifiers.add(identifier);
-        return true;
-      }
-    });
-  }
-
   // node_modules/@popperjs/core/lib/utils/mergeByName.js
   function mergeByName(modifiers) {
     var merged = modifiers.reduce(function(merged2, current) {
@@ -4392,8 +4287,6 @@
   }
 
   // node_modules/@popperjs/core/lib/createPopper.js
-  var INVALID_ELEMENT_ERROR = "Popper: Invalid reference or popper argument provided. They must be either a DOM element or virtual element.";
-  var INFINITE_LOOP_ERROR = "Popper: An infinite loop in the modifiers cycle has been detected! The cycle has been interrupted to prevent a browser crash.";
   var DEFAULT_OPTIONS = {
     placement: "bottom",
     modifiers: [],
@@ -4444,28 +4337,6 @@
           state.orderedModifiers = orderedModifiers.filter(function(m) {
             return m.enabled;
           });
-          if (true) {
-            var modifiers = uniqueBy([].concat(orderedModifiers, state.options.modifiers), function(_ref) {
-              var name = _ref.name;
-              return name;
-            });
-            validateModifiers(modifiers);
-            if (getBasePlacement(state.options.placement) === auto) {
-              var flipModifier = state.orderedModifiers.find(function(_ref2) {
-                var name = _ref2.name;
-                return name === "flip";
-              });
-              if (!flipModifier) {
-                console.error(['Popper: "auto" placements require the "flip" modifier be', "present and enabled to work."].join(" "));
-              }
-            }
-            var _getComputedStyle = getComputedStyle2(popper2), marginTop = _getComputedStyle.marginTop, marginRight = _getComputedStyle.marginRight, marginBottom = _getComputedStyle.marginBottom, marginLeft = _getComputedStyle.marginLeft;
-            if ([marginTop, marginRight, marginBottom, marginLeft].some(function(margin) {
-              return parseFloat(margin);
-            })) {
-              console.warn(['Popper: CSS "margin" styles cannot be used to apply padding', "between the popper and its reference element or boundary.", "To replicate margin, use the `offset` modifier, as well as", "the `padding` option in the `preventOverflow` and `flip`", "modifiers."].join(" "));
-            }
-          }
           runModifierEffects();
           return instance.update();
         },
@@ -4480,9 +4351,6 @@
           }
           var _state$elements = state.elements, reference3 = _state$elements.reference, popper3 = _state$elements.popper;
           if (!areValidElements(reference3, popper3)) {
-            if (true) {
-              console.error(INVALID_ELEMENT_ERROR);
-            }
             return;
           }
           state.rects = {
@@ -4494,15 +4362,7 @@
           state.orderedModifiers.forEach(function(modifier) {
             return state.modifiersData[modifier.name] = Object.assign({}, modifier.data);
           });
-          var __debug_loops__ = 0;
           for (var index = 0; index < state.orderedModifiers.length; index++) {
-            if (true) {
-              __debug_loops__ += 1;
-              if (__debug_loops__ > 100) {
-                console.error(INFINITE_LOOP_ERROR);
-                break;
-              }
-            }
             if (state.reset === true) {
               state.reset = false;
               index = -1;
@@ -4533,9 +4393,6 @@
         }
       };
       if (!areValidElements(reference2, popper2)) {
-        if (true) {
-          console.error(INVALID_ELEMENT_ERROR);
-        }
         return instance;
       }
       instance.setOptions(options).then(function(state2) {
@@ -4544,8 +4401,8 @@
         }
       });
       function runModifierEffects() {
-        state.orderedModifiers.forEach(function(_ref3) {
-          var name = _ref3.name, _ref3$options = _ref3.options, options2 = _ref3$options === void 0 ? {} : _ref3$options, effect4 = _ref3.effect;
+        state.orderedModifiers.forEach(function(_ref) {
+          var name = _ref.name, _ref$options = _ref.options, options2 = _ref$options === void 0 ? {} : _ref$options, effect4 = _ref.effect;
           if (typeof effect4 === "function") {
             var cleanupFn = effect4({
               state,
@@ -5220,21 +5077,21 @@
       else if (typeof date !== "string" && date.toFixed !== void 0)
         parsedDate = new Date(date);
       else if (typeof date === "string") {
-        var format2 = givenFormat || (config || defaults).dateFormat;
+        var format = givenFormat || (config || defaults).dateFormat;
         var datestr = String(date).trim();
         if (datestr === "today") {
           parsedDate = /* @__PURE__ */ new Date();
           timeless = true;
         } else if (config && config.parseDate) {
-          parsedDate = config.parseDate(date, format2);
+          parsedDate = config.parseDate(date, format);
         } else if (/Z$/.test(datestr) || /GMT$/.test(datestr)) {
           parsedDate = new Date(date);
         } else {
           var matched = void 0, ops = [];
-          for (var i = 0, matchIndex = 0, regexStr = ""; i < format2.length; i++) {
-            var token = format2[i];
+          for (var i = 0, matchIndex = 0, regexStr = ""; i < format.length; i++) {
+            var token = format[i];
             var isBackSlash = token === "\\";
-            var escaped = format2[i - 1] === "\\" || isBackSlash;
+            var escaped = format[i - 1] === "\\" || isBackSlash;
             if (tokenRegex[token] && !escaped) {
               regexStr += tokenRegex[token];
               var match = new RegExp(regexStr).exec(date);
@@ -6795,28 +6652,28 @@
       self2.redraw();
       updateValue(true);
     }
-    function setSelectedDate(inputDate, format2) {
+    function setSelectedDate(inputDate, format) {
       var dates = [];
       if (inputDate instanceof Array)
         dates = inputDate.map(function(d) {
-          return self2.parseDate(d, format2);
+          return self2.parseDate(d, format);
         });
       else if (inputDate instanceof Date || typeof inputDate === "number")
-        dates = [self2.parseDate(inputDate, format2)];
+        dates = [self2.parseDate(inputDate, format)];
       else if (typeof inputDate === "string") {
         switch (self2.config.mode) {
           case "single":
           case "time":
-            dates = [self2.parseDate(inputDate, format2)];
+            dates = [self2.parseDate(inputDate, format)];
             break;
           case "multiple":
             dates = inputDate.split(self2.config.conjunction).map(function(date) {
-              return self2.parseDate(date, format2);
+              return self2.parseDate(date, format);
             });
             break;
           case "range":
             dates = inputDate.split(self2.l10n.rangeSeparator).map(function(date) {
-              return self2.parseDate(date, format2);
+              return self2.parseDate(date, format);
             });
             break;
           default:
@@ -6832,16 +6689,16 @@
           return a.getTime() - b.getTime();
         });
     }
-    function setDate(date, triggerChange2, format2) {
+    function setDate(date, triggerChange2, format) {
       if (triggerChange2 === void 0) {
         triggerChange2 = false;
       }
-      if (format2 === void 0) {
-        format2 = self2.config.dateFormat;
+      if (format === void 0) {
+        format = self2.config.dateFormat;
       }
       if (date !== 0 && !date || date instanceof Array && date.length === 0)
         return self2.clear(triggerChange2);
-      setSelectedDate(date, format2);
+      setSelectedDate(date, format);
       self2.latestSelectedDateObj = self2.selectedDates[self2.selectedDates.length - 1];
       self2.redraw();
       jumpToDate(void 0, triggerChange2);
@@ -6999,9 +6856,9 @@
       self2._hideNextMonthArrow = self2.config.maxDate !== void 0 && (self2.currentYear === self2.config.maxDate.getFullYear() ? self2.currentMonth + 1 > self2.config.maxDate.getMonth() : self2.currentYear > self2.config.maxDate.getFullYear());
     }
     function getDateStr(specificFormat) {
-      var format2 = specificFormat || (self2.config.altInput ? self2.config.altFormat : self2.config.dateFormat);
+      var format = specificFormat || (self2.config.altInput ? self2.config.altFormat : self2.config.dateFormat);
       return self2.selectedDates.map(function(dObj) {
-        return self2.formatDate(dObj, format2);
+        return self2.formatDate(dObj, format);
       }).filter(function(d, i, arr) {
         return self2.config.mode !== "range" || self2.config.enableTime || arr.indexOf(d) === i;
       }).join(self2.config.mode !== "range" ? self2.config.conjunction : self2.l10n.rangeSeparator);
