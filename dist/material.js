@@ -1,1860 +1,4 @@
 (() => {
-  var __create = Object.create;
-  var __defProp = Object.defineProperty;
-  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
-  var __getOwnPropNames = Object.getOwnPropertyNames;
-  var __getProtoOf = Object.getPrototypeOf;
-  var __hasOwnProp = Object.prototype.hasOwnProperty;
-  var __commonJS = (cb, mod) => function __require() {
-    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-  };
-  var __copyProps = (to, from, except, desc) => {
-    if (from && typeof from === "object" || typeof from === "function") {
-      for (let key of __getOwnPropNames(from))
-        if (!__hasOwnProp.call(to, key) && key !== except)
-          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
-    }
-    return to;
-  };
-  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
-    // If the importer is in node compatibility mode or this is not an ESM
-    // file that has been converted to a CommonJS file using a Babel-
-    // compatible transform (i.e. "__esModule" has not been set), then set
-    // "default" to the CommonJS "module.exports" for node compatibility.
-    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
-    mod
-  ));
-
-  // node_modules/nouislider/dist/nouislider.js
-  var require_nouislider = __commonJS({
-    "node_modules/nouislider/dist/nouislider.js"(exports, module) {
-      (function(global, factory) {
-        typeof exports === "object" && typeof module !== "undefined" ? factory(exports) : typeof define === "function" && define.amd ? define(["exports"], factory) : (global = typeof globalThis !== "undefined" ? globalThis : global || self, factory(global.noUiSlider = {}));
-      })(exports, function(exports2) {
-        "use strict";
-        exports2.PipsMode = void 0;
-        (function(PipsMode) {
-          PipsMode["Range"] = "range";
-          PipsMode["Steps"] = "steps";
-          PipsMode["Positions"] = "positions";
-          PipsMode["Count"] = "count";
-          PipsMode["Values"] = "values";
-        })(exports2.PipsMode || (exports2.PipsMode = {}));
-        exports2.PipsType = void 0;
-        (function(PipsType) {
-          PipsType[PipsType["None"] = -1] = "None";
-          PipsType[PipsType["NoValue"] = 0] = "NoValue";
-          PipsType[PipsType["LargeValue"] = 1] = "LargeValue";
-          PipsType[PipsType["SmallValue"] = 2] = "SmallValue";
-        })(exports2.PipsType || (exports2.PipsType = {}));
-        function isValidFormatter(entry) {
-          return isValidPartialFormatter(entry) && typeof entry.from === "function";
-        }
-        function isValidPartialFormatter(entry) {
-          return typeof entry === "object" && typeof entry.to === "function";
-        }
-        function removeElement(el) {
-          el.parentElement.removeChild(el);
-        }
-        function isSet(value) {
-          return value !== null && value !== void 0;
-        }
-        function preventDefault(e) {
-          e.preventDefault();
-        }
-        function unique(array) {
-          return array.filter(function(a) {
-            return !this[a] ? this[a] = true : false;
-          }, {});
-        }
-        function closest(value, to) {
-          return Math.round(value / to) * to;
-        }
-        function offset2(elem, orientation) {
-          var rect = elem.getBoundingClientRect();
-          var doc = elem.ownerDocument;
-          var docElem = doc.documentElement;
-          var pageOffset = getPageOffset(doc);
-          if (/webkit.*Chrome.*Mobile/i.test(navigator.userAgent)) {
-            pageOffset.x = 0;
-          }
-          return orientation ? rect.top + pageOffset.y - docElem.clientTop : rect.left + pageOffset.x - docElem.clientLeft;
-        }
-        function isNumeric(a) {
-          return typeof a === "number" && !isNaN(a) && isFinite(a);
-        }
-        function addClassFor(element2, className, duration2) {
-          if (duration2 > 0) {
-            addClass(element2, className);
-            setTimeout(function() {
-              removeClass(element2, className);
-            }, duration2);
-          }
-        }
-        function limit(a) {
-          return Math.max(Math.min(a, 100), 0);
-        }
-        function asArray(a) {
-          return Array.isArray(a) ? a : [a];
-        }
-        function countDecimals(numStr) {
-          numStr = String(numStr);
-          var pieces = numStr.split(".");
-          return pieces.length > 1 ? pieces[1].length : 0;
-        }
-        function addClass(el, className) {
-          if (el.classList && !/\s/.test(className)) {
-            el.classList.add(className);
-          } else {
-            el.className += " " + className;
-          }
-        }
-        function removeClass(el, className) {
-          if (el.classList && !/\s/.test(className)) {
-            el.classList.remove(className);
-          } else {
-            el.className = el.className.replace(new RegExp("(^|\\b)" + className.split(" ").join("|") + "(\\b|$)", "gi"), " ");
-          }
-        }
-        function hasClass(el, className) {
-          return el.classList ? el.classList.contains(className) : new RegExp("\\b" + className + "\\b").test(el.className);
-        }
-        function getPageOffset(doc) {
-          var supportPageOffset = window.pageXOffset !== void 0;
-          var isCSS1Compat = (doc.compatMode || "") === "CSS1Compat";
-          var x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? doc.documentElement.scrollLeft : doc.body.scrollLeft;
-          var y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? doc.documentElement.scrollTop : doc.body.scrollTop;
-          return {
-            x,
-            y
-          };
-        }
-        function getActions() {
-          return window.navigator.pointerEnabled ? {
-            start: "pointerdown",
-            move: "pointermove",
-            end: "pointerup"
-          } : window.navigator.msPointerEnabled ? {
-            start: "MSPointerDown",
-            move: "MSPointerMove",
-            end: "MSPointerUp"
-          } : {
-            start: "mousedown touchstart",
-            move: "mousemove touchmove",
-            end: "mouseup touchend"
-          };
-        }
-        function getSupportsPassive() {
-          var supportsPassive = false;
-          try {
-            var opts = Object.defineProperty({}, "passive", {
-              get: function() {
-                supportsPassive = true;
-              }
-            });
-            window.addEventListener("test", null, opts);
-          } catch (e) {
-          }
-          return supportsPassive;
-        }
-        function getSupportsTouchActionNone() {
-          return window.CSS && CSS.supports && CSS.supports("touch-action", "none");
-        }
-        function subRangeRatio(pa, pb) {
-          return 100 / (pb - pa);
-        }
-        function fromPercentage(range, value, startRange) {
-          return value * 100 / (range[startRange + 1] - range[startRange]);
-        }
-        function toPercentage(range, value) {
-          return fromPercentage(range, range[0] < 0 ? value + Math.abs(range[0]) : value - range[0], 0);
-        }
-        function isPercentage(range, value) {
-          return value * (range[1] - range[0]) / 100 + range[0];
-        }
-        function getJ(value, arr) {
-          var j = 1;
-          while (value >= arr[j]) {
-            j += 1;
-          }
-          return j;
-        }
-        function toStepping(xVal, xPct, value) {
-          if (value >= xVal.slice(-1)[0]) {
-            return 100;
-          }
-          var j = getJ(value, xVal);
-          var va = xVal[j - 1];
-          var vb = xVal[j];
-          var pa = xPct[j - 1];
-          var pb = xPct[j];
-          return pa + toPercentage([va, vb], value) / subRangeRatio(pa, pb);
-        }
-        function fromStepping(xVal, xPct, value) {
-          if (value >= 100) {
-            return xVal.slice(-1)[0];
-          }
-          var j = getJ(value, xPct);
-          var va = xVal[j - 1];
-          var vb = xVal[j];
-          var pa = xPct[j - 1];
-          var pb = xPct[j];
-          return isPercentage([va, vb], (value - pa) * subRangeRatio(pa, pb));
-        }
-        function getStep(xPct, xSteps, snap, value) {
-          if (value === 100) {
-            return value;
-          }
-          var j = getJ(value, xPct);
-          var a = xPct[j - 1];
-          var b = xPct[j];
-          if (snap) {
-            if (value - a > (b - a) / 2) {
-              return b;
-            }
-            return a;
-          }
-          if (!xSteps[j - 1]) {
-            return value;
-          }
-          return xPct[j - 1] + closest(value - xPct[j - 1], xSteps[j - 1]);
-        }
-        var Spectrum = (
-          /** @class */
-          function() {
-            function Spectrum2(entry, snap, singleStep) {
-              this.xPct = [];
-              this.xVal = [];
-              this.xSteps = [];
-              this.xNumSteps = [];
-              this.xHighestCompleteStep = [];
-              this.xSteps = [singleStep || false];
-              this.xNumSteps = [false];
-              this.snap = snap;
-              var index;
-              var ordered = [];
-              Object.keys(entry).forEach(function(index2) {
-                ordered.push([asArray(entry[index2]), index2]);
-              });
-              ordered.sort(function(a, b) {
-                return a[0][0] - b[0][0];
-              });
-              for (index = 0; index < ordered.length; index++) {
-                this.handleEntryPoint(ordered[index][1], ordered[index][0]);
-              }
-              this.xNumSteps = this.xSteps.slice(0);
-              for (index = 0; index < this.xNumSteps.length; index++) {
-                this.handleStepPoint(index, this.xNumSteps[index]);
-              }
-            }
-            Spectrum2.prototype.getDistance = function(value) {
-              var distances = [];
-              for (var index = 0; index < this.xNumSteps.length - 1; index++) {
-                distances[index] = fromPercentage(this.xVal, value, index);
-              }
-              return distances;
-            };
-            Spectrum2.prototype.getAbsoluteDistance = function(value, distances, direction) {
-              var xPct_index = 0;
-              if (value < this.xPct[this.xPct.length - 1]) {
-                while (value > this.xPct[xPct_index + 1]) {
-                  xPct_index++;
-                }
-              } else if (value === this.xPct[this.xPct.length - 1]) {
-                xPct_index = this.xPct.length - 2;
-              }
-              if (!direction && value === this.xPct[xPct_index + 1]) {
-                xPct_index++;
-              }
-              if (distances === null) {
-                distances = [];
-              }
-              var start_factor;
-              var rest_factor = 1;
-              var rest_rel_distance = distances[xPct_index];
-              var range_pct = 0;
-              var rel_range_distance = 0;
-              var abs_distance_counter = 0;
-              var range_counter = 0;
-              if (direction) {
-                start_factor = (value - this.xPct[xPct_index]) / (this.xPct[xPct_index + 1] - this.xPct[xPct_index]);
-              } else {
-                start_factor = (this.xPct[xPct_index + 1] - value) / (this.xPct[xPct_index + 1] - this.xPct[xPct_index]);
-              }
-              while (rest_rel_distance > 0) {
-                range_pct = this.xPct[xPct_index + 1 + range_counter] - this.xPct[xPct_index + range_counter];
-                if (distances[xPct_index + range_counter] * rest_factor + 100 - start_factor * 100 > 100) {
-                  rel_range_distance = range_pct * start_factor;
-                  rest_factor = (rest_rel_distance - 100 * start_factor) / distances[xPct_index + range_counter];
-                  start_factor = 1;
-                } else {
-                  rel_range_distance = distances[xPct_index + range_counter] * range_pct / 100 * rest_factor;
-                  rest_factor = 0;
-                }
-                if (direction) {
-                  abs_distance_counter = abs_distance_counter - rel_range_distance;
-                  if (this.xPct.length + range_counter >= 1) {
-                    range_counter--;
-                  }
-                } else {
-                  abs_distance_counter = abs_distance_counter + rel_range_distance;
-                  if (this.xPct.length - range_counter >= 1) {
-                    range_counter++;
-                  }
-                }
-                rest_rel_distance = distances[xPct_index + range_counter] * rest_factor;
-              }
-              return value + abs_distance_counter;
-            };
-            Spectrum2.prototype.toStepping = function(value) {
-              value = toStepping(this.xVal, this.xPct, value);
-              return value;
-            };
-            Spectrum2.prototype.fromStepping = function(value) {
-              return fromStepping(this.xVal, this.xPct, value);
-            };
-            Spectrum2.prototype.getStep = function(value) {
-              value = getStep(this.xPct, this.xSteps, this.snap, value);
-              return value;
-            };
-            Spectrum2.prototype.getDefaultStep = function(value, isDown, size) {
-              var j = getJ(value, this.xPct);
-              if (value === 100 || isDown && value === this.xPct[j - 1]) {
-                j = Math.max(j - 1, 1);
-              }
-              return (this.xVal[j] - this.xVal[j - 1]) / size;
-            };
-            Spectrum2.prototype.getNearbySteps = function(value) {
-              var j = getJ(value, this.xPct);
-              return {
-                stepBefore: {
-                  startValue: this.xVal[j - 2],
-                  step: this.xNumSteps[j - 2],
-                  highestStep: this.xHighestCompleteStep[j - 2]
-                },
-                thisStep: {
-                  startValue: this.xVal[j - 1],
-                  step: this.xNumSteps[j - 1],
-                  highestStep: this.xHighestCompleteStep[j - 1]
-                },
-                stepAfter: {
-                  startValue: this.xVal[j],
-                  step: this.xNumSteps[j],
-                  highestStep: this.xHighestCompleteStep[j]
-                }
-              };
-            };
-            Spectrum2.prototype.countStepDecimals = function() {
-              var stepDecimals = this.xNumSteps.map(countDecimals);
-              return Math.max.apply(null, stepDecimals);
-            };
-            Spectrum2.prototype.hasNoSize = function() {
-              return this.xVal[0] === this.xVal[this.xVal.length - 1];
-            };
-            Spectrum2.prototype.convert = function(value) {
-              return this.getStep(this.toStepping(value));
-            };
-            Spectrum2.prototype.handleEntryPoint = function(index, value) {
-              var percentage;
-              if (index === "min") {
-                percentage = 0;
-              } else if (index === "max") {
-                percentage = 100;
-              } else {
-                percentage = parseFloat(index);
-              }
-              if (!isNumeric(percentage) || !isNumeric(value[0])) {
-                throw new Error("noUiSlider: 'range' value isn't numeric.");
-              }
-              this.xPct.push(percentage);
-              this.xVal.push(value[0]);
-              var value1 = Number(value[1]);
-              if (!percentage) {
-                if (!isNaN(value1)) {
-                  this.xSteps[0] = value1;
-                }
-              } else {
-                this.xSteps.push(isNaN(value1) ? false : value1);
-              }
-              this.xHighestCompleteStep.push(0);
-            };
-            Spectrum2.prototype.handleStepPoint = function(i, n) {
-              if (!n) {
-                return;
-              }
-              if (this.xVal[i] === this.xVal[i + 1]) {
-                this.xSteps[i] = this.xHighestCompleteStep[i] = this.xVal[i];
-                return;
-              }
-              this.xSteps[i] = fromPercentage([this.xVal[i], this.xVal[i + 1]], n, 0) / subRangeRatio(this.xPct[i], this.xPct[i + 1]);
-              var totalSteps = (this.xVal[i + 1] - this.xVal[i]) / this.xNumSteps[i];
-              var highestStep = Math.ceil(Number(totalSteps.toFixed(3)) - 1);
-              var step = this.xVal[i] + this.xNumSteps[i] * highestStep;
-              this.xHighestCompleteStep[i] = step;
-            };
-            return Spectrum2;
-          }()
-        );
-        var defaultFormatter = {
-          to: function(value) {
-            return value === void 0 ? "" : value.toFixed(2);
-          },
-          from: Number
-        };
-        var cssClasses = {
-          target: "target",
-          base: "base",
-          origin: "origin",
-          handle: "handle",
-          handleLower: "handle-lower",
-          handleUpper: "handle-upper",
-          touchArea: "touch-area",
-          horizontal: "horizontal",
-          vertical: "vertical",
-          background: "background",
-          connect: "connect",
-          connects: "connects",
-          ltr: "ltr",
-          rtl: "rtl",
-          textDirectionLtr: "txt-dir-ltr",
-          textDirectionRtl: "txt-dir-rtl",
-          draggable: "draggable",
-          drag: "state-drag",
-          tap: "state-tap",
-          active: "active",
-          tooltip: "tooltip",
-          pips: "pips",
-          pipsHorizontal: "pips-horizontal",
-          pipsVertical: "pips-vertical",
-          marker: "marker",
-          markerHorizontal: "marker-horizontal",
-          markerVertical: "marker-vertical",
-          markerNormal: "marker-normal",
-          markerLarge: "marker-large",
-          markerSub: "marker-sub",
-          value: "value",
-          valueHorizontal: "value-horizontal",
-          valueVertical: "value-vertical",
-          valueNormal: "value-normal",
-          valueLarge: "value-large",
-          valueSub: "value-sub"
-        };
-        var INTERNAL_EVENT_NS = {
-          tooltips: ".__tooltips",
-          aria: ".__aria"
-        };
-        function testStep(parsed, entry) {
-          if (!isNumeric(entry)) {
-            throw new Error("noUiSlider: 'step' is not numeric.");
-          }
-          parsed.singleStep = entry;
-        }
-        function testKeyboardPageMultiplier(parsed, entry) {
-          if (!isNumeric(entry)) {
-            throw new Error("noUiSlider: 'keyboardPageMultiplier' is not numeric.");
-          }
-          parsed.keyboardPageMultiplier = entry;
-        }
-        function testKeyboardMultiplier(parsed, entry) {
-          if (!isNumeric(entry)) {
-            throw new Error("noUiSlider: 'keyboardMultiplier' is not numeric.");
-          }
-          parsed.keyboardMultiplier = entry;
-        }
-        function testKeyboardDefaultStep(parsed, entry) {
-          if (!isNumeric(entry)) {
-            throw new Error("noUiSlider: 'keyboardDefaultStep' is not numeric.");
-          }
-          parsed.keyboardDefaultStep = entry;
-        }
-        function testRange(parsed, entry) {
-          if (typeof entry !== "object" || Array.isArray(entry)) {
-            throw new Error("noUiSlider: 'range' is not an object.");
-          }
-          if (entry.min === void 0 || entry.max === void 0) {
-            throw new Error("noUiSlider: Missing 'min' or 'max' in 'range'.");
-          }
-          parsed.spectrum = new Spectrum(entry, parsed.snap || false, parsed.singleStep);
-        }
-        function testStart(parsed, entry) {
-          entry = asArray(entry);
-          if (!Array.isArray(entry) || !entry.length) {
-            throw new Error("noUiSlider: 'start' option is incorrect.");
-          }
-          parsed.handles = entry.length;
-          parsed.start = entry;
-        }
-        function testSnap(parsed, entry) {
-          if (typeof entry !== "boolean") {
-            throw new Error("noUiSlider: 'snap' option must be a boolean.");
-          }
-          parsed.snap = entry;
-        }
-        function testAnimate(parsed, entry) {
-          if (typeof entry !== "boolean") {
-            throw new Error("noUiSlider: 'animate' option must be a boolean.");
-          }
-          parsed.animate = entry;
-        }
-        function testAnimationDuration(parsed, entry) {
-          if (typeof entry !== "number") {
-            throw new Error("noUiSlider: 'animationDuration' option must be a number.");
-          }
-          parsed.animationDuration = entry;
-        }
-        function testConnect(parsed, entry) {
-          var connect = [false];
-          var i;
-          if (entry === "lower") {
-            entry = [true, false];
-          } else if (entry === "upper") {
-            entry = [false, true];
-          }
-          if (entry === true || entry === false) {
-            for (i = 1; i < parsed.handles; i++) {
-              connect.push(entry);
-            }
-            connect.push(false);
-          } else if (!Array.isArray(entry) || !entry.length || entry.length !== parsed.handles + 1) {
-            throw new Error("noUiSlider: 'connect' option doesn't match handle count.");
-          } else {
-            connect = entry;
-          }
-          parsed.connect = connect;
-        }
-        function testOrientation(parsed, entry) {
-          switch (entry) {
-            case "horizontal":
-              parsed.ort = 0;
-              break;
-            case "vertical":
-              parsed.ort = 1;
-              break;
-            default:
-              throw new Error("noUiSlider: 'orientation' option is invalid.");
-          }
-        }
-        function testMargin(parsed, entry) {
-          if (!isNumeric(entry)) {
-            throw new Error("noUiSlider: 'margin' option must be numeric.");
-          }
-          if (entry === 0) {
-            return;
-          }
-          parsed.margin = parsed.spectrum.getDistance(entry);
-        }
-        function testLimit(parsed, entry) {
-          if (!isNumeric(entry)) {
-            throw new Error("noUiSlider: 'limit' option must be numeric.");
-          }
-          parsed.limit = parsed.spectrum.getDistance(entry);
-          if (!parsed.limit || parsed.handles < 2) {
-            throw new Error("noUiSlider: 'limit' option is only supported on linear sliders with 2 or more handles.");
-          }
-        }
-        function testPadding(parsed, entry) {
-          var index;
-          if (!isNumeric(entry) && !Array.isArray(entry)) {
-            throw new Error("noUiSlider: 'padding' option must be numeric or array of exactly 2 numbers.");
-          }
-          if (Array.isArray(entry) && !(entry.length === 2 || isNumeric(entry[0]) || isNumeric(entry[1]))) {
-            throw new Error("noUiSlider: 'padding' option must be numeric or array of exactly 2 numbers.");
-          }
-          if (entry === 0) {
-            return;
-          }
-          if (!Array.isArray(entry)) {
-            entry = [entry, entry];
-          }
-          parsed.padding = [parsed.spectrum.getDistance(entry[0]), parsed.spectrum.getDistance(entry[1])];
-          for (index = 0; index < parsed.spectrum.xNumSteps.length - 1; index++) {
-            if (parsed.padding[0][index] < 0 || parsed.padding[1][index] < 0) {
-              throw new Error("noUiSlider: 'padding' option must be a positive number(s).");
-            }
-          }
-          var totalPadding = entry[0] + entry[1];
-          var firstValue = parsed.spectrum.xVal[0];
-          var lastValue = parsed.spectrum.xVal[parsed.spectrum.xVal.length - 1];
-          if (totalPadding / (lastValue - firstValue) > 1) {
-            throw new Error("noUiSlider: 'padding' option must not exceed 100% of the range.");
-          }
-        }
-        function testDirection(parsed, entry) {
-          switch (entry) {
-            case "ltr":
-              parsed.dir = 0;
-              break;
-            case "rtl":
-              parsed.dir = 1;
-              break;
-            default:
-              throw new Error("noUiSlider: 'direction' option was not recognized.");
-          }
-        }
-        function testBehaviour(parsed, entry) {
-          if (typeof entry !== "string") {
-            throw new Error("noUiSlider: 'behaviour' must be a string containing options.");
-          }
-          var tap = entry.indexOf("tap") >= 0;
-          var drag = entry.indexOf("drag") >= 0;
-          var fixed = entry.indexOf("fixed") >= 0;
-          var snap = entry.indexOf("snap") >= 0;
-          var hover = entry.indexOf("hover") >= 0;
-          var unconstrained = entry.indexOf("unconstrained") >= 0;
-          var dragAll = entry.indexOf("drag-all") >= 0;
-          var smoothSteps = entry.indexOf("smooth-steps") >= 0;
-          if (fixed) {
-            if (parsed.handles !== 2) {
-              throw new Error("noUiSlider: 'fixed' behaviour must be used with 2 handles");
-            }
-            testMargin(parsed, parsed.start[1] - parsed.start[0]);
-          }
-          if (unconstrained && (parsed.margin || parsed.limit)) {
-            throw new Error("noUiSlider: 'unconstrained' behaviour cannot be used with margin or limit");
-          }
-          parsed.events = {
-            tap: tap || snap,
-            drag,
-            dragAll,
-            smoothSteps,
-            fixed,
-            snap,
-            hover,
-            unconstrained
-          };
-        }
-        function testTooltips(parsed, entry) {
-          if (entry === false) {
-            return;
-          }
-          if (entry === true || isValidPartialFormatter(entry)) {
-            parsed.tooltips = [];
-            for (var i = 0; i < parsed.handles; i++) {
-              parsed.tooltips.push(entry);
-            }
-          } else {
-            entry = asArray(entry);
-            if (entry.length !== parsed.handles) {
-              throw new Error("noUiSlider: must pass a formatter for all handles.");
-            }
-            entry.forEach(function(formatter) {
-              if (typeof formatter !== "boolean" && !isValidPartialFormatter(formatter)) {
-                throw new Error("noUiSlider: 'tooltips' must be passed a formatter or 'false'.");
-              }
-            });
-            parsed.tooltips = entry;
-          }
-        }
-        function testHandleAttributes(parsed, entry) {
-          if (entry.length !== parsed.handles) {
-            throw new Error("noUiSlider: must pass a attributes for all handles.");
-          }
-          parsed.handleAttributes = entry;
-        }
-        function testAriaFormat(parsed, entry) {
-          if (!isValidPartialFormatter(entry)) {
-            throw new Error("noUiSlider: 'ariaFormat' requires 'to' method.");
-          }
-          parsed.ariaFormat = entry;
-        }
-        function testFormat(parsed, entry) {
-          if (!isValidFormatter(entry)) {
-            throw new Error("noUiSlider: 'format' requires 'to' and 'from' methods.");
-          }
-          parsed.format = entry;
-        }
-        function testKeyboardSupport(parsed, entry) {
-          if (typeof entry !== "boolean") {
-            throw new Error("noUiSlider: 'keyboardSupport' option must be a boolean.");
-          }
-          parsed.keyboardSupport = entry;
-        }
-        function testDocumentElement(parsed, entry) {
-          parsed.documentElement = entry;
-        }
-        function testCssPrefix(parsed, entry) {
-          if (typeof entry !== "string" && entry !== false) {
-            throw new Error("noUiSlider: 'cssPrefix' must be a string or `false`.");
-          }
-          parsed.cssPrefix = entry;
-        }
-        function testCssClasses(parsed, entry) {
-          if (typeof entry !== "object") {
-            throw new Error("noUiSlider: 'cssClasses' must be an object.");
-          }
-          if (typeof parsed.cssPrefix === "string") {
-            parsed.cssClasses = {};
-            Object.keys(entry).forEach(function(key) {
-              parsed.cssClasses[key] = parsed.cssPrefix + entry[key];
-            });
-          } else {
-            parsed.cssClasses = entry;
-          }
-        }
-        function testOptions(options) {
-          var parsed = {
-            margin: null,
-            limit: null,
-            padding: null,
-            animate: true,
-            animationDuration: 300,
-            ariaFormat: defaultFormatter,
-            format: defaultFormatter
-          };
-          var tests = {
-            step: { r: false, t: testStep },
-            keyboardPageMultiplier: { r: false, t: testKeyboardPageMultiplier },
-            keyboardMultiplier: { r: false, t: testKeyboardMultiplier },
-            keyboardDefaultStep: { r: false, t: testKeyboardDefaultStep },
-            start: { r: true, t: testStart },
-            connect: { r: true, t: testConnect },
-            direction: { r: true, t: testDirection },
-            snap: { r: false, t: testSnap },
-            animate: { r: false, t: testAnimate },
-            animationDuration: { r: false, t: testAnimationDuration },
-            range: { r: true, t: testRange },
-            orientation: { r: false, t: testOrientation },
-            margin: { r: false, t: testMargin },
-            limit: { r: false, t: testLimit },
-            padding: { r: false, t: testPadding },
-            behaviour: { r: true, t: testBehaviour },
-            ariaFormat: { r: false, t: testAriaFormat },
-            format: { r: false, t: testFormat },
-            tooltips: { r: false, t: testTooltips },
-            keyboardSupport: { r: true, t: testKeyboardSupport },
-            documentElement: { r: false, t: testDocumentElement },
-            cssPrefix: { r: true, t: testCssPrefix },
-            cssClasses: { r: true, t: testCssClasses },
-            handleAttributes: { r: false, t: testHandleAttributes }
-          };
-          var defaults2 = {
-            connect: false,
-            direction: "ltr",
-            behaviour: "tap",
-            orientation: "horizontal",
-            keyboardSupport: true,
-            cssPrefix: "noUi-",
-            cssClasses,
-            keyboardPageMultiplier: 5,
-            keyboardMultiplier: 1,
-            keyboardDefaultStep: 10
-          };
-          if (options.format && !options.ariaFormat) {
-            options.ariaFormat = options.format;
-          }
-          Object.keys(tests).forEach(function(name) {
-            if (!isSet(options[name]) && defaults2[name] === void 0) {
-              if (tests[name].r) {
-                throw new Error("noUiSlider: '" + name + "' is required.");
-              }
-              return;
-            }
-            tests[name].t(parsed, !isSet(options[name]) ? defaults2[name] : options[name]);
-          });
-          parsed.pips = options.pips;
-          var d = document.createElement("div");
-          var msPrefix = d.style.msTransform !== void 0;
-          var noPrefix = d.style.transform !== void 0;
-          parsed.transformRule = noPrefix ? "transform" : msPrefix ? "msTransform" : "webkitTransform";
-          var styles = [
-            ["left", "top"],
-            ["right", "bottom"]
-          ];
-          parsed.style = styles[parsed.dir][parsed.ort];
-          return parsed;
-        }
-        function scope(target, options, originalOptions) {
-          var actions = getActions();
-          var supportsTouchActionNone = getSupportsTouchActionNone();
-          var supportsPassive = supportsTouchActionNone && getSupportsPassive();
-          var scope_Target = target;
-          var scope_Base;
-          var scope_Handles;
-          var scope_Connects;
-          var scope_Pips;
-          var scope_Tooltips;
-          var scope_Spectrum = options.spectrum;
-          var scope_Values = [];
-          var scope_Locations = [];
-          var scope_HandleNumbers = [];
-          var scope_ActiveHandlesCount = 0;
-          var scope_Events = {};
-          var scope_Document = target.ownerDocument;
-          var scope_DocumentElement = options.documentElement || scope_Document.documentElement;
-          var scope_Body = scope_Document.body;
-          var scope_DirOffset = scope_Document.dir === "rtl" || options.ort === 1 ? 0 : 100;
-          function addNodeTo(addTarget, className) {
-            var div = scope_Document.createElement("div");
-            if (className) {
-              addClass(div, className);
-            }
-            addTarget.appendChild(div);
-            return div;
-          }
-          function addOrigin(base, handleNumber) {
-            var origin = addNodeTo(base, options.cssClasses.origin);
-            var handle = addNodeTo(origin, options.cssClasses.handle);
-            addNodeTo(handle, options.cssClasses.touchArea);
-            handle.setAttribute("data-handle", String(handleNumber));
-            if (options.keyboardSupport) {
-              handle.setAttribute("tabindex", "0");
-              handle.addEventListener("keydown", function(event) {
-                return eventKeydown(event, handleNumber);
-              });
-            }
-            if (options.handleAttributes !== void 0) {
-              var attributes_1 = options.handleAttributes[handleNumber];
-              Object.keys(attributes_1).forEach(function(attribute) {
-                handle.setAttribute(attribute, attributes_1[attribute]);
-              });
-            }
-            handle.setAttribute("role", "slider");
-            handle.setAttribute("aria-orientation", options.ort ? "vertical" : "horizontal");
-            if (handleNumber === 0) {
-              addClass(handle, options.cssClasses.handleLower);
-            } else if (handleNumber === options.handles - 1) {
-              addClass(handle, options.cssClasses.handleUpper);
-            }
-            origin.handle = handle;
-            return origin;
-          }
-          function addConnect(base, add) {
-            if (!add) {
-              return false;
-            }
-            return addNodeTo(base, options.cssClasses.connect);
-          }
-          function addElements(connectOptions, base) {
-            var connectBase = addNodeTo(base, options.cssClasses.connects);
-            scope_Handles = [];
-            scope_Connects = [];
-            scope_Connects.push(addConnect(connectBase, connectOptions[0]));
-            for (var i = 0; i < options.handles; i++) {
-              scope_Handles.push(addOrigin(base, i));
-              scope_HandleNumbers[i] = i;
-              scope_Connects.push(addConnect(connectBase, connectOptions[i + 1]));
-            }
-          }
-          function addSlider(addTarget) {
-            addClass(addTarget, options.cssClasses.target);
-            if (options.dir === 0) {
-              addClass(addTarget, options.cssClasses.ltr);
-            } else {
-              addClass(addTarget, options.cssClasses.rtl);
-            }
-            if (options.ort === 0) {
-              addClass(addTarget, options.cssClasses.horizontal);
-            } else {
-              addClass(addTarget, options.cssClasses.vertical);
-            }
-            var textDirection = getComputedStyle(addTarget).direction;
-            if (textDirection === "rtl") {
-              addClass(addTarget, options.cssClasses.textDirectionRtl);
-            } else {
-              addClass(addTarget, options.cssClasses.textDirectionLtr);
-            }
-            return addNodeTo(addTarget, options.cssClasses.base);
-          }
-          function addTooltip(handle, handleNumber) {
-            if (!options.tooltips || !options.tooltips[handleNumber]) {
-              return false;
-            }
-            return addNodeTo(handle.firstChild, options.cssClasses.tooltip);
-          }
-          function isSliderDisabled() {
-            return scope_Target.hasAttribute("disabled");
-          }
-          function isHandleDisabled(handleNumber) {
-            var handleOrigin = scope_Handles[handleNumber];
-            return handleOrigin.hasAttribute("disabled");
-          }
-          function disable(handleNumber) {
-            if (handleNumber !== null && handleNumber !== void 0) {
-              scope_Handles[handleNumber].setAttribute("disabled", "");
-              scope_Handles[handleNumber].handle.removeAttribute("tabindex");
-            } else {
-              scope_Target.setAttribute("disabled", "");
-              scope_Handles.forEach(function(handle) {
-                handle.handle.removeAttribute("tabindex");
-              });
-            }
-          }
-          function enable(handleNumber) {
-            if (handleNumber !== null && handleNumber !== void 0) {
-              scope_Handles[handleNumber].removeAttribute("disabled");
-              scope_Handles[handleNumber].handle.setAttribute("tabindex", "0");
-            } else {
-              scope_Target.removeAttribute("disabled");
-              scope_Handles.forEach(function(handle) {
-                handle.removeAttribute("disabled");
-                handle.handle.setAttribute("tabindex", "0");
-              });
-            }
-          }
-          function removeTooltips() {
-            if (scope_Tooltips) {
-              removeEvent("update" + INTERNAL_EVENT_NS.tooltips);
-              scope_Tooltips.forEach(function(tooltip) {
-                if (tooltip) {
-                  removeElement(tooltip);
-                }
-              });
-              scope_Tooltips = null;
-            }
-          }
-          function tooltips() {
-            removeTooltips();
-            scope_Tooltips = scope_Handles.map(addTooltip);
-            bindEvent("update" + INTERNAL_EVENT_NS.tooltips, function(values, handleNumber, unencoded) {
-              if (!scope_Tooltips || !options.tooltips) {
-                return;
-              }
-              if (scope_Tooltips[handleNumber] === false) {
-                return;
-              }
-              var formattedValue = values[handleNumber];
-              if (options.tooltips[handleNumber] !== true) {
-                formattedValue = options.tooltips[handleNumber].to(unencoded[handleNumber]);
-              }
-              scope_Tooltips[handleNumber].innerHTML = formattedValue;
-            });
-          }
-          function aria() {
-            removeEvent("update" + INTERNAL_EVENT_NS.aria);
-            bindEvent("update" + INTERNAL_EVENT_NS.aria, function(values, handleNumber, unencoded, tap, positions) {
-              scope_HandleNumbers.forEach(function(index) {
-                var handle = scope_Handles[index];
-                var min2 = checkHandlePosition(scope_Locations, index, 0, true, true, true);
-                var max2 = checkHandlePosition(scope_Locations, index, 100, true, true, true);
-                var now = positions[index];
-                var text = String(options.ariaFormat.to(unencoded[index]));
-                min2 = scope_Spectrum.fromStepping(min2).toFixed(1);
-                max2 = scope_Spectrum.fromStepping(max2).toFixed(1);
-                now = scope_Spectrum.fromStepping(now).toFixed(1);
-                handle.children[0].setAttribute("aria-valuemin", min2);
-                handle.children[0].setAttribute("aria-valuemax", max2);
-                handle.children[0].setAttribute("aria-valuenow", now);
-                handle.children[0].setAttribute("aria-valuetext", text);
-              });
-            });
-          }
-          function getGroup(pips2) {
-            if (pips2.mode === exports2.PipsMode.Range || pips2.mode === exports2.PipsMode.Steps) {
-              return scope_Spectrum.xVal;
-            }
-            if (pips2.mode === exports2.PipsMode.Count) {
-              if (pips2.values < 2) {
-                throw new Error("noUiSlider: 'values' (>= 2) required for mode 'count'.");
-              }
-              var interval = pips2.values - 1;
-              var spread = 100 / interval;
-              var values = [];
-              while (interval--) {
-                values[interval] = interval * spread;
-              }
-              values.push(100);
-              return mapToRange(values, pips2.stepped);
-            }
-            if (pips2.mode === exports2.PipsMode.Positions) {
-              return mapToRange(pips2.values, pips2.stepped);
-            }
-            if (pips2.mode === exports2.PipsMode.Values) {
-              if (pips2.stepped) {
-                return pips2.values.map(function(value) {
-                  return scope_Spectrum.fromStepping(scope_Spectrum.getStep(scope_Spectrum.toStepping(value)));
-                });
-              }
-              return pips2.values;
-            }
-            return [];
-          }
-          function mapToRange(values, stepped) {
-            return values.map(function(value) {
-              return scope_Spectrum.fromStepping(stepped ? scope_Spectrum.getStep(value) : value);
-            });
-          }
-          function generateSpread(pips2) {
-            function safeIncrement(value, increment) {
-              return Number((value + increment).toFixed(7));
-            }
-            var group = getGroup(pips2);
-            var indexes = {};
-            var firstInRange = scope_Spectrum.xVal[0];
-            var lastInRange = scope_Spectrum.xVal[scope_Spectrum.xVal.length - 1];
-            var ignoreFirst = false;
-            var ignoreLast = false;
-            var prevPct = 0;
-            group = unique(group.slice().sort(function(a, b) {
-              return a - b;
-            }));
-            if (group[0] !== firstInRange) {
-              group.unshift(firstInRange);
-              ignoreFirst = true;
-            }
-            if (group[group.length - 1] !== lastInRange) {
-              group.push(lastInRange);
-              ignoreLast = true;
-            }
-            group.forEach(function(current, index) {
-              var step;
-              var i;
-              var q;
-              var low = current;
-              var high = group[index + 1];
-              var newPct;
-              var pctDifference;
-              var pctPos;
-              var type;
-              var steps;
-              var realSteps;
-              var stepSize;
-              var isSteps = pips2.mode === exports2.PipsMode.Steps;
-              if (isSteps) {
-                step = scope_Spectrum.xNumSteps[index];
-              }
-              if (!step) {
-                step = high - low;
-              }
-              if (high === void 0) {
-                high = low;
-              }
-              step = Math.max(step, 1e-7);
-              for (i = low; i <= high; i = safeIncrement(i, step)) {
-                newPct = scope_Spectrum.toStepping(i);
-                pctDifference = newPct - prevPct;
-                steps = pctDifference / (pips2.density || 1);
-                realSteps = Math.round(steps);
-                stepSize = pctDifference / realSteps;
-                for (q = 1; q <= realSteps; q += 1) {
-                  pctPos = prevPct + q * stepSize;
-                  indexes[pctPos.toFixed(5)] = [scope_Spectrum.fromStepping(pctPos), 0];
-                }
-                type = group.indexOf(i) > -1 ? exports2.PipsType.LargeValue : isSteps ? exports2.PipsType.SmallValue : exports2.PipsType.NoValue;
-                if (!index && ignoreFirst && i !== high) {
-                  type = 0;
-                }
-                if (!(i === high && ignoreLast)) {
-                  indexes[newPct.toFixed(5)] = [i, type];
-                }
-                prevPct = newPct;
-              }
-            });
-            return indexes;
-          }
-          function addMarking(spread, filterFunc, formatter) {
-            var _a, _b;
-            var element2 = scope_Document.createElement("div");
-            var valueSizeClasses = (_a = {}, _a[exports2.PipsType.None] = "", _a[exports2.PipsType.NoValue] = options.cssClasses.valueNormal, _a[exports2.PipsType.LargeValue] = options.cssClasses.valueLarge, _a[exports2.PipsType.SmallValue] = options.cssClasses.valueSub, _a);
-            var markerSizeClasses = (_b = {}, _b[exports2.PipsType.None] = "", _b[exports2.PipsType.NoValue] = options.cssClasses.markerNormal, _b[exports2.PipsType.LargeValue] = options.cssClasses.markerLarge, _b[exports2.PipsType.SmallValue] = options.cssClasses.markerSub, _b);
-            var valueOrientationClasses = [options.cssClasses.valueHorizontal, options.cssClasses.valueVertical];
-            var markerOrientationClasses = [options.cssClasses.markerHorizontal, options.cssClasses.markerVertical];
-            addClass(element2, options.cssClasses.pips);
-            addClass(element2, options.ort === 0 ? options.cssClasses.pipsHorizontal : options.cssClasses.pipsVertical);
-            function getClasses(type, source) {
-              var a = source === options.cssClasses.value;
-              var orientationClasses = a ? valueOrientationClasses : markerOrientationClasses;
-              var sizeClasses = a ? valueSizeClasses : markerSizeClasses;
-              return source + " " + orientationClasses[options.ort] + " " + sizeClasses[type];
-            }
-            function addSpread(offset3, value, type) {
-              type = filterFunc ? filterFunc(value, type) : type;
-              if (type === exports2.PipsType.None) {
-                return;
-              }
-              var node = addNodeTo(element2, false);
-              node.className = getClasses(type, options.cssClasses.marker);
-              node.style[options.style] = offset3 + "%";
-              if (type > exports2.PipsType.NoValue) {
-                node = addNodeTo(element2, false);
-                node.className = getClasses(type, options.cssClasses.value);
-                node.setAttribute("data-value", String(value));
-                node.style[options.style] = offset3 + "%";
-                node.innerHTML = String(formatter.to(value));
-              }
-            }
-            Object.keys(spread).forEach(function(offset3) {
-              addSpread(offset3, spread[offset3][0], spread[offset3][1]);
-            });
-            return element2;
-          }
-          function removePips() {
-            if (scope_Pips) {
-              removeElement(scope_Pips);
-              scope_Pips = null;
-            }
-          }
-          function pips(pips2) {
-            removePips();
-            var spread = generateSpread(pips2);
-            var filter = pips2.filter;
-            var format = pips2.format || {
-              to: function(value) {
-                return String(Math.round(value));
-              }
-            };
-            scope_Pips = scope_Target.appendChild(addMarking(spread, filter, format));
-            return scope_Pips;
-          }
-          function baseSize() {
-            var rect = scope_Base.getBoundingClientRect();
-            var alt = "offset" + ["Width", "Height"][options.ort];
-            return options.ort === 0 ? rect.width || scope_Base[alt] : rect.height || scope_Base[alt];
-          }
-          function attachEvent(events, element2, callback, data) {
-            var method = function(event) {
-              var e = fixEvent(event, data.pageOffset, data.target || element2);
-              if (!e) {
-                return false;
-              }
-              if (isSliderDisabled() && !data.doNotReject) {
-                return false;
-              }
-              if (hasClass(scope_Target, options.cssClasses.tap) && !data.doNotReject) {
-                return false;
-              }
-              if (events === actions.start && e.buttons !== void 0 && e.buttons > 1) {
-                return false;
-              }
-              if (data.hover && e.buttons) {
-                return false;
-              }
-              if (!supportsPassive) {
-                e.preventDefault();
-              }
-              e.calcPoint = e.points[options.ort];
-              callback(e, data);
-              return;
-            };
-            var methods = [];
-            events.split(" ").forEach(function(eventName) {
-              element2.addEventListener(eventName, method, supportsPassive ? { passive: true } : false);
-              methods.push([eventName, method]);
-            });
-            return methods;
-          }
-          function fixEvent(e, pageOffset, eventTarget) {
-            var touch = e.type.indexOf("touch") === 0;
-            var mouse = e.type.indexOf("mouse") === 0;
-            var pointer = e.type.indexOf("pointer") === 0;
-            var x = 0;
-            var y = 0;
-            if (e.type.indexOf("MSPointer") === 0) {
-              pointer = true;
-            }
-            if (e.type === "mousedown" && !e.buttons && !e.touches) {
-              return false;
-            }
-            if (touch) {
-              var isTouchOnTarget = function(checkTouch) {
-                var target2 = checkTouch.target;
-                return target2 === eventTarget || eventTarget.contains(target2) || e.composed && e.composedPath().shift() === eventTarget;
-              };
-              if (e.type === "touchstart") {
-                var targetTouches = Array.prototype.filter.call(e.touches, isTouchOnTarget);
-                if (targetTouches.length > 1) {
-                  return false;
-                }
-                x = targetTouches[0].pageX;
-                y = targetTouches[0].pageY;
-              } else {
-                var targetTouch = Array.prototype.find.call(e.changedTouches, isTouchOnTarget);
-                if (!targetTouch) {
-                  return false;
-                }
-                x = targetTouch.pageX;
-                y = targetTouch.pageY;
-              }
-            }
-            pageOffset = pageOffset || getPageOffset(scope_Document);
-            if (mouse || pointer) {
-              x = e.clientX + pageOffset.x;
-              y = e.clientY + pageOffset.y;
-            }
-            e.pageOffset = pageOffset;
-            e.points = [x, y];
-            e.cursor = mouse || pointer;
-            return e;
-          }
-          function calcPointToPercentage(calcPoint) {
-            var location = calcPoint - offset2(scope_Base, options.ort);
-            var proposal = location * 100 / baseSize();
-            proposal = limit(proposal);
-            return options.dir ? 100 - proposal : proposal;
-          }
-          function getClosestHandle(clickedPosition) {
-            var smallestDifference = 100;
-            var handleNumber = false;
-            scope_Handles.forEach(function(handle, index) {
-              if (isHandleDisabled(index)) {
-                return;
-              }
-              var handlePosition = scope_Locations[index];
-              var differenceWithThisHandle = Math.abs(handlePosition - clickedPosition);
-              var clickAtEdge = differenceWithThisHandle === 100 && smallestDifference === 100;
-              var isCloser = differenceWithThisHandle < smallestDifference;
-              var isCloserAfter = differenceWithThisHandle <= smallestDifference && clickedPosition > handlePosition;
-              if (isCloser || isCloserAfter || clickAtEdge) {
-                handleNumber = index;
-                smallestDifference = differenceWithThisHandle;
-              }
-            });
-            return handleNumber;
-          }
-          function documentLeave(event, data) {
-            if (event.type === "mouseout" && event.target.nodeName === "HTML" && event.relatedTarget === null) {
-              eventEnd(event, data);
-            }
-          }
-          function eventMove(event, data) {
-            if (navigator.appVersion.indexOf("MSIE 9") === -1 && event.buttons === 0 && data.buttonsProperty !== 0) {
-              return eventEnd(event, data);
-            }
-            var movement = (options.dir ? -1 : 1) * (event.calcPoint - data.startCalcPoint);
-            var proposal = movement * 100 / data.baseSize;
-            moveHandles(movement > 0, proposal, data.locations, data.handleNumbers, data.connect);
-          }
-          function eventEnd(event, data) {
-            if (data.handle) {
-              removeClass(data.handle, options.cssClasses.active);
-              scope_ActiveHandlesCount -= 1;
-            }
-            data.listeners.forEach(function(c) {
-              scope_DocumentElement.removeEventListener(c[0], c[1]);
-            });
-            if (scope_ActiveHandlesCount === 0) {
-              removeClass(scope_Target, options.cssClasses.drag);
-              setZindex();
-              if (event.cursor) {
-                scope_Body.style.cursor = "";
-                scope_Body.removeEventListener("selectstart", preventDefault);
-              }
-            }
-            if (options.events.smoothSteps) {
-              data.handleNumbers.forEach(function(handleNumber) {
-                setHandle(handleNumber, scope_Locations[handleNumber], true, true, false, false);
-              });
-              data.handleNumbers.forEach(function(handleNumber) {
-                fireEvent("update", handleNumber);
-              });
-            }
-            data.handleNumbers.forEach(function(handleNumber) {
-              fireEvent("change", handleNumber);
-              fireEvent("set", handleNumber);
-              fireEvent("end", handleNumber);
-            });
-          }
-          function eventStart(event, data) {
-            if (data.handleNumbers.some(isHandleDisabled)) {
-              return;
-            }
-            var handle;
-            if (data.handleNumbers.length === 1) {
-              var handleOrigin = scope_Handles[data.handleNumbers[0]];
-              handle = handleOrigin.children[0];
-              scope_ActiveHandlesCount += 1;
-              addClass(handle, options.cssClasses.active);
-            }
-            event.stopPropagation();
-            var listeners = [];
-            var moveEvent = attachEvent(actions.move, scope_DocumentElement, eventMove, {
-              // The event target has changed so we need to propagate the original one so that we keep
-              // relying on it to extract target touches.
-              target: event.target,
-              handle,
-              connect: data.connect,
-              listeners,
-              startCalcPoint: event.calcPoint,
-              baseSize: baseSize(),
-              pageOffset: event.pageOffset,
-              handleNumbers: data.handleNumbers,
-              buttonsProperty: event.buttons,
-              locations: scope_Locations.slice()
-            });
-            var endEvent = attachEvent(actions.end, scope_DocumentElement, eventEnd, {
-              target: event.target,
-              handle,
-              listeners,
-              doNotReject: true,
-              handleNumbers: data.handleNumbers
-            });
-            var outEvent = attachEvent("mouseout", scope_DocumentElement, documentLeave, {
-              target: event.target,
-              handle,
-              listeners,
-              doNotReject: true,
-              handleNumbers: data.handleNumbers
-            });
-            listeners.push.apply(listeners, moveEvent.concat(endEvent, outEvent));
-            if (event.cursor) {
-              scope_Body.style.cursor = getComputedStyle(event.target).cursor;
-              if (scope_Handles.length > 1) {
-                addClass(scope_Target, options.cssClasses.drag);
-              }
-              scope_Body.addEventListener("selectstart", preventDefault, false);
-            }
-            data.handleNumbers.forEach(function(handleNumber) {
-              fireEvent("start", handleNumber);
-            });
-          }
-          function eventTap(event) {
-            event.stopPropagation();
-            var proposal = calcPointToPercentage(event.calcPoint);
-            var handleNumber = getClosestHandle(proposal);
-            if (handleNumber === false) {
-              return;
-            }
-            if (!options.events.snap) {
-              addClassFor(scope_Target, options.cssClasses.tap, options.animationDuration);
-            }
-            setHandle(handleNumber, proposal, true, true);
-            setZindex();
-            fireEvent("slide", handleNumber, true);
-            fireEvent("update", handleNumber, true);
-            if (!options.events.snap) {
-              fireEvent("change", handleNumber, true);
-              fireEvent("set", handleNumber, true);
-            } else {
-              eventStart(event, { handleNumbers: [handleNumber] });
-            }
-          }
-          function eventHover(event) {
-            var proposal = calcPointToPercentage(event.calcPoint);
-            var to = scope_Spectrum.getStep(proposal);
-            var value = scope_Spectrum.fromStepping(to);
-            Object.keys(scope_Events).forEach(function(targetEvent) {
-              if ("hover" === targetEvent.split(".")[0]) {
-                scope_Events[targetEvent].forEach(function(callback) {
-                  callback.call(scope_Self, value);
-                });
-              }
-            });
-          }
-          function eventKeydown(event, handleNumber) {
-            if (isSliderDisabled() || isHandleDisabled(handleNumber)) {
-              return false;
-            }
-            var horizontalKeys = ["Left", "Right"];
-            var verticalKeys = ["Down", "Up"];
-            var largeStepKeys = ["PageDown", "PageUp"];
-            var edgeKeys = ["Home", "End"];
-            if (options.dir && !options.ort) {
-              horizontalKeys.reverse();
-            } else if (options.ort && !options.dir) {
-              verticalKeys.reverse();
-              largeStepKeys.reverse();
-            }
-            var key = event.key.replace("Arrow", "");
-            var isLargeDown = key === largeStepKeys[0];
-            var isLargeUp = key === largeStepKeys[1];
-            var isDown = key === verticalKeys[0] || key === horizontalKeys[0] || isLargeDown;
-            var isUp = key === verticalKeys[1] || key === horizontalKeys[1] || isLargeUp;
-            var isMin = key === edgeKeys[0];
-            var isMax = key === edgeKeys[1];
-            if (!isDown && !isUp && !isMin && !isMax) {
-              return true;
-            }
-            event.preventDefault();
-            var to;
-            if (isUp || isDown) {
-              var direction = isDown ? 0 : 1;
-              var steps = getNextStepsForHandle(handleNumber);
-              var step = steps[direction];
-              if (step === null) {
-                return false;
-              }
-              if (step === false) {
-                step = scope_Spectrum.getDefaultStep(scope_Locations[handleNumber], isDown, options.keyboardDefaultStep);
-              }
-              if (isLargeUp || isLargeDown) {
-                step *= options.keyboardPageMultiplier;
-              } else {
-                step *= options.keyboardMultiplier;
-              }
-              step = Math.max(step, 1e-7);
-              step = (isDown ? -1 : 1) * step;
-              to = scope_Values[handleNumber] + step;
-            } else if (isMax) {
-              to = options.spectrum.xVal[options.spectrum.xVal.length - 1];
-            } else {
-              to = options.spectrum.xVal[0];
-            }
-            setHandle(handleNumber, scope_Spectrum.toStepping(to), true, true);
-            fireEvent("slide", handleNumber);
-            fireEvent("update", handleNumber);
-            fireEvent("change", handleNumber);
-            fireEvent("set", handleNumber);
-            return false;
-          }
-          function bindSliderEvents(behaviour) {
-            if (!behaviour.fixed) {
-              scope_Handles.forEach(function(handle, index) {
-                attachEvent(actions.start, handle.children[0], eventStart, {
-                  handleNumbers: [index]
-                });
-              });
-            }
-            if (behaviour.tap) {
-              attachEvent(actions.start, scope_Base, eventTap, {});
-            }
-            if (behaviour.hover) {
-              attachEvent(actions.move, scope_Base, eventHover, {
-                hover: true
-              });
-            }
-            if (behaviour.drag) {
-              scope_Connects.forEach(function(connect, index) {
-                if (connect === false || index === 0 || index === scope_Connects.length - 1) {
-                  return;
-                }
-                var handleBefore = scope_Handles[index - 1];
-                var handleAfter = scope_Handles[index];
-                var eventHolders = [connect];
-                var handlesToDrag = [handleBefore, handleAfter];
-                var handleNumbersToDrag = [index - 1, index];
-                addClass(connect, options.cssClasses.draggable);
-                if (behaviour.fixed) {
-                  eventHolders.push(handleBefore.children[0]);
-                  eventHolders.push(handleAfter.children[0]);
-                }
-                if (behaviour.dragAll) {
-                  handlesToDrag = scope_Handles;
-                  handleNumbersToDrag = scope_HandleNumbers;
-                }
-                eventHolders.forEach(function(eventHolder) {
-                  attachEvent(actions.start, eventHolder, eventStart, {
-                    handles: handlesToDrag,
-                    handleNumbers: handleNumbersToDrag,
-                    connect
-                  });
-                });
-              });
-            }
-          }
-          function bindEvent(namespacedEvent, callback) {
-            scope_Events[namespacedEvent] = scope_Events[namespacedEvent] || [];
-            scope_Events[namespacedEvent].push(callback);
-            if (namespacedEvent.split(".")[0] === "update") {
-              scope_Handles.forEach(function(a, index) {
-                fireEvent("update", index);
-              });
-            }
-          }
-          function isInternalNamespace(namespace) {
-            return namespace === INTERNAL_EVENT_NS.aria || namespace === INTERNAL_EVENT_NS.tooltips;
-          }
-          function removeEvent(namespacedEvent) {
-            var event = namespacedEvent && namespacedEvent.split(".")[0];
-            var namespace = event ? namespacedEvent.substring(event.length) : namespacedEvent;
-            Object.keys(scope_Events).forEach(function(bind) {
-              var tEvent = bind.split(".")[0];
-              var tNamespace = bind.substring(tEvent.length);
-              if ((!event || event === tEvent) && (!namespace || namespace === tNamespace)) {
-                if (!isInternalNamespace(tNamespace) || namespace === tNamespace) {
-                  delete scope_Events[bind];
-                }
-              }
-            });
-          }
-          function fireEvent(eventName, handleNumber, tap) {
-            Object.keys(scope_Events).forEach(function(targetEvent) {
-              var eventType = targetEvent.split(".")[0];
-              if (eventName === eventType) {
-                scope_Events[targetEvent].forEach(function(callback) {
-                  callback.call(
-                    // Use the slider public API as the scope ('this')
-                    scope_Self,
-                    // Return values as array, so arg_1[arg_2] is always valid.
-                    scope_Values.map(options.format.to),
-                    // Handle index, 0 or 1
-                    handleNumber,
-                    // Un-formatted slider values
-                    scope_Values.slice(),
-                    // Event is fired by tap, true or false
-                    tap || false,
-                    // Left offset of the handle, in relation to the slider
-                    scope_Locations.slice(),
-                    // add the slider public API to an accessible parameter when this is unavailable
-                    scope_Self
-                  );
-                });
-              }
-            });
-          }
-          function checkHandlePosition(reference2, handleNumber, to, lookBackward, lookForward, getValue, smoothSteps) {
-            var distance;
-            if (scope_Handles.length > 1 && !options.events.unconstrained) {
-              if (lookBackward && handleNumber > 0) {
-                distance = scope_Spectrum.getAbsoluteDistance(reference2[handleNumber - 1], options.margin, false);
-                to = Math.max(to, distance);
-              }
-              if (lookForward && handleNumber < scope_Handles.length - 1) {
-                distance = scope_Spectrum.getAbsoluteDistance(reference2[handleNumber + 1], options.margin, true);
-                to = Math.min(to, distance);
-              }
-            }
-            if (scope_Handles.length > 1 && options.limit) {
-              if (lookBackward && handleNumber > 0) {
-                distance = scope_Spectrum.getAbsoluteDistance(reference2[handleNumber - 1], options.limit, false);
-                to = Math.min(to, distance);
-              }
-              if (lookForward && handleNumber < scope_Handles.length - 1) {
-                distance = scope_Spectrum.getAbsoluteDistance(reference2[handleNumber + 1], options.limit, true);
-                to = Math.max(to, distance);
-              }
-            }
-            if (options.padding) {
-              if (handleNumber === 0) {
-                distance = scope_Spectrum.getAbsoluteDistance(0, options.padding[0], false);
-                to = Math.max(to, distance);
-              }
-              if (handleNumber === scope_Handles.length - 1) {
-                distance = scope_Spectrum.getAbsoluteDistance(100, options.padding[1], true);
-                to = Math.min(to, distance);
-              }
-            }
-            if (!smoothSteps) {
-              to = scope_Spectrum.getStep(to);
-            }
-            to = limit(to);
-            if (to === reference2[handleNumber] && !getValue) {
-              return false;
-            }
-            return to;
-          }
-          function inRuleOrder(v, a) {
-            var o = options.ort;
-            return (o ? a : v) + ", " + (o ? v : a);
-          }
-          function moveHandles(upward, proposal, locations, handleNumbers, connect) {
-            var proposals = locations.slice();
-            var firstHandle = handleNumbers[0];
-            var smoothSteps = options.events.smoothSteps;
-            var b = [!upward, upward];
-            var f = [upward, !upward];
-            handleNumbers = handleNumbers.slice();
-            if (upward) {
-              handleNumbers.reverse();
-            }
-            if (handleNumbers.length > 1) {
-              handleNumbers.forEach(function(handleNumber, o) {
-                var to = checkHandlePosition(proposals, handleNumber, proposals[handleNumber] + proposal, b[o], f[o], false, smoothSteps);
-                if (to === false) {
-                  proposal = 0;
-                } else {
-                  proposal = to - proposals[handleNumber];
-                  proposals[handleNumber] = to;
-                }
-              });
-            } else {
-              b = f = [true];
-            }
-            var state = false;
-            handleNumbers.forEach(function(handleNumber, o) {
-              state = setHandle(handleNumber, locations[handleNumber] + proposal, b[o], f[o], false, smoothSteps) || state;
-            });
-            if (state) {
-              handleNumbers.forEach(function(handleNumber) {
-                fireEvent("update", handleNumber);
-                fireEvent("slide", handleNumber);
-              });
-              if (connect != void 0) {
-                fireEvent("drag", firstHandle);
-              }
-            }
-          }
-          function transformDirection(a, b) {
-            return options.dir ? 100 - a - b : a;
-          }
-          function updateHandlePosition(handleNumber, to) {
-            scope_Locations[handleNumber] = to;
-            scope_Values[handleNumber] = scope_Spectrum.fromStepping(to);
-            var translation = transformDirection(to, 0) - scope_DirOffset;
-            var translateRule = "translate(" + inRuleOrder(translation + "%", "0") + ")";
-            scope_Handles[handleNumber].style[options.transformRule] = translateRule;
-            updateConnect(handleNumber);
-            updateConnect(handleNumber + 1);
-          }
-          function setZindex() {
-            scope_HandleNumbers.forEach(function(handleNumber) {
-              var dir = scope_Locations[handleNumber] > 50 ? -1 : 1;
-              var zIndex = 3 + (scope_Handles.length + dir * handleNumber);
-              scope_Handles[handleNumber].style.zIndex = String(zIndex);
-            });
-          }
-          function setHandle(handleNumber, to, lookBackward, lookForward, exactInput, smoothSteps) {
-            if (!exactInput) {
-              to = checkHandlePosition(scope_Locations, handleNumber, to, lookBackward, lookForward, false, smoothSteps);
-            }
-            if (to === false) {
-              return false;
-            }
-            updateHandlePosition(handleNumber, to);
-            return true;
-          }
-          function updateConnect(index) {
-            if (!scope_Connects[index]) {
-              return;
-            }
-            var l = 0;
-            var h = 100;
-            if (index !== 0) {
-              l = scope_Locations[index - 1];
-            }
-            if (index !== scope_Connects.length - 1) {
-              h = scope_Locations[index];
-            }
-            var connectWidth = h - l;
-            var translateRule = "translate(" + inRuleOrder(transformDirection(l, connectWidth) + "%", "0") + ")";
-            var scaleRule = "scale(" + inRuleOrder(connectWidth / 100, "1") + ")";
-            scope_Connects[index].style[options.transformRule] = translateRule + " " + scaleRule;
-          }
-          function resolveToValue(to, handleNumber) {
-            if (to === null || to === false || to === void 0) {
-              return scope_Locations[handleNumber];
-            }
-            if (typeof to === "number") {
-              to = String(to);
-            }
-            to = options.format.from(to);
-            if (to !== false) {
-              to = scope_Spectrum.toStepping(to);
-            }
-            if (to === false || isNaN(to)) {
-              return scope_Locations[handleNumber];
-            }
-            return to;
-          }
-          function valueSet(input, fireSetEvent, exactInput) {
-            var values = asArray(input);
-            var isInit = scope_Locations[0] === void 0;
-            fireSetEvent = fireSetEvent === void 0 ? true : fireSetEvent;
-            if (options.animate && !isInit) {
-              addClassFor(scope_Target, options.cssClasses.tap, options.animationDuration);
-            }
-            scope_HandleNumbers.forEach(function(handleNumber) {
-              setHandle(handleNumber, resolveToValue(values[handleNumber], handleNumber), true, false, exactInput);
-            });
-            var i = scope_HandleNumbers.length === 1 ? 0 : 1;
-            if (isInit && scope_Spectrum.hasNoSize()) {
-              exactInput = true;
-              scope_Locations[0] = 0;
-              if (scope_HandleNumbers.length > 1) {
-                var space_1 = 100 / (scope_HandleNumbers.length - 1);
-                scope_HandleNumbers.forEach(function(handleNumber) {
-                  scope_Locations[handleNumber] = handleNumber * space_1;
-                });
-              }
-            }
-            for (; i < scope_HandleNumbers.length; ++i) {
-              scope_HandleNumbers.forEach(function(handleNumber) {
-                setHandle(handleNumber, scope_Locations[handleNumber], true, true, exactInput);
-              });
-            }
-            setZindex();
-            scope_HandleNumbers.forEach(function(handleNumber) {
-              fireEvent("update", handleNumber);
-              if (values[handleNumber] !== null && fireSetEvent) {
-                fireEvent("set", handleNumber);
-              }
-            });
-          }
-          function valueReset(fireSetEvent) {
-            valueSet(options.start, fireSetEvent);
-          }
-          function valueSetHandle(handleNumber, value, fireSetEvent, exactInput) {
-            handleNumber = Number(handleNumber);
-            if (!(handleNumber >= 0 && handleNumber < scope_HandleNumbers.length)) {
-              throw new Error("noUiSlider: invalid handle number, got: " + handleNumber);
-            }
-            setHandle(handleNumber, resolveToValue(value, handleNumber), true, true, exactInput);
-            fireEvent("update", handleNumber);
-            if (fireSetEvent) {
-              fireEvent("set", handleNumber);
-            }
-          }
-          function valueGet(unencoded) {
-            if (unencoded === void 0) {
-              unencoded = false;
-            }
-            if (unencoded) {
-              return scope_Values.length === 1 ? scope_Values[0] : scope_Values.slice(0);
-            }
-            var values = scope_Values.map(options.format.to);
-            if (values.length === 1) {
-              return values[0];
-            }
-            return values;
-          }
-          function destroy() {
-            removeEvent(INTERNAL_EVENT_NS.aria);
-            removeEvent(INTERNAL_EVENT_NS.tooltips);
-            Object.keys(options.cssClasses).forEach(function(key) {
-              removeClass(scope_Target, options.cssClasses[key]);
-            });
-            while (scope_Target.firstChild) {
-              scope_Target.removeChild(scope_Target.firstChild);
-            }
-            delete scope_Target.noUiSlider;
-          }
-          function getNextStepsForHandle(handleNumber) {
-            var location = scope_Locations[handleNumber];
-            var nearbySteps = scope_Spectrum.getNearbySteps(location);
-            var value = scope_Values[handleNumber];
-            var increment = nearbySteps.thisStep.step;
-            var decrement = null;
-            if (options.snap) {
-              return [
-                value - nearbySteps.stepBefore.startValue || null,
-                nearbySteps.stepAfter.startValue - value || null
-              ];
-            }
-            if (increment !== false) {
-              if (value + increment > nearbySteps.stepAfter.startValue) {
-                increment = nearbySteps.stepAfter.startValue - value;
-              }
-            }
-            if (value > nearbySteps.thisStep.startValue) {
-              decrement = nearbySteps.thisStep.step;
-            } else if (nearbySteps.stepBefore.step === false) {
-              decrement = false;
-            } else {
-              decrement = value - nearbySteps.stepBefore.highestStep;
-            }
-            if (location === 100) {
-              increment = null;
-            } else if (location === 0) {
-              decrement = null;
-            }
-            var stepDecimals = scope_Spectrum.countStepDecimals();
-            if (increment !== null && increment !== false) {
-              increment = Number(increment.toFixed(stepDecimals));
-            }
-            if (decrement !== null && decrement !== false) {
-              decrement = Number(decrement.toFixed(stepDecimals));
-            }
-            return [decrement, increment];
-          }
-          function getNextSteps() {
-            return scope_HandleNumbers.map(getNextStepsForHandle);
-          }
-          function updateOptions(optionsToUpdate, fireSetEvent) {
-            var v = valueGet();
-            var updateAble = [
-              "margin",
-              "limit",
-              "padding",
-              "range",
-              "animate",
-              "snap",
-              "step",
-              "format",
-              "pips",
-              "tooltips"
-            ];
-            updateAble.forEach(function(name) {
-              if (optionsToUpdate[name] !== void 0) {
-                originalOptions[name] = optionsToUpdate[name];
-              }
-            });
-            var newOptions = testOptions(originalOptions);
-            updateAble.forEach(function(name) {
-              if (optionsToUpdate[name] !== void 0) {
-                options[name] = newOptions[name];
-              }
-            });
-            scope_Spectrum = newOptions.spectrum;
-            options.margin = newOptions.margin;
-            options.limit = newOptions.limit;
-            options.padding = newOptions.padding;
-            if (options.pips) {
-              pips(options.pips);
-            } else {
-              removePips();
-            }
-            if (options.tooltips) {
-              tooltips();
-            } else {
-              removeTooltips();
-            }
-            scope_Locations = [];
-            valueSet(isSet(optionsToUpdate.start) ? optionsToUpdate.start : v, fireSetEvent);
-          }
-          function setupSlider() {
-            scope_Base = addSlider(scope_Target);
-            addElements(options.connect, scope_Base);
-            bindSliderEvents(options.events);
-            valueSet(options.start);
-            if (options.pips) {
-              pips(options.pips);
-            }
-            if (options.tooltips) {
-              tooltips();
-            }
-            aria();
-          }
-          setupSlider();
-          var scope_Self = {
-            destroy,
-            steps: getNextSteps,
-            on: bindEvent,
-            off: removeEvent,
-            get: valueGet,
-            set: valueSet,
-            setHandle: valueSetHandle,
-            reset: valueReset,
-            disable,
-            enable,
-            // Exposed for unit testing, don't use this in your application.
-            __moveHandles: function(upward, proposal, handleNumbers) {
-              moveHandles(upward, proposal, scope_Locations, handleNumbers);
-            },
-            options: originalOptions,
-            updateOptions,
-            target: scope_Target,
-            removePips,
-            removeTooltips,
-            getPositions: function() {
-              return scope_Locations.slice();
-            },
-            getTooltips: function() {
-              return scope_Tooltips;
-            },
-            getOrigins: function() {
-              return scope_Handles;
-            },
-            pips
-            // Issue #594
-          };
-          return scope_Self;
-        }
-        function initialize(target, originalOptions) {
-          if (!target || !target.nodeName) {
-            throw new Error("noUiSlider: create requires a single element, got: " + target);
-          }
-          if (target.noUiSlider) {
-            throw new Error("noUiSlider: Slider was already initialized.");
-          }
-          var options = testOptions(originalOptions);
-          var api = scope(target, options, originalOptions);
-          target.noUiSlider = api;
-          return api;
-        }
-        var nouislider = {
-          // Exposed for unit testing, don't use this in your application.
-          __spectrum: Spectrum,
-          // A reference to the default classes, allows global changes.
-          // Use the cssClasses option for changes to one slider.
-          cssClasses,
-          create: initialize
-        };
-        exports2.create = initialize;
-        exports2.cssClasses = cssClasses;
-        exports2["default"] = nouislider;
-        Object.defineProperty(exports2, "__esModule", { value: true });
-      });
-    }
-  });
-
   // src/js/exportGlobal.js
   function exportGlobal(name, value) {
     if (typeof window["Material"] === "undefined") {
@@ -1910,8 +54,1824 @@
   Ripple.init();
   var ripple_default = Ripple;
 
+  // node_modules/nouislider/dist/nouislider.mjs
+  var PipsMode;
+  (function(PipsMode2) {
+    PipsMode2["Range"] = "range";
+    PipsMode2["Steps"] = "steps";
+    PipsMode2["Positions"] = "positions";
+    PipsMode2["Count"] = "count";
+    PipsMode2["Values"] = "values";
+  })(PipsMode || (PipsMode = {}));
+  var PipsType;
+  (function(PipsType2) {
+    PipsType2[PipsType2["None"] = -1] = "None";
+    PipsType2[PipsType2["NoValue"] = 0] = "NoValue";
+    PipsType2[PipsType2["LargeValue"] = 1] = "LargeValue";
+    PipsType2[PipsType2["SmallValue"] = 2] = "SmallValue";
+  })(PipsType || (PipsType = {}));
+  function isValidFormatter(entry) {
+    return isValidPartialFormatter(entry) && typeof entry.from === "function";
+  }
+  function isValidPartialFormatter(entry) {
+    return typeof entry === "object" && typeof entry.to === "function";
+  }
+  function removeElement(el) {
+    el.parentElement.removeChild(el);
+  }
+  function isSet(value) {
+    return value !== null && value !== void 0;
+  }
+  function preventDefault(e) {
+    e.preventDefault();
+  }
+  function unique(array) {
+    return array.filter(function(a) {
+      return !this[a] ? this[a] = true : false;
+    }, {});
+  }
+  function closest(value, to) {
+    return Math.round(value / to) * to;
+  }
+  function offset(elem, orientation) {
+    var rect = elem.getBoundingClientRect();
+    var doc = elem.ownerDocument;
+    var docElem = doc.documentElement;
+    var pageOffset = getPageOffset(doc);
+    if (/webkit.*Chrome.*Mobile/i.test(navigator.userAgent)) {
+      pageOffset.x = 0;
+    }
+    return orientation ? rect.top + pageOffset.y - docElem.clientTop : rect.left + pageOffset.x - docElem.clientLeft;
+  }
+  function isNumeric(a) {
+    return typeof a === "number" && !isNaN(a) && isFinite(a);
+  }
+  function addClassFor(element2, className, duration2) {
+    if (duration2 > 0) {
+      addClass(element2, className);
+      setTimeout(function() {
+        removeClass(element2, className);
+      }, duration2);
+    }
+  }
+  function limit(a) {
+    return Math.max(Math.min(a, 100), 0);
+  }
+  function asArray(a) {
+    return Array.isArray(a) ? a : [a];
+  }
+  function countDecimals(numStr) {
+    numStr = String(numStr);
+    var pieces = numStr.split(".");
+    return pieces.length > 1 ? pieces[1].length : 0;
+  }
+  function addClass(el, className) {
+    if (el.classList && !/\s/.test(className)) {
+      el.classList.add(className);
+    } else {
+      el.className += " " + className;
+    }
+  }
+  function removeClass(el, className) {
+    if (el.classList && !/\s/.test(className)) {
+      el.classList.remove(className);
+    } else {
+      el.className = el.className.replace(new RegExp("(^|\\b)" + className.split(" ").join("|") + "(\\b|$)", "gi"), " ");
+    }
+  }
+  function hasClass(el, className) {
+    return el.classList ? el.classList.contains(className) : new RegExp("\\b" + className + "\\b").test(el.className);
+  }
+  function getPageOffset(doc) {
+    var supportPageOffset = window.pageXOffset !== void 0;
+    var isCSS1Compat = (doc.compatMode || "") === "CSS1Compat";
+    var x = supportPageOffset ? window.pageXOffset : isCSS1Compat ? doc.documentElement.scrollLeft : doc.body.scrollLeft;
+    var y = supportPageOffset ? window.pageYOffset : isCSS1Compat ? doc.documentElement.scrollTop : doc.body.scrollTop;
+    return {
+      x,
+      y
+    };
+  }
+  function getActions() {
+    return window.navigator.pointerEnabled ? {
+      start: "pointerdown",
+      move: "pointermove",
+      end: "pointerup"
+    } : window.navigator.msPointerEnabled ? {
+      start: "MSPointerDown",
+      move: "MSPointerMove",
+      end: "MSPointerUp"
+    } : {
+      start: "mousedown touchstart",
+      move: "mousemove touchmove",
+      end: "mouseup touchend"
+    };
+  }
+  function getSupportsPassive() {
+    var supportsPassive = false;
+    try {
+      var opts = Object.defineProperty({}, "passive", {
+        get: function() {
+          supportsPassive = true;
+        }
+      });
+      window.addEventListener("test", null, opts);
+    } catch (e) {
+    }
+    return supportsPassive;
+  }
+  function getSupportsTouchActionNone() {
+    return window.CSS && CSS.supports && CSS.supports("touch-action", "none");
+  }
+  function subRangeRatio(pa, pb) {
+    return 100 / (pb - pa);
+  }
+  function fromPercentage(range, value, startRange) {
+    return value * 100 / (range[startRange + 1] - range[startRange]);
+  }
+  function toPercentage(range, value) {
+    return fromPercentage(range, range[0] < 0 ? value + Math.abs(range[0]) : value - range[0], 0);
+  }
+  function isPercentage(range, value) {
+    return value * (range[1] - range[0]) / 100 + range[0];
+  }
+  function getJ(value, arr) {
+    var j = 1;
+    while (value >= arr[j]) {
+      j += 1;
+    }
+    return j;
+  }
+  function toStepping(xVal, xPct, value) {
+    if (value >= xVal.slice(-1)[0]) {
+      return 100;
+    }
+    var j = getJ(value, xVal);
+    var va = xVal[j - 1];
+    var vb = xVal[j];
+    var pa = xPct[j - 1];
+    var pb = xPct[j];
+    return pa + toPercentage([va, vb], value) / subRangeRatio(pa, pb);
+  }
+  function fromStepping(xVal, xPct, value) {
+    if (value >= 100) {
+      return xVal.slice(-1)[0];
+    }
+    var j = getJ(value, xPct);
+    var va = xVal[j - 1];
+    var vb = xVal[j];
+    var pa = xPct[j - 1];
+    var pb = xPct[j];
+    return isPercentage([va, vb], (value - pa) * subRangeRatio(pa, pb));
+  }
+  function getStep(xPct, xSteps, snap, value) {
+    if (value === 100) {
+      return value;
+    }
+    var j = getJ(value, xPct);
+    var a = xPct[j - 1];
+    var b = xPct[j];
+    if (snap) {
+      if (value - a > (b - a) / 2) {
+        return b;
+      }
+      return a;
+    }
+    if (!xSteps[j - 1]) {
+      return value;
+    }
+    return xPct[j - 1] + closest(value - xPct[j - 1], xSteps[j - 1]);
+  }
+  var Spectrum = (
+    /** @class */
+    function() {
+      function Spectrum2(entry, snap, singleStep) {
+        this.xPct = [];
+        this.xVal = [];
+        this.xSteps = [];
+        this.xNumSteps = [];
+        this.xHighestCompleteStep = [];
+        this.xSteps = [singleStep || false];
+        this.xNumSteps = [false];
+        this.snap = snap;
+        var index;
+        var ordered = [];
+        Object.keys(entry).forEach(function(index2) {
+          ordered.push([asArray(entry[index2]), index2]);
+        });
+        ordered.sort(function(a, b) {
+          return a[0][0] - b[0][0];
+        });
+        for (index = 0; index < ordered.length; index++) {
+          this.handleEntryPoint(ordered[index][1], ordered[index][0]);
+        }
+        this.xNumSteps = this.xSteps.slice(0);
+        for (index = 0; index < this.xNumSteps.length; index++) {
+          this.handleStepPoint(index, this.xNumSteps[index]);
+        }
+      }
+      Spectrum2.prototype.getDistance = function(value) {
+        var distances = [];
+        for (var index = 0; index < this.xNumSteps.length - 1; index++) {
+          distances[index] = fromPercentage(this.xVal, value, index);
+        }
+        return distances;
+      };
+      Spectrum2.prototype.getAbsoluteDistance = function(value, distances, direction) {
+        var xPct_index = 0;
+        if (value < this.xPct[this.xPct.length - 1]) {
+          while (value > this.xPct[xPct_index + 1]) {
+            xPct_index++;
+          }
+        } else if (value === this.xPct[this.xPct.length - 1]) {
+          xPct_index = this.xPct.length - 2;
+        }
+        if (!direction && value === this.xPct[xPct_index + 1]) {
+          xPct_index++;
+        }
+        if (distances === null) {
+          distances = [];
+        }
+        var start_factor;
+        var rest_factor = 1;
+        var rest_rel_distance = distances[xPct_index];
+        var range_pct = 0;
+        var rel_range_distance = 0;
+        var abs_distance_counter = 0;
+        var range_counter = 0;
+        if (direction) {
+          start_factor = (value - this.xPct[xPct_index]) / (this.xPct[xPct_index + 1] - this.xPct[xPct_index]);
+        } else {
+          start_factor = (this.xPct[xPct_index + 1] - value) / (this.xPct[xPct_index + 1] - this.xPct[xPct_index]);
+        }
+        while (rest_rel_distance > 0) {
+          range_pct = this.xPct[xPct_index + 1 + range_counter] - this.xPct[xPct_index + range_counter];
+          if (distances[xPct_index + range_counter] * rest_factor + 100 - start_factor * 100 > 100) {
+            rel_range_distance = range_pct * start_factor;
+            rest_factor = (rest_rel_distance - 100 * start_factor) / distances[xPct_index + range_counter];
+            start_factor = 1;
+          } else {
+            rel_range_distance = distances[xPct_index + range_counter] * range_pct / 100 * rest_factor;
+            rest_factor = 0;
+          }
+          if (direction) {
+            abs_distance_counter = abs_distance_counter - rel_range_distance;
+            if (this.xPct.length + range_counter >= 1) {
+              range_counter--;
+            }
+          } else {
+            abs_distance_counter = abs_distance_counter + rel_range_distance;
+            if (this.xPct.length - range_counter >= 1) {
+              range_counter++;
+            }
+          }
+          rest_rel_distance = distances[xPct_index + range_counter] * rest_factor;
+        }
+        return value + abs_distance_counter;
+      };
+      Spectrum2.prototype.toStepping = function(value) {
+        value = toStepping(this.xVal, this.xPct, value);
+        return value;
+      };
+      Spectrum2.prototype.fromStepping = function(value) {
+        return fromStepping(this.xVal, this.xPct, value);
+      };
+      Spectrum2.prototype.getStep = function(value) {
+        value = getStep(this.xPct, this.xSteps, this.snap, value);
+        return value;
+      };
+      Spectrum2.prototype.getDefaultStep = function(value, isDown, size) {
+        var j = getJ(value, this.xPct);
+        if (value === 100 || isDown && value === this.xPct[j - 1]) {
+          j = Math.max(j - 1, 1);
+        }
+        return (this.xVal[j] - this.xVal[j - 1]) / size;
+      };
+      Spectrum2.prototype.getNearbySteps = function(value) {
+        var j = getJ(value, this.xPct);
+        return {
+          stepBefore: {
+            startValue: this.xVal[j - 2],
+            step: this.xNumSteps[j - 2],
+            highestStep: this.xHighestCompleteStep[j - 2]
+          },
+          thisStep: {
+            startValue: this.xVal[j - 1],
+            step: this.xNumSteps[j - 1],
+            highestStep: this.xHighestCompleteStep[j - 1]
+          },
+          stepAfter: {
+            startValue: this.xVal[j],
+            step: this.xNumSteps[j],
+            highestStep: this.xHighestCompleteStep[j]
+          }
+        };
+      };
+      Spectrum2.prototype.countStepDecimals = function() {
+        var stepDecimals = this.xNumSteps.map(countDecimals);
+        return Math.max.apply(null, stepDecimals);
+      };
+      Spectrum2.prototype.hasNoSize = function() {
+        return this.xVal[0] === this.xVal[this.xVal.length - 1];
+      };
+      Spectrum2.prototype.convert = function(value) {
+        return this.getStep(this.toStepping(value));
+      };
+      Spectrum2.prototype.handleEntryPoint = function(index, value) {
+        var percentage;
+        if (index === "min") {
+          percentage = 0;
+        } else if (index === "max") {
+          percentage = 100;
+        } else {
+          percentage = parseFloat(index);
+        }
+        if (!isNumeric(percentage) || !isNumeric(value[0])) {
+          throw new Error("noUiSlider: 'range' value isn't numeric.");
+        }
+        this.xPct.push(percentage);
+        this.xVal.push(value[0]);
+        var value1 = Number(value[1]);
+        if (!percentage) {
+          if (!isNaN(value1)) {
+            this.xSteps[0] = value1;
+          }
+        } else {
+          this.xSteps.push(isNaN(value1) ? false : value1);
+        }
+        this.xHighestCompleteStep.push(0);
+      };
+      Spectrum2.prototype.handleStepPoint = function(i, n) {
+        if (!n) {
+          return;
+        }
+        if (this.xVal[i] === this.xVal[i + 1]) {
+          this.xSteps[i] = this.xHighestCompleteStep[i] = this.xVal[i];
+          return;
+        }
+        this.xSteps[i] = fromPercentage([this.xVal[i], this.xVal[i + 1]], n, 0) / subRangeRatio(this.xPct[i], this.xPct[i + 1]);
+        var totalSteps = (this.xVal[i + 1] - this.xVal[i]) / this.xNumSteps[i];
+        var highestStep = Math.ceil(Number(totalSteps.toFixed(3)) - 1);
+        var step = this.xVal[i] + this.xNumSteps[i] * highestStep;
+        this.xHighestCompleteStep[i] = step;
+      };
+      return Spectrum2;
+    }()
+  );
+  var defaultFormatter = {
+    to: function(value) {
+      return value === void 0 ? "" : value.toFixed(2);
+    },
+    from: Number
+  };
+  var cssClasses = {
+    target: "target",
+    base: "base",
+    origin: "origin",
+    handle: "handle",
+    handleLower: "handle-lower",
+    handleUpper: "handle-upper",
+    touchArea: "touch-area",
+    horizontal: "horizontal",
+    vertical: "vertical",
+    background: "background",
+    connect: "connect",
+    connects: "connects",
+    ltr: "ltr",
+    rtl: "rtl",
+    textDirectionLtr: "txt-dir-ltr",
+    textDirectionRtl: "txt-dir-rtl",
+    draggable: "draggable",
+    drag: "state-drag",
+    tap: "state-tap",
+    active: "active",
+    tooltip: "tooltip",
+    pips: "pips",
+    pipsHorizontal: "pips-horizontal",
+    pipsVertical: "pips-vertical",
+    marker: "marker",
+    markerHorizontal: "marker-horizontal",
+    markerVertical: "marker-vertical",
+    markerNormal: "marker-normal",
+    markerLarge: "marker-large",
+    markerSub: "marker-sub",
+    value: "value",
+    valueHorizontal: "value-horizontal",
+    valueVertical: "value-vertical",
+    valueNormal: "value-normal",
+    valueLarge: "value-large",
+    valueSub: "value-sub"
+  };
+  var INTERNAL_EVENT_NS = {
+    tooltips: ".__tooltips",
+    aria: ".__aria"
+  };
+  function testStep(parsed, entry) {
+    if (!isNumeric(entry)) {
+      throw new Error("noUiSlider: 'step' is not numeric.");
+    }
+    parsed.singleStep = entry;
+  }
+  function testKeyboardPageMultiplier(parsed, entry) {
+    if (!isNumeric(entry)) {
+      throw new Error("noUiSlider: 'keyboardPageMultiplier' is not numeric.");
+    }
+    parsed.keyboardPageMultiplier = entry;
+  }
+  function testKeyboardMultiplier(parsed, entry) {
+    if (!isNumeric(entry)) {
+      throw new Error("noUiSlider: 'keyboardMultiplier' is not numeric.");
+    }
+    parsed.keyboardMultiplier = entry;
+  }
+  function testKeyboardDefaultStep(parsed, entry) {
+    if (!isNumeric(entry)) {
+      throw new Error("noUiSlider: 'keyboardDefaultStep' is not numeric.");
+    }
+    parsed.keyboardDefaultStep = entry;
+  }
+  function testRange(parsed, entry) {
+    if (typeof entry !== "object" || Array.isArray(entry)) {
+      throw new Error("noUiSlider: 'range' is not an object.");
+    }
+    if (entry.min === void 0 || entry.max === void 0) {
+      throw new Error("noUiSlider: Missing 'min' or 'max' in 'range'.");
+    }
+    parsed.spectrum = new Spectrum(entry, parsed.snap || false, parsed.singleStep);
+  }
+  function testStart(parsed, entry) {
+    entry = asArray(entry);
+    if (!Array.isArray(entry) || !entry.length) {
+      throw new Error("noUiSlider: 'start' option is incorrect.");
+    }
+    parsed.handles = entry.length;
+    parsed.start = entry;
+  }
+  function testSnap(parsed, entry) {
+    if (typeof entry !== "boolean") {
+      throw new Error("noUiSlider: 'snap' option must be a boolean.");
+    }
+    parsed.snap = entry;
+  }
+  function testAnimate(parsed, entry) {
+    if (typeof entry !== "boolean") {
+      throw new Error("noUiSlider: 'animate' option must be a boolean.");
+    }
+    parsed.animate = entry;
+  }
+  function testAnimationDuration(parsed, entry) {
+    if (typeof entry !== "number") {
+      throw new Error("noUiSlider: 'animationDuration' option must be a number.");
+    }
+    parsed.animationDuration = entry;
+  }
+  function testConnect(parsed, entry) {
+    var connect = [false];
+    var i;
+    if (entry === "lower") {
+      entry = [true, false];
+    } else if (entry === "upper") {
+      entry = [false, true];
+    }
+    if (entry === true || entry === false) {
+      for (i = 1; i < parsed.handles; i++) {
+        connect.push(entry);
+      }
+      connect.push(false);
+    } else if (!Array.isArray(entry) || !entry.length || entry.length !== parsed.handles + 1) {
+      throw new Error("noUiSlider: 'connect' option doesn't match handle count.");
+    } else {
+      connect = entry;
+    }
+    parsed.connect = connect;
+  }
+  function testOrientation(parsed, entry) {
+    switch (entry) {
+      case "horizontal":
+        parsed.ort = 0;
+        break;
+      case "vertical":
+        parsed.ort = 1;
+        break;
+      default:
+        throw new Error("noUiSlider: 'orientation' option is invalid.");
+    }
+  }
+  function testMargin(parsed, entry) {
+    if (!isNumeric(entry)) {
+      throw new Error("noUiSlider: 'margin' option must be numeric.");
+    }
+    if (entry === 0) {
+      return;
+    }
+    parsed.margin = parsed.spectrum.getDistance(entry);
+  }
+  function testLimit(parsed, entry) {
+    if (!isNumeric(entry)) {
+      throw new Error("noUiSlider: 'limit' option must be numeric.");
+    }
+    parsed.limit = parsed.spectrum.getDistance(entry);
+    if (!parsed.limit || parsed.handles < 2) {
+      throw new Error("noUiSlider: 'limit' option is only supported on linear sliders with 2 or more handles.");
+    }
+  }
+  function testPadding(parsed, entry) {
+    var index;
+    if (!isNumeric(entry) && !Array.isArray(entry)) {
+      throw new Error("noUiSlider: 'padding' option must be numeric or array of exactly 2 numbers.");
+    }
+    if (Array.isArray(entry) && !(entry.length === 2 || isNumeric(entry[0]) || isNumeric(entry[1]))) {
+      throw new Error("noUiSlider: 'padding' option must be numeric or array of exactly 2 numbers.");
+    }
+    if (entry === 0) {
+      return;
+    }
+    if (!Array.isArray(entry)) {
+      entry = [entry, entry];
+    }
+    parsed.padding = [parsed.spectrum.getDistance(entry[0]), parsed.spectrum.getDistance(entry[1])];
+    for (index = 0; index < parsed.spectrum.xNumSteps.length - 1; index++) {
+      if (parsed.padding[0][index] < 0 || parsed.padding[1][index] < 0) {
+        throw new Error("noUiSlider: 'padding' option must be a positive number(s).");
+      }
+    }
+    var totalPadding = entry[0] + entry[1];
+    var firstValue = parsed.spectrum.xVal[0];
+    var lastValue = parsed.spectrum.xVal[parsed.spectrum.xVal.length - 1];
+    if (totalPadding / (lastValue - firstValue) > 1) {
+      throw new Error("noUiSlider: 'padding' option must not exceed 100% of the range.");
+    }
+  }
+  function testDirection(parsed, entry) {
+    switch (entry) {
+      case "ltr":
+        parsed.dir = 0;
+        break;
+      case "rtl":
+        parsed.dir = 1;
+        break;
+      default:
+        throw new Error("noUiSlider: 'direction' option was not recognized.");
+    }
+  }
+  function testBehaviour(parsed, entry) {
+    if (typeof entry !== "string") {
+      throw new Error("noUiSlider: 'behaviour' must be a string containing options.");
+    }
+    var tap = entry.indexOf("tap") >= 0;
+    var drag = entry.indexOf("drag") >= 0;
+    var fixed = entry.indexOf("fixed") >= 0;
+    var snap = entry.indexOf("snap") >= 0;
+    var hover = entry.indexOf("hover") >= 0;
+    var unconstrained = entry.indexOf("unconstrained") >= 0;
+    var dragAll = entry.indexOf("drag-all") >= 0;
+    var smoothSteps = entry.indexOf("smooth-steps") >= 0;
+    if (fixed) {
+      if (parsed.handles !== 2) {
+        throw new Error("noUiSlider: 'fixed' behaviour must be used with 2 handles");
+      }
+      testMargin(parsed, parsed.start[1] - parsed.start[0]);
+    }
+    if (unconstrained && (parsed.margin || parsed.limit)) {
+      throw new Error("noUiSlider: 'unconstrained' behaviour cannot be used with margin or limit");
+    }
+    parsed.events = {
+      tap: tap || snap,
+      drag,
+      dragAll,
+      smoothSteps,
+      fixed,
+      snap,
+      hover,
+      unconstrained
+    };
+  }
+  function testTooltips(parsed, entry) {
+    if (entry === false) {
+      return;
+    }
+    if (entry === true || isValidPartialFormatter(entry)) {
+      parsed.tooltips = [];
+      for (var i = 0; i < parsed.handles; i++) {
+        parsed.tooltips.push(entry);
+      }
+    } else {
+      entry = asArray(entry);
+      if (entry.length !== parsed.handles) {
+        throw new Error("noUiSlider: must pass a formatter for all handles.");
+      }
+      entry.forEach(function(formatter) {
+        if (typeof formatter !== "boolean" && !isValidPartialFormatter(formatter)) {
+          throw new Error("noUiSlider: 'tooltips' must be passed a formatter or 'false'.");
+        }
+      });
+      parsed.tooltips = entry;
+    }
+  }
+  function testHandleAttributes(parsed, entry) {
+    if (entry.length !== parsed.handles) {
+      throw new Error("noUiSlider: must pass a attributes for all handles.");
+    }
+    parsed.handleAttributes = entry;
+  }
+  function testAriaFormat(parsed, entry) {
+    if (!isValidPartialFormatter(entry)) {
+      throw new Error("noUiSlider: 'ariaFormat' requires 'to' method.");
+    }
+    parsed.ariaFormat = entry;
+  }
+  function testFormat(parsed, entry) {
+    if (!isValidFormatter(entry)) {
+      throw new Error("noUiSlider: 'format' requires 'to' and 'from' methods.");
+    }
+    parsed.format = entry;
+  }
+  function testKeyboardSupport(parsed, entry) {
+    if (typeof entry !== "boolean") {
+      throw new Error("noUiSlider: 'keyboardSupport' option must be a boolean.");
+    }
+    parsed.keyboardSupport = entry;
+  }
+  function testDocumentElement(parsed, entry) {
+    parsed.documentElement = entry;
+  }
+  function testCssPrefix(parsed, entry) {
+    if (typeof entry !== "string" && entry !== false) {
+      throw new Error("noUiSlider: 'cssPrefix' must be a string or `false`.");
+    }
+    parsed.cssPrefix = entry;
+  }
+  function testCssClasses(parsed, entry) {
+    if (typeof entry !== "object") {
+      throw new Error("noUiSlider: 'cssClasses' must be an object.");
+    }
+    if (typeof parsed.cssPrefix === "string") {
+      parsed.cssClasses = {};
+      Object.keys(entry).forEach(function(key) {
+        parsed.cssClasses[key] = parsed.cssPrefix + entry[key];
+      });
+    } else {
+      parsed.cssClasses = entry;
+    }
+  }
+  function testOptions(options) {
+    var parsed = {
+      margin: null,
+      limit: null,
+      padding: null,
+      animate: true,
+      animationDuration: 300,
+      ariaFormat: defaultFormatter,
+      format: defaultFormatter
+    };
+    var tests = {
+      step: { r: false, t: testStep },
+      keyboardPageMultiplier: { r: false, t: testKeyboardPageMultiplier },
+      keyboardMultiplier: { r: false, t: testKeyboardMultiplier },
+      keyboardDefaultStep: { r: false, t: testKeyboardDefaultStep },
+      start: { r: true, t: testStart },
+      connect: { r: true, t: testConnect },
+      direction: { r: true, t: testDirection },
+      snap: { r: false, t: testSnap },
+      animate: { r: false, t: testAnimate },
+      animationDuration: { r: false, t: testAnimationDuration },
+      range: { r: true, t: testRange },
+      orientation: { r: false, t: testOrientation },
+      margin: { r: false, t: testMargin },
+      limit: { r: false, t: testLimit },
+      padding: { r: false, t: testPadding },
+      behaviour: { r: true, t: testBehaviour },
+      ariaFormat: { r: false, t: testAriaFormat },
+      format: { r: false, t: testFormat },
+      tooltips: { r: false, t: testTooltips },
+      keyboardSupport: { r: true, t: testKeyboardSupport },
+      documentElement: { r: false, t: testDocumentElement },
+      cssPrefix: { r: true, t: testCssPrefix },
+      cssClasses: { r: true, t: testCssClasses },
+      handleAttributes: { r: false, t: testHandleAttributes }
+    };
+    var defaults2 = {
+      connect: false,
+      direction: "ltr",
+      behaviour: "tap",
+      orientation: "horizontal",
+      keyboardSupport: true,
+      cssPrefix: "noUi-",
+      cssClasses,
+      keyboardPageMultiplier: 5,
+      keyboardMultiplier: 1,
+      keyboardDefaultStep: 10
+    };
+    if (options.format && !options.ariaFormat) {
+      options.ariaFormat = options.format;
+    }
+    Object.keys(tests).forEach(function(name) {
+      if (!isSet(options[name]) && defaults2[name] === void 0) {
+        if (tests[name].r) {
+          throw new Error("noUiSlider: '" + name + "' is required.");
+        }
+        return;
+      }
+      tests[name].t(parsed, !isSet(options[name]) ? defaults2[name] : options[name]);
+    });
+    parsed.pips = options.pips;
+    var d = document.createElement("div");
+    var msPrefix = d.style.msTransform !== void 0;
+    var noPrefix = d.style.transform !== void 0;
+    parsed.transformRule = noPrefix ? "transform" : msPrefix ? "msTransform" : "webkitTransform";
+    var styles = [
+      ["left", "top"],
+      ["right", "bottom"]
+    ];
+    parsed.style = styles[parsed.dir][parsed.ort];
+    return parsed;
+  }
+  function scope(target, options, originalOptions) {
+    var actions = getActions();
+    var supportsTouchActionNone = getSupportsTouchActionNone();
+    var supportsPassive = supportsTouchActionNone && getSupportsPassive();
+    var scope_Target = target;
+    var scope_Base;
+    var scope_Handles;
+    var scope_Connects;
+    var scope_Pips;
+    var scope_Tooltips;
+    var scope_Spectrum = options.spectrum;
+    var scope_Values = [];
+    var scope_Locations = [];
+    var scope_HandleNumbers = [];
+    var scope_ActiveHandlesCount = 0;
+    var scope_Events = {};
+    var scope_Document = target.ownerDocument;
+    var scope_DocumentElement = options.documentElement || scope_Document.documentElement;
+    var scope_Body = scope_Document.body;
+    var scope_DirOffset = scope_Document.dir === "rtl" || options.ort === 1 ? 0 : 100;
+    function addNodeTo(addTarget, className) {
+      var div = scope_Document.createElement("div");
+      if (className) {
+        addClass(div, className);
+      }
+      addTarget.appendChild(div);
+      return div;
+    }
+    function addOrigin(base, handleNumber) {
+      var origin = addNodeTo(base, options.cssClasses.origin);
+      var handle = addNodeTo(origin, options.cssClasses.handle);
+      addNodeTo(handle, options.cssClasses.touchArea);
+      handle.setAttribute("data-handle", String(handleNumber));
+      if (options.keyboardSupport) {
+        handle.setAttribute("tabindex", "0");
+        handle.addEventListener("keydown", function(event) {
+          return eventKeydown(event, handleNumber);
+        });
+      }
+      if (options.handleAttributes !== void 0) {
+        var attributes_1 = options.handleAttributes[handleNumber];
+        Object.keys(attributes_1).forEach(function(attribute) {
+          handle.setAttribute(attribute, attributes_1[attribute]);
+        });
+      }
+      handle.setAttribute("role", "slider");
+      handle.setAttribute("aria-orientation", options.ort ? "vertical" : "horizontal");
+      if (handleNumber === 0) {
+        addClass(handle, options.cssClasses.handleLower);
+      } else if (handleNumber === options.handles - 1) {
+        addClass(handle, options.cssClasses.handleUpper);
+      }
+      origin.handle = handle;
+      return origin;
+    }
+    function addConnect(base, add) {
+      if (!add) {
+        return false;
+      }
+      return addNodeTo(base, options.cssClasses.connect);
+    }
+    function addElements(connectOptions, base) {
+      var connectBase = addNodeTo(base, options.cssClasses.connects);
+      scope_Handles = [];
+      scope_Connects = [];
+      scope_Connects.push(addConnect(connectBase, connectOptions[0]));
+      for (var i = 0; i < options.handles; i++) {
+        scope_Handles.push(addOrigin(base, i));
+        scope_HandleNumbers[i] = i;
+        scope_Connects.push(addConnect(connectBase, connectOptions[i + 1]));
+      }
+    }
+    function addSlider(addTarget) {
+      addClass(addTarget, options.cssClasses.target);
+      if (options.dir === 0) {
+        addClass(addTarget, options.cssClasses.ltr);
+      } else {
+        addClass(addTarget, options.cssClasses.rtl);
+      }
+      if (options.ort === 0) {
+        addClass(addTarget, options.cssClasses.horizontal);
+      } else {
+        addClass(addTarget, options.cssClasses.vertical);
+      }
+      var textDirection = getComputedStyle(addTarget).direction;
+      if (textDirection === "rtl") {
+        addClass(addTarget, options.cssClasses.textDirectionRtl);
+      } else {
+        addClass(addTarget, options.cssClasses.textDirectionLtr);
+      }
+      return addNodeTo(addTarget, options.cssClasses.base);
+    }
+    function addTooltip(handle, handleNumber) {
+      if (!options.tooltips || !options.tooltips[handleNumber]) {
+        return false;
+      }
+      return addNodeTo(handle.firstChild, options.cssClasses.tooltip);
+    }
+    function isSliderDisabled() {
+      return scope_Target.hasAttribute("disabled");
+    }
+    function isHandleDisabled(handleNumber) {
+      var handleOrigin = scope_Handles[handleNumber];
+      return handleOrigin.hasAttribute("disabled");
+    }
+    function disable(handleNumber) {
+      if (handleNumber !== null && handleNumber !== void 0) {
+        scope_Handles[handleNumber].setAttribute("disabled", "");
+        scope_Handles[handleNumber].handle.removeAttribute("tabindex");
+      } else {
+        scope_Target.setAttribute("disabled", "");
+        scope_Handles.forEach(function(handle) {
+          handle.handle.removeAttribute("tabindex");
+        });
+      }
+    }
+    function enable(handleNumber) {
+      if (handleNumber !== null && handleNumber !== void 0) {
+        scope_Handles[handleNumber].removeAttribute("disabled");
+        scope_Handles[handleNumber].handle.setAttribute("tabindex", "0");
+      } else {
+        scope_Target.removeAttribute("disabled");
+        scope_Handles.forEach(function(handle) {
+          handle.removeAttribute("disabled");
+          handle.handle.setAttribute("tabindex", "0");
+        });
+      }
+    }
+    function removeTooltips() {
+      if (scope_Tooltips) {
+        removeEvent("update" + INTERNAL_EVENT_NS.tooltips);
+        scope_Tooltips.forEach(function(tooltip) {
+          if (tooltip) {
+            removeElement(tooltip);
+          }
+        });
+        scope_Tooltips = null;
+      }
+    }
+    function tooltips() {
+      removeTooltips();
+      scope_Tooltips = scope_Handles.map(addTooltip);
+      bindEvent("update" + INTERNAL_EVENT_NS.tooltips, function(values, handleNumber, unencoded) {
+        if (!scope_Tooltips || !options.tooltips) {
+          return;
+        }
+        if (scope_Tooltips[handleNumber] === false) {
+          return;
+        }
+        var formattedValue = values[handleNumber];
+        if (options.tooltips[handleNumber] !== true) {
+          formattedValue = options.tooltips[handleNumber].to(unencoded[handleNumber]);
+        }
+        scope_Tooltips[handleNumber].innerHTML = formattedValue;
+      });
+    }
+    function aria() {
+      removeEvent("update" + INTERNAL_EVENT_NS.aria);
+      bindEvent("update" + INTERNAL_EVENT_NS.aria, function(values, handleNumber, unencoded, tap, positions) {
+        scope_HandleNumbers.forEach(function(index) {
+          var handle = scope_Handles[index];
+          var min2 = checkHandlePosition(scope_Locations, index, 0, true, true, true);
+          var max2 = checkHandlePosition(scope_Locations, index, 100, true, true, true);
+          var now = positions[index];
+          var text = String(options.ariaFormat.to(unencoded[index]));
+          min2 = scope_Spectrum.fromStepping(min2).toFixed(1);
+          max2 = scope_Spectrum.fromStepping(max2).toFixed(1);
+          now = scope_Spectrum.fromStepping(now).toFixed(1);
+          handle.children[0].setAttribute("aria-valuemin", min2);
+          handle.children[0].setAttribute("aria-valuemax", max2);
+          handle.children[0].setAttribute("aria-valuenow", now);
+          handle.children[0].setAttribute("aria-valuetext", text);
+        });
+      });
+    }
+    function getGroup(pips2) {
+      if (pips2.mode === PipsMode.Range || pips2.mode === PipsMode.Steps) {
+        return scope_Spectrum.xVal;
+      }
+      if (pips2.mode === PipsMode.Count) {
+        if (pips2.values < 2) {
+          throw new Error("noUiSlider: 'values' (>= 2) required for mode 'count'.");
+        }
+        var interval = pips2.values - 1;
+        var spread = 100 / interval;
+        var values = [];
+        while (interval--) {
+          values[interval] = interval * spread;
+        }
+        values.push(100);
+        return mapToRange(values, pips2.stepped);
+      }
+      if (pips2.mode === PipsMode.Positions) {
+        return mapToRange(pips2.values, pips2.stepped);
+      }
+      if (pips2.mode === PipsMode.Values) {
+        if (pips2.stepped) {
+          return pips2.values.map(function(value) {
+            return scope_Spectrum.fromStepping(scope_Spectrum.getStep(scope_Spectrum.toStepping(value)));
+          });
+        }
+        return pips2.values;
+      }
+      return [];
+    }
+    function mapToRange(values, stepped) {
+      return values.map(function(value) {
+        return scope_Spectrum.fromStepping(stepped ? scope_Spectrum.getStep(value) : value);
+      });
+    }
+    function generateSpread(pips2) {
+      function safeIncrement(value, increment) {
+        return Number((value + increment).toFixed(7));
+      }
+      var group = getGroup(pips2);
+      var indexes = {};
+      var firstInRange = scope_Spectrum.xVal[0];
+      var lastInRange = scope_Spectrum.xVal[scope_Spectrum.xVal.length - 1];
+      var ignoreFirst = false;
+      var ignoreLast = false;
+      var prevPct = 0;
+      group = unique(group.slice().sort(function(a, b) {
+        return a - b;
+      }));
+      if (group[0] !== firstInRange) {
+        group.unshift(firstInRange);
+        ignoreFirst = true;
+      }
+      if (group[group.length - 1] !== lastInRange) {
+        group.push(lastInRange);
+        ignoreLast = true;
+      }
+      group.forEach(function(current, index) {
+        var step;
+        var i;
+        var q;
+        var low = current;
+        var high = group[index + 1];
+        var newPct;
+        var pctDifference;
+        var pctPos;
+        var type;
+        var steps;
+        var realSteps;
+        var stepSize;
+        var isSteps = pips2.mode === PipsMode.Steps;
+        if (isSteps) {
+          step = scope_Spectrum.xNumSteps[index];
+        }
+        if (!step) {
+          step = high - low;
+        }
+        if (high === void 0) {
+          high = low;
+        }
+        step = Math.max(step, 1e-7);
+        for (i = low; i <= high; i = safeIncrement(i, step)) {
+          newPct = scope_Spectrum.toStepping(i);
+          pctDifference = newPct - prevPct;
+          steps = pctDifference / (pips2.density || 1);
+          realSteps = Math.round(steps);
+          stepSize = pctDifference / realSteps;
+          for (q = 1; q <= realSteps; q += 1) {
+            pctPos = prevPct + q * stepSize;
+            indexes[pctPos.toFixed(5)] = [scope_Spectrum.fromStepping(pctPos), 0];
+          }
+          type = group.indexOf(i) > -1 ? PipsType.LargeValue : isSteps ? PipsType.SmallValue : PipsType.NoValue;
+          if (!index && ignoreFirst && i !== high) {
+            type = 0;
+          }
+          if (!(i === high && ignoreLast)) {
+            indexes[newPct.toFixed(5)] = [i, type];
+          }
+          prevPct = newPct;
+        }
+      });
+      return indexes;
+    }
+    function addMarking(spread, filterFunc, formatter) {
+      var _a, _b;
+      var element2 = scope_Document.createElement("div");
+      var valueSizeClasses = (_a = {}, _a[PipsType.None] = "", _a[PipsType.NoValue] = options.cssClasses.valueNormal, _a[PipsType.LargeValue] = options.cssClasses.valueLarge, _a[PipsType.SmallValue] = options.cssClasses.valueSub, _a);
+      var markerSizeClasses = (_b = {}, _b[PipsType.None] = "", _b[PipsType.NoValue] = options.cssClasses.markerNormal, _b[PipsType.LargeValue] = options.cssClasses.markerLarge, _b[PipsType.SmallValue] = options.cssClasses.markerSub, _b);
+      var valueOrientationClasses = [options.cssClasses.valueHorizontal, options.cssClasses.valueVertical];
+      var markerOrientationClasses = [options.cssClasses.markerHorizontal, options.cssClasses.markerVertical];
+      addClass(element2, options.cssClasses.pips);
+      addClass(element2, options.ort === 0 ? options.cssClasses.pipsHorizontal : options.cssClasses.pipsVertical);
+      function getClasses(type, source) {
+        var a = source === options.cssClasses.value;
+        var orientationClasses = a ? valueOrientationClasses : markerOrientationClasses;
+        var sizeClasses = a ? valueSizeClasses : markerSizeClasses;
+        return source + " " + orientationClasses[options.ort] + " " + sizeClasses[type];
+      }
+      function addSpread(offset3, value, type) {
+        type = filterFunc ? filterFunc(value, type) : type;
+        if (type === PipsType.None) {
+          return;
+        }
+        var node = addNodeTo(element2, false);
+        node.className = getClasses(type, options.cssClasses.marker);
+        node.style[options.style] = offset3 + "%";
+        if (type > PipsType.NoValue) {
+          node = addNodeTo(element2, false);
+          node.className = getClasses(type, options.cssClasses.value);
+          node.setAttribute("data-value", String(value));
+          node.style[options.style] = offset3 + "%";
+          node.innerHTML = String(formatter.to(value));
+        }
+      }
+      Object.keys(spread).forEach(function(offset3) {
+        addSpread(offset3, spread[offset3][0], spread[offset3][1]);
+      });
+      return element2;
+    }
+    function removePips() {
+      if (scope_Pips) {
+        removeElement(scope_Pips);
+        scope_Pips = null;
+      }
+    }
+    function pips(pips2) {
+      removePips();
+      var spread = generateSpread(pips2);
+      var filter = pips2.filter;
+      var format = pips2.format || {
+        to: function(value) {
+          return String(Math.round(value));
+        }
+      };
+      scope_Pips = scope_Target.appendChild(addMarking(spread, filter, format));
+      return scope_Pips;
+    }
+    function baseSize() {
+      var rect = scope_Base.getBoundingClientRect();
+      var alt = "offset" + ["Width", "Height"][options.ort];
+      return options.ort === 0 ? rect.width || scope_Base[alt] : rect.height || scope_Base[alt];
+    }
+    function attachEvent(events, element2, callback, data) {
+      var method = function(event) {
+        var e = fixEvent(event, data.pageOffset, data.target || element2);
+        if (!e) {
+          return false;
+        }
+        if (isSliderDisabled() && !data.doNotReject) {
+          return false;
+        }
+        if (hasClass(scope_Target, options.cssClasses.tap) && !data.doNotReject) {
+          return false;
+        }
+        if (events === actions.start && e.buttons !== void 0 && e.buttons > 1) {
+          return false;
+        }
+        if (data.hover && e.buttons) {
+          return false;
+        }
+        if (!supportsPassive) {
+          e.preventDefault();
+        }
+        e.calcPoint = e.points[options.ort];
+        callback(e, data);
+        return;
+      };
+      var methods = [];
+      events.split(" ").forEach(function(eventName) {
+        element2.addEventListener(eventName, method, supportsPassive ? { passive: true } : false);
+        methods.push([eventName, method]);
+      });
+      return methods;
+    }
+    function fixEvent(e, pageOffset, eventTarget) {
+      var touch = e.type.indexOf("touch") === 0;
+      var mouse = e.type.indexOf("mouse") === 0;
+      var pointer = e.type.indexOf("pointer") === 0;
+      var x = 0;
+      var y = 0;
+      if (e.type.indexOf("MSPointer") === 0) {
+        pointer = true;
+      }
+      if (e.type === "mousedown" && !e.buttons && !e.touches) {
+        return false;
+      }
+      if (touch) {
+        var isTouchOnTarget = function(checkTouch) {
+          var target2 = checkTouch.target;
+          return target2 === eventTarget || eventTarget.contains(target2) || e.composed && e.composedPath().shift() === eventTarget;
+        };
+        if (e.type === "touchstart") {
+          var targetTouches = Array.prototype.filter.call(e.touches, isTouchOnTarget);
+          if (targetTouches.length > 1) {
+            return false;
+          }
+          x = targetTouches[0].pageX;
+          y = targetTouches[0].pageY;
+        } else {
+          var targetTouch = Array.prototype.find.call(e.changedTouches, isTouchOnTarget);
+          if (!targetTouch) {
+            return false;
+          }
+          x = targetTouch.pageX;
+          y = targetTouch.pageY;
+        }
+      }
+      pageOffset = pageOffset || getPageOffset(scope_Document);
+      if (mouse || pointer) {
+        x = e.clientX + pageOffset.x;
+        y = e.clientY + pageOffset.y;
+      }
+      e.pageOffset = pageOffset;
+      e.points = [x, y];
+      e.cursor = mouse || pointer;
+      return e;
+    }
+    function calcPointToPercentage(calcPoint) {
+      var location = calcPoint - offset(scope_Base, options.ort);
+      var proposal = location * 100 / baseSize();
+      proposal = limit(proposal);
+      return options.dir ? 100 - proposal : proposal;
+    }
+    function getClosestHandle(clickedPosition) {
+      var smallestDifference = 100;
+      var handleNumber = false;
+      scope_Handles.forEach(function(handle, index) {
+        if (isHandleDisabled(index)) {
+          return;
+        }
+        var handlePosition = scope_Locations[index];
+        var differenceWithThisHandle = Math.abs(handlePosition - clickedPosition);
+        var clickAtEdge = differenceWithThisHandle === 100 && smallestDifference === 100;
+        var isCloser = differenceWithThisHandle < smallestDifference;
+        var isCloserAfter = differenceWithThisHandle <= smallestDifference && clickedPosition > handlePosition;
+        if (isCloser || isCloserAfter || clickAtEdge) {
+          handleNumber = index;
+          smallestDifference = differenceWithThisHandle;
+        }
+      });
+      return handleNumber;
+    }
+    function documentLeave(event, data) {
+      if (event.type === "mouseout" && event.target.nodeName === "HTML" && event.relatedTarget === null) {
+        eventEnd(event, data);
+      }
+    }
+    function eventMove(event, data) {
+      if (navigator.appVersion.indexOf("MSIE 9") === -1 && event.buttons === 0 && data.buttonsProperty !== 0) {
+        return eventEnd(event, data);
+      }
+      var movement = (options.dir ? -1 : 1) * (event.calcPoint - data.startCalcPoint);
+      var proposal = movement * 100 / data.baseSize;
+      moveHandles(movement > 0, proposal, data.locations, data.handleNumbers, data.connect);
+    }
+    function eventEnd(event, data) {
+      if (data.handle) {
+        removeClass(data.handle, options.cssClasses.active);
+        scope_ActiveHandlesCount -= 1;
+      }
+      data.listeners.forEach(function(c) {
+        scope_DocumentElement.removeEventListener(c[0], c[1]);
+      });
+      if (scope_ActiveHandlesCount === 0) {
+        removeClass(scope_Target, options.cssClasses.drag);
+        setZindex();
+        if (event.cursor) {
+          scope_Body.style.cursor = "";
+          scope_Body.removeEventListener("selectstart", preventDefault);
+        }
+      }
+      if (options.events.smoothSteps) {
+        data.handleNumbers.forEach(function(handleNumber) {
+          setHandle(handleNumber, scope_Locations[handleNumber], true, true, false, false);
+        });
+        data.handleNumbers.forEach(function(handleNumber) {
+          fireEvent("update", handleNumber);
+        });
+      }
+      data.handleNumbers.forEach(function(handleNumber) {
+        fireEvent("change", handleNumber);
+        fireEvent("set", handleNumber);
+        fireEvent("end", handleNumber);
+      });
+    }
+    function eventStart(event, data) {
+      if (data.handleNumbers.some(isHandleDisabled)) {
+        return;
+      }
+      var handle;
+      if (data.handleNumbers.length === 1) {
+        var handleOrigin = scope_Handles[data.handleNumbers[0]];
+        handle = handleOrigin.children[0];
+        scope_ActiveHandlesCount += 1;
+        addClass(handle, options.cssClasses.active);
+      }
+      event.stopPropagation();
+      var listeners = [];
+      var moveEvent = attachEvent(actions.move, scope_DocumentElement, eventMove, {
+        // The event target has changed so we need to propagate the original one so that we keep
+        // relying on it to extract target touches.
+        target: event.target,
+        handle,
+        connect: data.connect,
+        listeners,
+        startCalcPoint: event.calcPoint,
+        baseSize: baseSize(),
+        pageOffset: event.pageOffset,
+        handleNumbers: data.handleNumbers,
+        buttonsProperty: event.buttons,
+        locations: scope_Locations.slice()
+      });
+      var endEvent = attachEvent(actions.end, scope_DocumentElement, eventEnd, {
+        target: event.target,
+        handle,
+        listeners,
+        doNotReject: true,
+        handleNumbers: data.handleNumbers
+      });
+      var outEvent = attachEvent("mouseout", scope_DocumentElement, documentLeave, {
+        target: event.target,
+        handle,
+        listeners,
+        doNotReject: true,
+        handleNumbers: data.handleNumbers
+      });
+      listeners.push.apply(listeners, moveEvent.concat(endEvent, outEvent));
+      if (event.cursor) {
+        scope_Body.style.cursor = getComputedStyle(event.target).cursor;
+        if (scope_Handles.length > 1) {
+          addClass(scope_Target, options.cssClasses.drag);
+        }
+        scope_Body.addEventListener("selectstart", preventDefault, false);
+      }
+      data.handleNumbers.forEach(function(handleNumber) {
+        fireEvent("start", handleNumber);
+      });
+    }
+    function eventTap(event) {
+      event.stopPropagation();
+      var proposal = calcPointToPercentage(event.calcPoint);
+      var handleNumber = getClosestHandle(proposal);
+      if (handleNumber === false) {
+        return;
+      }
+      if (!options.events.snap) {
+        addClassFor(scope_Target, options.cssClasses.tap, options.animationDuration);
+      }
+      setHandle(handleNumber, proposal, true, true);
+      setZindex();
+      fireEvent("slide", handleNumber, true);
+      fireEvent("update", handleNumber, true);
+      if (!options.events.snap) {
+        fireEvent("change", handleNumber, true);
+        fireEvent("set", handleNumber, true);
+      } else {
+        eventStart(event, { handleNumbers: [handleNumber] });
+      }
+    }
+    function eventHover(event) {
+      var proposal = calcPointToPercentage(event.calcPoint);
+      var to = scope_Spectrum.getStep(proposal);
+      var value = scope_Spectrum.fromStepping(to);
+      Object.keys(scope_Events).forEach(function(targetEvent) {
+        if ("hover" === targetEvent.split(".")[0]) {
+          scope_Events[targetEvent].forEach(function(callback) {
+            callback.call(scope_Self, value);
+          });
+        }
+      });
+    }
+    function eventKeydown(event, handleNumber) {
+      if (isSliderDisabled() || isHandleDisabled(handleNumber)) {
+        return false;
+      }
+      var horizontalKeys = ["Left", "Right"];
+      var verticalKeys = ["Down", "Up"];
+      var largeStepKeys = ["PageDown", "PageUp"];
+      var edgeKeys = ["Home", "End"];
+      if (options.dir && !options.ort) {
+        horizontalKeys.reverse();
+      } else if (options.ort && !options.dir) {
+        verticalKeys.reverse();
+        largeStepKeys.reverse();
+      }
+      var key = event.key.replace("Arrow", "");
+      var isLargeDown = key === largeStepKeys[0];
+      var isLargeUp = key === largeStepKeys[1];
+      var isDown = key === verticalKeys[0] || key === horizontalKeys[0] || isLargeDown;
+      var isUp = key === verticalKeys[1] || key === horizontalKeys[1] || isLargeUp;
+      var isMin = key === edgeKeys[0];
+      var isMax = key === edgeKeys[1];
+      if (!isDown && !isUp && !isMin && !isMax) {
+        return true;
+      }
+      event.preventDefault();
+      var to;
+      if (isUp || isDown) {
+        var direction = isDown ? 0 : 1;
+        var steps = getNextStepsForHandle(handleNumber);
+        var step = steps[direction];
+        if (step === null) {
+          return false;
+        }
+        if (step === false) {
+          step = scope_Spectrum.getDefaultStep(scope_Locations[handleNumber], isDown, options.keyboardDefaultStep);
+        }
+        if (isLargeUp || isLargeDown) {
+          step *= options.keyboardPageMultiplier;
+        } else {
+          step *= options.keyboardMultiplier;
+        }
+        step = Math.max(step, 1e-7);
+        step = (isDown ? -1 : 1) * step;
+        to = scope_Values[handleNumber] + step;
+      } else if (isMax) {
+        to = options.spectrum.xVal[options.spectrum.xVal.length - 1];
+      } else {
+        to = options.spectrum.xVal[0];
+      }
+      setHandle(handleNumber, scope_Spectrum.toStepping(to), true, true);
+      fireEvent("slide", handleNumber);
+      fireEvent("update", handleNumber);
+      fireEvent("change", handleNumber);
+      fireEvent("set", handleNumber);
+      return false;
+    }
+    function bindSliderEvents(behaviour) {
+      if (!behaviour.fixed) {
+        scope_Handles.forEach(function(handle, index) {
+          attachEvent(actions.start, handle.children[0], eventStart, {
+            handleNumbers: [index]
+          });
+        });
+      }
+      if (behaviour.tap) {
+        attachEvent(actions.start, scope_Base, eventTap, {});
+      }
+      if (behaviour.hover) {
+        attachEvent(actions.move, scope_Base, eventHover, {
+          hover: true
+        });
+      }
+      if (behaviour.drag) {
+        scope_Connects.forEach(function(connect, index) {
+          if (connect === false || index === 0 || index === scope_Connects.length - 1) {
+            return;
+          }
+          var handleBefore = scope_Handles[index - 1];
+          var handleAfter = scope_Handles[index];
+          var eventHolders = [connect];
+          var handlesToDrag = [handleBefore, handleAfter];
+          var handleNumbersToDrag = [index - 1, index];
+          addClass(connect, options.cssClasses.draggable);
+          if (behaviour.fixed) {
+            eventHolders.push(handleBefore.children[0]);
+            eventHolders.push(handleAfter.children[0]);
+          }
+          if (behaviour.dragAll) {
+            handlesToDrag = scope_Handles;
+            handleNumbersToDrag = scope_HandleNumbers;
+          }
+          eventHolders.forEach(function(eventHolder) {
+            attachEvent(actions.start, eventHolder, eventStart, {
+              handles: handlesToDrag,
+              handleNumbers: handleNumbersToDrag,
+              connect
+            });
+          });
+        });
+      }
+    }
+    function bindEvent(namespacedEvent, callback) {
+      scope_Events[namespacedEvent] = scope_Events[namespacedEvent] || [];
+      scope_Events[namespacedEvent].push(callback);
+      if (namespacedEvent.split(".")[0] === "update") {
+        scope_Handles.forEach(function(a, index) {
+          fireEvent("update", index);
+        });
+      }
+    }
+    function isInternalNamespace(namespace) {
+      return namespace === INTERNAL_EVENT_NS.aria || namespace === INTERNAL_EVENT_NS.tooltips;
+    }
+    function removeEvent(namespacedEvent) {
+      var event = namespacedEvent && namespacedEvent.split(".")[0];
+      var namespace = event ? namespacedEvent.substring(event.length) : namespacedEvent;
+      Object.keys(scope_Events).forEach(function(bind) {
+        var tEvent = bind.split(".")[0];
+        var tNamespace = bind.substring(tEvent.length);
+        if ((!event || event === tEvent) && (!namespace || namespace === tNamespace)) {
+          if (!isInternalNamespace(tNamespace) || namespace === tNamespace) {
+            delete scope_Events[bind];
+          }
+        }
+      });
+    }
+    function fireEvent(eventName, handleNumber, tap) {
+      Object.keys(scope_Events).forEach(function(targetEvent) {
+        var eventType = targetEvent.split(".")[0];
+        if (eventName === eventType) {
+          scope_Events[targetEvent].forEach(function(callback) {
+            callback.call(
+              // Use the slider public API as the scope ('this')
+              scope_Self,
+              // Return values as array, so arg_1[arg_2] is always valid.
+              scope_Values.map(options.format.to),
+              // Handle index, 0 or 1
+              handleNumber,
+              // Un-formatted slider values
+              scope_Values.slice(),
+              // Event is fired by tap, true or false
+              tap || false,
+              // Left offset of the handle, in relation to the slider
+              scope_Locations.slice(),
+              // add the slider public API to an accessible parameter when this is unavailable
+              scope_Self
+            );
+          });
+        }
+      });
+    }
+    function checkHandlePosition(reference2, handleNumber, to, lookBackward, lookForward, getValue, smoothSteps) {
+      var distance;
+      if (scope_Handles.length > 1 && !options.events.unconstrained) {
+        if (lookBackward && handleNumber > 0) {
+          distance = scope_Spectrum.getAbsoluteDistance(reference2[handleNumber - 1], options.margin, false);
+          to = Math.max(to, distance);
+        }
+        if (lookForward && handleNumber < scope_Handles.length - 1) {
+          distance = scope_Spectrum.getAbsoluteDistance(reference2[handleNumber + 1], options.margin, true);
+          to = Math.min(to, distance);
+        }
+      }
+      if (scope_Handles.length > 1 && options.limit) {
+        if (lookBackward && handleNumber > 0) {
+          distance = scope_Spectrum.getAbsoluteDistance(reference2[handleNumber - 1], options.limit, false);
+          to = Math.min(to, distance);
+        }
+        if (lookForward && handleNumber < scope_Handles.length - 1) {
+          distance = scope_Spectrum.getAbsoluteDistance(reference2[handleNumber + 1], options.limit, true);
+          to = Math.max(to, distance);
+        }
+      }
+      if (options.padding) {
+        if (handleNumber === 0) {
+          distance = scope_Spectrum.getAbsoluteDistance(0, options.padding[0], false);
+          to = Math.max(to, distance);
+        }
+        if (handleNumber === scope_Handles.length - 1) {
+          distance = scope_Spectrum.getAbsoluteDistance(100, options.padding[1], true);
+          to = Math.min(to, distance);
+        }
+      }
+      if (!smoothSteps) {
+        to = scope_Spectrum.getStep(to);
+      }
+      to = limit(to);
+      if (to === reference2[handleNumber] && !getValue) {
+        return false;
+      }
+      return to;
+    }
+    function inRuleOrder(v, a) {
+      var o = options.ort;
+      return (o ? a : v) + ", " + (o ? v : a);
+    }
+    function moveHandles(upward, proposal, locations, handleNumbers, connect) {
+      var proposals = locations.slice();
+      var firstHandle = handleNumbers[0];
+      var smoothSteps = options.events.smoothSteps;
+      var b = [!upward, upward];
+      var f = [upward, !upward];
+      handleNumbers = handleNumbers.slice();
+      if (upward) {
+        handleNumbers.reverse();
+      }
+      if (handleNumbers.length > 1) {
+        handleNumbers.forEach(function(handleNumber, o) {
+          var to = checkHandlePosition(proposals, handleNumber, proposals[handleNumber] + proposal, b[o], f[o], false, smoothSteps);
+          if (to === false) {
+            proposal = 0;
+          } else {
+            proposal = to - proposals[handleNumber];
+            proposals[handleNumber] = to;
+          }
+        });
+      } else {
+        b = f = [true];
+      }
+      var state = false;
+      handleNumbers.forEach(function(handleNumber, o) {
+        state = setHandle(handleNumber, locations[handleNumber] + proposal, b[o], f[o], false, smoothSteps) || state;
+      });
+      if (state) {
+        handleNumbers.forEach(function(handleNumber) {
+          fireEvent("update", handleNumber);
+          fireEvent("slide", handleNumber);
+        });
+        if (connect != void 0) {
+          fireEvent("drag", firstHandle);
+        }
+      }
+    }
+    function transformDirection(a, b) {
+      return options.dir ? 100 - a - b : a;
+    }
+    function updateHandlePosition(handleNumber, to) {
+      scope_Locations[handleNumber] = to;
+      scope_Values[handleNumber] = scope_Spectrum.fromStepping(to);
+      var translation = transformDirection(to, 0) - scope_DirOffset;
+      var translateRule = "translate(" + inRuleOrder(translation + "%", "0") + ")";
+      scope_Handles[handleNumber].style[options.transformRule] = translateRule;
+      updateConnect(handleNumber);
+      updateConnect(handleNumber + 1);
+    }
+    function setZindex() {
+      scope_HandleNumbers.forEach(function(handleNumber) {
+        var dir = scope_Locations[handleNumber] > 50 ? -1 : 1;
+        var zIndex = 3 + (scope_Handles.length + dir * handleNumber);
+        scope_Handles[handleNumber].style.zIndex = String(zIndex);
+      });
+    }
+    function setHandle(handleNumber, to, lookBackward, lookForward, exactInput, smoothSteps) {
+      if (!exactInput) {
+        to = checkHandlePosition(scope_Locations, handleNumber, to, lookBackward, lookForward, false, smoothSteps);
+      }
+      if (to === false) {
+        return false;
+      }
+      updateHandlePosition(handleNumber, to);
+      return true;
+    }
+    function updateConnect(index) {
+      if (!scope_Connects[index]) {
+        return;
+      }
+      var l = 0;
+      var h = 100;
+      if (index !== 0) {
+        l = scope_Locations[index - 1];
+      }
+      if (index !== scope_Connects.length - 1) {
+        h = scope_Locations[index];
+      }
+      var connectWidth = h - l;
+      var translateRule = "translate(" + inRuleOrder(transformDirection(l, connectWidth) + "%", "0") + ")";
+      var scaleRule = "scale(" + inRuleOrder(connectWidth / 100, "1") + ")";
+      scope_Connects[index].style[options.transformRule] = translateRule + " " + scaleRule;
+    }
+    function resolveToValue(to, handleNumber) {
+      if (to === null || to === false || to === void 0) {
+        return scope_Locations[handleNumber];
+      }
+      if (typeof to === "number") {
+        to = String(to);
+      }
+      to = options.format.from(to);
+      if (to !== false) {
+        to = scope_Spectrum.toStepping(to);
+      }
+      if (to === false || isNaN(to)) {
+        return scope_Locations[handleNumber];
+      }
+      return to;
+    }
+    function valueSet(input, fireSetEvent, exactInput) {
+      var values = asArray(input);
+      var isInit = scope_Locations[0] === void 0;
+      fireSetEvent = fireSetEvent === void 0 ? true : fireSetEvent;
+      if (options.animate && !isInit) {
+        addClassFor(scope_Target, options.cssClasses.tap, options.animationDuration);
+      }
+      scope_HandleNumbers.forEach(function(handleNumber) {
+        setHandle(handleNumber, resolveToValue(values[handleNumber], handleNumber), true, false, exactInput);
+      });
+      var i = scope_HandleNumbers.length === 1 ? 0 : 1;
+      if (isInit && scope_Spectrum.hasNoSize()) {
+        exactInput = true;
+        scope_Locations[0] = 0;
+        if (scope_HandleNumbers.length > 1) {
+          var space_1 = 100 / (scope_HandleNumbers.length - 1);
+          scope_HandleNumbers.forEach(function(handleNumber) {
+            scope_Locations[handleNumber] = handleNumber * space_1;
+          });
+        }
+      }
+      for (; i < scope_HandleNumbers.length; ++i) {
+        scope_HandleNumbers.forEach(function(handleNumber) {
+          setHandle(handleNumber, scope_Locations[handleNumber], true, true, exactInput);
+        });
+      }
+      setZindex();
+      scope_HandleNumbers.forEach(function(handleNumber) {
+        fireEvent("update", handleNumber);
+        if (values[handleNumber] !== null && fireSetEvent) {
+          fireEvent("set", handleNumber);
+        }
+      });
+    }
+    function valueReset(fireSetEvent) {
+      valueSet(options.start, fireSetEvent);
+    }
+    function valueSetHandle(handleNumber, value, fireSetEvent, exactInput) {
+      handleNumber = Number(handleNumber);
+      if (!(handleNumber >= 0 && handleNumber < scope_HandleNumbers.length)) {
+        throw new Error("noUiSlider: invalid handle number, got: " + handleNumber);
+      }
+      setHandle(handleNumber, resolveToValue(value, handleNumber), true, true, exactInput);
+      fireEvent("update", handleNumber);
+      if (fireSetEvent) {
+        fireEvent("set", handleNumber);
+      }
+    }
+    function valueGet(unencoded) {
+      if (unencoded === void 0) {
+        unencoded = false;
+      }
+      if (unencoded) {
+        return scope_Values.length === 1 ? scope_Values[0] : scope_Values.slice(0);
+      }
+      var values = scope_Values.map(options.format.to);
+      if (values.length === 1) {
+        return values[0];
+      }
+      return values;
+    }
+    function destroy() {
+      removeEvent(INTERNAL_EVENT_NS.aria);
+      removeEvent(INTERNAL_EVENT_NS.tooltips);
+      Object.keys(options.cssClasses).forEach(function(key) {
+        removeClass(scope_Target, options.cssClasses[key]);
+      });
+      while (scope_Target.firstChild) {
+        scope_Target.removeChild(scope_Target.firstChild);
+      }
+      delete scope_Target.noUiSlider;
+    }
+    function getNextStepsForHandle(handleNumber) {
+      var location = scope_Locations[handleNumber];
+      var nearbySteps = scope_Spectrum.getNearbySteps(location);
+      var value = scope_Values[handleNumber];
+      var increment = nearbySteps.thisStep.step;
+      var decrement = null;
+      if (options.snap) {
+        return [
+          value - nearbySteps.stepBefore.startValue || null,
+          nearbySteps.stepAfter.startValue - value || null
+        ];
+      }
+      if (increment !== false) {
+        if (value + increment > nearbySteps.stepAfter.startValue) {
+          increment = nearbySteps.stepAfter.startValue - value;
+        }
+      }
+      if (value > nearbySteps.thisStep.startValue) {
+        decrement = nearbySteps.thisStep.step;
+      } else if (nearbySteps.stepBefore.step === false) {
+        decrement = false;
+      } else {
+        decrement = value - nearbySteps.stepBefore.highestStep;
+      }
+      if (location === 100) {
+        increment = null;
+      } else if (location === 0) {
+        decrement = null;
+      }
+      var stepDecimals = scope_Spectrum.countStepDecimals();
+      if (increment !== null && increment !== false) {
+        increment = Number(increment.toFixed(stepDecimals));
+      }
+      if (decrement !== null && decrement !== false) {
+        decrement = Number(decrement.toFixed(stepDecimals));
+      }
+      return [decrement, increment];
+    }
+    function getNextSteps() {
+      return scope_HandleNumbers.map(getNextStepsForHandle);
+    }
+    function updateOptions(optionsToUpdate, fireSetEvent) {
+      var v = valueGet();
+      var updateAble = [
+        "margin",
+        "limit",
+        "padding",
+        "range",
+        "animate",
+        "snap",
+        "step",
+        "format",
+        "pips",
+        "tooltips"
+      ];
+      updateAble.forEach(function(name) {
+        if (optionsToUpdate[name] !== void 0) {
+          originalOptions[name] = optionsToUpdate[name];
+        }
+      });
+      var newOptions = testOptions(originalOptions);
+      updateAble.forEach(function(name) {
+        if (optionsToUpdate[name] !== void 0) {
+          options[name] = newOptions[name];
+        }
+      });
+      scope_Spectrum = newOptions.spectrum;
+      options.margin = newOptions.margin;
+      options.limit = newOptions.limit;
+      options.padding = newOptions.padding;
+      if (options.pips) {
+        pips(options.pips);
+      } else {
+        removePips();
+      }
+      if (options.tooltips) {
+        tooltips();
+      } else {
+        removeTooltips();
+      }
+      scope_Locations = [];
+      valueSet(isSet(optionsToUpdate.start) ? optionsToUpdate.start : v, fireSetEvent);
+    }
+    function setupSlider() {
+      scope_Base = addSlider(scope_Target);
+      addElements(options.connect, scope_Base);
+      bindSliderEvents(options.events);
+      valueSet(options.start);
+      if (options.pips) {
+        pips(options.pips);
+      }
+      if (options.tooltips) {
+        tooltips();
+      }
+      aria();
+    }
+    setupSlider();
+    var scope_Self = {
+      destroy,
+      steps: getNextSteps,
+      on: bindEvent,
+      off: removeEvent,
+      get: valueGet,
+      set: valueSet,
+      setHandle: valueSetHandle,
+      reset: valueReset,
+      disable,
+      enable,
+      // Exposed for unit testing, don't use this in your application.
+      __moveHandles: function(upward, proposal, handleNumbers) {
+        moveHandles(upward, proposal, scope_Locations, handleNumbers);
+      },
+      options: originalOptions,
+      updateOptions,
+      target: scope_Target,
+      removePips,
+      removeTooltips,
+      getPositions: function() {
+        return scope_Locations.slice();
+      },
+      getTooltips: function() {
+        return scope_Tooltips;
+      },
+      getOrigins: function() {
+        return scope_Handles;
+      },
+      pips
+      // Issue #594
+    };
+    return scope_Self;
+  }
+  function initialize(target, originalOptions) {
+    if (!target || !target.nodeName) {
+      throw new Error("noUiSlider: create requires a single element, got: " + target);
+    }
+    if (target.noUiSlider) {
+      throw new Error("noUiSlider: Slider was already initialized.");
+    }
+    var options = testOptions(originalOptions);
+    var api = scope(target, options, originalOptions);
+    target.noUiSlider = api;
+    return api;
+  }
+  var nouislider_default = {
+    // Exposed for unit testing, don't use this in your application.
+    __spectrum: Spectrum,
+    // A reference to the default classes, allows global changes.
+    // Use the cssClasses option for changes to one slider.
+    cssClasses,
+    create: initialize
+  };
+
   // src/js/components/forms.js
-  var import_nouislider = __toESM(require_nouislider(), 1);
   var Forms = {
     init: function(element2) {
       element2 = element2 || document;
@@ -1951,7 +1911,7 @@
         });
       }
     },
-    initRangeSlider: import_nouislider.default
+    initRangeSlider: nouislider_default
   };
   Forms.init();
   var forms_default = Forms;
@@ -2026,10 +1986,10 @@
         item.classList.remove("active");
       });
       [].forEach.call(elem.querySelectorAll("." + titleClass), function(item) {
-        item.className = removeClass(item.className, activeClass);
+        item.className = removeClass2(item.className, activeClass);
       });
     }
-    function removeClass(str, cls) {
+    function removeClass2(str, cls) {
       let reg = new RegExp("( )" + cls + "()", "g");
       return str.replace(reg, "");
     }
@@ -3347,9 +3307,9 @@
     var min2 = paddingObject[minProp];
     var max2 = clientSize - arrowRect[len] - paddingObject[maxProp];
     var center = clientSize / 2 - arrowRect[len] / 2 + centerToReference;
-    var offset2 = within(min2, center, max2);
+    var offset3 = within(min2, center, max2);
     var axisProp = axis;
-    state.modifiersData[name] = (_state$modifiersData$ = {}, _state$modifiersData$[axisProp] = offset2, _state$modifiersData$.centerOffset = offset2 - center, _state$modifiersData$);
+    state.modifiersData[name] = (_state$modifiersData$ = {}, _state$modifiersData$[axisProp] = offset3, _state$modifiersData$.centerOffset = offset3 - center, _state$modifiersData$);
   }
   function effect2(_ref2) {
     var state = _ref2.state, options = _ref2.options;
@@ -3802,11 +3762,11 @@
     };
     var offsetData = state.modifiersData.offset;
     if (elementContext === popper && offsetData) {
-      var offset2 = offsetData[placement];
+      var offset3 = offsetData[placement];
       Object.keys(overflowOffsets).forEach(function(key) {
         var multiply = [right, bottom].indexOf(key) >= 0 ? 1 : -1;
         var axis = [top, bottom].indexOf(key) >= 0 ? "y" : "x";
-        overflowOffsets[key] += offset2[axis] * multiply;
+        overflowOffsets[key] += offset3[axis] * multiply;
       });
     }
     return overflowOffsets;
@@ -4003,12 +3963,12 @@
   };
 
   // node_modules/@popperjs/core/lib/modifiers/offset.js
-  function distanceAndSkiddingToXY(placement, rects, offset2) {
+  function distanceAndSkiddingToXY(placement, rects, offset3) {
     var basePlacement = getBasePlacement(placement);
     var invertDistance = [left, top].indexOf(basePlacement) >= 0 ? -1 : 1;
-    var _ref = typeof offset2 === "function" ? offset2(Object.assign({}, rects, {
+    var _ref = typeof offset3 === "function" ? offset3(Object.assign({}, rects, {
       placement
-    })) : offset2, skidding = _ref[0], distance = _ref[1];
+    })) : offset3, skidding = _ref[0], distance = _ref[1];
     skidding = skidding || 0;
     distance = (distance || 0) * invertDistance;
     return [left, right].indexOf(basePlacement) >= 0 ? {
@@ -4019,11 +3979,11 @@
       y: distance
     };
   }
-  function offset(_ref2) {
+  function offset2(_ref2) {
     var state = _ref2.state, options = _ref2.options, name = _ref2.name;
-    var _options$offset = options.offset, offset2 = _options$offset === void 0 ? [0, 0] : _options$offset;
+    var _options$offset = options.offset, offset3 = _options$offset === void 0 ? [0, 0] : _options$offset;
     var data = placements.reduce(function(acc, placement) {
-      acc[placement] = distanceAndSkiddingToXY(placement, state.rects, offset2);
+      acc[placement] = distanceAndSkiddingToXY(placement, state.rects, offset3);
       return acc;
     }, {});
     var _data$state$placement = data[state.placement], x = _data$state$placement.x, y = _data$state$placement.y;
@@ -4038,7 +3998,7 @@
     enabled: true,
     phase: "main",
     requires: ["popperOffsets"],
-    fn: offset
+    fn: offset2
   };
 
   // node_modules/@popperjs/core/lib/modifiers/popperOffsets.js
@@ -4105,9 +4065,9 @@
       var mainSide = mainAxis === "y" ? top : left;
       var altSide = mainAxis === "y" ? bottom : right;
       var len = mainAxis === "y" ? "height" : "width";
-      var offset2 = popperOffsets2[mainAxis];
-      var min2 = offset2 + overflow[mainSide];
-      var max2 = offset2 - overflow[altSide];
+      var offset3 = popperOffsets2[mainAxis];
+      var min2 = offset3 + overflow[mainSide];
+      var max2 = offset3 - overflow[altSide];
       var additive = tether ? -popperRect[len] / 2 : 0;
       var minLen = variation === start ? referenceRect[len] : popperRect[len];
       var maxLen = variation === start ? -popperRect[len] : -referenceRect[len];
@@ -4125,11 +4085,11 @@
       var arrowOffsetParent = state.elements.arrow && getOffsetParent(state.elements.arrow);
       var clientOffset = arrowOffsetParent ? mainAxis === "y" ? arrowOffsetParent.clientTop || 0 : arrowOffsetParent.clientLeft || 0 : 0;
       var offsetModifierValue = (_offsetModifierState$ = offsetModifierState == null ? void 0 : offsetModifierState[mainAxis]) != null ? _offsetModifierState$ : 0;
-      var tetherMin = offset2 + minOffset - offsetModifierValue - clientOffset;
-      var tetherMax = offset2 + maxOffset - offsetModifierValue;
-      var preventedOffset = within(tether ? min(min2, tetherMin) : min2, offset2, tether ? max(max2, tetherMax) : max2);
+      var tetherMin = offset3 + minOffset - offsetModifierValue - clientOffset;
+      var tetherMax = offset3 + maxOffset - offsetModifierValue;
+      var preventedOffset = within(tether ? min(min2, tetherMin) : min2, offset3, tether ? max(max2, tetherMax) : max2);
       popperOffsets2[mainAxis] = preventedOffset;
-      data[mainAxis] = preventedOffset - offset2;
+      data[mainAxis] = preventedOffset - offset3;
     }
     if (checkAltAxis) {
       var _offsetModifierState$2;
@@ -5220,119 +5180,119 @@
   };
   var DEBOUNCED_CHANGE_MS = 300;
   function FlatpickrInstance(element2, instanceConfig) {
-    var self2 = {
+    var self = {
       config: __assign(__assign({}, defaults), flatpickr.defaultConfig),
       l10n: default_default
     };
-    self2.parseDate = createDateParser({ config: self2.config, l10n: self2.l10n });
-    self2._handlers = [];
-    self2.pluginElements = [];
-    self2.loadedPlugins = [];
-    self2._bind = bind;
-    self2._setHoursFromDate = setHoursFromDate;
-    self2._positionCalendar = positionCalendar;
-    self2.changeMonth = changeMonth;
-    self2.changeYear = changeYear;
-    self2.clear = clear;
-    self2.close = close;
-    self2.onMouseOver = onMouseOver;
-    self2._createElement = createElement;
-    self2.createDay = createDay;
-    self2.destroy = destroy;
-    self2.isEnabled = isEnabled;
-    self2.jumpToDate = jumpToDate;
-    self2.updateValue = updateValue;
-    self2.open = open;
-    self2.redraw = redraw;
-    self2.set = set;
-    self2.setDate = setDate;
-    self2.toggle = toggle;
+    self.parseDate = createDateParser({ config: self.config, l10n: self.l10n });
+    self._handlers = [];
+    self.pluginElements = [];
+    self.loadedPlugins = [];
+    self._bind = bind;
+    self._setHoursFromDate = setHoursFromDate;
+    self._positionCalendar = positionCalendar;
+    self.changeMonth = changeMonth;
+    self.changeYear = changeYear;
+    self.clear = clear;
+    self.close = close;
+    self.onMouseOver = onMouseOver;
+    self._createElement = createElement;
+    self.createDay = createDay;
+    self.destroy = destroy;
+    self.isEnabled = isEnabled;
+    self.jumpToDate = jumpToDate;
+    self.updateValue = updateValue;
+    self.open = open;
+    self.redraw = redraw;
+    self.set = set;
+    self.setDate = setDate;
+    self.toggle = toggle;
     function setupHelperFunctions() {
-      self2.utils = {
+      self.utils = {
         getDaysInMonth: function(month, yr) {
           if (month === void 0) {
-            month = self2.currentMonth;
+            month = self.currentMonth;
           }
           if (yr === void 0) {
-            yr = self2.currentYear;
+            yr = self.currentYear;
           }
           if (month === 1 && (yr % 4 === 0 && yr % 100 !== 0 || yr % 400 === 0))
             return 29;
-          return self2.l10n.daysInMonth[month];
+          return self.l10n.daysInMonth[month];
         }
       };
     }
     function init() {
-      self2.element = self2.input = element2;
-      self2.isOpen = false;
+      self.element = self.input = element2;
+      self.isOpen = false;
       parseConfig();
       setupLocale();
       setupInputs();
       setupDates();
       setupHelperFunctions();
-      if (!self2.isMobile)
+      if (!self.isMobile)
         build();
       bindEvents();
-      if (self2.selectedDates.length || self2.config.noCalendar) {
-        if (self2.config.enableTime) {
-          setHoursFromDate(self2.config.noCalendar ? self2.latestSelectedDateObj : void 0);
+      if (self.selectedDates.length || self.config.noCalendar) {
+        if (self.config.enableTime) {
+          setHoursFromDate(self.config.noCalendar ? self.latestSelectedDateObj : void 0);
         }
         updateValue(false);
       }
       setCalendarWidth();
       var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-      if (!self2.isMobile && isSafari) {
+      if (!self.isMobile && isSafari) {
         positionCalendar();
       }
       triggerEvent("onReady");
     }
     function getClosestActiveElement() {
       var _a;
-      return ((_a = self2.calendarContainer) === null || _a === void 0 ? void 0 : _a.getRootNode()).activeElement || document.activeElement;
+      return ((_a = self.calendarContainer) === null || _a === void 0 ? void 0 : _a.getRootNode()).activeElement || document.activeElement;
     }
     function bindToInstance(fn2) {
-      return fn2.bind(self2);
+      return fn2.bind(self);
     }
     function setCalendarWidth() {
-      var config = self2.config;
+      var config = self.config;
       if (config.weekNumbers === false && config.showMonths === 1) {
         return;
       } else if (config.noCalendar !== true) {
         window.requestAnimationFrame(function() {
-          if (self2.calendarContainer !== void 0) {
-            self2.calendarContainer.style.visibility = "hidden";
-            self2.calendarContainer.style.display = "block";
+          if (self.calendarContainer !== void 0) {
+            self.calendarContainer.style.visibility = "hidden";
+            self.calendarContainer.style.display = "block";
           }
-          if (self2.daysContainer !== void 0) {
-            var daysWidth = (self2.days.offsetWidth + 1) * config.showMonths;
-            self2.daysContainer.style.width = daysWidth + "px";
-            self2.calendarContainer.style.width = daysWidth + (self2.weekWrapper !== void 0 ? self2.weekWrapper.offsetWidth : 0) + "px";
-            self2.calendarContainer.style.removeProperty("visibility");
-            self2.calendarContainer.style.removeProperty("display");
+          if (self.daysContainer !== void 0) {
+            var daysWidth = (self.days.offsetWidth + 1) * config.showMonths;
+            self.daysContainer.style.width = daysWidth + "px";
+            self.calendarContainer.style.width = daysWidth + (self.weekWrapper !== void 0 ? self.weekWrapper.offsetWidth : 0) + "px";
+            self.calendarContainer.style.removeProperty("visibility");
+            self.calendarContainer.style.removeProperty("display");
           }
         });
       }
     }
     function updateTime(e) {
-      if (self2.selectedDates.length === 0) {
-        var defaultDate = self2.config.minDate === void 0 || compareDates(/* @__PURE__ */ new Date(), self2.config.minDate) >= 0 ? /* @__PURE__ */ new Date() : new Date(self2.config.minDate.getTime());
-        var defaults2 = getDefaultHours(self2.config);
+      if (self.selectedDates.length === 0) {
+        var defaultDate = self.config.minDate === void 0 || compareDates(/* @__PURE__ */ new Date(), self.config.minDate) >= 0 ? /* @__PURE__ */ new Date() : new Date(self.config.minDate.getTime());
+        var defaults2 = getDefaultHours(self.config);
         defaultDate.setHours(defaults2.hours, defaults2.minutes, defaults2.seconds, defaultDate.getMilliseconds());
-        self2.selectedDates = [defaultDate];
-        self2.latestSelectedDateObj = defaultDate;
+        self.selectedDates = [defaultDate];
+        self.latestSelectedDateObj = defaultDate;
       }
       if (e !== void 0 && e.type !== "blur") {
         timeWrapper(e);
       }
-      var prevValue = self2._input.value;
+      var prevValue = self._input.value;
       setHoursFromInputs();
       updateValue();
-      if (self2._input.value !== prevValue) {
-        self2._debouncedChange();
+      if (self._input.value !== prevValue) {
+        self._debouncedChange();
       }
     }
     function ampm2military(hour, amPM) {
-      return hour % 12 + 12 * int(amPM === self2.l10n.amPM[1]);
+      return hour % 12 + 12 * int(amPM === self.l10n.amPM[1]);
     }
     function military2ampm(hour) {
       switch (hour % 24) {
@@ -5344,17 +5304,17 @@
       }
     }
     function setHoursFromInputs() {
-      if (self2.hourElement === void 0 || self2.minuteElement === void 0)
+      if (self.hourElement === void 0 || self.minuteElement === void 0)
         return;
-      var hours = (parseInt(self2.hourElement.value.slice(-2), 10) || 0) % 24, minutes = (parseInt(self2.minuteElement.value, 10) || 0) % 60, seconds = self2.secondElement !== void 0 ? (parseInt(self2.secondElement.value, 10) || 0) % 60 : 0;
-      if (self2.amPM !== void 0) {
-        hours = ampm2military(hours, self2.amPM.textContent);
+      var hours = (parseInt(self.hourElement.value.slice(-2), 10) || 0) % 24, minutes = (parseInt(self.minuteElement.value, 10) || 0) % 60, seconds = self.secondElement !== void 0 ? (parseInt(self.secondElement.value, 10) || 0) % 60 : 0;
+      if (self.amPM !== void 0) {
+        hours = ampm2military(hours, self.amPM.textContent);
       }
-      var limitMinHours = self2.config.minTime !== void 0 || self2.config.minDate && self2.minDateHasTime && self2.latestSelectedDateObj && compareDates(self2.latestSelectedDateObj, self2.config.minDate, true) === 0;
-      var limitMaxHours = self2.config.maxTime !== void 0 || self2.config.maxDate && self2.maxDateHasTime && self2.latestSelectedDateObj && compareDates(self2.latestSelectedDateObj, self2.config.maxDate, true) === 0;
-      if (self2.config.maxTime !== void 0 && self2.config.minTime !== void 0 && self2.config.minTime > self2.config.maxTime) {
-        var minBound = calculateSecondsSinceMidnight(self2.config.minTime.getHours(), self2.config.minTime.getMinutes(), self2.config.minTime.getSeconds());
-        var maxBound = calculateSecondsSinceMidnight(self2.config.maxTime.getHours(), self2.config.maxTime.getMinutes(), self2.config.maxTime.getSeconds());
+      var limitMinHours = self.config.minTime !== void 0 || self.config.minDate && self.minDateHasTime && self.latestSelectedDateObj && compareDates(self.latestSelectedDateObj, self.config.minDate, true) === 0;
+      var limitMaxHours = self.config.maxTime !== void 0 || self.config.maxDate && self.maxDateHasTime && self.latestSelectedDateObj && compareDates(self.latestSelectedDateObj, self.config.maxDate, true) === 0;
+      if (self.config.maxTime !== void 0 && self.config.minTime !== void 0 && self.config.minTime > self.config.maxTime) {
+        var minBound = calculateSecondsSinceMidnight(self.config.minTime.getHours(), self.config.minTime.getMinutes(), self.config.minTime.getSeconds());
+        var maxBound = calculateSecondsSinceMidnight(self.config.maxTime.getHours(), self.config.maxTime.getMinutes(), self.config.maxTime.getSeconds());
         var currentTime = calculateSecondsSinceMidnight(hours, minutes, seconds);
         if (currentTime > maxBound && currentTime < minBound) {
           var result = parseSeconds(minBound);
@@ -5364,7 +5324,7 @@
         }
       } else {
         if (limitMaxHours) {
-          var maxTime = self2.config.maxTime !== void 0 ? self2.config.maxTime : self2.config.maxDate;
+          var maxTime = self.config.maxTime !== void 0 ? self.config.maxTime : self.config.maxDate;
           hours = Math.min(hours, maxTime.getHours());
           if (hours === maxTime.getHours())
             minutes = Math.min(minutes, maxTime.getMinutes());
@@ -5372,7 +5332,7 @@
             seconds = Math.min(seconds, maxTime.getSeconds());
         }
         if (limitMinHours) {
-          var minTime = self2.config.minTime !== void 0 ? self2.config.minTime : self2.config.minDate;
+          var minTime = self.config.minTime !== void 0 ? self.config.minTime : self.config.minDate;
           hours = Math.max(hours, minTime.getHours());
           if (hours === minTime.getHours() && minutes < minTime.getMinutes())
             minutes = minTime.getMinutes();
@@ -5383,23 +5343,23 @@
       setHours(hours, minutes, seconds);
     }
     function setHoursFromDate(dateObj) {
-      var date = dateObj || self2.latestSelectedDateObj;
+      var date = dateObj || self.latestSelectedDateObj;
       if (date && date instanceof Date) {
         setHours(date.getHours(), date.getMinutes(), date.getSeconds());
       }
     }
     function setHours(hours, minutes, seconds) {
-      if (self2.latestSelectedDateObj !== void 0) {
-        self2.latestSelectedDateObj.setHours(hours % 24, minutes, seconds || 0, 0);
+      if (self.latestSelectedDateObj !== void 0) {
+        self.latestSelectedDateObj.setHours(hours % 24, minutes, seconds || 0, 0);
       }
-      if (!self2.hourElement || !self2.minuteElement || self2.isMobile)
+      if (!self.hourElement || !self.minuteElement || self.isMobile)
         return;
-      self2.hourElement.value = pad(!self2.config.time_24hr ? (12 + hours) % 12 + 12 * int(hours % 12 === 0) : hours);
-      self2.minuteElement.value = pad(minutes);
-      if (self2.amPM !== void 0)
-        self2.amPM.textContent = self2.l10n.amPM[int(hours >= 12)];
-      if (self2.secondElement !== void 0)
-        self2.secondElement.value = pad(seconds);
+      self.hourElement.value = pad(!self.config.time_24hr ? (12 + hours) % 12 + 12 * int(hours % 12 === 0) : hours);
+      self.minuteElement.value = pad(minutes);
+      if (self.amPM !== void 0)
+        self.amPM.textContent = self.l10n.amPM[int(hours >= 12)];
+      if (self.secondElement !== void 0)
+        self.secondElement.value = pad(seconds);
     }
     function onYearInput(event) {
       var eventTarget = getEventTarget(event);
@@ -5418,7 +5378,7 @@
           return bind(el, event, handler, options);
         });
       element3.addEventListener(event, handler, options);
-      self2._handlers.push({
+      self._handlers.push({
         remove: function() {
           return element3.removeEventListener(event, handler, options);
         }
@@ -5428,87 +5388,87 @@
       triggerEvent("onChange");
     }
     function bindEvents() {
-      if (self2.config.wrap) {
+      if (self.config.wrap) {
         ["open", "close", "toggle", "clear"].forEach(function(evt) {
-          Array.prototype.forEach.call(self2.element.querySelectorAll("[data-" + evt + "]"), function(el) {
-            return bind(el, "click", self2[evt]);
+          Array.prototype.forEach.call(self.element.querySelectorAll("[data-" + evt + "]"), function(el) {
+            return bind(el, "click", self[evt]);
           });
         });
       }
-      if (self2.isMobile) {
+      if (self.isMobile) {
         setupMobile();
         return;
       }
       var debouncedResize = debounce2(onResize, 50);
-      self2._debouncedChange = debounce2(triggerChange, DEBOUNCED_CHANGE_MS);
-      if (self2.daysContainer && !/iPhone|iPad|iPod/i.test(navigator.userAgent))
-        bind(self2.daysContainer, "mouseover", function(e) {
-          if (self2.config.mode === "range")
+      self._debouncedChange = debounce2(triggerChange, DEBOUNCED_CHANGE_MS);
+      if (self.daysContainer && !/iPhone|iPad|iPod/i.test(navigator.userAgent))
+        bind(self.daysContainer, "mouseover", function(e) {
+          if (self.config.mode === "range")
             onMouseOver(getEventTarget(e));
         });
-      bind(self2._input, "keydown", onKeyDown);
-      if (self2.calendarContainer !== void 0) {
-        bind(self2.calendarContainer, "keydown", onKeyDown);
+      bind(self._input, "keydown", onKeyDown);
+      if (self.calendarContainer !== void 0) {
+        bind(self.calendarContainer, "keydown", onKeyDown);
       }
-      if (!self2.config.inline && !self2.config.static)
+      if (!self.config.inline && !self.config.static)
         bind(window, "resize", debouncedResize);
       if (window.ontouchstart !== void 0)
         bind(window.document, "touchstart", documentClick);
       else
         bind(window.document, "mousedown", documentClick);
       bind(window.document, "focus", documentClick, { capture: true });
-      if (self2.config.clickOpens === true) {
-        bind(self2._input, "focus", self2.open);
-        bind(self2._input, "click", self2.open);
+      if (self.config.clickOpens === true) {
+        bind(self._input, "focus", self.open);
+        bind(self._input, "click", self.open);
       }
-      if (self2.daysContainer !== void 0) {
-        bind(self2.monthNav, "click", onMonthNavClick);
-        bind(self2.monthNav, ["keyup", "increment"], onYearInput);
-        bind(self2.daysContainer, "click", selectDate);
+      if (self.daysContainer !== void 0) {
+        bind(self.monthNav, "click", onMonthNavClick);
+        bind(self.monthNav, ["keyup", "increment"], onYearInput);
+        bind(self.daysContainer, "click", selectDate);
       }
-      if (self2.timeContainer !== void 0 && self2.minuteElement !== void 0 && self2.hourElement !== void 0) {
+      if (self.timeContainer !== void 0 && self.minuteElement !== void 0 && self.hourElement !== void 0) {
         var selText = function(e) {
           return getEventTarget(e).select();
         };
-        bind(self2.timeContainer, ["increment"], updateTime);
-        bind(self2.timeContainer, "blur", updateTime, { capture: true });
-        bind(self2.timeContainer, "click", timeIncrement);
-        bind([self2.hourElement, self2.minuteElement], ["focus", "click"], selText);
-        if (self2.secondElement !== void 0)
-          bind(self2.secondElement, "focus", function() {
-            return self2.secondElement && self2.secondElement.select();
+        bind(self.timeContainer, ["increment"], updateTime);
+        bind(self.timeContainer, "blur", updateTime, { capture: true });
+        bind(self.timeContainer, "click", timeIncrement);
+        bind([self.hourElement, self.minuteElement], ["focus", "click"], selText);
+        if (self.secondElement !== void 0)
+          bind(self.secondElement, "focus", function() {
+            return self.secondElement && self.secondElement.select();
           });
-        if (self2.amPM !== void 0) {
-          bind(self2.amPM, "click", function(e) {
+        if (self.amPM !== void 0) {
+          bind(self.amPM, "click", function(e) {
             updateTime(e);
           });
         }
       }
-      if (self2.config.allowInput) {
-        bind(self2._input, "blur", onBlur);
+      if (self.config.allowInput) {
+        bind(self._input, "blur", onBlur);
       }
     }
     function jumpToDate(jumpDate, triggerChange2) {
-      var jumpTo = jumpDate !== void 0 ? self2.parseDate(jumpDate) : self2.latestSelectedDateObj || (self2.config.minDate && self2.config.minDate > self2.now ? self2.config.minDate : self2.config.maxDate && self2.config.maxDate < self2.now ? self2.config.maxDate : self2.now);
-      var oldYear = self2.currentYear;
-      var oldMonth = self2.currentMonth;
+      var jumpTo = jumpDate !== void 0 ? self.parseDate(jumpDate) : self.latestSelectedDateObj || (self.config.minDate && self.config.minDate > self.now ? self.config.minDate : self.config.maxDate && self.config.maxDate < self.now ? self.config.maxDate : self.now);
+      var oldYear = self.currentYear;
+      var oldMonth = self.currentMonth;
       try {
         if (jumpTo !== void 0) {
-          self2.currentYear = jumpTo.getFullYear();
-          self2.currentMonth = jumpTo.getMonth();
+          self.currentYear = jumpTo.getFullYear();
+          self.currentMonth = jumpTo.getMonth();
         }
       } catch (e) {
         e.message = "Invalid date supplied: " + jumpTo;
-        self2.config.errorHandler(e);
+        self.config.errorHandler(e);
       }
-      if (triggerChange2 && self2.currentYear !== oldYear) {
+      if (triggerChange2 && self.currentYear !== oldYear) {
         triggerEvent("onYearChange");
         buildMonthSwitch();
       }
-      if (triggerChange2 && (self2.currentYear !== oldYear || self2.currentMonth !== oldMonth)) {
+      if (triggerChange2 && (self.currentYear !== oldYear || self.currentMonth !== oldMonth)) {
         triggerEvent("onMonthChange");
       }
-      self2.redraw();
+      self.redraw();
     }
     function timeIncrement(e) {
       var eventTarget = getEventTarget(e);
@@ -5524,64 +5484,64 @@
     }
     function build() {
       var fragment = window.document.createDocumentFragment();
-      self2.calendarContainer = createElement("div", "flatpickr-calendar");
-      self2.calendarContainer.tabIndex = -1;
-      if (!self2.config.noCalendar) {
+      self.calendarContainer = createElement("div", "flatpickr-calendar");
+      self.calendarContainer.tabIndex = -1;
+      if (!self.config.noCalendar) {
         fragment.appendChild(buildMonthNav());
-        self2.innerContainer = createElement("div", "flatpickr-innerContainer");
-        if (self2.config.weekNumbers) {
+        self.innerContainer = createElement("div", "flatpickr-innerContainer");
+        if (self.config.weekNumbers) {
           var _a = buildWeeks(), weekWrapper = _a.weekWrapper, weekNumbers = _a.weekNumbers;
-          self2.innerContainer.appendChild(weekWrapper);
-          self2.weekNumbers = weekNumbers;
-          self2.weekWrapper = weekWrapper;
+          self.innerContainer.appendChild(weekWrapper);
+          self.weekNumbers = weekNumbers;
+          self.weekWrapper = weekWrapper;
         }
-        self2.rContainer = createElement("div", "flatpickr-rContainer");
-        self2.rContainer.appendChild(buildWeekdays());
-        if (!self2.daysContainer) {
-          self2.daysContainer = createElement("div", "flatpickr-days");
-          self2.daysContainer.tabIndex = -1;
+        self.rContainer = createElement("div", "flatpickr-rContainer");
+        self.rContainer.appendChild(buildWeekdays());
+        if (!self.daysContainer) {
+          self.daysContainer = createElement("div", "flatpickr-days");
+          self.daysContainer.tabIndex = -1;
         }
         buildDays();
-        self2.rContainer.appendChild(self2.daysContainer);
-        self2.innerContainer.appendChild(self2.rContainer);
-        fragment.appendChild(self2.innerContainer);
+        self.rContainer.appendChild(self.daysContainer);
+        self.innerContainer.appendChild(self.rContainer);
+        fragment.appendChild(self.innerContainer);
       }
-      if (self2.config.enableTime) {
+      if (self.config.enableTime) {
         fragment.appendChild(buildTime());
       }
-      toggleClass(self2.calendarContainer, "rangeMode", self2.config.mode === "range");
-      toggleClass(self2.calendarContainer, "animate", self2.config.animate === true);
-      toggleClass(self2.calendarContainer, "multiMonth", self2.config.showMonths > 1);
-      self2.calendarContainer.appendChild(fragment);
-      var customAppend = self2.config.appendTo !== void 0 && self2.config.appendTo.nodeType !== void 0;
-      if (self2.config.inline || self2.config.static) {
-        self2.calendarContainer.classList.add(self2.config.inline ? "inline" : "static");
-        if (self2.config.inline) {
-          if (!customAppend && self2.element.parentNode)
-            self2.element.parentNode.insertBefore(self2.calendarContainer, self2._input.nextSibling);
-          else if (self2.config.appendTo !== void 0)
-            self2.config.appendTo.appendChild(self2.calendarContainer);
+      toggleClass(self.calendarContainer, "rangeMode", self.config.mode === "range");
+      toggleClass(self.calendarContainer, "animate", self.config.animate === true);
+      toggleClass(self.calendarContainer, "multiMonth", self.config.showMonths > 1);
+      self.calendarContainer.appendChild(fragment);
+      var customAppend = self.config.appendTo !== void 0 && self.config.appendTo.nodeType !== void 0;
+      if (self.config.inline || self.config.static) {
+        self.calendarContainer.classList.add(self.config.inline ? "inline" : "static");
+        if (self.config.inline) {
+          if (!customAppend && self.element.parentNode)
+            self.element.parentNode.insertBefore(self.calendarContainer, self._input.nextSibling);
+          else if (self.config.appendTo !== void 0)
+            self.config.appendTo.appendChild(self.calendarContainer);
         }
-        if (self2.config.static) {
+        if (self.config.static) {
           var wrapper = createElement("div", "flatpickr-wrapper");
-          if (self2.element.parentNode)
-            self2.element.parentNode.insertBefore(wrapper, self2.element);
-          wrapper.appendChild(self2.element);
-          if (self2.altInput)
-            wrapper.appendChild(self2.altInput);
-          wrapper.appendChild(self2.calendarContainer);
+          if (self.element.parentNode)
+            self.element.parentNode.insertBefore(wrapper, self.element);
+          wrapper.appendChild(self.element);
+          if (self.altInput)
+            wrapper.appendChild(self.altInput);
+          wrapper.appendChild(self.calendarContainer);
         }
       }
-      if (!self2.config.static && !self2.config.inline)
-        (self2.config.appendTo !== void 0 ? self2.config.appendTo : window.document.body).appendChild(self2.calendarContainer);
+      if (!self.config.static && !self.config.inline)
+        (self.config.appendTo !== void 0 ? self.config.appendTo : window.document.body).appendChild(self.calendarContainer);
     }
     function createDay(className, date, _dayNumber, i) {
       var dateIsEnabled = isEnabled(date, true), dayElement = createElement("span", className, date.getDate().toString());
       dayElement.dateObj = date;
       dayElement.$i = i;
-      dayElement.setAttribute("aria-label", self2.formatDate(date, self2.config.ariaDateFormat));
-      if (className.indexOf("hidden") === -1 && compareDates(date, self2.now) === 0) {
-        self2.todayDateElem = dayElement;
+      dayElement.setAttribute("aria-label", self.formatDate(date, self.config.ariaDateFormat));
+      if (className.indexOf("hidden") === -1 && compareDates(date, self.now) === 0) {
+        self.todayDateElem = dayElement;
         dayElement.classList.add("today");
         dayElement.setAttribute("aria-current", "date");
       }
@@ -5589,10 +5549,10 @@
         dayElement.tabIndex = -1;
         if (isDateSelected(date)) {
           dayElement.classList.add("selected");
-          self2.selectedDateElem = dayElement;
-          if (self2.config.mode === "range") {
-            toggleClass(dayElement, "startRange", self2.selectedDates[0] && compareDates(date, self2.selectedDates[0], true) === 0);
-            toggleClass(dayElement, "endRange", self2.selectedDates[1] && compareDates(date, self2.selectedDates[1], true) === 0);
+          self.selectedDateElem = dayElement;
+          if (self.config.mode === "range") {
+            toggleClass(dayElement, "startRange", self.selectedDates[0] && compareDates(date, self.selectedDates[0], true) === 0);
+            toggleClass(dayElement, "endRange", self.selectedDates[1] && compareDates(date, self.selectedDates[1], true) === 0);
             if (className === "nextMonthDay")
               dayElement.classList.add("inRange");
           }
@@ -5600,26 +5560,26 @@
       } else {
         dayElement.classList.add("flatpickr-disabled");
       }
-      if (self2.config.mode === "range") {
+      if (self.config.mode === "range") {
         if (isDateInRange(date) && !isDateSelected(date))
           dayElement.classList.add("inRange");
       }
-      if (self2.weekNumbers && self2.config.showMonths === 1 && className !== "prevMonthDay" && i % 7 === 6) {
-        self2.weekNumbers.insertAdjacentHTML("beforeend", "<span class='flatpickr-day'>" + self2.config.getWeek(date) + "</span>");
+      if (self.weekNumbers && self.config.showMonths === 1 && className !== "prevMonthDay" && i % 7 === 6) {
+        self.weekNumbers.insertAdjacentHTML("beforeend", "<span class='flatpickr-day'>" + self.config.getWeek(date) + "</span>");
       }
       triggerEvent("onDayCreate", dayElement);
       return dayElement;
     }
     function focusOnDayElem(targetNode) {
       targetNode.focus();
-      if (self2.config.mode === "range")
+      if (self.config.mode === "range")
         onMouseOver(targetNode);
     }
     function getFirstAvailableDay(delta) {
-      var startMonth = delta > 0 ? 0 : self2.config.showMonths - 1;
-      var endMonth = delta > 0 ? self2.config.showMonths : -1;
+      var startMonth = delta > 0 ? 0 : self.config.showMonths - 1;
+      var endMonth = delta > 0 ? self.config.showMonths : -1;
       for (var m = startMonth; m != endMonth; m += delta) {
-        var month = self2.daysContainer.children[m];
+        var month = self.daysContainer.children[m];
         var startIndex = delta > 0 ? 0 : month.children.length - 1;
         var endIndex = delta > 0 ? month.children.length : -1;
         for (var i = startIndex; i != endIndex; i += delta) {
@@ -5631,12 +5591,12 @@
       return void 0;
     }
     function getNextAvailableDay(current, delta) {
-      var givenMonth = current.className.indexOf("Month") === -1 ? current.dateObj.getMonth() : self2.currentMonth;
-      var endMonth = delta > 0 ? self2.config.showMonths : -1;
+      var givenMonth = current.className.indexOf("Month") === -1 ? current.dateObj.getMonth() : self.currentMonth;
+      var endMonth = delta > 0 ? self.config.showMonths : -1;
       var loopDelta = delta > 0 ? 1 : -1;
-      for (var m = givenMonth - self2.currentMonth; m != endMonth; m += loopDelta) {
-        var month = self2.daysContainer.children[m];
-        var startIndex = givenMonth - self2.currentMonth === m ? current.$i + delta : delta < 0 ? month.children.length - 1 : 0;
+      for (var m = givenMonth - self.currentMonth; m != endMonth; m += loopDelta) {
+        var month = self.daysContainer.children[m];
+        var startIndex = givenMonth - self.currentMonth === m ? current.$i + delta : delta < 0 ? month.children.length - 1 : 0;
         var numMonthDays = month.children.length;
         for (var i = startIndex; i >= 0 && i < numMonthDays && i != (delta > 0 ? numMonthDays : -1); i += loopDelta) {
           var c = month.children[i];
@@ -5644,26 +5604,26 @@
             return focusOnDayElem(c);
         }
       }
-      self2.changeMonth(loopDelta);
+      self.changeMonth(loopDelta);
       focusOnDay(getFirstAvailableDay(loopDelta), 0);
       return void 0;
     }
-    function focusOnDay(current, offset2) {
+    function focusOnDay(current, offset3) {
       var activeElement = getClosestActiveElement();
       var dayFocused = isInView(activeElement || document.body);
-      var startElem = current !== void 0 ? current : dayFocused ? activeElement : self2.selectedDateElem !== void 0 && isInView(self2.selectedDateElem) ? self2.selectedDateElem : self2.todayDateElem !== void 0 && isInView(self2.todayDateElem) ? self2.todayDateElem : getFirstAvailableDay(offset2 > 0 ? 1 : -1);
+      var startElem = current !== void 0 ? current : dayFocused ? activeElement : self.selectedDateElem !== void 0 && isInView(self.selectedDateElem) ? self.selectedDateElem : self.todayDateElem !== void 0 && isInView(self.todayDateElem) ? self.todayDateElem : getFirstAvailableDay(offset3 > 0 ? 1 : -1);
       if (startElem === void 0) {
-        self2._input.focus();
+        self._input.focus();
       } else if (!dayFocused) {
         focusOnDayElem(startElem);
       } else {
-        getNextAvailableDay(startElem, offset2);
+        getNextAvailableDay(startElem, offset3);
       }
     }
     function buildMonthDays(year, month) {
-      var firstOfMonth = (new Date(year, month, 1).getDay() - self2.l10n.firstDayOfWeek + 7) % 7;
-      var prevMonthDays = self2.utils.getDaysInMonth((month - 1 + 12) % 12, year);
-      var daysInMonth = self2.utils.getDaysInMonth(month, year), days = window.document.createDocumentFragment(), isMultiMonth = self2.config.showMonths > 1, prevMonthDayClass = isMultiMonth ? "prevMonthDay hidden" : "prevMonthDay", nextMonthDayClass = isMultiMonth ? "nextMonthDay hidden" : "nextMonthDay";
+      var firstOfMonth = (new Date(year, month, 1).getDay() - self.l10n.firstDayOfWeek + 7) % 7;
+      var prevMonthDays = self.utils.getDaysInMonth((month - 1 + 12) % 12, year);
+      var daysInMonth = self.utils.getDaysInMonth(month, year), days = window.document.createDocumentFragment(), isMultiMonth = self.config.showMonths > 1, prevMonthDayClass = isMultiMonth ? "prevMonthDay hidden" : "prevMonthDay", nextMonthDayClass = isMultiMonth ? "nextMonthDay hidden" : "nextMonthDay";
       var dayNumber = prevMonthDays + 1 - firstOfMonth, dayIndex = 0;
       for (; dayNumber <= prevMonthDays; dayNumber++, dayIndex++) {
         days.appendChild(createDay("flatpickr-day " + prevMonthDayClass, new Date(year, month - 1, dayNumber), dayNumber, dayIndex));
@@ -5671,7 +5631,7 @@
       for (dayNumber = 1; dayNumber <= daysInMonth; dayNumber++, dayIndex++) {
         days.appendChild(createDay("flatpickr-day", new Date(year, month, dayNumber), dayNumber, dayIndex));
       }
-      for (var dayNum = daysInMonth + 1; dayNum <= 42 - firstOfMonth && (self2.config.showMonths === 1 || dayIndex % 7 !== 0); dayNum++, dayIndex++) {
+      for (var dayNum = daysInMonth + 1; dayNum <= 42 - firstOfMonth && (self.config.showMonths === 1 || dayIndex % 7 !== 0); dayNum++, dayIndex++) {
         days.appendChild(createDay("flatpickr-day " + nextMonthDayClass, new Date(year, month + 1, dayNum % daysInMonth), dayNum, dayIndex));
       }
       var dayContainer = createElement("div", "dayContainer");
@@ -5679,75 +5639,75 @@
       return dayContainer;
     }
     function buildDays() {
-      if (self2.daysContainer === void 0) {
+      if (self.daysContainer === void 0) {
         return;
       }
-      clearNode(self2.daysContainer);
-      if (self2.weekNumbers)
-        clearNode(self2.weekNumbers);
+      clearNode(self.daysContainer);
+      if (self.weekNumbers)
+        clearNode(self.weekNumbers);
       var frag = document.createDocumentFragment();
-      for (var i = 0; i < self2.config.showMonths; i++) {
-        var d = new Date(self2.currentYear, self2.currentMonth, 1);
-        d.setMonth(self2.currentMonth + i);
+      for (var i = 0; i < self.config.showMonths; i++) {
+        var d = new Date(self.currentYear, self.currentMonth, 1);
+        d.setMonth(self.currentMonth + i);
         frag.appendChild(buildMonthDays(d.getFullYear(), d.getMonth()));
       }
-      self2.daysContainer.appendChild(frag);
-      self2.days = self2.daysContainer.firstChild;
-      if (self2.config.mode === "range" && self2.selectedDates.length === 1) {
+      self.daysContainer.appendChild(frag);
+      self.days = self.daysContainer.firstChild;
+      if (self.config.mode === "range" && self.selectedDates.length === 1) {
         onMouseOver();
       }
     }
     function buildMonthSwitch() {
-      if (self2.config.showMonths > 1 || self2.config.monthSelectorType !== "dropdown")
+      if (self.config.showMonths > 1 || self.config.monthSelectorType !== "dropdown")
         return;
       var shouldBuildMonth = function(month2) {
-        if (self2.config.minDate !== void 0 && self2.currentYear === self2.config.minDate.getFullYear() && month2 < self2.config.minDate.getMonth()) {
+        if (self.config.minDate !== void 0 && self.currentYear === self.config.minDate.getFullYear() && month2 < self.config.minDate.getMonth()) {
           return false;
         }
-        return !(self2.config.maxDate !== void 0 && self2.currentYear === self2.config.maxDate.getFullYear() && month2 > self2.config.maxDate.getMonth());
+        return !(self.config.maxDate !== void 0 && self.currentYear === self.config.maxDate.getFullYear() && month2 > self.config.maxDate.getMonth());
       };
-      self2.monthsDropdownContainer.tabIndex = -1;
-      self2.monthsDropdownContainer.innerHTML = "";
+      self.monthsDropdownContainer.tabIndex = -1;
+      self.monthsDropdownContainer.innerHTML = "";
       for (var i = 0; i < 12; i++) {
         if (!shouldBuildMonth(i))
           continue;
         var month = createElement("option", "flatpickr-monthDropdown-month");
-        month.value = new Date(self2.currentYear, i).getMonth().toString();
-        month.textContent = monthToStr(i, self2.config.shorthandCurrentMonth, self2.l10n);
+        month.value = new Date(self.currentYear, i).getMonth().toString();
+        month.textContent = monthToStr(i, self.config.shorthandCurrentMonth, self.l10n);
         month.tabIndex = -1;
-        if (self2.currentMonth === i) {
+        if (self.currentMonth === i) {
           month.selected = true;
         }
-        self2.monthsDropdownContainer.appendChild(month);
+        self.monthsDropdownContainer.appendChild(month);
       }
     }
     function buildMonth() {
       var container = createElement("div", "flatpickr-month");
       var monthNavFragment = window.document.createDocumentFragment();
       var monthElement;
-      if (self2.config.showMonths > 1 || self2.config.monthSelectorType === "static") {
+      if (self.config.showMonths > 1 || self.config.monthSelectorType === "static") {
         monthElement = createElement("span", "cur-month");
       } else {
-        self2.monthsDropdownContainer = createElement("select", "flatpickr-monthDropdown-months");
-        self2.monthsDropdownContainer.setAttribute("aria-label", self2.l10n.monthAriaLabel);
-        bind(self2.monthsDropdownContainer, "change", function(e) {
+        self.monthsDropdownContainer = createElement("select", "flatpickr-monthDropdown-months");
+        self.monthsDropdownContainer.setAttribute("aria-label", self.l10n.monthAriaLabel);
+        bind(self.monthsDropdownContainer, "change", function(e) {
           var target = getEventTarget(e);
           var selectedMonth = parseInt(target.value, 10);
-          self2.changeMonth(selectedMonth - self2.currentMonth);
+          self.changeMonth(selectedMonth - self.currentMonth);
           triggerEvent("onMonthChange");
         });
         buildMonthSwitch();
-        monthElement = self2.monthsDropdownContainer;
+        monthElement = self.monthsDropdownContainer;
       }
       var yearInput = createNumberInput("cur-year", { tabindex: "-1" });
       var yearElement = yearInput.getElementsByTagName("input")[0];
-      yearElement.setAttribute("aria-label", self2.l10n.yearAriaLabel);
-      if (self2.config.minDate) {
-        yearElement.setAttribute("min", self2.config.minDate.getFullYear().toString());
+      yearElement.setAttribute("aria-label", self.l10n.yearAriaLabel);
+      if (self.config.minDate) {
+        yearElement.setAttribute("min", self.config.minDate.getFullYear().toString());
       }
-      if (self2.config.maxDate) {
-        yearElement.setAttribute("max", self2.config.maxDate.getFullYear().toString());
-        yearElement.disabled = !!self2.config.minDate && self2.config.minDate.getFullYear() === self2.config.maxDate.getFullYear();
+      if (self.config.maxDate) {
+        yearElement.setAttribute("max", self.config.maxDate.getFullYear().toString());
+        yearElement.disabled = !!self.config.minDate && self.config.minDate.getFullYear() === self.config.maxDate.getFullYear();
       }
       var currentMonth = createElement("div", "flatpickr-current-month");
       currentMonth.appendChild(monthElement);
@@ -5761,136 +5721,136 @@
       };
     }
     function buildMonths() {
-      clearNode(self2.monthNav);
-      self2.monthNav.appendChild(self2.prevMonthNav);
-      if (self2.config.showMonths) {
-        self2.yearElements = [];
-        self2.monthElements = [];
+      clearNode(self.monthNav);
+      self.monthNav.appendChild(self.prevMonthNav);
+      if (self.config.showMonths) {
+        self.yearElements = [];
+        self.monthElements = [];
       }
-      for (var m = self2.config.showMonths; m--; ) {
+      for (var m = self.config.showMonths; m--; ) {
         var month = buildMonth();
-        self2.yearElements.push(month.yearElement);
-        self2.monthElements.push(month.monthElement);
-        self2.monthNav.appendChild(month.container);
+        self.yearElements.push(month.yearElement);
+        self.monthElements.push(month.monthElement);
+        self.monthNav.appendChild(month.container);
       }
-      self2.monthNav.appendChild(self2.nextMonthNav);
+      self.monthNav.appendChild(self.nextMonthNav);
     }
     function buildMonthNav() {
-      self2.monthNav = createElement("div", "flatpickr-months");
-      self2.yearElements = [];
-      self2.monthElements = [];
-      self2.prevMonthNav = createElement("span", "flatpickr-prev-month");
-      self2.prevMonthNav.innerHTML = self2.config.prevArrow;
-      self2.nextMonthNav = createElement("span", "flatpickr-next-month");
-      self2.nextMonthNav.innerHTML = self2.config.nextArrow;
+      self.monthNav = createElement("div", "flatpickr-months");
+      self.yearElements = [];
+      self.monthElements = [];
+      self.prevMonthNav = createElement("span", "flatpickr-prev-month");
+      self.prevMonthNav.innerHTML = self.config.prevArrow;
+      self.nextMonthNav = createElement("span", "flatpickr-next-month");
+      self.nextMonthNav.innerHTML = self.config.nextArrow;
       buildMonths();
-      Object.defineProperty(self2, "_hidePrevMonthArrow", {
+      Object.defineProperty(self, "_hidePrevMonthArrow", {
         get: function() {
-          return self2.__hidePrevMonthArrow;
+          return self.__hidePrevMonthArrow;
         },
         set: function(bool) {
-          if (self2.__hidePrevMonthArrow !== bool) {
-            toggleClass(self2.prevMonthNav, "flatpickr-disabled", bool);
-            self2.__hidePrevMonthArrow = bool;
+          if (self.__hidePrevMonthArrow !== bool) {
+            toggleClass(self.prevMonthNav, "flatpickr-disabled", bool);
+            self.__hidePrevMonthArrow = bool;
           }
         }
       });
-      Object.defineProperty(self2, "_hideNextMonthArrow", {
+      Object.defineProperty(self, "_hideNextMonthArrow", {
         get: function() {
-          return self2.__hideNextMonthArrow;
+          return self.__hideNextMonthArrow;
         },
         set: function(bool) {
-          if (self2.__hideNextMonthArrow !== bool) {
-            toggleClass(self2.nextMonthNav, "flatpickr-disabled", bool);
-            self2.__hideNextMonthArrow = bool;
+          if (self.__hideNextMonthArrow !== bool) {
+            toggleClass(self.nextMonthNav, "flatpickr-disabled", bool);
+            self.__hideNextMonthArrow = bool;
           }
         }
       });
-      self2.currentYearElement = self2.yearElements[0];
+      self.currentYearElement = self.yearElements[0];
       updateNavigationCurrentMonth();
-      return self2.monthNav;
+      return self.monthNav;
     }
     function buildTime() {
-      self2.calendarContainer.classList.add("hasTime");
-      if (self2.config.noCalendar)
-        self2.calendarContainer.classList.add("noCalendar");
-      var defaults2 = getDefaultHours(self2.config);
-      self2.timeContainer = createElement("div", "flatpickr-time");
-      self2.timeContainer.tabIndex = -1;
+      self.calendarContainer.classList.add("hasTime");
+      if (self.config.noCalendar)
+        self.calendarContainer.classList.add("noCalendar");
+      var defaults2 = getDefaultHours(self.config);
+      self.timeContainer = createElement("div", "flatpickr-time");
+      self.timeContainer.tabIndex = -1;
       var separator = createElement("span", "flatpickr-time-separator", ":");
       var hourInput = createNumberInput("flatpickr-hour", {
-        "aria-label": self2.l10n.hourAriaLabel
+        "aria-label": self.l10n.hourAriaLabel
       });
-      self2.hourElement = hourInput.getElementsByTagName("input")[0];
+      self.hourElement = hourInput.getElementsByTagName("input")[0];
       var minuteInput = createNumberInput("flatpickr-minute", {
-        "aria-label": self2.l10n.minuteAriaLabel
+        "aria-label": self.l10n.minuteAriaLabel
       });
-      self2.minuteElement = minuteInput.getElementsByTagName("input")[0];
-      self2.hourElement.tabIndex = self2.minuteElement.tabIndex = -1;
-      self2.hourElement.value = pad(self2.latestSelectedDateObj ? self2.latestSelectedDateObj.getHours() : self2.config.time_24hr ? defaults2.hours : military2ampm(defaults2.hours));
-      self2.minuteElement.value = pad(self2.latestSelectedDateObj ? self2.latestSelectedDateObj.getMinutes() : defaults2.minutes);
-      self2.hourElement.setAttribute("step", self2.config.hourIncrement.toString());
-      self2.minuteElement.setAttribute("step", self2.config.minuteIncrement.toString());
-      self2.hourElement.setAttribute("min", self2.config.time_24hr ? "0" : "1");
-      self2.hourElement.setAttribute("max", self2.config.time_24hr ? "23" : "12");
-      self2.hourElement.setAttribute("maxlength", "2");
-      self2.minuteElement.setAttribute("min", "0");
-      self2.minuteElement.setAttribute("max", "59");
-      self2.minuteElement.setAttribute("maxlength", "2");
-      self2.timeContainer.appendChild(hourInput);
-      self2.timeContainer.appendChild(separator);
-      self2.timeContainer.appendChild(minuteInput);
-      if (self2.config.time_24hr)
-        self2.timeContainer.classList.add("time24hr");
-      if (self2.config.enableSeconds) {
-        self2.timeContainer.classList.add("hasSeconds");
+      self.minuteElement = minuteInput.getElementsByTagName("input")[0];
+      self.hourElement.tabIndex = self.minuteElement.tabIndex = -1;
+      self.hourElement.value = pad(self.latestSelectedDateObj ? self.latestSelectedDateObj.getHours() : self.config.time_24hr ? defaults2.hours : military2ampm(defaults2.hours));
+      self.minuteElement.value = pad(self.latestSelectedDateObj ? self.latestSelectedDateObj.getMinutes() : defaults2.minutes);
+      self.hourElement.setAttribute("step", self.config.hourIncrement.toString());
+      self.minuteElement.setAttribute("step", self.config.minuteIncrement.toString());
+      self.hourElement.setAttribute("min", self.config.time_24hr ? "0" : "1");
+      self.hourElement.setAttribute("max", self.config.time_24hr ? "23" : "12");
+      self.hourElement.setAttribute("maxlength", "2");
+      self.minuteElement.setAttribute("min", "0");
+      self.minuteElement.setAttribute("max", "59");
+      self.minuteElement.setAttribute("maxlength", "2");
+      self.timeContainer.appendChild(hourInput);
+      self.timeContainer.appendChild(separator);
+      self.timeContainer.appendChild(minuteInput);
+      if (self.config.time_24hr)
+        self.timeContainer.classList.add("time24hr");
+      if (self.config.enableSeconds) {
+        self.timeContainer.classList.add("hasSeconds");
         var secondInput = createNumberInput("flatpickr-second");
-        self2.secondElement = secondInput.getElementsByTagName("input")[0];
-        self2.secondElement.value = pad(self2.latestSelectedDateObj ? self2.latestSelectedDateObj.getSeconds() : defaults2.seconds);
-        self2.secondElement.setAttribute("step", self2.minuteElement.getAttribute("step"));
-        self2.secondElement.setAttribute("min", "0");
-        self2.secondElement.setAttribute("max", "59");
-        self2.secondElement.setAttribute("maxlength", "2");
-        self2.timeContainer.appendChild(createElement("span", "flatpickr-time-separator", ":"));
-        self2.timeContainer.appendChild(secondInput);
+        self.secondElement = secondInput.getElementsByTagName("input")[0];
+        self.secondElement.value = pad(self.latestSelectedDateObj ? self.latestSelectedDateObj.getSeconds() : defaults2.seconds);
+        self.secondElement.setAttribute("step", self.minuteElement.getAttribute("step"));
+        self.secondElement.setAttribute("min", "0");
+        self.secondElement.setAttribute("max", "59");
+        self.secondElement.setAttribute("maxlength", "2");
+        self.timeContainer.appendChild(createElement("span", "flatpickr-time-separator", ":"));
+        self.timeContainer.appendChild(secondInput);
       }
-      if (!self2.config.time_24hr) {
-        self2.amPM = createElement("span", "flatpickr-am-pm", self2.l10n.amPM[int((self2.latestSelectedDateObj ? self2.hourElement.value : self2.config.defaultHour) > 11)]);
-        self2.amPM.title = self2.l10n.toggleTitle;
-        self2.amPM.tabIndex = -1;
-        self2.timeContainer.appendChild(self2.amPM);
+      if (!self.config.time_24hr) {
+        self.amPM = createElement("span", "flatpickr-am-pm", self.l10n.amPM[int((self.latestSelectedDateObj ? self.hourElement.value : self.config.defaultHour) > 11)]);
+        self.amPM.title = self.l10n.toggleTitle;
+        self.amPM.tabIndex = -1;
+        self.timeContainer.appendChild(self.amPM);
       }
-      return self2.timeContainer;
+      return self.timeContainer;
     }
     function buildWeekdays() {
-      if (!self2.weekdayContainer)
-        self2.weekdayContainer = createElement("div", "flatpickr-weekdays");
+      if (!self.weekdayContainer)
+        self.weekdayContainer = createElement("div", "flatpickr-weekdays");
       else
-        clearNode(self2.weekdayContainer);
-      for (var i = self2.config.showMonths; i--; ) {
+        clearNode(self.weekdayContainer);
+      for (var i = self.config.showMonths; i--; ) {
         var container = createElement("div", "flatpickr-weekdaycontainer");
-        self2.weekdayContainer.appendChild(container);
+        self.weekdayContainer.appendChild(container);
       }
       updateWeekdays();
-      return self2.weekdayContainer;
+      return self.weekdayContainer;
     }
     function updateWeekdays() {
-      if (!self2.weekdayContainer) {
+      if (!self.weekdayContainer) {
         return;
       }
-      var firstDayOfWeek = self2.l10n.firstDayOfWeek;
-      var weekdays = __spreadArrays(self2.l10n.weekdays.shorthand);
+      var firstDayOfWeek = self.l10n.firstDayOfWeek;
+      var weekdays = __spreadArrays(self.l10n.weekdays.shorthand);
       if (firstDayOfWeek > 0 && firstDayOfWeek < weekdays.length) {
         weekdays = __spreadArrays(weekdays.splice(firstDayOfWeek, weekdays.length), weekdays.splice(0, firstDayOfWeek));
       }
-      for (var i = self2.config.showMonths; i--; ) {
-        self2.weekdayContainer.children[i].innerHTML = "\n      <span class='flatpickr-weekday'>\n        " + weekdays.join("</span><span class='flatpickr-weekday'>") + "\n      </span>\n      ";
+      for (var i = self.config.showMonths; i--; ) {
+        self.weekdayContainer.children[i].innerHTML = "\n      <span class='flatpickr-weekday'>\n        " + weekdays.join("</span><span class='flatpickr-weekday'>") + "\n      </span>\n      ";
       }
     }
     function buildWeeks() {
-      self2.calendarContainer.classList.add("hasWeeks");
+      self.calendarContainer.classList.add("hasWeeks");
       var weekWrapper = createElement("div", "flatpickr-weekwrapper");
-      weekWrapper.appendChild(createElement("span", "flatpickr-weekday", self2.l10n.weekAbbreviation));
+      weekWrapper.appendChild(createElement("span", "flatpickr-weekday", self.l10n.weekAbbreviation));
       var weekNumbers = createElement("div", "flatpickr-weeks");
       weekWrapper.appendChild(weekNumbers);
       return {
@@ -5902,13 +5862,13 @@
       if (isOffset === void 0) {
         isOffset = true;
       }
-      var delta = isOffset ? value : value - self2.currentMonth;
-      if (delta < 0 && self2._hidePrevMonthArrow === true || delta > 0 && self2._hideNextMonthArrow === true)
+      var delta = isOffset ? value : value - self.currentMonth;
+      if (delta < 0 && self._hidePrevMonthArrow === true || delta > 0 && self._hideNextMonthArrow === true)
         return;
-      self2.currentMonth += delta;
-      if (self2.currentMonth < 0 || self2.currentMonth > 11) {
-        self2.currentYear += self2.currentMonth > 11 ? 1 : -1;
-        self2.currentMonth = (self2.currentMonth + 12) % 12;
+      self.currentMonth += delta;
+      if (self.currentMonth < 0 || self.currentMonth > 11) {
+        self.currentYear += self.currentMonth > 11 ? 1 : -1;
+        self.currentMonth = (self.currentMonth + 12) % 12;
         triggerEvent("onYearChange");
         buildMonthSwitch();
       }
@@ -5923,51 +5883,51 @@
       if (toInitial === void 0) {
         toInitial = true;
       }
-      self2.input.value = "";
-      if (self2.altInput !== void 0)
-        self2.altInput.value = "";
-      if (self2.mobileInput !== void 0)
-        self2.mobileInput.value = "";
-      self2.selectedDates = [];
-      self2.latestSelectedDateObj = void 0;
+      self.input.value = "";
+      if (self.altInput !== void 0)
+        self.altInput.value = "";
+      if (self.mobileInput !== void 0)
+        self.mobileInput.value = "";
+      self.selectedDates = [];
+      self.latestSelectedDateObj = void 0;
       if (toInitial === true) {
-        self2.currentYear = self2._initialDate.getFullYear();
-        self2.currentMonth = self2._initialDate.getMonth();
+        self.currentYear = self._initialDate.getFullYear();
+        self.currentMonth = self._initialDate.getMonth();
       }
-      if (self2.config.enableTime === true) {
-        var _a = getDefaultHours(self2.config), hours = _a.hours, minutes = _a.minutes, seconds = _a.seconds;
+      if (self.config.enableTime === true) {
+        var _a = getDefaultHours(self.config), hours = _a.hours, minutes = _a.minutes, seconds = _a.seconds;
         setHours(hours, minutes, seconds);
       }
-      self2.redraw();
+      self.redraw();
       if (triggerChangeEvent)
         triggerEvent("onChange");
     }
     function close() {
-      self2.isOpen = false;
-      if (!self2.isMobile) {
-        if (self2.calendarContainer !== void 0) {
-          self2.calendarContainer.classList.remove("open");
+      self.isOpen = false;
+      if (!self.isMobile) {
+        if (self.calendarContainer !== void 0) {
+          self.calendarContainer.classList.remove("open");
         }
-        if (self2._input !== void 0) {
-          self2._input.classList.remove("active");
+        if (self._input !== void 0) {
+          self._input.classList.remove("active");
         }
       }
       triggerEvent("onClose");
     }
     function destroy() {
-      if (self2.config !== void 0)
+      if (self.config !== void 0)
         triggerEvent("onDestroy");
-      for (var i = self2._handlers.length; i--; ) {
-        self2._handlers[i].remove();
+      for (var i = self._handlers.length; i--; ) {
+        self._handlers[i].remove();
       }
-      self2._handlers = [];
-      if (self2.mobileInput) {
-        if (self2.mobileInput.parentNode)
-          self2.mobileInput.parentNode.removeChild(self2.mobileInput);
-        self2.mobileInput = void 0;
-      } else if (self2.calendarContainer && self2.calendarContainer.parentNode) {
-        if (self2.config.static && self2.calendarContainer.parentNode) {
-          var wrapper = self2.calendarContainer.parentNode;
+      self._handlers = [];
+      if (self.mobileInput) {
+        if (self.mobileInput.parentNode)
+          self.mobileInput.parentNode.removeChild(self.mobileInput);
+        self.mobileInput = void 0;
+      } else if (self.calendarContainer && self.calendarContainer.parentNode) {
+        if (self.config.static && self.calendarContainer.parentNode) {
+          var wrapper = self.calendarContainer.parentNode;
           wrapper.lastChild && wrapper.removeChild(wrapper.lastChild);
           if (wrapper.parentNode) {
             while (wrapper.firstChild)
@@ -5975,18 +5935,18 @@
             wrapper.parentNode.removeChild(wrapper);
           }
         } else
-          self2.calendarContainer.parentNode.removeChild(self2.calendarContainer);
+          self.calendarContainer.parentNode.removeChild(self.calendarContainer);
       }
-      if (self2.altInput) {
-        self2.input.type = "text";
-        if (self2.altInput.parentNode)
-          self2.altInput.parentNode.removeChild(self2.altInput);
-        delete self2.altInput;
+      if (self.altInput) {
+        self.input.type = "text";
+        if (self.altInput.parentNode)
+          self.altInput.parentNode.removeChild(self.altInput);
+        delete self.altInput;
       }
-      if (self2.input) {
-        self2.input.type = self2.input._type;
-        self2.input.classList.remove("flatpickr-input");
-        self2.input.removeAttribute("readonly");
+      if (self.input) {
+        self.input.type = self.input._type;
+        self.input.classList.remove("flatpickr-input");
+        self.input.removeAttribute("readonly");
       }
       [
         "_showTimeInput",
@@ -6020,48 +5980,48 @@
         "config"
       ].forEach(function(k) {
         try {
-          delete self2[k];
+          delete self[k];
         } catch (_) {
         }
       });
     }
     function isCalendarElem(elem) {
-      return self2.calendarContainer.contains(elem);
+      return self.calendarContainer.contains(elem);
     }
     function documentClick(e) {
-      if (self2.isOpen && !self2.config.inline) {
+      if (self.isOpen && !self.config.inline) {
         var eventTarget_1 = getEventTarget(e);
         var isCalendarElement = isCalendarElem(eventTarget_1);
-        var isInput3 = eventTarget_1 === self2.input || eventTarget_1 === self2.altInput || self2.element.contains(eventTarget_1) || e.path && e.path.indexOf && (~e.path.indexOf(self2.input) || ~e.path.indexOf(self2.altInput));
+        var isInput3 = eventTarget_1 === self.input || eventTarget_1 === self.altInput || self.element.contains(eventTarget_1) || e.path && e.path.indexOf && (~e.path.indexOf(self.input) || ~e.path.indexOf(self.altInput));
         var lostFocus = !isInput3 && !isCalendarElement && !isCalendarElem(e.relatedTarget);
-        var isIgnored = !self2.config.ignoredFocusElements.some(function(elem) {
+        var isIgnored = !self.config.ignoredFocusElements.some(function(elem) {
           return elem.contains(eventTarget_1);
         });
         if (lostFocus && isIgnored) {
-          if (self2.config.allowInput) {
-            self2.setDate(self2._input.value, false, self2.config.altInput ? self2.config.altFormat : self2.config.dateFormat);
+          if (self.config.allowInput) {
+            self.setDate(self._input.value, false, self.config.altInput ? self.config.altFormat : self.config.dateFormat);
           }
-          if (self2.timeContainer !== void 0 && self2.minuteElement !== void 0 && self2.hourElement !== void 0 && self2.input.value !== "" && self2.input.value !== void 0) {
+          if (self.timeContainer !== void 0 && self.minuteElement !== void 0 && self.hourElement !== void 0 && self.input.value !== "" && self.input.value !== void 0) {
             updateTime();
           }
-          self2.close();
-          if (self2.config && self2.config.mode === "range" && self2.selectedDates.length === 1)
-            self2.clear(false);
+          self.close();
+          if (self.config && self.config.mode === "range" && self.selectedDates.length === 1)
+            self.clear(false);
         }
       }
     }
     function changeYear(newYear) {
-      if (!newYear || self2.config.minDate && newYear < self2.config.minDate.getFullYear() || self2.config.maxDate && newYear > self2.config.maxDate.getFullYear())
+      if (!newYear || self.config.minDate && newYear < self.config.minDate.getFullYear() || self.config.maxDate && newYear > self.config.maxDate.getFullYear())
         return;
-      var newYearNum = newYear, isNewYear = self2.currentYear !== newYearNum;
-      self2.currentYear = newYearNum || self2.currentYear;
-      if (self2.config.maxDate && self2.currentYear === self2.config.maxDate.getFullYear()) {
-        self2.currentMonth = Math.min(self2.config.maxDate.getMonth(), self2.currentMonth);
-      } else if (self2.config.minDate && self2.currentYear === self2.config.minDate.getFullYear()) {
-        self2.currentMonth = Math.max(self2.config.minDate.getMonth(), self2.currentMonth);
+      var newYearNum = newYear, isNewYear = self.currentYear !== newYearNum;
+      self.currentYear = newYearNum || self.currentYear;
+      if (self.config.maxDate && self.currentYear === self.config.maxDate.getFullYear()) {
+        self.currentMonth = Math.min(self.config.maxDate.getMonth(), self.currentMonth);
+      } else if (self.config.minDate && self.currentYear === self.config.minDate.getFullYear()) {
+        self.currentMonth = Math.max(self.config.minDate.getMonth(), self.currentMonth);
       }
       if (isNewYear) {
-        self2.redraw();
+        self.redraw();
         triggerEvent("onYearChange");
         buildMonthSwitch();
       }
@@ -6071,14 +6031,14 @@
       if (timeless === void 0) {
         timeless = true;
       }
-      var dateToCheck = self2.parseDate(date, void 0, timeless);
-      if (self2.config.minDate && dateToCheck && compareDates(dateToCheck, self2.config.minDate, timeless !== void 0 ? timeless : !self2.minDateHasTime) < 0 || self2.config.maxDate && dateToCheck && compareDates(dateToCheck, self2.config.maxDate, timeless !== void 0 ? timeless : !self2.maxDateHasTime) > 0)
+      var dateToCheck = self.parseDate(date, void 0, timeless);
+      if (self.config.minDate && dateToCheck && compareDates(dateToCheck, self.config.minDate, timeless !== void 0 ? timeless : !self.minDateHasTime) < 0 || self.config.maxDate && dateToCheck && compareDates(dateToCheck, self.config.maxDate, timeless !== void 0 ? timeless : !self.maxDateHasTime) > 0)
         return false;
-      if (!self2.config.enable && self2.config.disable.length === 0)
+      if (!self.config.enable && self.config.disable.length === 0)
         return true;
       if (dateToCheck === void 0)
         return false;
-      var bool = !!self2.config.enable, array = (_a = self2.config.enable) !== null && _a !== void 0 ? _a : self2.config.disable;
+      var bool = !!self.config.enable, array = (_a = self.config.enable) !== null && _a !== void 0 ? _a : self.config.disable;
       for (var i = 0, d = void 0; i < array.length; i++) {
         d = array[i];
         if (typeof d === "function" && d(dateToCheck))
@@ -6086,7 +6046,7 @@
         else if (d instanceof Date && dateToCheck !== void 0 && d.getTime() === dateToCheck.getTime())
           return bool;
         else if (typeof d === "string") {
-          var parsed = self2.parseDate(d, void 0, true);
+          var parsed = self.parseDate(d, void 0, true);
           return parsed && parsed.getTime() === dateToCheck.getTime() ? bool : !bool;
         } else if (typeof d === "object" && dateToCheck !== void 0 && d.from && d.to && dateToCheck.getTime() >= d.from.getTime() && dateToCheck.getTime() <= d.to.getTime())
           return bool;
@@ -6094,33 +6054,33 @@
       return !bool;
     }
     function isInView(elem) {
-      if (self2.daysContainer !== void 0)
-        return elem.className.indexOf("hidden") === -1 && elem.className.indexOf("flatpickr-disabled") === -1 && self2.daysContainer.contains(elem);
+      if (self.daysContainer !== void 0)
+        return elem.className.indexOf("hidden") === -1 && elem.className.indexOf("flatpickr-disabled") === -1 && self.daysContainer.contains(elem);
       return false;
     }
     function onBlur(e) {
-      var isInput3 = e.target === self2._input;
-      var valueChanged = self2._input.value.trimEnd() !== getDateStr();
+      var isInput3 = e.target === self._input;
+      var valueChanged = self._input.value.trimEnd() !== getDateStr();
       if (isInput3 && valueChanged && !(e.relatedTarget && isCalendarElem(e.relatedTarget))) {
-        self2.setDate(self2._input.value, true, e.target === self2.altInput ? self2.config.altFormat : self2.config.dateFormat);
+        self.setDate(self._input.value, true, e.target === self.altInput ? self.config.altFormat : self.config.dateFormat);
       }
     }
     function onKeyDown(e) {
       var eventTarget = getEventTarget(e);
-      var isInput3 = self2.config.wrap ? element2.contains(eventTarget) : eventTarget === self2._input;
-      var allowInput = self2.config.allowInput;
-      var allowKeydown = self2.isOpen && (!allowInput || !isInput3);
-      var allowInlineKeydown = self2.config.inline && isInput3 && !allowInput;
+      var isInput3 = self.config.wrap ? element2.contains(eventTarget) : eventTarget === self._input;
+      var allowInput = self.config.allowInput;
+      var allowKeydown = self.isOpen && (!allowInput || !isInput3);
+      var allowInlineKeydown = self.config.inline && isInput3 && !allowInput;
       if (e.keyCode === 13 && isInput3) {
         if (allowInput) {
-          self2.setDate(self2._input.value, true, eventTarget === self2.altInput ? self2.config.altFormat : self2.config.dateFormat);
-          self2.close();
+          self.setDate(self._input.value, true, eventTarget === self.altInput ? self.config.altFormat : self.config.dateFormat);
+          self.close();
           return eventTarget.blur();
         } else {
-          self2.open();
+          self.open();
         }
       } else if (isCalendarElem(eventTarget) || allowKeydown || allowInlineKeydown) {
-        var isTimeObj = !!self2.timeContainer && self2.timeContainer.contains(eventTarget);
+        var isTimeObj = !!self.timeContainer && self.timeContainer.contains(eventTarget);
         switch (e.keyCode) {
           case 13:
             if (isTimeObj) {
@@ -6136,9 +6096,9 @@
             break;
           case 8:
           case 46:
-            if (isInput3 && !self2.config.allowInput) {
+            if (isInput3 && !self.config.allowInput) {
               e.preventDefault();
-              self2.clear();
+              self.clear();
             }
             break;
           case 37:
@@ -6146,7 +6106,7 @@
             if (!isTimeObj && !isInput3) {
               e.preventDefault();
               var activeElement = getClosestActiveElement();
-              if (self2.daysContainer !== void 0 && (allowInput === false || activeElement && isInView(activeElement))) {
+              if (self.daysContainer !== void 0 && (allowInput === false || activeElement && isInView(activeElement))) {
                 var delta_1 = e.keyCode === 39 ? 1 : -1;
                 if (!e.ctrlKey)
                   focusOnDay(void 0, delta_1);
@@ -6156,65 +6116,65 @@
                   focusOnDay(getFirstAvailableDay(1), 0);
                 }
               }
-            } else if (self2.hourElement)
-              self2.hourElement.focus();
+            } else if (self.hourElement)
+              self.hourElement.focus();
             break;
           case 38:
           case 40:
             e.preventDefault();
             var delta = e.keyCode === 40 ? 1 : -1;
-            if (self2.daysContainer && eventTarget.$i !== void 0 || eventTarget === self2.input || eventTarget === self2.altInput) {
+            if (self.daysContainer && eventTarget.$i !== void 0 || eventTarget === self.input || eventTarget === self.altInput) {
               if (e.ctrlKey) {
                 e.stopPropagation();
-                changeYear(self2.currentYear - delta);
+                changeYear(self.currentYear - delta);
                 focusOnDay(getFirstAvailableDay(1), 0);
               } else if (!isTimeObj)
                 focusOnDay(void 0, delta * 7);
-            } else if (eventTarget === self2.currentYearElement) {
-              changeYear(self2.currentYear - delta);
-            } else if (self2.config.enableTime) {
-              if (!isTimeObj && self2.hourElement)
-                self2.hourElement.focus();
+            } else if (eventTarget === self.currentYearElement) {
+              changeYear(self.currentYear - delta);
+            } else if (self.config.enableTime) {
+              if (!isTimeObj && self.hourElement)
+                self.hourElement.focus();
               updateTime(e);
-              self2._debouncedChange();
+              self._debouncedChange();
             }
             break;
           case 9:
             if (isTimeObj) {
               var elems = [
-                self2.hourElement,
-                self2.minuteElement,
-                self2.secondElement,
-                self2.amPM
-              ].concat(self2.pluginElements).filter(function(x) {
+                self.hourElement,
+                self.minuteElement,
+                self.secondElement,
+                self.amPM
+              ].concat(self.pluginElements).filter(function(x) {
                 return x;
               });
               var i = elems.indexOf(eventTarget);
               if (i !== -1) {
                 var target = elems[i + (e.shiftKey ? -1 : 1)];
                 e.preventDefault();
-                (target || self2._input).focus();
+                (target || self._input).focus();
               }
-            } else if (!self2.config.noCalendar && self2.daysContainer && self2.daysContainer.contains(eventTarget) && e.shiftKey) {
+            } else if (!self.config.noCalendar && self.daysContainer && self.daysContainer.contains(eventTarget) && e.shiftKey) {
               e.preventDefault();
-              self2._input.focus();
+              self._input.focus();
             }
             break;
           default:
             break;
         }
       }
-      if (self2.amPM !== void 0 && eventTarget === self2.amPM) {
+      if (self.amPM !== void 0 && eventTarget === self.amPM) {
         switch (e.key) {
-          case self2.l10n.amPM[0].charAt(0):
-          case self2.l10n.amPM[0].charAt(0).toLowerCase():
-            self2.amPM.textContent = self2.l10n.amPM[0];
+          case self.l10n.amPM[0].charAt(0):
+          case self.l10n.amPM[0].charAt(0).toLowerCase():
+            self.amPM.textContent = self.l10n.amPM[0];
             setHoursFromInputs();
             updateValue();
             break;
-          case self2.l10n.amPM[1].charAt(0):
-          case self2.l10n.amPM[1].charAt(0).toLowerCase():
-            self2.amPM.textContent = self2.l10n.amPM[1];
+          case self.l10n.amPM[1].charAt(0):
+          case self.l10n.amPM[1].charAt(0).toLowerCase():
+            self.amPM.textContent = self.l10n.amPM[1];
             setHoursFromInputs();
             updateValue();
             break;
@@ -6228,9 +6188,9 @@
       if (cellClass === void 0) {
         cellClass = "flatpickr-day";
       }
-      if (self2.selectedDates.length !== 1 || elem && (!elem.classList.contains(cellClass) || elem.classList.contains("flatpickr-disabled")))
+      if (self.selectedDates.length !== 1 || elem && (!elem.classList.contains(cellClass) || elem.classList.contains("flatpickr-disabled")))
         return;
-      var hoverDate = elem ? elem.dateObj.getTime() : self2.days.firstElementChild.dateObj.getTime(), initialDate = self2.parseDate(self2.selectedDates[0], void 0, true).getTime(), rangeStartDate = Math.min(hoverDate, self2.selectedDates[0].getTime()), rangeEndDate = Math.max(hoverDate, self2.selectedDates[0].getTime());
+      var hoverDate = elem ? elem.dateObj.getTime() : self.days.firstElementChild.dateObj.getTime(), initialDate = self.parseDate(self.selectedDates[0], void 0, true).getTime(), rangeStartDate = Math.min(hoverDate, self.selectedDates[0].getTime()), rangeEndDate = Math.max(hoverDate, self.selectedDates[0].getTime());
       var containsDisabled = false;
       var minRange = 0, maxRange = 0;
       for (var t = rangeStartDate; t < rangeEndDate; t += duration.DAY) {
@@ -6242,7 +6202,7 @@
             maxRange = t;
         }
       }
-      var hoverableCells = Array.from(self2.rContainer.querySelectorAll("*:nth-child(-n+" + self2.config.showMonths + ") > ." + cellClass));
+      var hoverableCells = Array.from(self.rContainer.querySelectorAll("*:nth-child(-n+" + self.config.showMonths + ") > ." + cellClass));
       hoverableCells.forEach(function(dayElem) {
         var date = dayElem.dateObj;
         var timestamp = date.getTime();
@@ -6259,7 +6219,7 @@
           dayElem.classList.remove(c);
         });
         if (elem !== void 0) {
-          elem.classList.add(hoverDate <= self2.selectedDates[0].getTime() ? "startRange" : "endRange");
+          elem.classList.add(hoverDate <= self.selectedDates[0].getTime() ? "startRange" : "endRange");
           if (initialDate < hoverDate && timestamp === initialDate)
             dayElem.classList.add("startRange");
           else if (initialDate > hoverDate && timestamp === initialDate)
@@ -6270,14 +6230,14 @@
       });
     }
     function onResize() {
-      if (self2.isOpen && !self2.config.static && !self2.config.inline)
+      if (self.isOpen && !self.config.static && !self.config.inline)
         positionCalendar();
     }
     function open(e, positionElement) {
       if (positionElement === void 0) {
-        positionElement = self2._positionElement;
+        positionElement = self._positionElement;
       }
-      if (self2.isMobile === true) {
+      if (self.isMobile === true) {
         if (e) {
           e.preventDefault();
           var eventTarget = getEventTarget(e);
@@ -6285,53 +6245,53 @@
             eventTarget.blur();
           }
         }
-        if (self2.mobileInput !== void 0) {
-          self2.mobileInput.focus();
-          self2.mobileInput.click();
+        if (self.mobileInput !== void 0) {
+          self.mobileInput.focus();
+          self.mobileInput.click();
         }
         triggerEvent("onOpen");
         return;
-      } else if (self2._input.disabled || self2.config.inline) {
+      } else if (self._input.disabled || self.config.inline) {
         return;
       }
-      var wasOpen = self2.isOpen;
-      self2.isOpen = true;
+      var wasOpen = self.isOpen;
+      self.isOpen = true;
       if (!wasOpen) {
-        self2.calendarContainer.classList.add("open");
-        self2._input.classList.add("active");
+        self.calendarContainer.classList.add("open");
+        self._input.classList.add("active");
         triggerEvent("onOpen");
         positionCalendar(positionElement);
       }
-      if (self2.config.enableTime === true && self2.config.noCalendar === true) {
-        if (self2.config.allowInput === false && (e === void 0 || !self2.timeContainer.contains(e.relatedTarget))) {
+      if (self.config.enableTime === true && self.config.noCalendar === true) {
+        if (self.config.allowInput === false && (e === void 0 || !self.timeContainer.contains(e.relatedTarget))) {
           setTimeout(function() {
-            return self2.hourElement.select();
+            return self.hourElement.select();
           }, 50);
         }
       }
     }
     function minMaxDateSetter(type) {
       return function(date) {
-        var dateObj = self2.config["_" + type + "Date"] = self2.parseDate(date, self2.config.dateFormat);
-        var inverseDateObj = self2.config["_" + (type === "min" ? "max" : "min") + "Date"];
+        var dateObj = self.config["_" + type + "Date"] = self.parseDate(date, self.config.dateFormat);
+        var inverseDateObj = self.config["_" + (type === "min" ? "max" : "min") + "Date"];
         if (dateObj !== void 0) {
-          self2[type === "min" ? "minDateHasTime" : "maxDateHasTime"] = dateObj.getHours() > 0 || dateObj.getMinutes() > 0 || dateObj.getSeconds() > 0;
+          self[type === "min" ? "minDateHasTime" : "maxDateHasTime"] = dateObj.getHours() > 0 || dateObj.getMinutes() > 0 || dateObj.getSeconds() > 0;
         }
-        if (self2.selectedDates) {
-          self2.selectedDates = self2.selectedDates.filter(function(d) {
+        if (self.selectedDates) {
+          self.selectedDates = self.selectedDates.filter(function(d) {
             return isEnabled(d);
           });
-          if (!self2.selectedDates.length && type === "min")
+          if (!self.selectedDates.length && type === "min")
             setHoursFromDate(dateObj);
           updateValue();
         }
-        if (self2.daysContainer) {
+        if (self.daysContainer) {
           redraw();
           if (dateObj !== void 0)
-            self2.currentYearElement[type] = dateObj.getFullYear().toString();
+            self.currentYearElement[type] = dateObj.getFullYear().toString();
           else
-            self2.currentYearElement.removeAttribute(type);
-          self2.currentYearElement.disabled = !!inverseDateObj && dateObj !== void 0 && inverseDateObj.getFullYear() === dateObj.getFullYear();
+            self.currentYearElement.removeAttribute(type);
+          self.currentYearElement.disabled = !!inverseDateObj && dateObj !== void 0 && inverseDateObj.getFullYear() === dateObj.getFullYear();
         }
       };
     }
@@ -6354,22 +6314,22 @@
       ];
       var userConfig = __assign(__assign({}, JSON.parse(JSON.stringify(element2.dataset || {}))), instanceConfig);
       var formats2 = {};
-      self2.config.parseDate = userConfig.parseDate;
-      self2.config.formatDate = userConfig.formatDate;
-      Object.defineProperty(self2.config, "enable", {
+      self.config.parseDate = userConfig.parseDate;
+      self.config.formatDate = userConfig.formatDate;
+      Object.defineProperty(self.config, "enable", {
         get: function() {
-          return self2.config._enable;
+          return self.config._enable;
         },
         set: function(dates) {
-          self2.config._enable = parseDateRules(dates);
+          self.config._enable = parseDateRules(dates);
         }
       });
-      Object.defineProperty(self2.config, "disable", {
+      Object.defineProperty(self.config, "disable", {
         get: function() {
-          return self2.config._disable;
+          return self.config._disable;
         },
         set: function(dates) {
-          self2.config._disable = parseDateRules(dates);
+          self.config._disable = parseDateRules(dates);
         }
       });
       var timeMode = userConfig.mode === "time";
@@ -6381,96 +6341,96 @@
         var defaultAltFormat = flatpickr.defaultConfig.altFormat || defaults.altFormat;
         formats2.altFormat = userConfig.noCalendar || timeMode ? "h:i" + (userConfig.enableSeconds ? ":S K" : " K") : defaultAltFormat + (" h:i" + (userConfig.enableSeconds ? ":S" : "") + " K");
       }
-      Object.defineProperty(self2.config, "minDate", {
+      Object.defineProperty(self.config, "minDate", {
         get: function() {
-          return self2.config._minDate;
+          return self.config._minDate;
         },
         set: minMaxDateSetter("min")
       });
-      Object.defineProperty(self2.config, "maxDate", {
+      Object.defineProperty(self.config, "maxDate", {
         get: function() {
-          return self2.config._maxDate;
+          return self.config._maxDate;
         },
         set: minMaxDateSetter("max")
       });
       var minMaxTimeSetter = function(type) {
         return function(val) {
-          self2.config[type === "min" ? "_minTime" : "_maxTime"] = self2.parseDate(val, "H:i:S");
+          self.config[type === "min" ? "_minTime" : "_maxTime"] = self.parseDate(val, "H:i:S");
         };
       };
-      Object.defineProperty(self2.config, "minTime", {
+      Object.defineProperty(self.config, "minTime", {
         get: function() {
-          return self2.config._minTime;
+          return self.config._minTime;
         },
         set: minMaxTimeSetter("min")
       });
-      Object.defineProperty(self2.config, "maxTime", {
+      Object.defineProperty(self.config, "maxTime", {
         get: function() {
-          return self2.config._maxTime;
+          return self.config._maxTime;
         },
         set: minMaxTimeSetter("max")
       });
       if (userConfig.mode === "time") {
-        self2.config.noCalendar = true;
-        self2.config.enableTime = true;
+        self.config.noCalendar = true;
+        self.config.enableTime = true;
       }
-      Object.assign(self2.config, formats2, userConfig);
+      Object.assign(self.config, formats2, userConfig);
       for (var i = 0; i < boolOpts.length; i++)
-        self2.config[boolOpts[i]] = self2.config[boolOpts[i]] === true || self2.config[boolOpts[i]] === "true";
+        self.config[boolOpts[i]] = self.config[boolOpts[i]] === true || self.config[boolOpts[i]] === "true";
       HOOKS.filter(function(hook) {
-        return self2.config[hook] !== void 0;
+        return self.config[hook] !== void 0;
       }).forEach(function(hook) {
-        self2.config[hook] = arrayify(self2.config[hook] || []).map(bindToInstance);
+        self.config[hook] = arrayify(self.config[hook] || []).map(bindToInstance);
       });
-      self2.isMobile = !self2.config.disableMobile && !self2.config.inline && self2.config.mode === "single" && !self2.config.disable.length && !self2.config.enable && !self2.config.weekNumbers && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      for (var i = 0; i < self2.config.plugins.length; i++) {
-        var pluginConf = self2.config.plugins[i](self2) || {};
+      self.isMobile = !self.config.disableMobile && !self.config.inline && self.config.mode === "single" && !self.config.disable.length && !self.config.enable && !self.config.weekNumbers && /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      for (var i = 0; i < self.config.plugins.length; i++) {
+        var pluginConf = self.config.plugins[i](self) || {};
         for (var key in pluginConf) {
           if (HOOKS.indexOf(key) > -1) {
-            self2.config[key] = arrayify(pluginConf[key]).map(bindToInstance).concat(self2.config[key]);
+            self.config[key] = arrayify(pluginConf[key]).map(bindToInstance).concat(self.config[key]);
           } else if (typeof userConfig[key] === "undefined")
-            self2.config[key] = pluginConf[key];
+            self.config[key] = pluginConf[key];
         }
       }
       if (!userConfig.altInputClass) {
-        self2.config.altInputClass = getInputElem().className + " " + self2.config.altInputClass;
+        self.config.altInputClass = getInputElem().className + " " + self.config.altInputClass;
       }
       triggerEvent("onParseConfig");
     }
     function getInputElem() {
-      return self2.config.wrap ? element2.querySelector("[data-input]") : element2;
+      return self.config.wrap ? element2.querySelector("[data-input]") : element2;
     }
     function setupLocale() {
-      if (typeof self2.config.locale !== "object" && typeof flatpickr.l10ns[self2.config.locale] === "undefined")
-        self2.config.errorHandler(new Error("flatpickr: invalid locale " + self2.config.locale));
-      self2.l10n = __assign(__assign({}, flatpickr.l10ns.default), typeof self2.config.locale === "object" ? self2.config.locale : self2.config.locale !== "default" ? flatpickr.l10ns[self2.config.locale] : void 0);
-      tokenRegex.D = "(" + self2.l10n.weekdays.shorthand.join("|") + ")";
-      tokenRegex.l = "(" + self2.l10n.weekdays.longhand.join("|") + ")";
-      tokenRegex.M = "(" + self2.l10n.months.shorthand.join("|") + ")";
-      tokenRegex.F = "(" + self2.l10n.months.longhand.join("|") + ")";
-      tokenRegex.K = "(" + self2.l10n.amPM[0] + "|" + self2.l10n.amPM[1] + "|" + self2.l10n.amPM[0].toLowerCase() + "|" + self2.l10n.amPM[1].toLowerCase() + ")";
+      if (typeof self.config.locale !== "object" && typeof flatpickr.l10ns[self.config.locale] === "undefined")
+        self.config.errorHandler(new Error("flatpickr: invalid locale " + self.config.locale));
+      self.l10n = __assign(__assign({}, flatpickr.l10ns.default), typeof self.config.locale === "object" ? self.config.locale : self.config.locale !== "default" ? flatpickr.l10ns[self.config.locale] : void 0);
+      tokenRegex.D = "(" + self.l10n.weekdays.shorthand.join("|") + ")";
+      tokenRegex.l = "(" + self.l10n.weekdays.longhand.join("|") + ")";
+      tokenRegex.M = "(" + self.l10n.months.shorthand.join("|") + ")";
+      tokenRegex.F = "(" + self.l10n.months.longhand.join("|") + ")";
+      tokenRegex.K = "(" + self.l10n.amPM[0] + "|" + self.l10n.amPM[1] + "|" + self.l10n.amPM[0].toLowerCase() + "|" + self.l10n.amPM[1].toLowerCase() + ")";
       var userConfig = __assign(__assign({}, instanceConfig), JSON.parse(JSON.stringify(element2.dataset || {})));
       if (userConfig.time_24hr === void 0 && flatpickr.defaultConfig.time_24hr === void 0) {
-        self2.config.time_24hr = self2.l10n.time_24hr;
+        self.config.time_24hr = self.l10n.time_24hr;
       }
-      self2.formatDate = createDateFormatter(self2);
-      self2.parseDate = createDateParser({ config: self2.config, l10n: self2.l10n });
+      self.formatDate = createDateFormatter(self);
+      self.parseDate = createDateParser({ config: self.config, l10n: self.l10n });
     }
     function positionCalendar(customPositionElement) {
-      if (typeof self2.config.position === "function") {
-        return void self2.config.position(self2, customPositionElement);
+      if (typeof self.config.position === "function") {
+        return void self.config.position(self, customPositionElement);
       }
-      if (self2.calendarContainer === void 0)
+      if (self.calendarContainer === void 0)
         return;
       triggerEvent("onPreCalendarPosition");
-      var positionElement = customPositionElement || self2._positionElement;
-      var calendarHeight = Array.prototype.reduce.call(self2.calendarContainer.children, function(acc, child) {
+      var positionElement = customPositionElement || self._positionElement;
+      var calendarHeight = Array.prototype.reduce.call(self.calendarContainer.children, function(acc, child) {
         return acc + child.offsetHeight;
-      }, 0), calendarWidth = self2.calendarContainer.offsetWidth, configPos = self2.config.position.split(" "), configPosVertical = configPos[0], configPosHorizontal = configPos.length > 1 ? configPos[1] : null, inputBounds = positionElement.getBoundingClientRect(), distanceFromBottom = window.innerHeight - inputBounds.bottom, showOnTop = configPosVertical === "above" || configPosVertical !== "below" && distanceFromBottom < calendarHeight && inputBounds.top > calendarHeight;
+      }, 0), calendarWidth = self.calendarContainer.offsetWidth, configPos = self.config.position.split(" "), configPosVertical = configPos[0], configPosHorizontal = configPos.length > 1 ? configPos[1] : null, inputBounds = positionElement.getBoundingClientRect(), distanceFromBottom = window.innerHeight - inputBounds.bottom, showOnTop = configPosVertical === "above" || configPosVertical !== "below" && distanceFromBottom < calendarHeight && inputBounds.top > calendarHeight;
       var top2 = window.pageYOffset + inputBounds.top + (!showOnTop ? positionElement.offsetHeight + 2 : -calendarHeight - 2);
-      toggleClass(self2.calendarContainer, "arrowTop", !showOnTop);
-      toggleClass(self2.calendarContainer, "arrowBottom", showOnTop);
-      if (self2.config.inline)
+      toggleClass(self.calendarContainer, "arrowTop", !showOnTop);
+      toggleClass(self.calendarContainer, "arrowBottom", showOnTop);
+      if (self.config.inline)
         return;
       var left2 = window.pageXOffset + inputBounds.left;
       var isCenter = false;
@@ -6482,22 +6442,22 @@
         left2 -= calendarWidth - inputBounds.width;
         isRight = true;
       }
-      toggleClass(self2.calendarContainer, "arrowLeft", !isCenter && !isRight);
-      toggleClass(self2.calendarContainer, "arrowCenter", isCenter);
-      toggleClass(self2.calendarContainer, "arrowRight", isRight);
+      toggleClass(self.calendarContainer, "arrowLeft", !isCenter && !isRight);
+      toggleClass(self.calendarContainer, "arrowCenter", isCenter);
+      toggleClass(self.calendarContainer, "arrowRight", isRight);
       var right2 = window.document.body.offsetWidth - (window.pageXOffset + inputBounds.right);
       var rightMost = left2 + calendarWidth > window.document.body.offsetWidth;
       var centerMost = right2 + calendarWidth > window.document.body.offsetWidth;
-      toggleClass(self2.calendarContainer, "rightMost", rightMost);
-      if (self2.config.static)
+      toggleClass(self.calendarContainer, "rightMost", rightMost);
+      if (self.config.static)
         return;
-      self2.calendarContainer.style.top = top2 + "px";
+      self.calendarContainer.style.top = top2 + "px";
       if (!rightMost) {
-        self2.calendarContainer.style.left = left2 + "px";
-        self2.calendarContainer.style.right = "auto";
+        self.calendarContainer.style.left = left2 + "px";
+        self.calendarContainer.style.right = "auto";
       } else if (!centerMost) {
-        self2.calendarContainer.style.left = "auto";
-        self2.calendarContainer.style.right = right2 + "px";
+        self.calendarContainer.style.left = "auto";
+        self.calendarContainer.style.right = right2 + "px";
       } else {
         var doc = getDocumentStyleSheet();
         if (doc === void 0)
@@ -6508,11 +6468,11 @@
         var centerAfter = ".flatpickr-calendar.centerMost:after";
         var centerIndex = doc.cssRules.length;
         var centerStyle = "{left:" + inputBounds.left + "px;right:auto;}";
-        toggleClass(self2.calendarContainer, "rightMost", false);
-        toggleClass(self2.calendarContainer, "centerMost", true);
+        toggleClass(self.calendarContainer, "rightMost", false);
+        toggleClass(self.calendarContainer, "centerMost", true);
         doc.insertRule(centerBefore + "," + centerAfter + centerStyle, centerIndex);
-        self2.calendarContainer.style.left = centerLeft + "px";
-        self2.calendarContainer.style.right = "auto";
+        self.calendarContainer.style.left = centerLeft + "px";
+        self.calendarContainer.style.right = "auto";
       }
     }
     function getDocumentStyleSheet() {
@@ -6537,18 +6497,18 @@
       return style.sheet;
     }
     function redraw() {
-      if (self2.config.noCalendar || self2.isMobile)
+      if (self.config.noCalendar || self.isMobile)
         return;
       buildMonthSwitch();
       updateNavigationCurrentMonth();
       buildDays();
     }
     function focusAndClose() {
-      self2._input.focus();
+      self._input.focus();
       if (window.navigator.userAgent.indexOf("MSIE") !== -1 || navigator.msMaxTouchPoints !== void 0) {
-        setTimeout(self2.close, 0);
+        setTimeout(self.close, 0);
       } else {
-        self2.close();
+        self.close();
       }
     }
     function selectDate(e) {
@@ -6561,33 +6521,33 @@
       if (t === void 0)
         return;
       var target = t;
-      var selectedDate = self2.latestSelectedDateObj = new Date(target.dateObj.getTime());
-      var shouldChangeMonth = (selectedDate.getMonth() < self2.currentMonth || selectedDate.getMonth() > self2.currentMonth + self2.config.showMonths - 1) && self2.config.mode !== "range";
-      self2.selectedDateElem = target;
-      if (self2.config.mode === "single")
-        self2.selectedDates = [selectedDate];
-      else if (self2.config.mode === "multiple") {
+      var selectedDate = self.latestSelectedDateObj = new Date(target.dateObj.getTime());
+      var shouldChangeMonth = (selectedDate.getMonth() < self.currentMonth || selectedDate.getMonth() > self.currentMonth + self.config.showMonths - 1) && self.config.mode !== "range";
+      self.selectedDateElem = target;
+      if (self.config.mode === "single")
+        self.selectedDates = [selectedDate];
+      else if (self.config.mode === "multiple") {
         var selectedIndex = isDateSelected(selectedDate);
         if (selectedIndex)
-          self2.selectedDates.splice(parseInt(selectedIndex), 1);
+          self.selectedDates.splice(parseInt(selectedIndex), 1);
         else
-          self2.selectedDates.push(selectedDate);
-      } else if (self2.config.mode === "range") {
-        if (self2.selectedDates.length === 2) {
-          self2.clear(false, false);
+          self.selectedDates.push(selectedDate);
+      } else if (self.config.mode === "range") {
+        if (self.selectedDates.length === 2) {
+          self.clear(false, false);
         }
-        self2.latestSelectedDateObj = selectedDate;
-        self2.selectedDates.push(selectedDate);
-        if (compareDates(selectedDate, self2.selectedDates[0], true) !== 0)
-          self2.selectedDates.sort(function(a, b) {
+        self.latestSelectedDateObj = selectedDate;
+        self.selectedDates.push(selectedDate);
+        if (compareDates(selectedDate, self.selectedDates[0], true) !== 0)
+          self.selectedDates.sort(function(a, b) {
             return a.getTime() - b.getTime();
           });
       }
       setHoursFromInputs();
       if (shouldChangeMonth) {
-        var isNewYear = self2.currentYear !== selectedDate.getFullYear();
-        self2.currentYear = selectedDate.getFullYear();
-        self2.currentMonth = selectedDate.getMonth();
+        var isNewYear = self.currentYear !== selectedDate.getFullYear();
+        self.currentYear = selectedDate.getFullYear();
+        self.currentMonth = selectedDate.getMonth();
         if (isNewYear) {
           triggerEvent("onYearChange");
           buildMonthSwitch();
@@ -6597,16 +6557,16 @@
       updateNavigationCurrentMonth();
       buildDays();
       updateValue();
-      if (!shouldChangeMonth && self2.config.mode !== "range" && self2.config.showMonths === 1)
+      if (!shouldChangeMonth && self.config.mode !== "range" && self.config.showMonths === 1)
         focusOnDayElem(target);
-      else if (self2.selectedDateElem !== void 0 && self2.hourElement === void 0) {
-        self2.selectedDateElem && self2.selectedDateElem.focus();
+      else if (self.selectedDateElem !== void 0 && self.hourElement === void 0) {
+        self.selectedDateElem && self.selectedDateElem.focus();
       }
-      if (self2.hourElement !== void 0)
-        self2.hourElement !== void 0 && self2.hourElement.focus();
-      if (self2.config.closeOnSelect) {
-        var single = self2.config.mode === "single" && !self2.config.enableTime;
-        var range = self2.config.mode === "range" && self2.selectedDates.length === 2 && !self2.config.enableTime;
+      if (self.hourElement !== void 0)
+        self.hourElement !== void 0 && self.hourElement.focus();
+      if (self.config.closeOnSelect) {
+        var single = self.config.mode === "single" && !self.config.enableTime;
+        var range = self.config.mode === "range" && self.selectedDates.length === 2 && !self.config.enableTime;
         if (single || range) {
           focusAndClose();
         }
@@ -6621,19 +6581,19 @@
       positionElement: [updatePositionElement],
       clickOpens: [
         function() {
-          if (self2.config.clickOpens === true) {
-            bind(self2._input, "focus", self2.open);
-            bind(self2._input, "click", self2.open);
+          if (self.config.clickOpens === true) {
+            bind(self._input, "focus", self.open);
+            bind(self._input, "click", self.open);
           } else {
-            self2._input.removeEventListener("focus", self2.open);
-            self2._input.removeEventListener("click", self2.open);
+            self._input.removeEventListener("focus", self.open);
+            self._input.removeEventListener("click", self.open);
           }
         }
       ]
     };
     function set(option, value) {
       if (option !== null && typeof option === "object") {
-        Object.assign(self2.config, option);
+        Object.assign(self.config, option);
         for (var key in option) {
           if (CALLBACKS[key] !== void 0)
             CALLBACKS[key].forEach(function(x) {
@@ -6641,51 +6601,51 @@
             });
         }
       } else {
-        self2.config[option] = value;
+        self.config[option] = value;
         if (CALLBACKS[option] !== void 0)
           CALLBACKS[option].forEach(function(x) {
             return x();
           });
         else if (HOOKS.indexOf(option) > -1)
-          self2.config[option] = arrayify(value);
+          self.config[option] = arrayify(value);
       }
-      self2.redraw();
+      self.redraw();
       updateValue(true);
     }
     function setSelectedDate(inputDate, format) {
       var dates = [];
       if (inputDate instanceof Array)
         dates = inputDate.map(function(d) {
-          return self2.parseDate(d, format);
+          return self.parseDate(d, format);
         });
       else if (inputDate instanceof Date || typeof inputDate === "number")
-        dates = [self2.parseDate(inputDate, format)];
+        dates = [self.parseDate(inputDate, format)];
       else if (typeof inputDate === "string") {
-        switch (self2.config.mode) {
+        switch (self.config.mode) {
           case "single":
           case "time":
-            dates = [self2.parseDate(inputDate, format)];
+            dates = [self.parseDate(inputDate, format)];
             break;
           case "multiple":
-            dates = inputDate.split(self2.config.conjunction).map(function(date) {
-              return self2.parseDate(date, format);
+            dates = inputDate.split(self.config.conjunction).map(function(date) {
+              return self.parseDate(date, format);
             });
             break;
           case "range":
-            dates = inputDate.split(self2.l10n.rangeSeparator).map(function(date) {
-              return self2.parseDate(date, format);
+            dates = inputDate.split(self.l10n.rangeSeparator).map(function(date) {
+              return self.parseDate(date, format);
             });
             break;
           default:
             break;
         }
       } else
-        self2.config.errorHandler(new Error("Invalid date supplied: " + JSON.stringify(inputDate)));
-      self2.selectedDates = self2.config.allowInvalidPreload ? dates : dates.filter(function(d) {
+        self.config.errorHandler(new Error("Invalid date supplied: " + JSON.stringify(inputDate)));
+      self.selectedDates = self.config.allowInvalidPreload ? dates : dates.filter(function(d) {
         return d instanceof Date && isEnabled(d, false);
       });
-      if (self2.config.mode === "range")
-        self2.selectedDates.sort(function(a, b) {
+      if (self.config.mode === "range")
+        self.selectedDates.sort(function(a, b) {
           return a.getTime() - b.getTime();
         });
     }
@@ -6694,17 +6654,17 @@
         triggerChange2 = false;
       }
       if (format === void 0) {
-        format = self2.config.dateFormat;
+        format = self.config.dateFormat;
       }
       if (date !== 0 && !date || date instanceof Array && date.length === 0)
-        return self2.clear(triggerChange2);
+        return self.clear(triggerChange2);
       setSelectedDate(date, format);
-      self2.latestSelectedDateObj = self2.selectedDates[self2.selectedDates.length - 1];
-      self2.redraw();
+      self.latestSelectedDateObj = self.selectedDates[self.selectedDates.length - 1];
+      self.redraw();
       jumpToDate(void 0, triggerChange2);
       setHoursFromDate();
-      if (self2.selectedDates.length === 0) {
-        self2.clear(false);
+      if (self.selectedDates.length === 0) {
+        self.clear(false);
       }
       updateValue(triggerChange2);
       if (triggerChange2)
@@ -6713,11 +6673,11 @@
     function parseDateRules(arr) {
       return arr.slice().map(function(rule) {
         if (typeof rule === "string" || typeof rule === "number" || rule instanceof Date) {
-          return self2.parseDate(rule, void 0, true);
+          return self.parseDate(rule, void 0, true);
         } else if (rule && typeof rule === "object" && rule.from && rule.to)
           return {
-            from: self2.parseDate(rule.from, void 0),
-            to: self2.parseDate(rule.to, void 0)
+            from: self.parseDate(rule.from, void 0),
+            to: self.parseDate(rule.to, void 0)
           };
         return rule;
       }).filter(function(x) {
@@ -6725,100 +6685,100 @@
       });
     }
     function setupDates() {
-      self2.selectedDates = [];
-      self2.now = self2.parseDate(self2.config.now) || /* @__PURE__ */ new Date();
-      var preloadedDate = self2.config.defaultDate || ((self2.input.nodeName === "INPUT" || self2.input.nodeName === "TEXTAREA") && self2.input.placeholder && self2.input.value === self2.input.placeholder ? null : self2.input.value);
+      self.selectedDates = [];
+      self.now = self.parseDate(self.config.now) || /* @__PURE__ */ new Date();
+      var preloadedDate = self.config.defaultDate || ((self.input.nodeName === "INPUT" || self.input.nodeName === "TEXTAREA") && self.input.placeholder && self.input.value === self.input.placeholder ? null : self.input.value);
       if (preloadedDate)
-        setSelectedDate(preloadedDate, self2.config.dateFormat);
-      self2._initialDate = self2.selectedDates.length > 0 ? self2.selectedDates[0] : self2.config.minDate && self2.config.minDate.getTime() > self2.now.getTime() ? self2.config.minDate : self2.config.maxDate && self2.config.maxDate.getTime() < self2.now.getTime() ? self2.config.maxDate : self2.now;
-      self2.currentYear = self2._initialDate.getFullYear();
-      self2.currentMonth = self2._initialDate.getMonth();
-      if (self2.selectedDates.length > 0)
-        self2.latestSelectedDateObj = self2.selectedDates[0];
-      if (self2.config.minTime !== void 0)
-        self2.config.minTime = self2.parseDate(self2.config.minTime, "H:i");
-      if (self2.config.maxTime !== void 0)
-        self2.config.maxTime = self2.parseDate(self2.config.maxTime, "H:i");
-      self2.minDateHasTime = !!self2.config.minDate && (self2.config.minDate.getHours() > 0 || self2.config.minDate.getMinutes() > 0 || self2.config.minDate.getSeconds() > 0);
-      self2.maxDateHasTime = !!self2.config.maxDate && (self2.config.maxDate.getHours() > 0 || self2.config.maxDate.getMinutes() > 0 || self2.config.maxDate.getSeconds() > 0);
+        setSelectedDate(preloadedDate, self.config.dateFormat);
+      self._initialDate = self.selectedDates.length > 0 ? self.selectedDates[0] : self.config.minDate && self.config.minDate.getTime() > self.now.getTime() ? self.config.minDate : self.config.maxDate && self.config.maxDate.getTime() < self.now.getTime() ? self.config.maxDate : self.now;
+      self.currentYear = self._initialDate.getFullYear();
+      self.currentMonth = self._initialDate.getMonth();
+      if (self.selectedDates.length > 0)
+        self.latestSelectedDateObj = self.selectedDates[0];
+      if (self.config.minTime !== void 0)
+        self.config.minTime = self.parseDate(self.config.minTime, "H:i");
+      if (self.config.maxTime !== void 0)
+        self.config.maxTime = self.parseDate(self.config.maxTime, "H:i");
+      self.minDateHasTime = !!self.config.minDate && (self.config.minDate.getHours() > 0 || self.config.minDate.getMinutes() > 0 || self.config.minDate.getSeconds() > 0);
+      self.maxDateHasTime = !!self.config.maxDate && (self.config.maxDate.getHours() > 0 || self.config.maxDate.getMinutes() > 0 || self.config.maxDate.getSeconds() > 0);
     }
     function setupInputs() {
-      self2.input = getInputElem();
-      if (!self2.input) {
-        self2.config.errorHandler(new Error("Invalid input element specified"));
+      self.input = getInputElem();
+      if (!self.input) {
+        self.config.errorHandler(new Error("Invalid input element specified"));
         return;
       }
-      self2.input._type = self2.input.type;
-      self2.input.type = "text";
-      self2.input.classList.add("flatpickr-input");
-      self2._input = self2.input;
-      if (self2.config.altInput) {
-        self2.altInput = createElement(self2.input.nodeName, self2.config.altInputClass);
-        self2._input = self2.altInput;
-        self2.altInput.placeholder = self2.input.placeholder;
-        self2.altInput.disabled = self2.input.disabled;
-        self2.altInput.required = self2.input.required;
-        self2.altInput.tabIndex = self2.input.tabIndex;
-        self2.altInput.type = "text";
-        self2.input.setAttribute("type", "hidden");
-        if (!self2.config.static && self2.input.parentNode)
-          self2.input.parentNode.insertBefore(self2.altInput, self2.input.nextSibling);
+      self.input._type = self.input.type;
+      self.input.type = "text";
+      self.input.classList.add("flatpickr-input");
+      self._input = self.input;
+      if (self.config.altInput) {
+        self.altInput = createElement(self.input.nodeName, self.config.altInputClass);
+        self._input = self.altInput;
+        self.altInput.placeholder = self.input.placeholder;
+        self.altInput.disabled = self.input.disabled;
+        self.altInput.required = self.input.required;
+        self.altInput.tabIndex = self.input.tabIndex;
+        self.altInput.type = "text";
+        self.input.setAttribute("type", "hidden");
+        if (!self.config.static && self.input.parentNode)
+          self.input.parentNode.insertBefore(self.altInput, self.input.nextSibling);
       }
-      if (!self2.config.allowInput)
-        self2._input.setAttribute("readonly", "readonly");
+      if (!self.config.allowInput)
+        self._input.setAttribute("readonly", "readonly");
       updatePositionElement();
     }
     function updatePositionElement() {
-      self2._positionElement = self2.config.positionElement || self2._input;
+      self._positionElement = self.config.positionElement || self._input;
     }
     function setupMobile() {
-      var inputType = self2.config.enableTime ? self2.config.noCalendar ? "time" : "datetime-local" : "date";
-      self2.mobileInput = createElement("input", self2.input.className + " flatpickr-mobile");
-      self2.mobileInput.tabIndex = 1;
-      self2.mobileInput.type = inputType;
-      self2.mobileInput.disabled = self2.input.disabled;
-      self2.mobileInput.required = self2.input.required;
-      self2.mobileInput.placeholder = self2.input.placeholder;
-      self2.mobileFormatStr = inputType === "datetime-local" ? "Y-m-d\\TH:i:S" : inputType === "date" ? "Y-m-d" : "H:i:S";
-      if (self2.selectedDates.length > 0) {
-        self2.mobileInput.defaultValue = self2.mobileInput.value = self2.formatDate(self2.selectedDates[0], self2.mobileFormatStr);
+      var inputType = self.config.enableTime ? self.config.noCalendar ? "time" : "datetime-local" : "date";
+      self.mobileInput = createElement("input", self.input.className + " flatpickr-mobile");
+      self.mobileInput.tabIndex = 1;
+      self.mobileInput.type = inputType;
+      self.mobileInput.disabled = self.input.disabled;
+      self.mobileInput.required = self.input.required;
+      self.mobileInput.placeholder = self.input.placeholder;
+      self.mobileFormatStr = inputType === "datetime-local" ? "Y-m-d\\TH:i:S" : inputType === "date" ? "Y-m-d" : "H:i:S";
+      if (self.selectedDates.length > 0) {
+        self.mobileInput.defaultValue = self.mobileInput.value = self.formatDate(self.selectedDates[0], self.mobileFormatStr);
       }
-      if (self2.config.minDate)
-        self2.mobileInput.min = self2.formatDate(self2.config.minDate, "Y-m-d");
-      if (self2.config.maxDate)
-        self2.mobileInput.max = self2.formatDate(self2.config.maxDate, "Y-m-d");
-      if (self2.input.getAttribute("step"))
-        self2.mobileInput.step = String(self2.input.getAttribute("step"));
-      self2.input.type = "hidden";
-      if (self2.altInput !== void 0)
-        self2.altInput.type = "hidden";
+      if (self.config.minDate)
+        self.mobileInput.min = self.formatDate(self.config.minDate, "Y-m-d");
+      if (self.config.maxDate)
+        self.mobileInput.max = self.formatDate(self.config.maxDate, "Y-m-d");
+      if (self.input.getAttribute("step"))
+        self.mobileInput.step = String(self.input.getAttribute("step"));
+      self.input.type = "hidden";
+      if (self.altInput !== void 0)
+        self.altInput.type = "hidden";
       try {
-        if (self2.input.parentNode)
-          self2.input.parentNode.insertBefore(self2.mobileInput, self2.input.nextSibling);
+        if (self.input.parentNode)
+          self.input.parentNode.insertBefore(self.mobileInput, self.input.nextSibling);
       } catch (_a) {
       }
-      bind(self2.mobileInput, "change", function(e) {
-        self2.setDate(getEventTarget(e).value, false, self2.mobileFormatStr);
+      bind(self.mobileInput, "change", function(e) {
+        self.setDate(getEventTarget(e).value, false, self.mobileFormatStr);
         triggerEvent("onChange");
         triggerEvent("onClose");
       });
     }
     function toggle(e) {
-      if (self2.isOpen === true)
-        return self2.close();
-      self2.open(e);
+      if (self.isOpen === true)
+        return self.close();
+      self.open(e);
     }
     function triggerEvent(event, data) {
-      if (self2.config === void 0)
+      if (self.config === void 0)
         return;
-      var hooks = self2.config[event];
+      var hooks = self.config[event];
       if (hooks !== void 0 && hooks.length > 0) {
         for (var i = 0; hooks[i] && i < hooks.length; i++)
-          hooks[i](self2.selectedDates, self2.input.value, self2, data);
+          hooks[i](self.selectedDates, self.input.value, self, data);
       }
       if (event === "onChange") {
-        self2.input.dispatchEvent(createEvent("change"));
-        self2.input.dispatchEvent(createEvent("input"));
+        self.input.dispatchEvent(createEvent("change"));
+        self.input.dispatchEvent(createEvent("input"));
       }
     }
     function createEvent(name) {
@@ -6827,97 +6787,97 @@
       return e;
     }
     function isDateSelected(date) {
-      for (var i = 0; i < self2.selectedDates.length; i++) {
-        var selectedDate = self2.selectedDates[i];
+      for (var i = 0; i < self.selectedDates.length; i++) {
+        var selectedDate = self.selectedDates[i];
         if (selectedDate instanceof Date && compareDates(selectedDate, date) === 0)
           return "" + i;
       }
       return false;
     }
     function isDateInRange(date) {
-      if (self2.config.mode !== "range" || self2.selectedDates.length < 2)
+      if (self.config.mode !== "range" || self.selectedDates.length < 2)
         return false;
-      return compareDates(date, self2.selectedDates[0]) >= 0 && compareDates(date, self2.selectedDates[1]) <= 0;
+      return compareDates(date, self.selectedDates[0]) >= 0 && compareDates(date, self.selectedDates[1]) <= 0;
     }
     function updateNavigationCurrentMonth() {
-      if (self2.config.noCalendar || self2.isMobile || !self2.monthNav)
+      if (self.config.noCalendar || self.isMobile || !self.monthNav)
         return;
-      self2.yearElements.forEach(function(yearElement, i) {
-        var d = new Date(self2.currentYear, self2.currentMonth, 1);
-        d.setMonth(self2.currentMonth + i);
-        if (self2.config.showMonths > 1 || self2.config.monthSelectorType === "static") {
-          self2.monthElements[i].textContent = monthToStr(d.getMonth(), self2.config.shorthandCurrentMonth, self2.l10n) + " ";
+      self.yearElements.forEach(function(yearElement, i) {
+        var d = new Date(self.currentYear, self.currentMonth, 1);
+        d.setMonth(self.currentMonth + i);
+        if (self.config.showMonths > 1 || self.config.monthSelectorType === "static") {
+          self.monthElements[i].textContent = monthToStr(d.getMonth(), self.config.shorthandCurrentMonth, self.l10n) + " ";
         } else {
-          self2.monthsDropdownContainer.value = d.getMonth().toString();
+          self.monthsDropdownContainer.value = d.getMonth().toString();
         }
         yearElement.value = d.getFullYear().toString();
       });
-      self2._hidePrevMonthArrow = self2.config.minDate !== void 0 && (self2.currentYear === self2.config.minDate.getFullYear() ? self2.currentMonth <= self2.config.minDate.getMonth() : self2.currentYear < self2.config.minDate.getFullYear());
-      self2._hideNextMonthArrow = self2.config.maxDate !== void 0 && (self2.currentYear === self2.config.maxDate.getFullYear() ? self2.currentMonth + 1 > self2.config.maxDate.getMonth() : self2.currentYear > self2.config.maxDate.getFullYear());
+      self._hidePrevMonthArrow = self.config.minDate !== void 0 && (self.currentYear === self.config.minDate.getFullYear() ? self.currentMonth <= self.config.minDate.getMonth() : self.currentYear < self.config.minDate.getFullYear());
+      self._hideNextMonthArrow = self.config.maxDate !== void 0 && (self.currentYear === self.config.maxDate.getFullYear() ? self.currentMonth + 1 > self.config.maxDate.getMonth() : self.currentYear > self.config.maxDate.getFullYear());
     }
     function getDateStr(specificFormat) {
-      var format = specificFormat || (self2.config.altInput ? self2.config.altFormat : self2.config.dateFormat);
-      return self2.selectedDates.map(function(dObj) {
-        return self2.formatDate(dObj, format);
+      var format = specificFormat || (self.config.altInput ? self.config.altFormat : self.config.dateFormat);
+      return self.selectedDates.map(function(dObj) {
+        return self.formatDate(dObj, format);
       }).filter(function(d, i, arr) {
-        return self2.config.mode !== "range" || self2.config.enableTime || arr.indexOf(d) === i;
-      }).join(self2.config.mode !== "range" ? self2.config.conjunction : self2.l10n.rangeSeparator);
+        return self.config.mode !== "range" || self.config.enableTime || arr.indexOf(d) === i;
+      }).join(self.config.mode !== "range" ? self.config.conjunction : self.l10n.rangeSeparator);
     }
     function updateValue(triggerChange2) {
       if (triggerChange2 === void 0) {
         triggerChange2 = true;
       }
-      if (self2.mobileInput !== void 0 && self2.mobileFormatStr) {
-        self2.mobileInput.value = self2.latestSelectedDateObj !== void 0 ? self2.formatDate(self2.latestSelectedDateObj, self2.mobileFormatStr) : "";
+      if (self.mobileInput !== void 0 && self.mobileFormatStr) {
+        self.mobileInput.value = self.latestSelectedDateObj !== void 0 ? self.formatDate(self.latestSelectedDateObj, self.mobileFormatStr) : "";
       }
-      self2.input.value = getDateStr(self2.config.dateFormat);
-      if (self2.altInput !== void 0) {
-        self2.altInput.value = getDateStr(self2.config.altFormat);
+      self.input.value = getDateStr(self.config.dateFormat);
+      if (self.altInput !== void 0) {
+        self.altInput.value = getDateStr(self.config.altFormat);
       }
       if (triggerChange2 !== false)
         triggerEvent("onValueUpdate");
     }
     function onMonthNavClick(e) {
       var eventTarget = getEventTarget(e);
-      var isPrevMonth = self2.prevMonthNav.contains(eventTarget);
-      var isNextMonth = self2.nextMonthNav.contains(eventTarget);
+      var isPrevMonth = self.prevMonthNav.contains(eventTarget);
+      var isNextMonth = self.nextMonthNav.contains(eventTarget);
       if (isPrevMonth || isNextMonth) {
         changeMonth(isPrevMonth ? -1 : 1);
-      } else if (self2.yearElements.indexOf(eventTarget) >= 0) {
+      } else if (self.yearElements.indexOf(eventTarget) >= 0) {
         eventTarget.select();
       } else if (eventTarget.classList.contains("arrowUp")) {
-        self2.changeYear(self2.currentYear + 1);
+        self.changeYear(self.currentYear + 1);
       } else if (eventTarget.classList.contains("arrowDown")) {
-        self2.changeYear(self2.currentYear - 1);
+        self.changeYear(self.currentYear - 1);
       }
     }
     function timeWrapper(e) {
       e.preventDefault();
       var isKeyDown = e.type === "keydown", eventTarget = getEventTarget(e), input = eventTarget;
-      if (self2.amPM !== void 0 && eventTarget === self2.amPM) {
-        self2.amPM.textContent = self2.l10n.amPM[int(self2.amPM.textContent === self2.l10n.amPM[0])];
+      if (self.amPM !== void 0 && eventTarget === self.amPM) {
+        self.amPM.textContent = self.l10n.amPM[int(self.amPM.textContent === self.l10n.amPM[0])];
       }
       var min2 = parseFloat(input.getAttribute("min")), max2 = parseFloat(input.getAttribute("max")), step = parseFloat(input.getAttribute("step")), curValue = parseInt(input.value, 10), delta = e.delta || (isKeyDown ? e.which === 38 ? 1 : -1 : 0);
       var newValue = curValue + step * delta;
       if (typeof input.value !== "undefined" && input.value.length === 2) {
-        var isHourElem = input === self2.hourElement, isMinuteElem = input === self2.minuteElement;
+        var isHourElem = input === self.hourElement, isMinuteElem = input === self.minuteElement;
         if (newValue < min2) {
-          newValue = max2 + newValue + int(!isHourElem) + (int(isHourElem) && int(!self2.amPM));
+          newValue = max2 + newValue + int(!isHourElem) + (int(isHourElem) && int(!self.amPM));
           if (isMinuteElem)
-            incrementNumInput(void 0, -1, self2.hourElement);
+            incrementNumInput(void 0, -1, self.hourElement);
         } else if (newValue > max2) {
-          newValue = input === self2.hourElement ? newValue - max2 - int(!self2.amPM) : min2;
+          newValue = input === self.hourElement ? newValue - max2 - int(!self.amPM) : min2;
           if (isMinuteElem)
-            incrementNumInput(void 0, 1, self2.hourElement);
+            incrementNumInput(void 0, 1, self.hourElement);
         }
-        if (self2.amPM && isHourElem && (step === 1 ? newValue + curValue === 23 : Math.abs(newValue - curValue) > step)) {
-          self2.amPM.textContent = self2.l10n.amPM[int(self2.amPM.textContent === self2.l10n.amPM[0])];
+        if (self.amPM && isHourElem && (step === 1 ? newValue + curValue === 23 : Math.abs(newValue - curValue) > step)) {
+          self.amPM.textContent = self.l10n.amPM[int(self.amPM.textContent === self.l10n.amPM[0])];
         }
         input.value = pad(newValue);
       }
     }
     init();
-    return self2;
+    return self;
   }
   function _flatpickr(nodeList, config) {
     var nodes = Array.prototype.slice.call(nodeList).filter(function(x) {
