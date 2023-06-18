@@ -29,7 +29,7 @@ devDependencies:
     version: 15.7.1
   sass:
     specifier: ^1.53.0
-    version: 1.63.3
+    version: 1.63.4
   tabbable:
     specifier: ^6.0.0
     version: 6.1.2
@@ -929,8 +929,8 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /sass@1.63.3:
-    resolution: {integrity: sha512-ySdXN+DVpfwq49jG1+hmtDslYqpS7SkOR5GpF6o2bmb1RL/xS+wvPmegMvMywyfsmAV6p7TgwXYGrCZIFFbAHg==}
+  /sass@1.63.4:
+    resolution: {integrity: sha512-Sx/+weUmK+oiIlI+9sdD0wZHsqpbgQg8wSwSnGBjwb5GwqFhYNwwnI+UWZtLjKvKyFlKkatRK235qQ3mokyPoQ==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
