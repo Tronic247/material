@@ -1,28 +1,72 @@
 .card {
-  background: white;
-  @include elevation(2);
-  position: relative;
-  overflow: hidden;
-  border-radius: $border-radius * 4px;
-  $a: $padding * 20px;
+	background: white;
+	position: relative;
+	overflow: hidden;
 
-  & .body {
-    padding: 6px $a;
-  }
+	border-radius: $border-radius * 4px;
+	@include elevation(2);
 
-  & .footer {
-    padding: 10px $a;
-  }
+	$paddingCard: $padding * 20px;
 
-  & .card-title {
-    font-size: $font-size * 26px !important;
-  }
+	& .card-content {
+		padding: 6px $paddingCard;
+		padding-bottom: 16px * $padding;
+		text-align: left;
+	}
 
-  &.hoverable {
-    transition: all 0.2s ease;
+	&.card-hoverable {
+		transition: all 0.2s ease;
+		cursor: pointer;
+		overflow: hidden;
+		display: block;
 
-    &:hover , &:focus {
-      @include elevation(6);
-    }
-  }
+		& .card-hover-item {
+			text-decoration: none;
+			color: unset;
+			display: block;
+
+			&:hover {
+				background: material-color($dk, "100");
+			}
+
+			&:active,
+			&:focus {
+				background: material-color($dk, "200");
+			}
+		}
+
+		& .card-actions {
+			cursor: auto;
+		}
+	}
+
+	& .card-actions {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		padding: 10px #{$paddingCard - 12px};
+	}
+
+	& .card-title {
+		margin-top: 10px;
+		font-size: $font-size * 20px !important;
+		font-weight: 500;
+	}
+
+	& .card-subtitle {
+		color: material-color($dk, "600");
+		font-size: $font-size * 14px !important;
+		font-weight: 500;
+		margin-top: 4px;
+		margin-bottom: 10px;
+	}
+
+	&.hoverable {
+		transition: all 0.2s ease;
+
+		&:hover,
+		&:focus {
+			@include elevation(6);
+		}
+	}
 }

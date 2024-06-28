@@ -1,38 +1,45 @@
 .chip {
-  padding: $padding * 8px #{$padding * 10px};
-  user-select: none;
-  background: material-color($dk, "300");
-  border-radius: $border-radius * 50px;
-  transition: all 0.2s ease;
-  cursor: pointer;
+	padding: $padding * 6px #{$padding * 14px};
+	border-radius: $border-radius * 50px;
 
-  &:hover {
-    background: material-color($dk, "400");
-  }
+	background: material-color($dk, "300");
+	color: material-color($dk, "800");
 
-  &:active,
-  &:focus-visible {
-    background: material-color($dk, "500");
-  }
+	text-decoration: none;
+	display: inline-block;
+	user-select: none;
+	transition: all 0.2s ease;
+	overflow: hidden;
+	cursor: pointer;
 
-  &.active {
-    background: rgba(material-color($p, "100"), 0.4);
-    color: material-color($p, "500");
+	&:hover {
+		background: material-color($dk, "400");
+	}
 
-    &:hover {
-      background: rgba(material-color($p, "100"), 0.8);
-    }
+	&:active,
+	&:focus-visible {
+		background: material-color($dk, "500");
+	}
 
-    &:active,
-    &:focus-visible {
-      background: material-color($p, "200");
-    }
-  }
+	&.chip-active {
+		background: rgba(material-color($p, "100"), 0.4);
+		color: material-color($p, "500");
 
-  &.disabled,
-  &:disabled {
-    background: material-color($dk, "200");
-    color: material-color($dk, "800");
-    cursor: default;
-  }
+		&:hover {
+			background: rgba(material-color($p, "100"), 0.8);
+		}
+
+		&:active,
+		&:focus-visible {
+			background: material-color($p, "200");
+		}
+	}
+
+	&.chip-disabled,
+	&:disabled {
+		background: material-color($dk, "100");
+		color: material-color($dk, "600");
+
+		cursor: not-allowed;
+	}
 }

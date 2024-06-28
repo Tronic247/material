@@ -4,9 +4,9 @@
 	"description": "Modern Material design framework",
 	"main": "src/js/index.js",
 	"scripts": {
-		"build": "node actions/build.js",
-		"watch": "node actions/watch.js",
-		"publish": "node actions/publish.js"
+		"dev": "vite",
+		"build": "tsc && vite build",
+		"preview": "vite preview"
 	},
 	"keywords": [
 		"material-design"
@@ -22,10 +22,12 @@
 		"flatpickr": "^4.6.3",
 		"focus-trap": "^7.0.0",
 		"nouislider": "^15.5.0",
-		"sass": "^1.53.0",
+		"sass": "^1.77.6",
 		"tabbable": "^6.0.0"
 	},
 	"dependencies": {
-		"tcol": "^1.0.2"
+		"tcol": "^1.0.2",
+		"typescript": "^5.2.2",
+		"vite": "^5.3.1"
 	}
 }
