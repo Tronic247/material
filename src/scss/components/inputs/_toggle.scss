@@ -5,8 +5,6 @@
 
   & > input {
     appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
     z-index: -1;
     position: absolute;
     right: 6px;
@@ -16,7 +14,7 @@
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    background-color: rgba(0, 0, 0, 0.38);
+    background-color: rgb(0 0 0 / 38%);
     outline: none;
     opacity: 0;
     transform: scale(1);
@@ -38,7 +36,7 @@
     border-radius: 7px;
     width: 36px;
     height: 14px;
-    background-color: rgba(0, 0, 0, 0.38);
+    background-color: rgb(0 0 0 / 38%);
     vertical-align: top;
     transition: background-color 0.2s, opacity 0.2s;
   }
@@ -52,7 +50,9 @@
     width: 20px;
     height: 20px;
     background-color: #fff;
+
     @include elevation(4);
+
     transition: background-color 0.2s, transform 0.2s;
   }
 
@@ -94,7 +94,7 @@
   }
 
   & > input:checked:active + span::before {
-    background-color: rgba(0, 0, 0, 0.38);
+    background-color: rgb(0 0 0 / 38%);
   }
 
   /* Disabled */
@@ -103,13 +103,13 @@
   }
 
   & > input:disabled + span {
-    color: rgb(0, 0, 0);
+    color: rgb(0 0 0);
     opacity: 0.38;
     cursor: default;
   }
 
   & > input:disabled + span::before {
-    background-color: rgba(0, 0, 0, 0.38);
+    background-color: rgb(0 0 0 / 38%);
   }
 
   & > input:checked:disabled + span::before {

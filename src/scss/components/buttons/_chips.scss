@@ -1,10 +1,8 @@
 .chip {
 	padding: $padding * 6px #{$padding * 14px};
 	border-radius: $border-radius * 50px;
-
 	background: material-color($dk, "300");
 	color: material-color($dk, "800");
-
 	text-decoration: none;
 	display: inline-block;
 	user-select: none;
@@ -39,7 +37,6 @@
 	&:disabled {
 		background: material-color($dk, "100");
 		color: material-color($dk, "600");
-
 		cursor: not-allowed;
 	}
 }

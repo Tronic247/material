@@ -9,7 +9,9 @@
   color: #fff;
   padding: $padding * 1px #{$padding * 16px};
   border-radius: $border-radius * 4px;
+
   @include elevation(4);
+
   transition: all 0.4s ease;
   transform: translate(-50%, 100%);
   opacity: 0;

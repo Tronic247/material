@@ -71,7 +71,9 @@
   height: 28px;
   right: -17px;
   top: -6px;
+
   @include elevation(3);
+
   transition: all 0.2s ease;
 
   &:hover:not(.noUi-active) {
@@ -126,30 +128,32 @@
 
 .noUi-active {
   box-shadow: 0 0 0 10px material-color($p, "400");
+
   & .noUi-tooltip {
     opacity: 1;
   }
 }
 
-.noUi-handle:after {
+.noUi-handle::after {
   left: 17px;
 }
 
-.noUi-vertical .noUi-handle:before,
-.noUi-vertical .noUi-handle:after {
+.noUi-vertical .noUi-handle::before,
+.noUi-vertical .noUi-handle::after {
   width: 14px;
   height: 1px;
   left: 6px;
   top: 14px;
 }
 
-.noUi-vertical .noUi-handle:after {
+.noUi-vertical .noUi-handle::after {
   top: 17px;
 }
 
 [disabled] .noUi-connect {
   background: #b8b8b8;
 }
+
 [disabled].noUi-target,
 [disabled].noUi-handle,
 [disabled] .noUi-handle {
@@ -158,7 +162,6 @@
 
 .noUi-pips,
 .noUi-pips * {
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 

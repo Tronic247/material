@@ -6,7 +6,6 @@
 	min-width: $size;
 	min-height: $size;
 	background: material-color($dk, "200");
-
 	border-radius: 100%;
 	display: inline-flex;
 	align-items: center;
@@ -24,12 +23,14 @@
 
 	&:hover {
 		background: material-color($dk, "300");
+
 		@include elevation(8);
 	}
 
 	&:active,
 	&:focus-visible {
 		background: material-color($dk, "400");
+
 		@include elevation(14);
 	}
 
@@ -110,7 +111,6 @@
 		max-height: $size;
 		min-width: $size;
 		min-height: $size;
-
 		border-radius: $border-radius * 100px;
 		height: $padding * 60px;
 		padding: 0 $padding * 16px;
@@ -126,6 +126,7 @@
 		background: material-color($dk, "200");
 		color: material-color($dk, "600");
 		cursor: default;
+
 		@include elevation(0);
 	}
 }

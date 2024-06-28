@@ -6,7 +6,6 @@
 	min-width: $size;
 	min-height: $size;
 	color: material-color($dk, "700");
-
 	display: inline-flex;
 	align-items: center;
 	overflow: hidden;
@@ -17,7 +16,6 @@
 	cursor: pointer;
 	transition: all 0.2s ease;
 	position: relative;
-
 	margin: #{-1 * $padding * 5}px;
 
 	& .mdi {

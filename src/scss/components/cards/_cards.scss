@@ -2,8 +2,8 @@
 	background: white;
 	position: relative;
 	overflow: hidden;
-
 	border-radius: $border-radius * 4px;
+
 	@include elevation(2);
 
 	$paddingCard: $padding * 20px;

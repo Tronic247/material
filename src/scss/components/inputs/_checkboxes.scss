@@ -2,7 +2,7 @@
   z-index: 0;
   position: relative;
   display: inline-block;
-  color: rgba(0, 0, 0, 0.87);
+  color: rgb(0 0 0 / 87%);
   font-size: 16px;
   line-height: 1.5;
 
@@ -19,7 +19,7 @@
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgb(0 0 0 / 60%);
     box-shadow: none;
     outline: none;
     opacity: 0;
@@ -40,7 +40,7 @@
     box-sizing: border-box;
     margin: 3px 11px 3px 1px;
     border: solid 2px;
-    border-color: rgba(0, 0, 0, 0.6);
+    border-color: rgb(0 0 0 / 60%);
     border-radius: 2px;
     width: 18px;
     height: 18px;
@@ -75,7 +75,7 @@
 
   & > input:checked + span::after,
   & > input:indeterminate + span::after {
-    border-color: rgb(255, 255, 255);
+    border-color: rgb(255 255 255);
   }
 
   & > input:indeterminate + span::after {
@@ -107,7 +107,7 @@
 
   & > input:checked:active + span::before {
     border-color: transparent;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgb(0 0 0 / 60%);
   }
 
   & > input:disabled {
@@ -115,17 +115,17 @@
   }
 
   & > input:disabled + span {
-    color: rgba(0, 0, 0, 0.38);
+    color: rgb(0 0 0 / 38%);
     cursor: initial;
   }
 
   & > input:disabled + span::before {
-    border-color: currentColor;
+    border-color: currentcolor;
   }
 
   & > input:checked:disabled + span::before,
   & > input:indeterminate:disabled + span::before {
     border-color: transparent;
-    background-color: currentColor;
+    background-color: currentcolor;
   }
 }

@@ -5,7 +5,9 @@
   & .item {
     flex: 1;
     margin-top: -4px;
+
     @include elevation(2);
+
     background: #fff;
     transition: margin-top 0.2s linear, margin-top 0.2s linear;
 

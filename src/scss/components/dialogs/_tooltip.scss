@@ -8,6 +8,7 @@
   user-select: none;
   transition: opacity 0.2s ease;
   opacity: 0;
+
   &.show {
     opacity: 1;
   }

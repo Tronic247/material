@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<link rel="icon" type="image/svg+xml" href="/vite.svg" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="/src/scss/index.scss" />
+		<link rel="stylesheet" href="/src/index.scss" />
 		<link
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css"
@@ -18,7 +18,30 @@
 	</head>
 	<body style="padding: 80px">
 		<div style="max-width: 800px">
-			<a href="#" class="chip">dfgd</a>
+			<div class="appbar appbar-fixed appbar-primary">
+				<div class="appbar-start">
+					<div class="appbar-title">Vite</div>
+				</div>
+
+				<div class="appbar-center">
+					<input
+						type="text"
+						class="appbar-input"
+						placeholder="Search"
+						name=""
+						id=""
+					/>
+				</div>
+
+				<div class="appbar-end">
+					<a class="ripple-e appbar-btn" href="#!"> Documentation </a>
+					<a class="ripple-e appbar-btn appbar-btn-active" href="#!">
+						Documentation
+					</a>
+					<a class="ripple-e appbar-btn" href="#!"> Documentation </a>
+					<a class="ripple-e appbar-btn" href="#!"> Documentation </a>
+				</div>
+			</div>
 		</div>
 
 		<script type="module" src="/src/ts/index.ts"></script>

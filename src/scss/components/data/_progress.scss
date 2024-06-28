@@ -26,12 +26,11 @@
   &.buffering {
     background: radial-gradient(
       circle,
-      rgba(230, 230, 230, 1) 0%,
-      rgba(230, 230, 230, 1) 51%,
-      rgba(255, 255, 255, 1) 51%,
-      rgba(255, 255, 255, 1) 100%
+      rgb(230 230 230 / 100%) 0%,
+      rgb(230 230 230 / 100%) 51%,
+      rgb(255 255 255 / 100%) 51%,
+      rgb(255 255 255 / 100%) 100%
     );
-
     background-size: 6px 6px;
     background-repeat: repeat no-repeat;
     animation: progress-bar-buffering 4s linear infinite;
@@ -53,14 +52,6 @@
     height: 60px;
     padding: 0;
     background:transparent !important;
-    -webkit-mask-image: -webkit-gradient(
-        linear,
-        left top,
-        left bottom,
-        color-stop(50%, transparent),
-        color-stop(50%, white)
-      ),
-      -webkit-gradient(linear, left top, right top, color-stop(50%, transparent), color-stop(50%, white));
     mask-image: -webkit-gradient(
         linear,
         left top,
@@ -77,15 +68,14 @@
     color: material-color($p);
     animation: rotate 6s infinite;
   }
-  &.circle:before {
+
+  &.circle::before {
     content: "";
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     border: solid 0.25em transparent;
-    border-top-color: currentColor;
+    border-top-color: currentcolor;
     border-radius: 100px;
     background-color: transparent;
-    -webkit-animation: rotate-shrink 0.75s infinite linear alternate;
     animation: rotate-shrink 0.75s infinite linear alternate;
     display: block;
     height: 60px;
@@ -100,31 +90,39 @@
   0% {
     transform: rotate(0deg);
   }
+
   12.5% {
     transform: rotate(180deg);
     animation-timing-function: linear;
   }
+
   25% {
     transform: rotate(630deg);
   }
+
   37.5% {
     transform: rotate(810deg);
     animation-timing-function: linear;
   }
+
   50% {
     transform: rotate(1260deg);
   }
+
   62.5% {
     transform: rotate(1440deg);
     animation-timing-function: linear;
   }
+
   75% {
     transform: rotate(1890deg);
   }
+
   87.5% {
     transform: rotate(2070deg);
     animation-timing-function: linear;
   }
+
   100% {
     transform: rotate(2520deg);
   }
@@ -132,25 +130,28 @@
 
 @keyframes rotate-shrink {
   0% {
-    -webkit-transform: rotate(-30deg);
     transform: rotate(-30deg);
   }
+
   29.4% {
     border-left-color: transparent;
   }
+
   29.41% {
-    border-left-color: currentColor;
+    border-left-color: currentcolor;
   }
+
   64.7% {
     border-bottom-color: transparent;
   }
+
   64.71% {
-    border-bottom-color: currentColor;
+    border-bottom-color: currentcolor;
   }
+
   100% {
-    border-left-color: currentColor;
-    border-bottom-color: currentColor;
-    -webkit-transform: rotate(225deg);
+    border-left-color: currentcolor;
+    border-bottom-color: currentcolor;
     transform: rotate(225deg);
   }
 }
@@ -159,6 +160,7 @@
   0% {
     background-position-x: -100px;
   }
+
   100% {
     background-position-x: 100px;
   }
@@ -168,12 +170,15 @@
   0% {
     width: 0%;
   }
+
   50% {
     width: 100%;
   }
+
   80% {
     width: 60%;
   }
+
   100% {
     width: 100%;
     margin-left: 100%;
@@ -184,31 +189,39 @@
   0% {
     transform: rotate(0deg);
   }
+
   12.5% {
     transform: rotate(180deg);
     animation-timing-function: linear;
   }
+
   25% {
     transform: rotate(630deg);
   }
+
   37.5% {
     transform: rotate(810deg);
     animation-timing-function: linear;
   }
+
   50% {
     transform: rotate(1260deg);
   }
+
   62.5% {
     transform: rotate(1440deg);
     animation-timing-function: linear;
   }
+
   75% {
     transform: rotate(1890deg);
   }
+
   87.5% {
     transform: rotate(2070deg);
     animation-timing-function: linear;
   }
+
   100% {
     transform: rotate(2520deg);
   }
@@ -218,21 +231,26 @@
   0% {
     transform: rotate(-30deg);
   }
+
   29.4% {
     border-left-color: transparent;
   }
+
   29.41% {
-    border-left-color: currentColor;
+    border-left-color: currentcolor;
   }
+
   64.7% {
     border-bottom-color: transparent;
   }
+
   64.71% {
-    border-bottom-color: currentColor;
+    border-bottom-color: currentcolor;
   }
+
   100% {
-    border-left-color: currentColor;
-    border-bottom-color: currentColor;
+    border-left-color: currentcolor;
+    border-bottom-color: currentcolor;
     transform: rotate(225deg);
   }
 }

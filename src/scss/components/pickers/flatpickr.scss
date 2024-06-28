@@ -10,6 +10,7 @@
   width: 307.875px;
   background: #fff;
   transition: all 0.2s ease;
+
   @include elevation(4);
 }
 
@@ -71,11 +72,13 @@
   height: 40px;
   border-top: 1px solid #e6e6e6;
 }
+
 .flatpickr-calendar.noCalendar.hasTime .flatpickr-time {
   height: auto;
 }
-.flatpickr-calendar:before,
-.flatpickr-calendar:after {
+
+.flatpickr-calendar::before,
+.flatpickr-calendar::after {
   position: absolute;
   display: block;
   pointer-events: none;
@@ -85,77 +88,87 @@
   width: 0;
   left: 22px;
 }
-.flatpickr-calendar.rightMost:before,
-.flatpickr-calendar.arrowRight:before,
-.flatpickr-calendar.rightMost:after,
-.flatpickr-calendar.arrowRight:after {
+
+.flatpickr-calendar.rightMost::before,
+.flatpickr-calendar.arrowRight::before,
+.flatpickr-calendar.rightMost::after,
+.flatpickr-calendar.arrowRight::after {
   left: auto;
   right: 22px;
 }
-.flatpickr-calendar.arrowCenter:before,
-.flatpickr-calendar.arrowCenter:after {
+
+.flatpickr-calendar.arrowCenter::before,
+.flatpickr-calendar.arrowCenter::after {
   left: 50%;
   right: 50%;
 }
-.flatpickr-calendar:before {
+
+.flatpickr-calendar::before {
   border-width: 5px;
   margin: 0 -5px;
 }
-.flatpickr-calendar:after {
+
+.flatpickr-calendar::after {
   border-width: 4px;
   margin: 0 -4px;
 }
-.flatpickr-calendar.arrowTop:before,
-.flatpickr-calendar.arrowTop:after {
+
+.flatpickr-calendar.arrowTop::before,
+.flatpickr-calendar.arrowTop::after {
   bottom: 100%;
 }
-.flatpickr-calendar.arrowTop:before {
+
+.flatpickr-calendar.arrowTop::before {
   border-bottom-color: #e6e6e6;
 }
-.flatpickr-calendar.arrowTop:after {
+
+.flatpickr-calendar.arrowTop::after {
   border-bottom-color: #fff;
 }
-.flatpickr-calendar.arrowBottom:before,
-.flatpickr-calendar.arrowBottom:after {
+
+.flatpickr-calendar.arrowBottom::before,
+.flatpickr-calendar.arrowBottom::after {
   top: 100%;
 }
-.flatpickr-calendar.arrowBottom:before {
+
+.flatpickr-calendar.arrowBottom::before {
   border-top-color: #e6e6e6;
 }
-.flatpickr-calendar.arrowBottom:after {
+
+.flatpickr-calendar.arrowBottom::after {
   border-top-color: #fff;
 }
+
 .flatpickr-calendar:focus {
   outline: 0;
 }
+
 .flatpickr-wrapper {
   position: relative;
   display: inline-block;
 }
+
 .flatpickr-months {
   display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+  display: flex;
+  display: flexbox;
   display: flex;
 }
+
 .flatpickr-months .flatpickr-month {
   background: transparent;
-  color: rgba(0, 0, 0, 0.9);
-  fill: rgba(0, 0, 0, 0.9);
+  color: rgb(0 0 0 / 90%);
+  fill: rgb(0 0 0 / 90%);
   height: 34px;
   line-height: 1;
   text-align: center;
   position: relative;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
   overflow: hidden;
   -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
 }
+
 .flatpickr-months .flatpickr-prev-month,
 .flatpickr-months .flatpickr-next-month {
   text-decoration: none;
@@ -165,21 +178,25 @@
   height: 34px;
   padding: 10px;
   z-index: 3;
-  color: rgba(0, 0, 0, 0.9);
-  fill: rgba(0, 0, 0, 0.9);
+  color: rgb(0 0 0 / 90%);
+  fill: rgb(0 0 0 / 90%);
 }
+
 .flatpickr-months .flatpickr-prev-month.flatpickr-disabled,
 .flatpickr-months .flatpickr-next-month.flatpickr-disabled {
   display: none;
 }
+
 .flatpickr-months .flatpickr-prev-month i,
 .flatpickr-months .flatpickr-next-month i {
   position: relative;
 }
+
 .flatpickr-months .flatpickr-prev-month.flatpickr-prev-month,
 .flatpickr-months .flatpickr-next-month.flatpickr-prev-month {
   left: 0;
 }
+
 .flatpickr-months .flatpickr-prev-month.flatpickr-next-month,
 .flatpickr-months .flatpickr-next-month.flatpickr-next-month {
   right: 0;
@@ -203,7 +220,6 @@
 
 .flatpickr-months .flatpickr-prev-month svg path,
 .flatpickr-months .flatpickr-next-month svg path {
-  -webkit-transition: fill 0.1s;
   transition: fill 0.1s;
   fill: inherit;
 }
@@ -212,21 +228,26 @@
   position: relative;
   height: auto;
 }
+
 .numInputWrapper input,
 .numInputWrapper span {
   display: inline-block;
 }
+
 .numInputWrapper input {
   width: 100%;
 }
+
 .numInputWrapper input::-ms-clear {
   display: none;
 }
+
 .numInputWrapper input::-webkit-outer-spin-button,
 .numInputWrapper input::-webkit-inner-spin-button {
   margin: 0;
-  -webkit-appearance: none;
+  appearance: none;
 }
+
 .numInputWrapper span {
   position: absolute;
   right: 0;
@@ -236,19 +257,19 @@
   line-height: 50%;
   opacity: 0;
   cursor: pointer;
-  border: 1px solid rgba(57, 57, 57, 0.15);
+  border: 1px solid rgb(57 57 57 / 15%);
   box-sizing: border-box;
 }
 
 .numInputWrapper span:hover {
-  background: rgba(0, 0, 0, 0.1);
+  background: rgb(0 0 0 / 10%);
 }
 
 .numInputWrapper span:active {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgb(0 0 0 / 20%);
 }
 
-.numInputWrapper span:after {
+.numInputWrapper span::after {
   display: block;
   content: "";
   position: absolute;
@@ -259,10 +280,10 @@
   border-bottom: 0;
 }
 
-.numInputWrapper span.arrowUp:after {
+.numInputWrapper span.arrowUp::after {
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-bottom: 4px solid rgba(57, 57, 57, 0.6);
+  border-bottom: 4px solid rgb(57 57 57 / 60%);
   top: 26%;
 }
 
@@ -270,10 +291,10 @@
   top: 50%;
 }
 
-.numInputWrapper span.arrowDown:after {
+.numInputWrapper span.arrowDown::after {
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
-  border-top: 4px solid rgba(57, 57, 57, 0.6);
+  border-top: 4px solid rgb(57 57 57 / 60%);
   top: 40%;
 }
 
@@ -283,11 +304,11 @@
 }
 
 .numInputWrapper span svg path {
-  fill: rgba(0, 0, 0, 0.5);
+  fill: rgb(0 0 0 / 50%);
 }
 
 .numInputWrapper:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgb(0 0 0 / 5%);
 }
 
 .numInputWrapper:hover span {
@@ -306,7 +327,6 @@
   height: 34px;
   display: inline-block;
   text-align: center;
-  -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
 
@@ -320,7 +340,7 @@
 }
 
 .flatpickr-current-month span.cur-month:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgb(0 0 0 / 5%);
 }
 
 .flatpickr-current-month .numInputWrapper {
@@ -329,17 +349,16 @@
   display: inline-block;
 }
 
-.flatpickr-current-month .numInputWrapper span.arrowUp:after {
-  border-bottom-color: rgba(0, 0, 0, 0.9);
+.flatpickr-current-month .numInputWrapper span.arrowUp::after {
+  border-bottom-color: rgb(0 0 0 / 90%);
 }
 
-.flatpickr-current-month .numInputWrapper span.arrowDown:after {
-  border-top-color: rgba(0, 0, 0, 0.9);
+.flatpickr-current-month .numInputWrapper span.arrowDown::after {
+  border-top-color: rgb(0 0 0 / 90%);
 }
 
 .flatpickr-current-month input.cur-year {
   background: transparent;
-  -webkit-box-sizing: border-box;
   box-sizing: border-box;
   color: inherit;
   cursor: text;
@@ -354,26 +373,25 @@
   border: 0;
   border-radius: 0;
   vertical-align: initial;
-  -webkit-appearance: textfield;
-  -moz-appearance: textfield;
   appearance: textfield;
 }
+
 .flatpickr-current-month input.cur-year:focus {
   outline: 0;
 }
+
 .flatpickr-current-month input.cur-year[disabled],
 .flatpickr-current-month input.cur-year[disabled]:hover {
   font-size: 100%;
-  color: rgba(0, 0, 0, 0.5);
+  color: rgb(0 0 0 / 50%);
   background: transparent;
   pointer-events: none;
 }
+
 .flatpickr-current-month .flatpickr-monthDropdown-months {
-  appearance: menulist;
   background: transparent;
   border: none;
   border-radius: 0;
-  box-sizing: border-box;
   color: inherit;
   cursor: pointer;
   font-size: inherit;
@@ -386,18 +404,20 @@
   padding: 0 0 0 0.5ch;
   position: relative;
   vertical-align: initial;
-  -webkit-box-sizing: border-box;
-  -webkit-appearance: menulist;
-  -moz-appearance: menulist;
+  box-sizing: border-box;
+  appearance: menulist;
   width: auto;
 }
+
 .flatpickr-current-month .flatpickr-monthDropdown-months:focus,
 .flatpickr-current-month .flatpickr-monthDropdown-months:active {
   outline: none;
 }
+
 .flatpickr-current-month .flatpickr-monthDropdown-months:hover {
-  background: rgba(0, 0, 0, 0.05);
+  background: rgb(0 0 0 / 5%);
 }
+
 .flatpickr-current-month
   .flatpickr-monthDropdown-months
   .flatpickr-monthDropdown-month {
@@ -405,6 +425,7 @@
   outline: none;
   padding: 0;
 }
+
 .flatpickr-weekdays {
   background: transparent;
   text-align: center;
@@ -412,30 +433,29 @@
   width: 100%;
   margin-top: 4px;
   display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+  display: flex;
+  display: flexbox;
   display: flex;
   -webkit-box-align: center;
-  -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
   height: 28px;
 }
+
 .flatpickr-weekdays .flatpickr-weekdaycontainer {
   display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
+  display: flex;
+  display: flexbox;
   display: flex;
   -webkit-box-flex: 1;
-  -webkit-flex: 1;
-  -ms-flex: 1;
   flex: 1;
 }
+
 span.flatpickr-weekday {
   cursor: default;
   font-size: 90%;
   background: transparent;
-  color: rgba(0, 0, 0, 0.54);
+  color: rgb(0 0 0 / 54%);
   line-height: 1;
   margin: 0;
   text-align: center;
@@ -448,6 +468,7 @@ span.flatpickr-weekday {
 .flatpickr-weeks {
   padding: 1px 0 0;
 }
+
 .flatpickr-days {
   position: relative;
   overflow: hidden;
@@ -455,9 +476,11 @@ span.flatpickr-weekday {
   align-items: flex-start;
   width: 307.875px;
 }
+
 .flatpickr-days:focus {
   outline: 0;
 }
+
 .dayContainer {
   padding: 0;
   outline: 0;
@@ -468,12 +491,11 @@ span.flatpickr-weekday {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
   opacity: 1;
 }
+
 .dayContainer + .dayContainer {
-  -webkit-box-shadow: -1px 0 0 #e6e6e6;
   box-shadow: -1px 0 0 #e6e6e6;
 }
 
@@ -516,12 +538,14 @@ span.flatpickr-weekday {
 .flatpickr-day.today {
   border-color: #959ea9;
 }
+
 .flatpickr-day.today:hover,
 .flatpickr-day.today:focus {
   border-color: #959ea9;
   background: #959ea9;
   color: #fff;
 }
+
 .flatpickr-day.selected,
 .flatpickr-day.startRange,
 .flatpickr-day.endRange,
@@ -545,30 +569,36 @@ span.flatpickr-weekday {
   color: #fff;
   border-color: material-color($p);
 }
+
 .flatpickr-day.selected.startRange,
 .flatpickr-day.startRange.startRange,
 .flatpickr-day.endRange.startRange {
   border-radius: 50px 0 0 50px;
 }
+
 .flatpickr-day.selected.endRange,
 .flatpickr-day.startRange.endRange,
 .flatpickr-day.endRange.endRange {
   border-radius: 0 50px 50px 0;
 }
+
 .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
 .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n + 1)),
 .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n + 1)) {
   box-shadow: -10px 0 0 material-color($p);
 }
+
 .flatpickr-day.selected.startRange.endRange,
 .flatpickr-day.startRange.startRange.endRange,
 .flatpickr-day.endRange.startRange.endRange {
   border-radius: 50px;
 }
+
 .flatpickr-day.inRange {
   border-radius: 0;
   box-shadow: -5px 0 0 #e6e6e6, 5px 0 0 #e6e6e6;
 }
+
 .flatpickr-day.flatpickr-disabled,
 .flatpickr-day.flatpickr-disabled:hover,
 .flatpickr-day.prevMonthDay,
@@ -576,55 +606,66 @@ span.flatpickr-weekday {
 .flatpickr-day.notAllowed,
 .flatpickr-day.notAllowed.prevMonthDay,
 .flatpickr-day.notAllowed.nextMonthDay {
-  color: rgba(57, 57, 57, 0.3);
+  color: rgb(57 57 57 / 30%);
   background: transparent;
   border-color: transparent;
   cursor: default;
 }
+
 .flatpickr-day.flatpickr-disabled,
 .flatpickr-day.flatpickr-disabled:hover {
   cursor: not-allowed;
-  color: rgba(57, 57, 57, 0.1);
+  color: rgb(57 57 57 / 10%);
 }
+
 .flatpickr-day.week.selected {
   box-shadow: -5px 0 0 material-color($p), 5px 0 0 material-color($p);
 }
+
 .flatpickr-day.hidden {
   visibility: hidden;
 }
+
 .rangeMode .flatpickr-day {
   margin-top: 1px;
 }
+
 .flatpickr-weekwrapper {
   float: left;
 }
+
 .flatpickr-weekwrapper .flatpickr-weeks {
   padding: 0 12px;
   box-shadow: 1px 0 0 #e6e6e6;
 }
+
 .flatpickr-weekwrapper .flatpickr-weekday {
   float: none;
   width: 100%;
   line-height: 28px;
 }
+
 .flatpickr-weekwrapper span.flatpickr-day,
 .flatpickr-weekwrapper span.flatpickr-day:hover {
   display: block;
   width: 100%;
   max-width: none;
-  color: rgba(57, 57, 57, 0.3);
+  color: rgb(57 57 57 / 30%);
   background: transparent;
   cursor: default;
   border: none;
 }
+
 .flatpickr-innerContainer {
   display: flex;
   overflow: hidden;
 }
+
 .flatpickr-rContainer {
   display: inline-block;
   padding: 0;
 }
+
 .flatpickr-time {
   text-align: center;
   outline: 0;
@@ -634,29 +675,36 @@ span.flatpickr-weekday {
   overflow: hidden;
   display: flex;
 }
-.flatpickr-time:after {
+
+.flatpickr-time::after {
   content: "";
   display: table;
   clear: both;
 }
+
 .flatpickr-time .numInputWrapper {
   flex: 1;
   width: 40%;
   height: 40px;
   float: left;
 }
-.flatpickr-time .numInputWrapper span.arrowUp:after {
+
+.flatpickr-time .numInputWrapper span.arrowUp::after {
   border-bottom-color: #393939;
 }
-.flatpickr-time .numInputWrapper span.arrowDown:after {
+
+.flatpickr-time .numInputWrapper span.arrowDown::after {
   border-top-color: #393939;
 }
+
 .flatpickr-time.hasSeconds .numInputWrapper {
   width: 26%;
 }
+
 .flatpickr-time.time24hr .numInputWrapper {
   width: 49%;
 }
+
 .flatpickr-time input {
   background: transparent;
   box-shadow: none;
@@ -672,17 +720,21 @@ span.flatpickr-weekday {
   position: relative;
   appearance: textfield;
 }
+
 .flatpickr-time input.flatpickr-hour {
   font-weight: bold;
 }
+
 .flatpickr-time input.flatpickr-minute,
 .flatpickr-time input.flatpickr-second {
   font-weight: 400;
 }
+
 .flatpickr-time input:focus {
   outline: 0;
   border: 0;
 }
+
 .flatpickr-time .flatpickr-time-separator,
 .flatpickr-time .flatpickr-am-pm {
   height: inherit;
@@ -694,6 +746,7 @@ span.flatpickr-weekday {
   user-select: none;
   align-self: center;
 }
+
 .flatpickr-time .flatpickr-am-pm {
   outline: 0;
   width: 18%;
@@ -701,12 +754,14 @@ span.flatpickr-weekday {
   text-align: center;
   font-weight: 400;
 }
+
 .flatpickr-time input:hover,
 .flatpickr-time .flatpickr-am-pm:hover,
 .flatpickr-time input:focus,
 .flatpickr-time .flatpickr-am-pm:focus {
   background: #eee;
 }
+
 .flatpickr-input[readonly] {
   cursor: pointer;
 }

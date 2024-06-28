@@ -1,13 +1,10 @@
 .btn:not(.btn-icon, .btn-fab) {
 	border: none;
-
 	border-radius: $border-radius * 4px;
 	padding: #{$padding * 10px} #{$padding * 16px};
 	font-size: $font-size * 14px;
-
 	background: material-color($dk, "200");
 	color: material-color($dk, "800");
-
 	font-weight: 500;
 	text-transform: uppercase;
 	cursor: pointer;
@@ -17,11 +14,13 @@
 	align-items: center;
 	justify-content: center;
 	transition: all 0.2s ease;
+	text-decoration: none;
 
 	@include elevation(2);
 
 	&:hover {
 		background: material-color($dk, "300");
+
 		@include elevation(4);
 	}
 
@@ -109,9 +108,7 @@
 		}
 	}
 
-	//
 	// Outlined
-	//
 
 	&.btn-outlined {
 		background: transparent;
@@ -209,9 +206,7 @@
 		}
 	}
 
-	//
 	// Text Button
-	//
 
 	&.btn-text {
 		background: transparent;
@@ -293,17 +288,13 @@
 		}
 	}
 
-	//
 	// Unelevated
-	//
 
 	&.btn-unelevated {
 		box-shadow: none !important;
 	}
 
-	//
 	// Size
-	//
 
 	&.btn-small {
 		font-size: $font-size * 14px;

@@ -1,5 +1,5 @@
 .radio {
-   color: rgba(0,0,0,.87);
+   color: rgb(0 0 0 / 87%);
    display: inline-flex;
    position: relative;
    align-items: center;
@@ -8,8 +8,6 @@
 
   & > input {
     appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
     z-index: 9;
     position: absolute;
     left: -10px;
@@ -19,7 +17,7 @@
     border-radius: 50%;
     width: 40px;
     height: 40px;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgb(0 0 0 / 60%);
     outline: none;
     opacity: 0;
     transform: scale(1);
@@ -39,7 +37,7 @@
     box-sizing: border-box;
     margin: 2px 10px 2px 0;
     border: solid 2px; /* Safari */
-    border-color: rgba(0, 0, 0, 0.6);
+    border-color: rgb(0 0 0 / 60%);
     border-radius: 50%;
     width: 20px;
     height: 20px;
@@ -100,15 +98,15 @@
   }
 
   & > input:disabled + span {
-    color: rgba(0, 0, 0, 0.38);
+    color: rgb(0 0 0 / 38%);
     cursor: initial;
   }
 
   & > input:disabled + span::before {
-    border-color: currentColor;
+    border-color: currentcolor;
   }
 
   & > input:disabled + span::after {
-    background-color: currentColor;
+    background-color: currentcolor;
   }
 }
