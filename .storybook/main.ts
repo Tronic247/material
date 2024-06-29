@@ -12,5 +12,8 @@ const config: StorybookConfig = {
 		name: "@storybook/html-vite",
 		options: {},
 	},
+	core: {
+		disableTelemetry: true, // 👈 Disables telemetry
+	},
 };
 export default config;

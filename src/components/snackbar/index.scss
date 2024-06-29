@@ -1,0 +1,37 @@
+.snackbar {
+	position: fixed;
+	bottom: 10px;
+	left: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	background: material-color($dk, "900");
+	color: material-color($dk, "300");
+	padding: $padding * 5px #{$padding * 16px};
+	border-radius: $border-radius * 4px;
+	transition: all 0.2s ease;
+	font-size: 14px * $font-size;
+	font-weight: 400;
+	min-width: 380px;
+	gap: 8px * $padding;
+
+	@include elevation(4);
+
+	transform: translate(-50%, 20%) scale(0.9);
+	opacity: 0;
+
+	& .snackbar-actions {
+		display: flex;
+		gap: 8px * $padding;
+
+		& .btn {
+			padding-left: 2px * $padding;
+			padding-right: 2px * $padding;
+		}
+	}
+
+	&.snackbar-show {
+		transform: translate(-50%, -10%) scale(1);
+		opacity: 1;
+	}
+}
