@@ -8,9 +8,9 @@
  */
 
 @import "components/scss/reset";
-@import "components/scss/base";
 @import "components/scss/colors";
 @import "components/scss/variables";
+@import "components/scss/base";
 @import "components/scss/elevation";
 @import "components/scss/typography";
 @import "components/ripple/";
@@ -49,3 +49,12 @@
 
 // Tooltip
 @import "components/tooltip/";
+
+// Table
+@import "components/table/";
+
+// Breadcrumbs
+@import "components/breadcrumbs/";
+
+// Progress
+@import "components/progress/";

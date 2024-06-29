@@ -1,0 +1,16 @@
+body {
+	line-height: 1.5;
+}
+
+a {
+	color: material-color($p);
+	text-decoration: none;
+
+	&:hover {
+		text-decoration: underline;
+	}
+}
+
+:focus-visible {
+	box-shadow: 0 0 0 3px #{material-color($p)} !important;
+}
