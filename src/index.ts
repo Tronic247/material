@@ -1,6 +1,7 @@
 import Ripple from "./components/ripple/ripple";
 import Dialog from "./components/dialog/Dialog";
 import Snackbar from "./components/snackbar/Snackbar";
+import Tooltip from "./components/tooltip/Tooltip";
 
 const Init = () => {
 	Ripple().initialize();
@@ -15,10 +16,11 @@ declare global {
 			Dialog: typeof Dialog;
 			Init: typeof Init;
 			Snackbar: typeof Snackbar;
+			Tooltip: typeof Tooltip;
 		};
 	}
 }
 
-window.Material = { Ripple, Dialog, Init, Snackbar };
+window.Material = { Ripple, Dialog, Init, Snackbar, Tooltip };
 
 export { Ripple, Dialog, Init, Snackbar };
