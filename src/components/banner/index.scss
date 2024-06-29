@@ -1,0 +1,36 @@
+.banner {
+	background: #fff;
+	border: 1px solid material-color($dk, "200");
+	border-radius: $border-radius * 4px;
+
+	& .banner-top {
+		display: flex;
+		align-items: start;
+		justify-content: start;
+		padding: #{$padding * 16px} #{$padding * 16px};
+
+		& .banner-left {
+			width: 50px;
+			display: flex;
+			align-items: start;
+			justify-content: start;
+			margin-right: $padding * 20px;
+			color: material-color($dk, "700");
+
+			& .mdi {
+				margin: 0;
+				line-height: 1;
+			}
+		}
+
+		& .banner-right {
+			flex: 1;
+		}
+	}
+
+	& .banner-actions {
+		display: flex;
+		justify-content: flex-end;
+		padding-bottom: $padding * 6px;
+	}
+}

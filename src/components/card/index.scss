@@ -1,0 +1,82 @@
+.card {
+	background: white;
+	position: relative;
+	overflow: hidden;
+	border-radius: $border-radius * 4px;
+
+	@include elevation(2);
+
+	$padding-card: $padding * 20px;
+
+	& .card-content {
+		padding: 0 $padding-card;
+		text-align: left;
+	}
+
+	& .card-actions {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		padding: 0 #{$padding-card - 14px};
+		padding-bottom: 4px * $padding;
+	}
+
+	&.card-hoverable {
+		cursor: pointer;
+		transition: all 0.2s ease;
+		overflow: hidden;
+		display: block;
+
+		& .card-hover-item {
+			text-decoration: none;
+			color: unset;
+			display: block;
+
+			&:hover {
+				background: material-color($dk, "100");
+			}
+
+			&:active,
+			&:focus {
+				background: material-color($dk, "200");
+			}
+		}
+
+		& .card-actions {
+			cursor: auto;
+		}
+
+		&:hover,
+		&:focus {
+			@include elevation(3);
+		}
+	}
+
+	& .card-title {
+		margin-top: 10px;
+        margin-bottom: 4px;
+		font-size: $font-size * 20px !important;
+		font-weight: 500;
+	}
+
+	& .card-subtitle {
+		color: material-color($dk, "600");
+		font-size: $font-size * 14px !important;
+		font-weight: 500;
+		margin-top: 4px;
+        margin-bottom: 10px;
+	}
+
+	& .card-text {
+		margin: 10px 0;
+	}
+
+	&.hoverable {
+		transition: all 0.2s ease;
+
+		&:hover,
+		&:focus {
+			@include elevation(6);
+		}
+	}
+}
