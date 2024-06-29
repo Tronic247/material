@@ -383,6 +383,76 @@ $i: 1;
 			color: material-color($dark-color, #{$i * 100}) !important;
 		}
 	}
+
+	.ripple-primary {
+		& .ripple {
+			background-color: material-color($primary-color) !important;
+		}
+	}
+
+	.ripple-secondary {
+		& .ripple {
+			background-color: material-color($secondary-color) !important;
+		}
+	}
+
+	.ripple-danger {
+		& .ripple {
+			background-color: material-color($danger-color) !important;
+		}
+	}
+
+	.ripple-success {
+		& .ripple {
+			background-color: material-color($success-color) !important;
+		}
+	}
+
+	.ripple-warning {
+		& .ripple {
+			background-color: material-color($warning-color) !important;
+		}
+	}
+
+	.ripple-dark {
+		& .ripple {
+			background-color: material-color($dark-color) !important;
+		}
+	}
+
+	.ripple-primary-#{$i} {
+		& .ripple {
+			background-color: material-color($primary-color, #{$i * 100}) !important;
+		}
+	}
+	.ripple-secondary-#{$i} {
+		& .ripple {
+			background-color: material-color(
+				$secondary-color,
+				#{$i * 100}
+			) !important;
+		}
+	}
+	.ripple-danger-#{$i} {
+		& .ripple {
+			background-color: material-color($danger-color, #{$i * 100}) !important;
+		}
+	}
+	.ripple-success-#{$i} {
+		& .ripple {
+			background-color: material-color($success-color, #{$i * 100}) !important;
+		}
+	}
+	.ripple-warning-#{$i} {
+		& .ripple {
+			background-color: material-color($warning-color, #{$i * 100}) !important;
+		}
+	}
+	.ripple-dark-#{$i} {
+		& .ripple {
+			background-color: material-color($dark-color, #{$i * 100}) !important;
+		}
+	}
 }
 
 .color-white {

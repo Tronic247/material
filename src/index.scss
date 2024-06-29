@@ -1,8 +1,8 @@
 /*
- * Tronic247 Material design - v3.0
+ * Tronic247 Material design - v4.0
  * https://material.tronic247.com
  *
- * Copyright (C) 2021 "Tronic247" Posandu Mapa
+ * Copyright (C) 2024 "Tronic247" Posandu Mapa
  * licensed under the MIT license.
  * https://github.com/Tronic247/material/blob/Main/LICENSE
  */
@@ -13,5 +13,13 @@
 @import "components/scss/variables";
 @import "components/scss/elevation";
 @import "components/scss/typography";
-@import "components/ripple/ripple";
+@import "components/ripple/";
+
+// Buttons
 @import "components/button/index";
+@import "components/buttonGroup/";
+@import "components/iconButton/";
+@import "components/fab/";
+
+// Alerts
+@import "components/alert/";

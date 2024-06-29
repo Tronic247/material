@@ -1,0 +1,44 @@
+.alert {
+	padding: #{$padding * 14px} #{$padding * 20px};
+	border-radius: #{$border-radius * 6px};
+	color: material-color($dk, "100");
+	background: material-color($dk, "900");
+	display: flex;
+	align-items: center;
+	justify-content: start;
+
+	&.alert-primary {
+		color: white;
+		background: material-color($p);
+	}
+
+	&.alert-secondary {
+		color: white;
+		background: material-color($s);
+	}
+
+	&.alert-danger {
+		color: white;
+		background: material-color($d);
+	}
+
+	&.alert-success {
+		color: white;
+		background: material-color($g);
+	}
+
+	&.alert-warning {
+		color: black;
+		background: material-color($w);
+	}
+
+    & .alert-action {
+        margin-left: auto;
+        margin-top: #{($padding * 14px) * -1};
+        margin-bottom: #{($padding * 14px) * -1};
+        display: flex;
+        align-items: center;
+        justify-content: center;
+		gap: #{$padding * 8px};
+    }
+}

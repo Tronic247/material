@@ -1,81 +1,108 @@
-const Ripple = {
-	init: (el) => {
-		const buttons = el
-			? [el]
-			: document.querySelectorAll(
-					".ripple-e:not(.ripple-ready) , .btn:not(.ripple-ready), .icon:not(.ripple-ready)"
-				);
-		const stopEvents = [
-			"pointerup",
-			"mouseleave",
-			"dragleave",
-			"touchmove",
-			"touchend",
-			"touchcancel",
-		];
-		let id;
+import { $$ } from "../../util/dom";
 
-		function findFurthestPoint(
-			clickPointX,
-			elementWidth,
-			offsetX,
-			clickPointY,
-			elementHeight,
-			offsetY
-		) {
-			let x = clickPointX - offsetX > elementWidth / 2 ? 0 : elementWidth;
-			let y = clickPointY - offsetY > elementHeight / 2 ? 0 : elementHeight;
-			let d = Math.hypot(
-				x - (clickPointX - offsetX),
-				y - (clickPointY - offsetY)
-			);
-			return d;
-		}
+function findFurthestPoint(
+	clickPointX: number,
+	elementWidth: number,
+	offsetX: number,
+	clickPointY: number,
+	elementHeight: number,
+	offsetY: number
+) {
+	let x = clickPointX - offsetX > elementWidth / 2 ? 0 : elementWidth;
+	let y = clickPointY - offsetY > elementHeight / 2 ? 0 : elementHeight;
+	let d = Math.hypot(x - (clickPointX - offsetX), y - (clickPointY - offsetY));
 
-		buttons.forEach((button) => {
-			button.classList.add("ripple-ready");
-			button.addEventListener("pointerdown", (e) => {
-				const rect = button.getBoundingClientRect();
-				const radius = findFurthestPoint(
-					e.clientX,
-					button.offsetWidth,
-					rect.left,
-					e.clientY,
-					button.offsetHeight,
-					rect.top
-				);
+	return d;
+}
 
-				id =
-					"__" +
-					(Math.random() + 1).toString(36).substring(7) +
-					"-" +
-					(Math.random() + 1).toString(36).substring(7);
+function Ripple() {
+	const startEvents = ["pointerdown"];
+	const stopEvents = [
+		"pointerup",
+		"mouseleave",
+		"dragleave",
+		"touchmove",
+		"touchend",
+		"touchcancel",
+	];
+	const selector =
+		".ripple-e:not([data-ripple-ready]) , .btn:not([data-ripple-ready]), .icon:not([data-ripple-ready])";
 
-				const circle = document.createElement("div");
-				circle.classList.add("ripple");
-				circle.id = id;
+	function startRipple(el: HTMLElement, event: PointerEvent) {
+		const rect = el.getBoundingClientRect();
+		const radius = findFurthestPoint(
+			event.clientX,
+			el.offsetWidth,
+			rect.left,
+			event.clientY,
+			el.offsetHeight,
+			rect.top
+		);
 
-				circle.style.left = `${e.clientX - rect.left - radius}px`;
-				circle.style.top = `${e.clientY - rect.top - radius}px`;
-				circle.style.width = circle.style.height = `${radius * 2}px`;
+		const circle = document.createElement("div");
+		circle.classList.add("ripple");
 
-				button.appendChild(circle);
-			});
+		circle.style.left = `${event.clientX - rect.left - radius}px`;
+		circle.style.top = `${event.clientY - rect.top - radius}px`;
+		circle.style.width = circle.style.height = `${radius * 2}px`;
 
-			stopEvents.forEach((event) => {
-				button.addEventListener(event, () => {
-					const ripple = button.querySelector(".ripple#" + id);
-					if (ripple) {
-						ripple.style.opacity = "0";
-						setTimeout(() => {
-							ripple.remove();
-						}, 600);
-					}
-				});
-			});
+		el.appendChild(circle);
+
+		const stop = () => {
+			circle.style.opacity = "0";
+
+			setTimeout(() => {
+				circle.remove();
+			}, 600);
+		};
+
+		stopEvents.forEach((event) => {
+			el.addEventListener(event, stop);
 		});
-	},
-};
-Ripple.init();
+	}
+
+	function onRippleStart(e: any, el: HTMLElement) {
+		startRipple(el, e as PointerEvent);
+	}
+
+	/**
+	 * Attach ripple effect to element
+	 */
+	function attachToElement(el: HTMLElement) {
+		el.dataset.rippleReady = "true";
+
+		startEvents.forEach((event) => {
+			el.addEventListener(event, (e) => onRippleStart(e, el));
+		});
+	}
+
+	/**
+	 * Detach ripple effect from element
+	 */
+	function detachFromElement(el: HTMLElement) {
+		delete el.dataset.rippleReady;
+
+		startEvents.forEach((event) => {
+			el.removeEventListener(event, (e) => onRippleStart(e, el));
+		});
+	}
+
+	/**
+	 * Attach ripple effect to elements
+	 */
+	function initialize(parent: HTMLElement | Document = document) {
+		const elements = $$(selector, parent as HTMLElement);
+
+		if (!elements) return;
+
+		elements.forEach((el) => attachToElement(el));
+	}
+
+	return {
+		initialize,
+		attachToElement,
+		detachFromElement,
+	};
+}
 
 export default Ripple;

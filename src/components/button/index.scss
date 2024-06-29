@@ -16,6 +16,7 @@
 	align-items: center;
 	justify-content: center;
 	transition: all 0.2s ease;
+	gap: $padding * 8px;
 	text-decoration: none;
 
 	@include elevation(2);
@@ -32,6 +33,19 @@
 
 	&:active {
 		@include elevation(8);
+	}
+
+	&.btn-disabled,
+	&:disabled {
+		background: material-color($dk, "200") !important;
+		color: material-color($dk, "800") !important;
+		cursor: not-allowed;
+
+		@include elevation(2);
+
+		& .ripple {
+			display: none !important;
+		}
 	}
 
 	&.btn-primary {
@@ -96,17 +110,6 @@
 
 		&:focus-visible {
 			background: material-color($w, "700");
-		}
-	}
-
-	&.btn-disabled,
-	&:disabled {
-		background: material-color($dk, "200");
-		color: material-color($dk, "800");
-		cursor: not-allowed;
-
-		& .ripple {
-			display: none !important;
 		}
 	}
 
@@ -201,8 +204,8 @@
 
 		&.btn-disabled,
 		&:disabled {
-			background: transparent;
-			outline-color: material-color($dk, "300");
+			background: transparent !important;
+			outline-color: material-color($dk, "300") !important;
 			color: material-color($dk, "800");
 			cursor: not-allowed;
 		}
@@ -298,7 +301,7 @@
 
 	// Size
 
-	&.btn-small {
+	&.btn-sm {
 		font-size: $font-size * 14px;
 		padding: $padding * 8px #{$padding * 10px};
 	}
@@ -308,7 +311,7 @@
 		padding: $padding * 6px #{$padding * 8px};
 	}
 
-	&.btn-large {
+	&.btn-lg {
 		font-size: $font-size * 20px;
 		padding: $padding * 14px #{$padding * 25px};
 	}

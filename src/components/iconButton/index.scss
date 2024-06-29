@@ -1,0 +1,90 @@
+.btn.btn-icon {
+	$size: $padding * 45px;
+
+	max-width: $size;
+	max-height: $size;
+	min-width: $size;
+	min-height: $size;
+	color: material-color($dk, "800");
+	display: inline-flex;
+	align-items: center;
+	overflow: hidden;
+	justify-content: center;
+	border-radius: 100%;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	position: relative;
+	margin: #{-1 * $padding * 2}px;
+
+	& .mdi {
+		font-size: $font-size * 20px;
+		pointer-events: none;
+	}
+
+	&:hover {
+		background: material-color($dk, "300");
+		color: material-color($dk, "900");
+	}
+
+	&:active {
+		background: material-color($dk, "400");
+		color: material-color($dk, "900");
+	}
+
+	&:focus-visible {
+		background: material-color($dk, "400");
+		color: material-color($dk, "900");
+	}
+
+	&.btn-disabled,
+	&:disabled {
+		background: material-color($dk, "200");
+		color: material-color($dk, "500");
+		cursor: not-allowed;
+
+		& .ripple {
+			display: none;
+		}
+	}
+
+	&.btn-light {
+		color: material-color($dk, "200");
+		background: transparent;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0.2;
+			pointer-events: none;
+			transition: all 0.2s ease;
+		}
+
+		&:hover::before {
+			background: material-color($dk, "300");
+		}
+
+		&:active::before {
+			background: material-color($dk, "400");
+		}
+
+		&:focus-visible::before {
+			background: material-color($dk, "400");
+		}
+
+		&.btn-disabled,
+		&:disabled {
+			color: material-color($dk, "500");
+			cursor: not-allowed;
+
+			&::before {
+				background: material-color($dk, "100");
+			}
+		}
+	}
+}
