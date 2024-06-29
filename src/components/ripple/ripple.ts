@@ -57,7 +57,7 @@ function Ripple() {
 		};
 
 		stopEvents.forEach((event) => {
-			el.addEventListener(event, stop);
+			el.addEventListener(event, stop, { passive: true });
 		});
 	}
 
