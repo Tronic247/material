@@ -26,3 +26,6 @@ dist-ssr
 *storybook.log
 ts/
 scss/
+
+.turbo
+%SystemDrive%

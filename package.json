@@ -1,67 +1,14 @@
 {
-	"name": "tronic247-material",
-	"version": "3.1.1",
-	"description": "Modern Material design framework",
+	"name": "tronic247-material-monorepo",
+	"private": true,
 	"scripts": {
-		"dev": "vite",
-		"build": "tsc && vite build",
-		"preview": "vite preview",
-		"storybook": "storybook dev -p 6006",
-		"build-storybook": "storybook build",
-		"chromatic": "npx chromatic --project-token=chpt_97e485df58ecdbd"
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"storybook": "turbo run storybook",
+		"lint": "turbo run lint"
 	},
-	"keywords": [
-		"material-design"
-	],
-	"author": {
-		"name": "tronic247"
-	},
-	"files": [
-		"dist"
-	],
-	"module": "./dist/material.js",
-	"exports": {
-		".": {
-			"import": "./dist/material.js"
-		},
-		"./style.css": {
-			"import": "./dist/style.css"
-		}
-	},
-	"license": "MIT",
-	"type": "module",
 	"devDependencies": {
-		"@chromatic-com/storybook": "1.6.0",
-		"@popperjs/core": "^2.11.0",
-		"@storybook/addon-essentials": "^8.1.11",
-		"@storybook/addon-interactions": "^8.1.11",
-		"@storybook/addon-links": "^8.1.11",
-		"@storybook/blocks": "^8.1.11",
-		"@storybook/html": "^8.1.11",
-		"@storybook/html-vite": "^8.1.11",
-		"@storybook/test": "^8.1.11",
-		"chokidar": "^3.5.3",
-		"chromatic": "^11.5.4",
-		"css-minify": "^2.0.0",
-		"esbuild": "^0.19.0",
-		"flatpickr": "^4.6.3",
-		"focus-trap": "^7.5.4",
-		"nouislider": "^15.5.0",
-		"sass": "^1.77.6",
-		"storybook": "^8.1.11",
-		"stylelint": "^16.6.1",
-		"stylelint-config-standard": "^36.0.1",
-		"stylelint-config-standard-scss": "^13.1.0",
-		"tabbable": "^6.0.0"
+		"turbo": "latest"
 	},
-	"dependencies": {
-		"@floating-ui/dom": "^1.6.6",
-		"iconify-icon": "^2.1.0",
-		"tcol": "^1.0.2",
-		"terser": "^5.31.1",
-		"typescript": "^5.2.2",
-		"vite": "^5.3.1",
-		"vite-plugin-banner": "^0.7.1",
-		"vite-plugin-stylelint": "^5.3.1"
-	}
+	"packageManager": "pnpm@9.0.0"
 }
