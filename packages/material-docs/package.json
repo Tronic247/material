@@ -11,9 +11,10 @@
 		"astro": "astro"
 	},
 	"dependencies": {
-		"astro": "^4.11.3",
 		"@astrojs/check": "^0.7.0",
-		"typescript": "^5.5.2",
-		"tronic247-material": "workspace:*"
+		"astro": "^4.11.3",
+		"iconify-icon": "^2.1.0",
+		"tronic247-material": "workspace:*",
+		"typescript": "^5.5.2"
 	}
 }

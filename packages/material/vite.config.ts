@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import stylelint from "vite-plugin-stylelint";
 import fs from "fs";
 import banner from "vite-plugin-banner";
+import dts from "vite-plugin-dts";
 
 const PACKAGE_JSON = JSON.parse(
 	fs.readFileSync(process.cwd() + "/package.json", "utf-8")
@@ -18,6 +19,10 @@ const license = `/**
 export default defineConfig({
 	plugins: [
 		banner(license),
+		dts({
+			rollupTypes: true,
+			exclude: ["*.story.ts"],
+		}),
 		stylelint({
 			fix: true,
 			lintInWorker: true,
@@ -26,12 +31,16 @@ export default defineConfig({
 	],
 	build: {
 		lib: {
-			entry: ["src/index.ts", "src/index.scss"],
+			entry: ["src/index.ts"],
 			formats: ["es", "cjs"],
 			fileName: (format) =>
 				format === "es" ? "material.js" : "material.min.js",
 		},
-		minify: "terser",
-		sourcemap: false,
+		rollupOptions: {
+			input: {
+				index: "src/index.ts",
+				material: "src/index.scss",
+			},
+		},
 	},
 });
