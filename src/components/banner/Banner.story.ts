@@ -18,7 +18,7 @@ const meta = {
 						args.withIcon
 							? `
                     <div class="banner-left">
-						<i class="mdi mdi-information display-h2"></i>
+						<iconify-icon icon="mdi:home" class="display-h2"></iconify-icon>
 					</div>
                     `
 							: ``

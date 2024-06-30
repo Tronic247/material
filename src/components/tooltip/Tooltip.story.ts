@@ -26,7 +26,7 @@ const meta = {
 
 			<button
 					class="btn btn-primary"
-					data-tooltip="<i>Fancy</i> <strong>tooltip</strong>"
+					data-tooltip="<i>Fancy</i> <strong>tooltip</strong> <iconify-icon icon='mdi:home'></iconify-icon>"
 					data-tooltip-placement="right"
 					data-tooltip-allow-html
 			>

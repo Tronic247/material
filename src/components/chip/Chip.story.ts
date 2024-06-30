@@ -13,7 +13,7 @@ const meta = {
 
 		div.innerHTML = `
             <div class="chip ripple-e ${args.active ? "chip-active" : ""}">
-               ${args.withIcon ? `<i class="mdi mdi-account"></i>` : ""}
+               ${args.withIcon ? `<iconify-icon icon="mdi:home" class="icon"></iconify-icon>` : ``}
 
                Chip
             </div>

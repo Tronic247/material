@@ -24,11 +24,11 @@ const meta = {
 		Ripple().attachToElement(btn);
 
 		btn.innerHTML = `
-			${args.iconBefore ? '<i class="mdi mdi-thumb-up"></i>' : ""}
+			${args.iconBefore ? '<iconify-icon icon="mdi:thumb-up" class="icon"></iconify-icon>' : ""}
 
 			${args.label}
 
-			${args.iconAfter ? '<i class="mdi mdi-thumb-up"></i>' : ""}
+			${args.iconAfter ? '<iconify-icon icon="mdi:thumb-up" class="icon"></iconify-icon>' : ""}
 		`;
 
 		return btn;

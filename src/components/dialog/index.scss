@@ -6,7 +6,7 @@
 	justify-content: center;
 	align-items: center;
 	background-color: #00000073;
-	transition: all 0.2s ease;
+	transition: all 0.1s ease;
 
 	& .dialog-content {
 		background: white;
@@ -58,7 +58,10 @@
 		& .dialog-content {
 			opacity: 0;
 			transform: scale(1);
+			transition: all 0.1s ease;
 		}
+
+		transition: all 0.1s ease;
 	}
 
 	&.dialog-scrollable {

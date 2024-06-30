@@ -22,7 +22,7 @@ const meta = {
                         <button class="btn btn-${args.variant} btn-unelevated">Action</button>
 
                         <button class="btn btn-light btn-icon btn-${args.variant} btn-unelevated">
-                            <i class="mdi mdi-close"></i>
+                            <iconify-icon icon="mdi:close" class="icon"></iconify-icon>
                         </button>
                     </div>
                 `

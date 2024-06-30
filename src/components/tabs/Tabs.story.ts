@@ -20,7 +20,7 @@ const meta = {
                     ${
 											args.icon !== ""
 												? `
-                            <i class="mdi mdi-home icon display-h5"></i>
+                            <iconify-icon icon="mdi:home" class="icon display-h5"></iconify-icon>
                         `
 												: ``
 										}
@@ -29,7 +29,7 @@ const meta = {
                     ${
 											args.icon !== ""
 												? `
-                            <i class="mdi mdi-home icon display-h5"></i>
+                            <iconify-icon icon="mdi:account" class="icon display-h5"></iconify-icon>
                         `
 												: ``
 										}
@@ -38,7 +38,7 @@ const meta = {
                     ${
 											args.icon !== ""
 												? `
-                            <i class="mdi mdi-home icon display-h5"></i>
+                            <iconify-icon icon="mdi:information" class="icon display-h5"></iconify-icon>
                         `
 												: ``
 										}

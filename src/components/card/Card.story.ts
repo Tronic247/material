@@ -70,7 +70,7 @@ const meta = {
 					<button class="btn btn-text btn-secondary ripple-e">Action 2</button>
 
 					<button class="btn btn-icon" style="margin-left: auto">
-						<i class="mdi mdi-thumb-down"></i>
+						<iconify-icon icon="mdi:heart" class="icon"></iconify-icon>
 					</button>
 				</div>
 
