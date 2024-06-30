@@ -16,7 +16,7 @@ const meta = {
 		Ripple().attachToElement(btn);
 
 		btn.innerHTML = `
-            ${args.icon ? `<i class="mdi mdi-heart"></i>` : ""}
+            ${args.icon ? `<i class="mdi mdi-heart icon"></i>` : ""}
 
             ${args.label ? `Delete` : ""}
 		`;

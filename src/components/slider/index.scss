@@ -1,0 +1,211 @@
+/* stylelint-disable no-descending-specificity */
+/* stylelint-disable color-function-notation */
+.slider {
+	display: inline-block;
+	width: 200px;
+	color: rgba(0, 0, 0, 87%);
+	font-family: var(
+		--pure-material-font,
+		"Roboto",
+		"Segoe UI",
+		BlinkMacSystemFont,
+		system-ui,
+		-apple-system
+	);
+	font-size: 16px;
+	line-height: 1.5;
+
+	&.slider-error {
+		color: material-color($d);
+
+		& > input {
+			&::-webkit-slider-thumb {
+				background-color: material-color($d);
+			}
+
+			&::-moz-range-thumb {
+				background-color: material-color($d);
+			}
+
+			&::-webkit-slider-runnable-track {
+				background: rgba(material-color($d), 0.24);
+			}
+
+			&::-moz-range-track {
+				background: rgba(material-color($d), 0.24);
+			}
+
+			&::-moz-range-progress {
+				background-color: material-color($d);
+			}
+
+			&:hover {
+				&::-webkit-slider-thumb {
+					box-shadow: 0 0 0 2px rgba(material-color($d), 0.1) !important;
+				}
+
+				&::-moz-range-thumb {
+					box-shadow: 0 0 0 2px rgba(material-color($d), 0.1) !important;
+				}
+			}
+
+			&:focus {
+				&::-webkit-slider-thumb {
+					box-shadow: 0 0 0 2px rgba(material-color($d), 0.2);
+				}
+
+				&::-moz-range-thumb {
+					box-shadow: 0 0 0 2px rgba(material-color($d), 0.2);
+				}
+			}
+
+			&:active {
+				&::-webkit-slider-thumb {
+					box-shadow: 0 0 0 2px rgba(material-color($d), 0.4) !important;
+				}
+
+				&::-moz-range-thumb {
+					box-shadow: 0 0 0 2px rgba(material-color($d), 0.4) !important;
+				}
+			}
+		}
+	}
+}
+
+.slider > input {
+	appearance: none;
+	position: relative;
+	top: 24px;
+	display: block;
+	margin: 0 0 -36px;
+	width: 100%;
+	height: 36px;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.slider > input:last-child {
+	position: static;
+	margin: 0;
+}
+
+.slider > span {
+	display: inline-block;
+	margin-bottom: 36px;
+}
+
+.slider > input:focus {
+	outline: none;
+}
+
+.slider > input:disabled {
+	cursor: default;
+	opacity: 0.38;
+}
+
+.slider > input:disabled + span {
+	color: rgba(0, 0, 0, 38%);
+}
+
+.slider > input::-webkit-slider-runnable-track {
+	margin: 17px 0;
+	border-radius: 1px;
+	width: 100%;
+	height: 2px;
+	background-color: rgba(material-color($p), 0.24);
+}
+
+.slider > input::-webkit-slider-thumb {
+	appearance: none;
+	border: none;
+	border-radius: 50%;
+	height: 2px;
+	width: 2px;
+	background: material-color($p);
+	transform: scale(6, 6);
+	transition: box-shadow 0.2s;
+}
+
+.slider:hover > input::-webkit-slider-thumb {
+	box-shadow: 0 0 0 2px rgba(material-color($p), 0.1);
+}
+
+.slider > input:focus::-webkit-slider-thumb {
+	box-shadow: 0 0 0 2px rgba(material-color($p), 0.2);
+}
+
+.slider:hover > input:focus::-webkit-slider-thumb {
+	box-shadow: 0 0 0 2px rgba(material-color($p), 0.3);
+}
+
+.slider > input:active::-webkit-slider-thumb {
+	box-shadow: 0 0 0 2px rgba(material-color($p), 0.4) !important;
+}
+
+.slider > input:disabled::-webkit-slider-runnable-track {
+	background-color: rgba(0, 0, 0, 38%);
+}
+
+.slider > input:disabled::-webkit-slider-thumb {
+	background-color: #000;
+	transform: scale(4, 4);
+}
+
+.slider > input::-moz-range-track {
+	margin: 17px 0;
+	border-radius: 1px;
+	width: 100%;
+	height: 2px;
+	background-color: rgba(material-color($p), 0.24);
+}
+
+.slider > input::-moz-range-thumb {
+	appearance: none;
+	border: none;
+	border-radius: 50%;
+	height: 2px;
+	width: 2px;
+	background-color: material-color($p);
+	transform: scale(6, 6);
+	transition: box-shadow 0.2s;
+}
+
+.slider > input::-moz-range-progress {
+	border-radius: 1px;
+	height: 2px;
+	background-color: material-color($p);
+}
+
+.slider:hover > input:hover::-moz-range-thumb {
+	box-shadow: 0 0 0 2px rgba(material-color($p), 0.1);
+}
+
+.slider > input:focus::-moz-range-thumb {
+	box-shadow: 0 0 0 2px rgba(material-color($p), 0.2);
+}
+
+.slider:hover > input:focus::-moz-range-thumb {
+	box-shadow: 0 0 0 2px rgba(material-color($p), 0.3);
+}
+
+.slider > input:active::-moz-range-thumb {
+	box-shadow: 0 0 0 2px rgba(material-color($p), 0.4) !important;
+}
+
+.slider > input:disabled::-moz-range-track {
+	background-color: rgba(0, 0, 0, 38%);
+}
+
+.slider > input:disabled::-moz-range-progress {
+	background-color: rgba(0, 0, 0, 87%);
+}
+
+.slider > input:disabled::-moz-range-thumb {
+	background-color: rgb(0, 0, 0);
+	box-shadow: 0 0 0 1px rgb(255, 255, 255) !important;
+	transform: scale(4, 4);
+}
+
+.slider > input::-moz-focus-outer {
+	border: none;
+}

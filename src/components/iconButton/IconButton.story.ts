@@ -18,11 +18,11 @@ const meta = {
                 
             <div style="background-color: black; padding: 40px; margin-top: 20px; display: inline-block;">
                 <button class="btn btn-icon btn-light btn-${args.disabled ? `disabled` : ``}">
-                    <i class="mdi mdi-thumb-up"></i>
+                    <i class="mdi icon mdi-thumb-up"></i>
                 </button>
 
                 <button class="btn btn-icon btn-light btn-${args.disabled ? `disabled` : ``}">
-                    <i class="mdi mdi-thumb-down"></i>
+                    <i class="mdi icon mdi-thumb-down"></i>
                 </button>
             </div>
             
@@ -31,11 +31,11 @@ const meta = {
 								: `
             
             <button class="btn btn-icon btn-${args.disabled ? `disabled` : ``}">
-                <i class="mdi mdi-thumb-up"></i>
+                <i class="mdi icon mdi-thumb-up"></i>
             </button>
 
             <button class="btn btn-icon btn-${args.disabled ? `disabled` : ``}">
-                <i class="mdi mdi-thumb-down"></i>
+                <i class="mdi icon mdi-thumb-down"></i>
             </button> 
 
 
