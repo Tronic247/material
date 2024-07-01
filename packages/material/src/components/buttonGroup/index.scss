@@ -1,0 +1,46 @@
+@mixin btn-group($className, $color) {
+	&.btn-group-#{$className} {
+		$color-border: material-color($color, "800");
+
+		& > .btn {
+			&:not(:first-child, :last-child) {
+				border-left: 1px solid $color-border;
+				border-right: 1px solid $color-border;
+			}
+		}
+	}
+}
+
+.btn-group {
+	display: flex;
+	border-radius: $border-radius * 4px;
+
+	$color-border: material-color($dk, "500");
+
+	& > .btn {
+		flex: 1;
+		box-shadow: none;
+
+		&:first-child {
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+
+		&:last-child {
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+
+		&:not(:first-child, :last-child) {
+			border-radius: 0;
+			border-left: 1px solid $color-border;
+			border-right: 1px solid $color-border;
+		}
+	}
+
+	@include btn-group("primary", $p);
+	@include btn-group("secondary", $s);
+	@include btn-group("success", $g);
+	@include btn-group("danger", $d);
+	@include btn-group("warning", $w);
+}

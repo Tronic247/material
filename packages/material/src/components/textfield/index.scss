@@ -1,0 +1,204 @@
+.textfield {
+	display: inline-flex;
+	align-items: stretch;
+	position: relative;
+	justify-content: space-between;
+	min-height: 56px;
+	padding: 0 16px;
+	background: material-color($dk, "100");
+	border-top-left-radius: 4px * $border-radius;
+	border-top-right-radius: 4px * $border-radius;
+	transition: all 0.2s ease;
+	cursor: text;
+	gap: 8px * $padding;
+
+	& .textfield-left,
+	& .textfield-right {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: material-color($dk, "700");
+
+		& .icon {
+			font-size: 24px * $font-size;
+		}
+	}
+
+	& .textfield-middle {
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		min-height: 32px;
+	}
+
+	& .textfield-input {
+		font-size: 16px * $font-size;
+		height: 100%;
+		padding-top: 20px * $padding;
+		padding-bottom: 6px * $padding;
+		outline: none;
+		color: material-color($dk, "900");
+		min-height: 56px;
+
+		&::placeholder {
+			color: transparent;
+		}
+	}
+
+	& .textfield-label {
+		position: absolute;
+		top: 28px;
+		left: 0;
+		transform: translate(0, -50%);
+		transform-origin: left top;
+		transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+		color: material-color($dk, "600");
+		pointer-events: none;
+		user-select: none;
+	}
+
+	&.textfield-floating {
+		& .textfield-label {
+			transform: translate(0, 0) scale(0.75);
+			top: 4px;
+		}
+	}
+
+	&.textfield-disabled {
+		background: material-color($dk, "100") !important;
+		color: material-color($dk, "200");
+
+		& .textfield-label {
+			color: material-color($dk, "600");
+		}
+
+		& .textfield-input {
+			color: material-color($dk, "500");
+		}
+
+		&.textfield-bordered {
+			outline-color: material-color($dk, "400");
+		}
+	}
+
+	&.textfield-error {
+		background: material-color($d, "50");
+
+		&::before {
+			background: material-color($d, "400");
+		}
+
+		&:hover {
+			background: material-color($d, "100");
+
+			&::before {
+				background: material-color($d, "800");
+			}
+		}
+
+		&::after {
+			background: material-color($d, "500");
+		}
+
+		& .textfield-label {
+			color: material-color($d, "800") !important;
+		}
+
+		&.textfield-focused {
+			background: material-color($d, "100");
+		}
+
+		&.textfield-bordered {
+			outline-color: material-color($d, "400") !important;
+		}
+
+		&.textfield-bordered,
+		&.textfield-minimal {
+			&:hover {
+				background: transparent;
+			}
+
+			&.textfield-focused {
+				background: transparent;
+			}
+		}
+	}
+
+	&.textfield-floating.textfield-focused {
+		& .textfield-label {
+			color: material-color($p);
+		}
+
+		& .textfield-input::placeholder {
+			color: material-color($dk, "800");
+		}
+	}
+
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 1px;
+		width: 100%;
+	}
+
+	&::before {
+		background: material-color($dk, "500");
+	}
+
+	&::after {
+		height: 2px;
+		background: material-color($p);
+		transform: scaleX(0);
+		transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	&:hover {
+		background: material-color($dk, "200");
+
+		&::before {
+			background: material-color($dk, "800");
+		}
+	}
+
+	&.textfield-focused {
+		background: material-color($dk, "300");
+
+		&::after {
+			transform: scaleX(1);
+		}
+	}
+
+	&.textfield-minimal {
+		padding: 0;
+	}
+
+	&.textfield-minimal,
+	&.textfield-bordered {
+		background: transparent;
+		border-radius: 0;
+	}
+
+	&.textfield-bordered {
+		outline: 1px solid material-color($dk, "400");
+		border-radius: 4px * $border-radius;
+		transition: background 0.2s ease;
+
+		&::before,
+		&::after {
+			display: none;
+		}
+
+		&:hover {
+			outline-color: material-color($dk, "600");
+		}
+
+		&.textfield-focused {
+			outline-color: material-color($p);
+			outline-width: 2px;
+			outline-offset: -1px;
+		}
+	}
+}

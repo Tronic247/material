@@ -1,0 +1,94 @@
+.drawer-container {
+	position: relative;
+
+	& .drawer {
+		min-height: 100svh;
+		max-height: 100svh;
+		min-width: 256px;
+		max-width: 300px;
+		border-right: 1px solid material-color($dk, "300");
+		display: flex;
+		flex-direction: column;
+		background: white;
+
+		& .drawer-header {
+			display: flex;
+			flex-direction: column;
+			align-items: start;
+			padding-left: 16px * $padding;
+			padding-right: 16px * $padding;
+			padding-bottom: 16px * $padding;
+			position: sticky;
+			top: 16px * $padding;
+			z-index: 10;
+			background: white;
+			gap: 8px * $padding;
+
+			& .drawer-title {
+				font-size: 20px;
+				font-weight: 500;
+				margin: 0;
+				line-height: 1;
+			}
+
+			& .drawer-subtitle {
+				font-size: 14px;
+				font-weight: 400;
+				margin: 0;
+				color: material-color($dk, "600");
+				line-height: 1;
+			}
+		}
+
+		& .drawer-content {
+			margin-top: 20px * $padding;
+			flex-grow: 1;
+			overflow-y: auto;
+
+			& .list .list-item {
+				padding: 14px * $padding #{$padding * 16px};
+				min-height: 52px * $padding;
+			}
+		}
+	}
+
+	&.drawer-dialog {
+		position: fixed;
+		left: 0;
+		top: 0;
+		z-index: 30;
+
+		& .drawer {
+			display: none;
+			transform: translateX(-100%);
+			position: relative;
+			z-index: 30;
+			transition: all 0.25s ease;
+			border-right-color: transparent;
+			will-change: transform;
+			backface-visibility: hidden;
+			transform-style: preserve-3d;
+
+			@include elevation(16);
+
+			&.drawer-in {
+				display: flex;
+				transform: translateX(0);
+			}
+
+			&.drawer-out {
+				transform: translateX(-100%);
+			}
+		}
+
+		& .drawer-overlay {
+			display: none;
+			position: fixed;
+			inset: 0;
+			background: #00000073;
+			z-index: 20;
+			opacity: 0;
+			transition: all 0.2s ease;
+		}
+	}
+}

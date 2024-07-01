@@ -1,31 +1,17 @@
 {
-	"name": "tronic247-material",
-	"version": "3.1.1",
-	"description": "Modern Material design framework",
-	"main": "src/js/index.js",
+	"name": "tronic247-material-monorepo",
+	"private": true,
 	"scripts": {
-		"build": "node actions/build.js",
-		"watch": "node actions/watch.js",
-		"publish": "node actions/publish.js"
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"storybook": "turbo run storybook",
+		"lint": "turbo run lint"
 	},
-	"keywords": [
-		"material-design"
-	],
-	"author": "tronic247",
-	"license": "MIT",
-	"type": "module",
 	"devDependencies": {
-		"@popperjs/core": "^2.11.0",
-		"chokidar": "^3.5.3",
-		"css-minify": "^2.0.0",
-		"esbuild": "^0.19.0",
-		"flatpickr": "^4.6.3",
-		"focus-trap": "^7.0.0",
-		"nouislider": "^15.5.0",
-		"sass": "^1.53.0",
-		"tabbable": "^6.0.0"
+		"turbo": "latest"
 	},
-	"dependencies": {
-		"tcol": "^1.0.2"
-	}
+	"workspaces": [
+		"packages/*"
+	],
+	"packageManager": "pnpm@9.0.0"
 }

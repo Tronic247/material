@@ -1,0 +1,48 @@
+.chip {
+	padding: $padding * 8px #{$padding * 13px};
+	border-radius: $border-radius * 50px;
+	background: material-color($dk, "200");
+	color: material-color($dk, "800");
+	font-size: #{$font-size * 14px};
+	font-weight: 400;
+	text-decoration: none;
+	user-select: none;
+	overflow: hidden;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: $padding * 8px;
+	transition: all 0.2s ease;
+
+	&:hover {
+		background: material-color($dk, "300");
+		color: material-color($dk, "900");
+	}
+
+	&:active,
+	&:focus-visible {
+		background: material-color($dk, "400");
+	}
+
+	&.chip-active {
+		background: rgba(material-color($p, "100"), 0.4);
+		color: material-color($p, "500");
+
+		&:hover {
+			background: rgba(material-color($p, "100"), 0.6);
+		}
+
+		&:active,
+		&:focus-visible {
+			background: material-color($p, "100");
+		}
+	}
+
+	&.chip-disabled,
+	&:disabled {
+		background: material-color($dk, "100");
+		color: material-color($dk, "600");
+		cursor: not-allowed;
+	}
+}

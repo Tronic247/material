@@ -1,0 +1,28 @@
+.appbar {
+	background: material-color($p);
+	display: flex;
+	height: 64px;
+	padding: 0 #{12px * $padding};
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px * $padding;
+	color: white;
+
+	& .appbar-start,
+	& .appbar-center,
+	& .appbar-end {
+		display: flex;
+		align-items: center;
+		gap: 8px * $padding;
+	}
+
+	& .appbar-title {
+		font-size: 20px;
+		font-weight: 500;
+		line-height: 0;
+	}
+
+	&.appbar-elevated {
+		@include elevation(4);
+	}
+}
