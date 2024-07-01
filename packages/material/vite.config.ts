@@ -3,6 +3,7 @@ import stylelint from "vite-plugin-stylelint";
 import fs from "fs";
 import banner from "vite-plugin-banner";
 import dts from "vite-plugin-dts";
+import autoprefixer from "autoprefixer";
 
 const PACKAGE_JSON = JSON.parse(
 	fs.readFileSync(process.cwd() + "/package.json", "utf-8")
@@ -41,6 +42,11 @@ export default defineConfig({
 				index: "src/index.ts",
 				material: "src/index.scss",
 			},
+		},
+	},
+	css: {
+		postcss: {
+			plugins: [autoprefixer()],
 		},
 	},
 });

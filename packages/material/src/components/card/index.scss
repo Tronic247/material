@@ -52,19 +52,23 @@
 		}
 	}
 
-	& .card-title {
-		margin-top: 10px;
-        margin-bottom: 4px;
-		font-size: $font-size * 20px !important;
-		font-weight: 500;
-	}
+	& .card-header {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-start;
+		margin: 10px 0;
 
-	& .card-subtitle {
-		color: material-color($dk, "600");
-		font-size: $font-size * 14px !important;
-		font-weight: 500;
-		margin-top: 4px;
-        margin-bottom: 10px;
+		& .card-title {
+			font-size: $font-size * 20px !important;
+			font-weight: 500;
+		}
+
+		& .card-subtitle {
+			color: material-color($dk, "600");
+			font-size: $font-size * 14px !important;
+			font-weight: 500;
+		}
 	}
 
 	& .card-text {

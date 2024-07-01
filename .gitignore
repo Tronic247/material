@@ -24,8 +24,6 @@ dist-ssr
 *.sw?
 .stylelintcache
 *storybook.log
-ts/
-scss/
 
 .turbo
 %SystemDrive%

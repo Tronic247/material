@@ -1,5 +1,85 @@
 @import "../scss/base";
 
+.btn {
+	&.btn-light {
+		color: material-color($dk, "200") !important;
+		background: transparent !important;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0.2;
+			pointer-events: none;
+			transition: all 0.2s ease;
+		}
+
+		&:hover::before {
+			background: material-color($dk, "300");
+		}
+
+		&:active::before {
+			background: material-color($dk, "400");
+		}
+
+		&:focus-visible::before {
+			background: material-color($dk, "400");
+		}
+
+		&.btn-disabled,
+		&:disabled {
+			color: material-color($dk, "500");
+			cursor: not-allowed;
+
+			&::before {
+				background: material-color($dk, "100");
+			}
+		}
+	}
+
+	&.btn-dark {
+		color: material-color($dk, "900") !important;
+		background: transparent !important;
+
+		&::before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			opacity: 0.2;
+			pointer-events: none;
+			transition: all 0.2s ease;
+		}
+
+		&:hover::before {
+			background: material-color($dk, "800");
+		}
+
+		&:active::before {
+			background: material-color($dk, "700");
+		}
+
+		&:focus-visible::before {
+			background: material-color($dk, "700");
+		}
+
+		&.btn-disabled,
+		&:disabled {
+			color: material-color($dk, "500");
+			cursor: not-allowed;
+
+			&::before {
+				background: material-color($dk, "900");
+			}
+		}
+	}
+}
+
 .btn:not(.btn-icon, .btn-fab) {
 	border: none;
 	border-radius: $border-radius * 4px;

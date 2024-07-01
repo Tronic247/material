@@ -7,22 +7,17 @@ interface Options {
 	trigger?: HTMLElement | Element | any;
 }
 
-function Dialog(_dialog: HTMLElement, options: Options = {}) {
+function Dialog(dialog: HTMLElement, options: Options = {}) {
 	type InstanceReturn = {
 		openDialog: typeof openDialog;
 		closeDialog: typeof closeDialog;
 	};
 
-	const dialog: HTMLElement & { __materialDialogInstance: InstanceReturn } =
-		_dialog as any;
-
-	if (dialog.__materialDialogInstance) {
-		return dialog.__materialDialogInstance;
-	}
-
 	let focusTrapInstance: focusTrap.FocusTrap;
 
 	let { prominent = false, trigger = undefined } = options;
+
+	const getIsOpen = () => dialog.style.display === "flex";
 
 	function checkIfContentExits() {
 		const content = $(".dialog-content", dialog);
@@ -55,21 +50,25 @@ function Dialog(_dialog: HTMLElement, options: Options = {}) {
 	});
 
 	function openDialog() {
+		if (getIsOpen()) return;
+
 		hideBodyScrollbar();
 
 		dialog.style.display = "flex";
 		dialog.style.opacity = "0";
 		dialog.style.pointerEvents = "none";
 
-		setTimeout(() => {
+		requestAnimationFrame(() => {
 			dialog.style.opacity = "1";
 			dialog.classList.add("dialog-open-enter");
 
 			focusTrapInstance.activate();
-		}, 10);
+		});
 	}
 
 	function closeDialog(newTrigger?: HTMLElement) {
+		if (!getIsOpen()) return;
+
 		if (newTrigger) {
 			trigger = newTrigger;
 		}
@@ -78,6 +77,8 @@ function Dialog(_dialog: HTMLElement, options: Options = {}) {
 	}
 
 	function hide() {
+		if (!getIsOpen()) return;
+
 		showBodyScrollbar();
 		checkIfContentExits();
 
@@ -99,8 +100,6 @@ function Dialog(_dialog: HTMLElement, options: Options = {}) {
 	}
 
 	const out: InstanceReturn = { openDialog, closeDialog };
-
-	dialog.__materialDialogInstance = out;
 
 	return out;
 }

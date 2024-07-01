@@ -18,7 +18,7 @@ const meta = {
 		div.innerHTML = `
            <div style="margin-top: 20px; max-width: 400px">
 			<div class="card card-${args.hoverAble ? "hoverable" : ""}">
-				<a class="ripple-e card-hover-item" href="#!">
+				<${args.hoverAble ? "a" : "div"} class="${args.hoverAble ? "ripple-e card-hover-item" : ""} " href="#!">
                     ${
 											args.withImage
 												? `
@@ -28,21 +28,25 @@ const meta = {
 										}
 
 					<div class="card-content">
-                        ${
-													args.withTitle
-														? `
-						<h1 class="card-title">Card Title</h1>
-                        `
-														: ""
-												}
+										${args.withTitle || args.withSubtitle ? `
+						<div class="card-header">
+                        	${
+														args.withTitle
+															? `
+							<h1 class="card-title">Card Title</h1>
+                        	`
+															: ""
+													}
 
-                        ${
+                        	${
 													args.withSubtitle
 														? `
-						<h2 class="card-subtitle">Card Subtitle</h2>
+							<h2 class="card-subtitle">Card Subtitle</h2>
                         `
 														: ""
 												}
+						</div>
+						` : ""}
 
                         ${
 													args.withText
@@ -59,7 +63,7 @@ const meta = {
 														: ""
 												}
 					</div>
-				</a>
+				</${args.hoverAble ? "a" : "div"}>
 
                 ${
 									args.withActions

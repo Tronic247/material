@@ -33,6 +33,9 @@
 	],
 	"license": "MIT",
 	"type": "module",
+	"browserlists": [
+		"last 2 versions"
+	],
 	"devDependencies": {
 		"@chromatic-com/storybook": "1.6.0",
 		"@popperjs/core": "^2.11.0",
@@ -61,7 +64,9 @@
 	},
 	"dependencies": {
 		"@floating-ui/dom": "^1.6.6",
+		"autoprefixer": "^10.4.19",
 		"iconify-icon": "^2.1.0",
+		"postcss": "^8.4.39",
 		"tcol": "^1.0.2",
 		"terser": "^5.31.1",
 		"typescript": "^5.5.2",

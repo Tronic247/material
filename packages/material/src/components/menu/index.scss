@@ -1,0 +1,27 @@
+.menu {
+	display: none;
+	min-width: 100px;
+	background: #fff;
+	border-radius: $border-radius * 4px;
+	transition:
+		opacity 0.2s ease,
+		transform 0.2s ease;
+	opacity: 0;
+	position: absolute;
+	z-index: 10;
+	transform: scale(0.9);
+	transform-origin: top left;
+	overflow: hidden;
+
+	@include elevation(4);
+
+	&.menu-enter {
+		opacity: 1;
+		transform: scale(1);
+	}
+
+	&.menu-exit {
+		opacity: 0;
+		transform: scale(1);
+	}
+}
